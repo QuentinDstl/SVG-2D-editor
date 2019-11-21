@@ -2,33 +2,38 @@
 
 #include "liaison.h"
 
-/*Liaison::Liaison(double _xRef, double _yRef) : m_refpos{_xRef, _yRef}
-{ }*/
-
-
-Liaison::Liaison()
-: m_refpos{0,0}, m_refposMere{0,0}, memeplan{0}
+/// Constructeur (reference de postion x, reference de postion y, position de base x, position de base y, bool : est il dans le plan)
+Liaison::Liaison(double _refposX, double _refposY, double _baseposX, double _baseposY, bool _plan)
+    : m_refpos{_refposX,_refposY}, m_basepos{_baseposX,_baseposY}, m_plan{_plan}
 {}
 
+/// Constructeur avec Initialisation nul
+Liaison::Liaison()
+    : m_refpos{0,0}, m_basepos{0,0}, m_plan{0}
+{}
 
-void Liaison::initialiser(double _refposMereX, double _refposMereY, double _refposX, double _refposY) {
+/// Initialisation (reference de postion x, reference de postion y, position de base x, position de base y)
+void Liaison::initialiser(double _refposX, double _refposY, double _baseposX, double _baseposY)
+{
 
-    m_refposMere.modifierX(_refposMereX);
-    m_refposMere.modifierY(_refposMereY);
     m_refpos.modifierX(_refposX);
     m_refpos.modifierY(_refposY);
+    m_basepos.modifierX(_baseposX);
+    m_basepos.modifierY(_baseposY);
 }
 
 
-Coords Liaison::getRefpos() {
+Coords Liaison::getBasepos()
+{
+
+    return m_basepos;
+}
+
+
+Coords Liaison::getRefpos()
+{
 
     return m_refpos;
-}
-
-
-Coords Liaison::getRefposMere() {
-
-    return m_refposMere;
 }
 
 /// CLASS FILLE GLISSIERE

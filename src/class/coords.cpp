@@ -3,11 +3,11 @@
 #include <iostream>
 
 Coords::Coords(double _x, double _y)
-: m_x{_x}, m_y{_y}
+    : m_x{_x}, m_y{_y}
 {}
 
 Coords::Coords()
-: m_x{0}, m_y{0}
+    : m_x{0}, m_y{0}
 {}
 
 Coords Coords::aleatoire(double amplitude)
@@ -21,13 +21,15 @@ void Coords::afficher() const
     std::cout << "(" << m_x << ", " << m_y << ")";
 }
 
-void Coords::modifierX(double x) {
+void Coords::modifierX(double x)
+{
 
     m_x = x;
 }
 
 
-void Coords::modifierY(double y) {
+void Coords::modifierY(double y)
+{
 
     m_y = y;
 }
