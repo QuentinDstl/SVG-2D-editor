@@ -45,7 +45,7 @@ void Block::dessiner(Svgfile &svgout)const
     svgout.addRectangle(m_origine.getX(), m_origine.getY(),
                         m_origine.getX(), m_origine.getY() + m_taille.getY(),
                         m_origine.getX() + m_taille.getX(), m_origine.getY(),
-                        m_origine.getX() + m_taille.getX(), m_origine.getX() + m_taille.getY(),
+                        m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
                         "grey");
 }
 
@@ -69,4 +69,11 @@ void ajouterBlock(Block &room,
     room.initialiser(_xTaille, _yTaille, _id);
     room.initialiserLiaison(_refposX, _refposY, _baseposX, _baseposY);
     room.initialiserOrigine();
+}
+
+
+
+Block* Block::getFille(unsigned int indice)const {
+
+    return m_Filles[indice];
 }

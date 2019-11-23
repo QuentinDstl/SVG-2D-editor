@@ -11,6 +11,10 @@ La meme pour liaison
 rename de refposMere en refpos et des refpos en basepos comme dans le sujet.
 (a finir) trie des methodes dans le meme ordre que leurs declarations.
 
--
+
+- maj 02
+
+Ajout du sol
+Ajout d'un getter de fille
 
 

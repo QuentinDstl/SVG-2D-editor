@@ -48,7 +48,8 @@ int main()
 void creerScene(Block &room)
 {
 
-    ajouterBlock(room, LARGEUR_SCENE, HAUTEUR_SCENE, "room", 0, 0, 0, 0);
+    //ajouterBlock(room, LARGEUR_SCENE, HAUTEUR_SCENE, "room", 0, 0, 0, 0);
+    room.ajouterFille(LARGEUR_SCENE, 50, "sol", LARGEUR_SCENE/2, HAUTEUR_SCENE, LARGEUR_SCENE/2, 50);
 }
 
 
@@ -59,4 +60,5 @@ void dessinerScene(const Block &room)
     Svgfile svgout;
 
     room.dessiner(svgout);
+    room.getFille(0)->dessiner(svgout);
 }

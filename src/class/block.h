@@ -32,6 +32,8 @@ public :
     void initialiserLiaison(double _refposX, double _refposY, double _baseposX, double _baseposY);
     void initialiserOrigine();
 
+    Block* getFille(unsigned int indice)const;
+
     void dessiner(Svgfile &svgout)const;
 };
 
