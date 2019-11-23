@@ -19,39 +19,31 @@
 void creerScene(Block &room);
 void dessinerScene(const Block &room);
 
-
-
 int main()
 {
-
     Block room;
-
-    std::ofstream file {FICHIER};
-
-
-    if (!file)
-    {
-        std::cerr << "Can't write/open sauvegarde.rom\n";
-    }
 
     creerScene(room);
     dessinerScene(room);
 
+    std::ofstream file {FICHIER};
+    if (!file)
+    {
+        std::cerr << "Ouverture impossible du fichier : " << FICHIER;
+    }
+    else
+    {
+        room.sauvegarde();
+    }
+
     return 0;
 }
 
-
-
-
 void creerScene(Block &room)
 {
-
     //ajouterBlock(room, LARGEUR_SCENE, HAUTEUR_SCENE, "room", 0, 0, 0, 0);
     room.ajouterFille(LARGEUR_SCENE, 50, "sol", LARGEUR_SCENE/2, HAUTEUR_SCENE, LARGEUR_SCENE/2, 50);
 }
-
-
-
 
 void dessinerScene(const Block &room)
 {
