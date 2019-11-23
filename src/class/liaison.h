@@ -6,20 +6,20 @@
 class Liaison
 {
 protected :
-    Coords m_refposMere;
     Coords m_refpos;
+    Coords m_basepos;
 
-    bool memeplan;
+    bool m_plan;
 
 public :
-    //Liaison(Coords _refpos);
+    Liaison(double _refposX, double _refposY, double _baseposX, double _baseposY, bool _plan);
     Liaison();
     ~Liaison() = default;
 
-    void initialiser(double _refposMereX, double _refposMereY, double _refposX, double _refposY);
+    void initialiser(double _refposX, double _refposY, double _baseposX, double _baseposY);
 
+    Coords getBasepos();
     Coords getRefpos();
-    Coords getRefposMere();
 };
 
 #endif // LIAISON_H_INCLUDED

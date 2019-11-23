@@ -18,9 +18,6 @@
 
 void creerScene(Block &room);
 void dessinerScene(const Block &room);
-void ajouterBlock(Block &room,
-                  double _xTaille, double _yTaille, std::string _id,
-                  double _refposMereX, double _refposMereY, double _refposX, double _refposY);
 
 
 
@@ -48,7 +45,8 @@ int main()
 
 
 
-void creerScene(Block &room) {
+void creerScene(Block &room)
+{
 
     ajouterBlock(room, LARGEUR_SCENE, HAUTEUR_SCENE, "room", 0, 0, 0, 0);
 }
@@ -61,15 +59,4 @@ void dessinerScene(const Block &room)
     Svgfile svgout;
 
     room.dessiner(svgout);
-}
-
-
-void ajouterBlock(Block &room,
-                  double _xTaille, double _yTaille, std::string _id,
-                  double _refposMereX, double _refposMereY, double _refposX, double _refposY)
-{
-
-    room.initialiser(_xTaille, _yTaille, _id);
-    room.initialiserLiaison(_refposMereX, _refposMereY, _refposX, _refposY);
-    room.initialiserOrigine();
 }

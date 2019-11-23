@@ -9,29 +9,36 @@
 
 class Block
 {
-    protected :
-        std::string m_id;
-        std::vector <Block*> m_Filles;
-        Coords m_taille;
-        Coords m_origine;
+protected :
+    std::string m_id;
+    std::vector <Block*> m_Filles;
+    Coords m_origine;
+    Coords m_taille;
 
-        Liaison *m_liaison;
 
-        //Couleur m_bordure
-        //Couleur m_couleur
-    public :
-        //Block(double _xOrigine, double _yOrigine, double _xTaille, double _yTaille, std::string _id);
-        Block();
-        ~Block()=default;
+    Liaison *m_liaison;
 
-        void ajouterFille(double _xTaille, double _yTaille, std::string _id,
-                          double _refposMereX, double _refposMereY, double _refposX, double _refposY);
-        void initialiser(double _xTaille, double _yTaille, std::string _id);
-        void initialiserLiaison(double _refposMereX, double _refposMereY, double _refposFilleX, double _refposFilleY);
-        void initialiserOrigine();
+    //Couleur m_bordure
+    //Couleur m_couleur
+public :
+    Block(std::string _id, double _xOrigine, double _yOrigine, double _xTaille, double _yTaille);
+    Block();
 
-        void dessiner(Svgfile &svgout)const;
+    ~Block()=default;
+
+    void ajouterFille(double _xTaille, double _yTaille, std::string _id,
+                      double _refposX, double _refposY, double _baseposX, double _baseposY);
+    void initialiser(double _xTaille, double _yTaille, std::string _id);
+    void initialiserLiaison(double _refposX, double _refposY, double _baseposX, double _baseposY);
+    void initialiserOrigine();
+
+    void dessiner(Svgfile &svgout)const;
 };
+
+
+void ajouterBlock(Block &room,
+                  double _xTaille, double _yTaille, std::string _id,
+                  double _refposX, double _refposY, double _baseposX, double _baseposY);
 
 
 #endif // BLOCK_H_INCLUDED
