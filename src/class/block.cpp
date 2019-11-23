@@ -77,3 +77,20 @@ Block* Block::getFille(unsigned int indice)const {
 
     return m_Filles[indice];
 }
+
+///************************///
+///  CLASS FILLE COULEUR   ///
+///************************///
+
+CouleurBlock::CouleurBlock(Couleur _couleur) : m_couleur{_couleur}
+{ }
+
+// overwriting de dessiner pour afficher la couleur
+void CouleurBlock::dessiner(Svgfile &svgout)const
+{
+    svgout.addRectangle(m_origine.getX(), m_origine.getY(),
+                        m_origine.getX(), m_origine.getY() + m_taille.getY(),
+                        m_origine.getX() + m_taille.getX(), m_origine.getY(),
+                        m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
+                        m_couleur);
+}

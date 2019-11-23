@@ -16,15 +16,15 @@
 #define HAUTEUR_SCENE 800
 #define LARGEUR_SCENE 1200
 
-void creerScene(Block &room);
+void creerScene(Block* room);
 void dessinerScene(const Block &room);
 
 
 
 int main()
 {
-
     Block room;
+    Block* blockIterateur = &room;
 
     std::ofstream file {FICHIER};
 
@@ -34,20 +34,20 @@ int main()
         std::cerr << "Can't write/open sauvegarde.rom\n";
     }
 
-    creerScene(room);
+    creerScene(blockIterateur);
     dessinerScene(room);
+
 
     return 0;
 }
 
-
-
-
-void creerScene(Block &room)
+// TODO : voir pour terminer l'iterateur
+void creerScene(Block* iterateur)
 {
 
     //ajouterBlock(room, LARGEUR_SCENE, HAUTEUR_SCENE, "room", 0, 0, 0, 0);
-    room.ajouterFille(LARGEUR_SCENE, 50, "sol", LARGEUR_SCENE/2, HAUTEUR_SCENE, LARGEUR_SCENE/2, 50);
+    iterateur->ajouterFille(LARGEUR_SCENE, 50, "sol", LARGEUR_SCENE/2, HAUTEUR_SCENE, LARGEUR_SCENE/2, 50);
+    iterateur = (iterateur->getFille(0));
 }
 
 

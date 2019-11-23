@@ -39,7 +39,10 @@ void ajouterBlock(Block &room,
                   double _xTaille, double _yTaille, std::string _id,
                   double _refposX, double _refposY, double _baseposX, double _baseposY);
 
-/// Class fille couleur
+
+///************************///
+///  CLASS FILLE COULEUR   ///
+///************************///
 
 class CouleurBlock : public Block
 {
@@ -48,7 +51,8 @@ protected :
     //Couleur m_bordure;
 public :
     CouleurBlock(Couleur _couleur);
-
+    // overwriting
+    void dessiner(Svgfile &svgout)const;
 };
 
 #endif // BLOCK_H_INCLUDED
