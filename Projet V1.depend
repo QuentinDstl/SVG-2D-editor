@@ -344,3 +344,80 @@
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
+1574528442 source:c:\users\c_per\projet_block\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	"src/class/block.h"
+	"src/class/coords.h"
+	"src/class/liaison.h"
+	"src/interface/couleur.h"
+	"src/svg/svgfile.h"
+	"src/util/util.h"
+
+1574527988 c:\users\c_per\projet_block\src\class\block.h
+	<vector>
+	<iostream>
+	"liaison.h"
+	"../svg/svgfile.h"
+	"../interface/couleur.h"
+
+1574524172 c:\users\c_per\projet_block\src\class\liaison.h
+	"coords.h"
+	"liaison.h"
+
+1574524172 c:\users\c_per\projet_block\src\class\coords.h
+
+1574524172 c:\users\c_per\projet_block\src\svg\svgfile.h
+	<string>
+	<fstream>
+	<set>
+
+1574524172 c:\users\c_per\projet_block\src\interface\couleur.h
+	<string>
+	<cstdint>
+
+1574524172 c:\users\c_per\projet_block\src\util\util.h
+	<string>
+
+1574528994 source:c:\users\c_per\projet_block\src\class\block.cpp
+	"block.h"
+	"../svg/svgfile.h"
+	"liaison.h"
+
+1574524172 source:c:\users\c_per\projet_block\src\class\coords.cpp
+	"coords.h"
+	"../util/util.h"
+	<iostream>
+
+1574524172 source:c:\users\c_per\projet_block\src\class\liaison.cpp
+	<iostream>
+	"liaison.h"
+
+1574524172 source:c:\users\c_per\projet_block\src\interface\couleur.cpp
+	"couleur.h"
+	"../svg/svgfile.h"
+	"../util/util.h"
+	<iostream>
+
+1574524172 source:c:\users\c_per\projet_block\src\svg\svgfile.cpp
+	<iostream>
+	<sstream>
+
+1574524172 source:c:\users\c_per\projet_block\src\util\util.cpp
+	"util.h"
+	<random>
+	<ctime>
+	<iostream>
+	<cstdio>
+	<streambuf>
+	<vector>
+	<cstdlib>
+	<cstdio>
+	<algorithm>
+	<cstring>
+	<iostream>
+	<thread>
+	"../util/util.h"
+	<windows.h>
+

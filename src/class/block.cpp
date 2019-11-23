@@ -2,6 +2,9 @@
 #include "../svg/svgfile.h"
 #include "liaison.h"
 
+/// lecture fichier
+#define FICHIER "sauvegarde.rom"
+
 Block::Block(std::string _id, double _xOrigine, double _yOrigine, double _xTaille, double _yTaille)
     : m_id{_id}, m_origine{_xOrigine, _yOrigine}, m_taille{_xTaille, _yTaille}
 {}
@@ -71,7 +74,26 @@ void ajouterBlock(Block &room,
     room.initialiserOrigine();
 }
 
+///Sauvegarde global de la scène
+//a modifier pour toutes les filles
+void Block::sauvegarde()
+{
+    sauvegarderScene(m_Filles);
+}
 
+///Sauvegarde des filles
+//a modifier pour toutes les filles
+void Block::sauvegarderScene(std::vector <Block*> s)
+{
+    std::ofstream ofs{FICHIER};
+
+    for ( size_t i=0; i<s.size(); ++i)
+    {
+        ofs << s[i]->m_id << " " << s[i]->m_taille.getX() << " " << s[i]->m_taille.getY() << " " << s[i]->m_origine.getY() << " " << s[i]->m_origine.getX() << std::endl;
+    }
+
+    ofs.close();
+}
 
 Block* Block::getFille(unsigned int indice)const {
 

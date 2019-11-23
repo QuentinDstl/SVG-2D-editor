@@ -32,6 +32,9 @@ public :
     Block* getFille(unsigned int indice)const;
 
     void dessiner(Svgfile &svgout)const;
+
+    void sauvegarde();
+    void sauvegarderScene(std::vector <Block*> m_Filles);
 };
 
 
