@@ -191,7 +191,7 @@
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
-1574347595 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\main.cpp
+1574522180 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\main.cpp
 	<iostream>
 	<fstream>
 	<vector>
@@ -202,55 +202,56 @@
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
-1574348371 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.h
+1574523501 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison.h"
 	"../svg/svgfile.h"
+	"../interface/couleur.h"
 
-1574348165 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison.h
+1574518898 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison.h
 	"coords.h"
 	"liaison.h"
 
-1574347596 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.h
+1574518898 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.h
 
-1574347596 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\svg\svgfile.h
+1574518898 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\svg\svgfile.h
 	<string>
 	<fstream>
 	<set>
 
-1574343116 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\couleur.h
+1574517612 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\couleur.h
 	<string>
 	<cstdint>
 
-1574343116 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\util\util.h
+1574517612 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\util\util.h
 	<string>
 
-1574348729 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.cpp
+1574521745 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.cpp
 	"block.h"
 	"../svg/svgfile.h"
 	"liaison.h"
 
-1574347596 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.cpp
+1574518898 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.cpp
 	"coords.h"
 	"../util/util.h"
 	<iostream>
 
-1574348861 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison.cpp
+1574518898 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison.cpp
 	<iostream>
 	"liaison.h"
 
-1574343116 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\couleur.cpp
+1574517612 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\couleur.cpp
 	"couleur.h"
 	"../svg/svgfile.h"
 	"../util/util.h"
 	<iostream>
 
-1574347596 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\svg\svgfile.cpp
+1574518898 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\svg\svgfile.cpp
 	<iostream>
 	<sstream>
 
-1574343116 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\util\util.cpp
+1574517612 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\util\util.cpp
 	"util.h"
 	<random>
 	<ctime>

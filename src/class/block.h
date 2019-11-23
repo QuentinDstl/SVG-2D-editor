@@ -6,6 +6,7 @@
 
 #include "liaison.h"
 #include "../svg/svgfile.h"
+#include "../interface/couleur.h"
 
 class Block
 {
@@ -14,12 +15,8 @@ protected :
     std::vector <Block*> m_Filles;
     Coords m_origine;
     Coords m_taille;
-
-
     Liaison *m_liaison;
 
-    //Couleur m_bordure
-    //Couleur m_couleur
 public :
     Block(std::string _id, double _xOrigine, double _yOrigine, double _xTaille, double _yTaille);
     Block();
@@ -42,5 +39,16 @@ void ajouterBlock(Block &room,
                   double _xTaille, double _yTaille, std::string _id,
                   double _refposX, double _refposY, double _baseposX, double _baseposY);
 
+/// Class fille couleur
+
+class CouleurBlock : public Block
+{
+protected :
+    Couleur m_couleur;
+    //Couleur m_bordure;
+public :
+    CouleurBlock(Couleur _couleur);
+
+};
 
 #endif // BLOCK_H_INCLUDED

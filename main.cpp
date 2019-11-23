@@ -13,8 +13,8 @@
 #define FICHIER "sauvegarde.rom"
 
 /// define scene
-#define HAUTEUR_SCENE 400
-#define LARGEUR_SCENE 600
+#define HAUTEUR_SCENE 800
+#define LARGEUR_SCENE 1200
 
 void creerScene(Block &room);
 void dessinerScene(const Block &room);
@@ -34,10 +34,8 @@ int main()
         std::cerr << "Can't write/open sauvegarde.rom\n";
     }
 
-
     creerScene(room);
     dessinerScene(room);
-
 
     return 0;
 }
