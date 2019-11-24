@@ -48,8 +48,16 @@ int main()
 void creerScene(Block &room)
 {
 
-    //ajouterBlock(room, LARGEUR_SCENE, HAUTEUR_SCENE, "room", 0, 0, 0, 0);
-    room.ajouterFille(LARGEUR_SCENE, 50, "sol", LARGEUR_SCENE/2, HAUTEUR_SCENE, LARGEUR_SCENE/2, 50);
+    ajouterBlock(room, {LARGEUR_SCENE,HAUTEUR_SCENE}, "room", {0,0}, {0,0});
+    room.ajouterFille({LARGEUR_SCENE,50}, "sol", {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, 1);
+    //room.getFille(0)->ajouterFille({200,50}, "arm", {0,50}, {0,0}, 0);
+    //room.getFille(0)->getFille(0)->ajouterFille({20,20}, "arm", {0,0}, {200,0}, 0);
+    //room.getFille(0)->ajouterFille({200,50}, "arm", {0,70}, {0,0}, 0);
+    //room.getFille(0)->ajouterFille({200,50}, "arm", {0,50}, {0,0}, 0);
+    room.getFille(0)->ajouterFille({25,350}, "arm", {0,350}, {0,0}, 0);
+    room.getFille(0)->ajouterFille({25,HAUTEUR_SCENE-50}, "arm", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0);
+    room.getFille(0)->getFille(0)->ajouterFille({60,20}, "arm", {0,0}, {25,HAUTEUR_SCENE/2}, 0);
+    room.getFille(0)->ajouterFille({25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
 }
 
 
@@ -59,6 +67,12 @@ void dessinerScene(const Block &room)
 {
     Svgfile svgout;
 
-    room.dessiner(svgout);
+    //room.dessiner(svgout);
+
+    ///Affichage pointeur par pointeur => créer la boucle de parcours de l'arbre
     room.getFille(0)->dessiner(svgout);
+    room.getFille(0)->getFille(0)->dessiner(svgout);
+    room.getFille(0)->getFille(1)->dessiner(svgout);
+    room.getFille(0)->getFille(0)->getFille(0)->dessiner(svgout);
+    room.getFille(0)->getFille(2)->dessiner(svgout);
 }

@@ -3,38 +3,16 @@
 #include "liaison.h"
 
 /// Constructeur (reference de postion x, reference de postion y, position de base x, position de base y, bool : est il dans le plan)
-Liaison::Liaison(double _refposX, double _refposY, double _baseposX, double _baseposY, bool _plan)
-    : m_refpos{_refposX,_refposY}, m_basepos{_baseposX,_baseposY}, m_plan{_plan}
+Liaison::Liaison(Coords _refpos, Coords _basepos, bool _plan3D, Block* _Mere)
+    : m_refpos{_refpos}, m_basepos{_basepos}, m_plan3D{_plan3D}, m_Mere{_Mere}
 {}
 
 /// Constructeur avec Initialisation nul
 Liaison::Liaison()
-    : m_refpos{0,0}, m_basepos{0,0}, m_plan{0}
+    : m_refpos{0,0}, m_basepos{0,0}, m_plan3D{0}
 {}
 
-/// Initialisation (reference de postion x, reference de postion y, position de base x, position de base y)
-void Liaison::initialiser(double _refposX, double _refposY, double _baseposX, double _baseposY)
-{
 
-    m_refpos.modifierX(_refposX);
-    m_refpos.modifierY(_refposY);
-    m_basepos.modifierX(_baseposX);
-    m_basepos.modifierY(_baseposY);
-}
-
-
-Coords Liaison::getBasepos()
-{
-
-    return m_basepos;
-}
-
-
-Coords Liaison::getRefpos()
-{
-
-    return m_refpos;
-}
 
 /// CLASS FILLE GLISSIERE
 

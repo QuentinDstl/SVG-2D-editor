@@ -91,3 +91,34 @@ Coords operator*(double m, const Coords& c)
 {
     return { m*c.m_x, m*c.m_y };
 }
+
+
+/// Test de comparaison (inferieur ou egal) entre 2 coords
+bool operator<=(const Coords& c1, const Coords& c2)
+{
+    if(c1.m_x <= c2.m_x && c1.m_y <= c2.m_y) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+bool operator>=(const Coords& c1, const Coords& c2)
+{
+    if(c1.m_x >= c2.m_x && c1.m_y >= c2.m_y) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+
+
+/// Affichage d'un Coords
+std::ostream& operator<<(std::ostream& out, const Coords& c)
+{
+    out << "{" << c.m_x << "," << c.m_y << "}";
+    return out;
+}

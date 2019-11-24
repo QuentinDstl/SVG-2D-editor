@@ -1,6 +1,8 @@
 #ifndef COORDS_H_INCLUDED
 #define COORDS_H_INCLUDED
 
+#include <iostream>
+
 class Coords
 {
 private :
@@ -36,6 +38,13 @@ public :
 
     /// Multiplication par un réel
     friend Coords operator*(double m, const Coords& c);
+
+    /// Test de comparaison (inferieur ou egal) entre 2 coords
+    friend bool operator<=(const Coords& c1, const Coords& c2);
+    friend bool operator>=(const Coords& c1, const Coords& c2);
+
+    /// Affichage d'un Coords
+    friend std::ostream& operator<<(std::ostream& out, const Coords& c);
 
 };
 

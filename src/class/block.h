@@ -15,32 +15,60 @@ protected :
     Coords m_origine;
     Coords m_taille;
 
-
     Liaison *m_liaison;
 
     //Couleur m_bordure
     //Couleur m_couleur
 public :
-    Block(std::string _id, double _xOrigine, double _yOrigine, double _xTaille, double _yTaille);
+    Block(std::string _id, Coords _taille);
     Block();
 
     ~Block()=default;
 
-    void ajouterFille(double _xTaille, double _yTaille, std::string _id,
-                      double _refposX, double _refposY, double _baseposX, double _baseposY);
-    void initialiser(double _xTaille, double _yTaille, std::string _id);
-    void initialiserLiaison(double _refposX, double _refposY, double _baseposX, double _baseposY);
+    void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D);
+    void initialiser(Coords _taille, std::string _id);
+    void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D, Block* _Mere);
     void initialiserOrigine();
 
     Block* getFille(unsigned int indice)const;
+    Coords getTaille()const;
+    Coords getOrigine()const;
 
     void dessiner(Svgfile &svgout)const;
+
+    bool TestRefPos()const;
 };
 
 
+///FONCTIONS LIEES A LA CLASSE COORD
 void ajouterBlock(Block &room,
-                  double _xTaille, double _yTaille, std::string _id,
-                  double _refposX, double _refposY, double _baseposX, double _baseposY);
+                  Coords _taille, std::string _id,
+                  Coords _refpos, Coords _basepos);
 
+bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block* m_Mere);
+
+bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block* m_Mere);
+
+
+
+
+///METHODES INLINE
+
+inline Block* Block::getFille(unsigned int indice)const {
+
+    return m_Filles[indice];
+}
+
+
+inline Coords Block::getTaille()const {
+
+    return m_taille;
+}
+
+
+inline Coords Block::getOrigine()const {
+
+    return m_origine;
+}
 
 #endif // BLOCK_H_INCLUDED
