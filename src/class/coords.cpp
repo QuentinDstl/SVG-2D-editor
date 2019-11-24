@@ -115,7 +115,6 @@ bool operator>=(const Coords& c1, const Coords& c2)
 }
 
 
-
 /// Affichage d'un Coords
 std::ostream& operator<<(std::ostream& out, const Coords& c)
 {

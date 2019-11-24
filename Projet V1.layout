@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
+<<<<<<< HEAD
 	<ActiveTarget name="Release" />
 	<File name="src\svg\svgfile.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
@@ -8,10 +9,20 @@
 		</Cursor>
 	</File>
 	<File name="src\class\coords.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+=======
+	<ActiveTarget name="Debug" />
+	<File name="src\interface\couleur.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\class\liaison.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+>>>>>>> d9e47b0764835eae79044f9e071924f27a3f10aa
 		<Cursor>
 			<Cursor1 position="1144" topLine="0" />
 		</Cursor>
 	</File>
+<<<<<<< HEAD
 	<File name="src\class\block.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="4656" topLine="0" />
@@ -23,20 +34,43 @@
 		</Cursor>
 	</File>
 	<File name="src\class\liaison.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+=======
+	<File name="src\class\liaison.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="320" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\class\block.h" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="953" topLine="22" />
+		</Cursor>
+	</File>
+	<File name="src\util\util.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+>>>>>>> d9e47b0764835eae79044f9e071924f27a3f10aa
 		<Cursor>
 			<Cursor1 position="1161" topLine="0" />
 		</Cursor>
 	</File>
+<<<<<<< HEAD
 	<File name="src\util\util.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src\util\util.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+=======
+	<File name="src\class\block.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
+			<Cursor1 position="4175" topLine="111" />
 		</Cursor>
 	</File>
+	<File name="src\class\coords.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+>>>>>>> d9e47b0764835eae79044f9e071924f27a3f10aa
+		<Cursor>
+			<Cursor1 position="152" topLine="18" />
+		</Cursor>
+	</File>
+<<<<<<< HEAD
 	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="737" topLine="0" />
@@ -60,6 +94,31 @@
 	<File name="src\interface\couleur.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
+=======
+	<File name="main.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1250" topLine="36" />
+		</Cursor>
+	</File>
+	<File name="src\util\util.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\class\coords.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="470" topLine="44" />
+		</Cursor>
+	</File>
+	<File name="src\svg\svgfile.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3660" topLine="108" />
+		</Cursor>
+	</File>
+	<File name="src\svg\svgfile.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="816" topLine="0" />
+>>>>>>> d9e47b0764835eae79044f9e071924f27a3f10aa
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

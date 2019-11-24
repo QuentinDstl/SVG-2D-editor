@@ -2,10 +2,14 @@
 #include "../svg/svgfile.h"
 #include "liaison.h"
 
+/// lecture fichier
+#define FICHIER "sauvegarde.rom"
 
+///Constructeur
 Block::Block(std::string _id, Coords _taille)
     : m_id{_id}, m_origine{0,0}, m_taille{_taille}
 {}
+
 
 /// Constructeur avec Initialisation nul
 Block::Block()
@@ -57,7 +61,6 @@ void Block::dessiner(Svgfile &svgout)const
 
 void Block::ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D)
 {
-    std::cout << _refpos;
     Block* nouv = new Block{_id, _taille};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D, this);
     nouv->initialiserOrigine();
@@ -100,7 +103,26 @@ bool Block::TestRefPos()const {
     return test;
 }
 
+///Sauvegarde global de la scène
+//a modifier pour toutes les filles
+void Block::sauvegarde()
+{
+    sauvegarderScene(m_Filles);
+}
 
+///Sauvegarde des filles
+//a modifier pour toutes les filles
+void Block::sauvegarderScene(std::vector <Block*> s)
+{
+    std::ofstream ofs{FICHIER};
+
+    for ( size_t i=0; i<s.size(); ++i)
+    {
+        ofs << s[i]->m_id << " " << s[i]->m_taille.getX() << " " << s[i]->m_taille.getY() << " " << s[i]->m_origine.getY() << " " << s[i]->m_origine.getX() << std::endl;
+    }
+
+    ofs.close();
+}
 
 bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block *m_Mere) {
 
@@ -122,6 +144,7 @@ bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan
 
     return test;
 }
+
 
 
 
@@ -164,3 +187,38 @@ void ajouterBlock(Block &room,
     room.initialiserOrigine();
 }
 
+
+///************************///
+///   CLASS FILLE COULEUR  ///
+///************************///
+
+CouleurBlock::CouleurBlock(Couleur _couleur) : m_couleur{_couleur}
+{ }
+
+// overwriting de dessiner pour afficher la couleur
+void CouleurBlock::dessiner(Svgfile &svgout)const
+{
+    svgout.addRectangle(m_origine.getX(), m_origine.getY(),
+                        m_origine.getX(), m_origine.getY() + m_taille.getY(),
+                        m_origine.getX() + m_taille.getX(), m_origine.getY(),
+                        m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
+                        m_couleur);
+}
+
+
+///************************///
+///   TROUVER UN ELEMENT   ///
+///************************///
+/*
+Block* trouverId(Block* fils,const std::string& id, unsigned int& couche, std::vector <unsigned int>& branches)
+{
+    do
+    {
+        if (fils->m_id == id)
+            return fils;
+
+        branches[couche] += 1;
+        trouverId();
+    }while (branches[couche] =! fils->getFilles().size());
+}
+*/

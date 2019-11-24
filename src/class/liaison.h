@@ -28,27 +28,6 @@ public :
     bool getPlan3D();
 };
 
-#endif // LIAISON_H_INCLUDED
-
-/// CLASS FILLE GLISSIERE
-
-/*#ifndef LIAISON_G_H_INCLUDED
-#define LIAISON_G_H_INCLUDED
-
-#include "liaison.h"
-class Liaison_g : public Liaison
-{
-private :
-    Coords m_endpos;
-    unsigned int m_refFille;
-public :
-    Liaison_g(Coords _refpos, Coords _endpos, unsigned int _refFille);
-};
-
-#endif // LIAISON_G_H_INCLUDED*/
-
-
-
 
 ///METHODES INLINE
 
@@ -78,3 +57,25 @@ inline bool Liaison::getPlan3D()
 
     return m_plan3D;
 }
+
+
+#endif // LIAISON_H_INCLUDED
+
+/// CLASS FILLE GLISSIERE
+
+/*#ifndef LIAISON_G_H_INCLUDED
+#define LIAISON_G_H_INCLUDED
+
+#include "liaison.h"
+class Liaison_g : public Liaison
+{
+private :
+    Coords m_endpos;
+    unsigned int m_refFille;
+public :
+    Liaison_g(Coords _refpos, Coords _endpos, unsigned int _refFille);
+};
+
+#endif // LIAISON_G_H_INCLUDED*/
+
+

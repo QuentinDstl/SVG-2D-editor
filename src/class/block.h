@@ -6,6 +6,7 @@
 
 #include "liaison.h"
 #include "../svg/svgfile.h"
+#include "../interface/couleur.h"
 
 class Block
 {
@@ -17,8 +18,6 @@ protected :
 
     Liaison *m_liaison;
 
-    //Couleur m_bordure
-    //Couleur m_couleur
 public :
     Block(std::string _id, Coords _taille);
     Block();
@@ -37,6 +36,12 @@ public :
     void dessiner(Svgfile &svgout)const;
 
     bool TestRefPos()const;
+
+    std::vector<Block*> getFilles () const;
+
+    void sauvegarde();
+    void sauvegarderScene(std::vector <Block*> m_Filles);
+
 };
 
 
@@ -70,5 +75,20 @@ inline Coords Block::getOrigine()const {
 
     return m_origine;
 }
+
+///************************///
+///  CLASS FILLE COULEUR   ///
+///************************///
+
+class CouleurBlock : public Block
+{
+protected :
+    Couleur m_couleur;
+    //Couleur m_bordure;
+public :
+    CouleurBlock(Couleur _couleur);
+    // overwriting
+    void dessiner(Svgfile &svgout)const;
+};
 
 #endif // BLOCK_H_INCLUDED
