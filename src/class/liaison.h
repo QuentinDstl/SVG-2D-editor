@@ -18,6 +18,7 @@ public :
 
     void initialiser(double _refposX, double _refposY, double _baseposX, double _baseposY);
 
+    /// getteurs
     Coords getBasepos();
     Coords getRefpos();
 };

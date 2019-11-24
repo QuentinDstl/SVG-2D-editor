@@ -5,13 +5,13 @@
 /// lecture fichier
 #define FICHIER "sauvegarde.rom"
 
-Block::Block(std::string _id, double _xOrigine, double _yOrigine, double _xTaille, double _yTaille)
-    : m_id{_id}, m_origine{_xOrigine, _yOrigine}, m_taille{_xTaille, _yTaille}
+Block::Block(std::string _id, double _xOrigine, double _yOrigine, double _xTaille, double _yTaille, Block* _pere)
+    : m_id{_id}, m_pere{_pere}, m_origine{_xOrigine, _yOrigine}, m_taille{_xTaille, _yTaille}
 {}
 
 /// Constructeur avec Initialisation nul
 Block::Block()
-    : m_id{"A"}, m_origine{0,0}, m_taille{0,0}
+    : m_id{"A"}, m_pere{nullptr}, m_origine{0,0}, m_taille{0,0}
 {}
 
 /// Initialisation (taille x, taille y, identifiant)
@@ -54,9 +54,9 @@ void Block::dessiner(Svgfile &svgout)const
 
 
 void Block::ajouterFille(double _xTaille, double _yTaille, std::string _id,
-                         double _refposX, double _refposY, double _baseposX, double _baseposY)
+                         double _refposX, double _refposY, double _baseposX, double _baseposY, Block* _pere)
 {
-    Block* nouv = new Block{_id, 0, 0, _xTaille, _yTaille};
+    Block* nouv = new Block{_id, 0, 0, _xTaille, _yTaille, _pere};
     //nouv->initialiser(_xTaille, _yTaille, _id);
     nouv->initialiserLiaison(_refposX, _refposY, _baseposX, _baseposY);
     nouv->initialiserOrigine();
@@ -95,9 +95,22 @@ void Block::sauvegarderScene(std::vector <Block*> s)
     ofs.close();
 }
 
-Block* Block::getFille(unsigned int indice)const {
+Block* Block::getFille(unsigned int indice)const
+{
 
     return m_Filles[indice];
+}
+
+/// dessiner liaisons
+
+void Block::dessinerLiaisonsBase(Svgfile& svgout)const
+{
+    svgout.addCross(m_liaison->getBasepos().getX(),m_liaison->getBasepos().getY(),5, "black");
+}
+
+void Block::dessinerLiaisonsRef(Svgfile& svgout)const
+{
+    svgout.addCross(m_liaison->getRefpos().getX(),m_liaison->getRefpos().getY(),5, "black");
 }
 
 ///************************///
@@ -117,19 +130,36 @@ void CouleurBlock::dessiner(Svgfile &svgout)const
                         m_couleur);
 }
 
-
 ///************************///
 ///   TROUVER UN ELEMENT   ///
 ///************************///
 
-Block* trouverId(Block* fils,const std::string& id, unsigned int& couche, std::vector <unsigned int>& branches)
+// on veut trouver l'indice
+Block* parcourir(Block& fils,const std::string& id)
 {
-    do
+    if (fils.getFille(0) == nullptr)
     {
-        if (fils->m_id == id)
-            return fils;
+        return nullptr;
+    }
+    for(auto petit_fils : fils.getFilles())
+    {
+        if (petit_fils->getId() == id)
+        {
+            return petit_fils;
+        }
+        else if (petit_fils->getFille(0) == nullptr)
+        { }
+        else
+        {
+            Block* p;
+            p = parcourir(*petit_fils, id);
 
-        branches[couche] += 1;
-        trouverId();
-    }while (branches[couche] =! fils->getFilles().size());
+            if(p != nullptr)
+            {
+                return p;
+            }
+        }
+    }
+    return nullptr;
 }
+

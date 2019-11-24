@@ -18,3 +18,12 @@ Ajout du sol
 Ajout d'un getter de fille
 
 
+- maj 03
+
+Ajout de methode de bloc pour dessiner les liaisons
+ajout dans bloc de parcourir
+ajout d'un lien avec son pere dans la calss bloc
+dessin test d'un deuxieme carré 
+modifs de getteurs
+
+

@@ -38,6 +38,8 @@ int main()
     creerScene(blockIterateur);
     dessinerScene(room);
 
+
+
     return 0;
 }
 
@@ -45,8 +47,9 @@ int main()
 void creerScene(Block* iterateur)
 {
     //ajouterBlock(room, LARGEUR_SCENE, HAUTEUR_SCENE, "room", 0, 0, 0, 0);
-    iterateur->ajouterFille(LARGEUR_SCENE, 50, "sol", LARGEUR_SCENE/2, HAUTEUR_SCENE, LARGEUR_SCENE/2, 50);
+    iterateur->ajouterFille(LARGEUR_SCENE, 50, "sol", LARGEUR_SCENE/2, HAUTEUR_SCENE, LARGEUR_SCENE/2, 50,iterateur);
     iterateur = (iterateur->getFille(0));
+    iterateur->ajouterFille(200,200,"bloc",400,600,100,100,iterateur);
 }
 
 void dessinerScene(const Block &room)
@@ -55,4 +58,5 @@ void dessinerScene(const Block &room)
 
     room.dessiner(svgout);
     room.getFille(0)->dessiner(svgout);
+    room.getFille(0)->getFille(0)->dessiner(svgout);
 }
