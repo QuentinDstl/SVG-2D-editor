@@ -30,6 +30,7 @@ public :
     void initialiserOrigine();
 
     Block* getFille(unsigned int indice)const;
+    std::vector getFilles () const;
 
     void dessiner(Svgfile &svgout)const;
 

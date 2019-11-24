@@ -101,7 +101,7 @@ Block* Block::getFille(unsigned int indice)const {
 }
 
 ///************************///
-///  CLASS FILLE COULEUR   ///
+///   CLASS FILLE COULEUR  ///
 ///************************///
 
 CouleurBlock::CouleurBlock(Couleur _couleur) : m_couleur{_couleur}
@@ -115,4 +115,21 @@ void CouleurBlock::dessiner(Svgfile &svgout)const
                         m_origine.getX() + m_taille.getX(), m_origine.getY(),
                         m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
                         m_couleur);
+}
+
+
+///************************///
+///   TROUVER UN ELEMENT   ///
+///************************///
+
+Block* trouverId(Block* fils,const std::string& id, unsigned int& couche, std::vector <unsigned int>& branches)
+{
+    do
+    {
+        if (fils->m_id == id)
+            return fils;
+
+        branches[couche] += 1;
+        trouverId();
+    }while (branches[couche] =! fils->getFilles().size());
 }
