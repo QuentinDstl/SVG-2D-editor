@@ -14,7 +14,8 @@ Block::Block() : m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}
 {}
 
 ///Initialisation du block
-void Block::initialiser(Coords _taille, std::string _id) {
+void Block::initialiser(Coords _taille, std::string _id)
+{
 
     m_origine = {0,0};
     m_taille = {_taille.getX(),_taille.getY()};
@@ -34,10 +35,12 @@ void Block::initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D)
 void Block::initialiserOrigine()
 {
 
-    if(m_Mere == nullptr) {
+    if(m_Mere == nullptr)
+    {
         m_origine = m_liaison.getBasepos() - m_liaison.getRefpos();
     }
-    else {
+    else
+    {
         m_origine = m_Mere->getOrigine() + m_liaison.getBasepos() - m_liaison.getRefpos();
     }
 
@@ -53,32 +56,40 @@ void Block::dessiner(Svgfile &svgout)const
                         m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
                         "grey");
 }
-/*
-void Block::toutDessiner(Svgfile& svgout, Block &room)
+
+void Block::toutDessiner(Svgfile& svgout) const
 {
-    if (room.getFille(0) == nullptr)
+    // si le tableau de fille est vide c'est donc une feuille
+    if (!m_Filles.size())
+    {}
+    else
     {
-        std::cout << "pas de filles" << std::endl;
-    }
-    std::cout << "eror dessiner 2" << std::endl;
-
-    for(auto petit_fils : room.getFilles())
-    {
-        if (petit_fils->getFille(0) == nullptr)
+        for(auto petit_fils : m_Filles)
         {
-            std::cout << "feuille" << std::endl;
+            petit_fils->dessiner(svgout);
+            petit_fils->toutDessiner(svgout);
+
         }
 
-        else
-        {
-            std::cout << "pre dessiner branche" << std::endl;
-            toutDessiner(svgout,*petit_fils);
-            std::cout << "dessiner branche" << std::endl;
-        }
     }
-        std::cout << "eror dessiner 3" << std::endl;
 }
-*/
+
+void Block::toutDessinerLiaisons(Svgfile& svgout) const
+{
+    // si le tableau de fille est vide c'est donc une feuille
+    if (!m_Filles.size())
+    { }
+    else
+    {
+        for(auto petit_fils : m_Filles)
+        {
+            petit_fils->dessinerLiaisonsBase(svgout);
+            petit_fils->dessinerLiaisonsRef(svgout);
+            petit_fils->toutDessinerLiaisons(svgout);
+        }
+    }
+}
+
 void Block::ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D)
 {
 
@@ -89,12 +100,14 @@ void Block::ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords
 
 
     //fonction qui teste si le block est bien relié au block mere
-    if(!(nouv->TestRefPos())) {
+    if(!(nouv->TestRefPos()))
+    {
         delete m_Filles[m_Filles.size()-1];
         m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
         std::cout << "Liaison incorrect" << std::endl;
     }
-    else {
+    else
+    {
         std::cout << nouv->m_origine << std::endl;
     }
 }
@@ -102,22 +115,28 @@ void Block::ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords
 
 ///fonction de test de la liaison
 //cette fonction renvoie un booléen : true si la liaison est ok, false si la liaison est mal initialisée
-bool Block::TestRefPos()const {
+bool Block::TestRefPos()const
+{
 
 
     bool test = 0;
 
-    if(m_liaison.getRefpos() <= m_taille) {
-         if(m_liaison.getBasepos() <= m_Mere->getTaille()) {
-            if(TestBordure(m_taille, m_liaison.getRefpos(), m_liaison.getBasepos(), m_liaison.getPlan3D(), m_Mere)) {
+    if(m_liaison.getRefpos() <= m_taille)
+    {
+        if(m_liaison.getBasepos() <= m_Mere->getTaille())
+        {
+            if(TestBordure(m_taille, m_liaison.getRefpos(), m_liaison.getBasepos(), m_liaison.getPlan3D(), m_Mere))
+            {
                 test = 1;
             }
-         }
-         else {
+        }
+        else
+        {
             std::cout << "Appui non situe sur le bloc mere" << std::endl;
-         }
+        }
     }
-    else {
+    else
+    {
         std::cout << "Appui non situe sur le bloc fille" << std::endl;
     }
 
@@ -147,28 +166,34 @@ void Block::sauvegarderScene(std::vector <Block*> s)
             ofs << "    [" << std::endl;
             for ( auto z : v->m_Filles )///Niveau 2
             {
-               ofs << "        "<< z->m_id << " " << z->m_taille.getX() << " " << z->m_taille.getY() << " " << z->m_origine.getY() << " " << z->m_origine.getX() << std::endl;
+                ofs << "        "<< z->m_id << " " << z->m_taille.getX() << " " << z->m_taille.getY() << " " << z->m_origine.getY() << " " << z->m_origine.getX() << std::endl;
             }
             ofs << "    ]" << std::endl;
         }
         ofs << "]" << std::endl;
     }
 }
-bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block *m_Mere) {
+bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block *m_Mere)
+{
 
     bool test = 0;
 
-    if(m_refpos.getX() == 0 || m_refpos.getX() == m_taille.getX() || m_refpos.getY() == 0 || m_refpos.getY() == m_taille.getY()) {
-        if(m_basepos.getX() == 0 || m_basepos.getX() == m_Mere->getTaille().getX() || m_basepos.getY() == 0 || m_basepos.getY() == m_Mere->getTaille().getY()) {
-            if(TestBordureAdjacente(m_taille, m_refpos, m_basepos, m_plan3D,m_Mere)) {
+    if(m_refpos.getX() == 0 || m_refpos.getX() == m_taille.getX() || m_refpos.getY() == 0 || m_refpos.getY() == m_taille.getY())
+    {
+        if(m_basepos.getX() == 0 || m_basepos.getX() == m_Mere->getTaille().getX() || m_basepos.getY() == 0 || m_basepos.getY() == m_Mere->getTaille().getY())
+        {
+            if(TestBordureAdjacente(m_taille, m_refpos, m_basepos, m_plan3D,m_Mere))
+            {
                 test = 1;
             }
         }
-        else {
+        else
+        {
             std::cout << "Appui non situe sur la bordure du bloc mere" << std::endl;
         }
     }
-    else {
+    else
+    {
         std::cout << "Appui non situe sur la bordure du bloc fille" << std::endl;
     }
 
@@ -178,28 +203,36 @@ bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan
 
 
 
-bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block* m_Mere) {
+bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block* m_Mere)
+{
 
     bool test = 0;
 
-    if(m_plan3D == 0) {
-        if(m_refpos.getX() == 0 && m_basepos.getX() == m_Mere->getTaille().getX()) {
+    if(m_plan3D == 0)
+    {
+        if(m_refpos.getX() == 0 && m_basepos.getX() == m_Mere->getTaille().getX())
+        {
             test = 1;
         }
-        else if(m_refpos.getX() == m_taille.getX() && m_basepos.getX() == 0) {
+        else if(m_refpos.getX() == m_taille.getX() && m_basepos.getX() == 0)
+        {
             test = 1;
         }
-        else if(m_refpos.getY() == 0 && m_basepos.getY() == m_Mere->getTaille().getY()) {
+        else if(m_refpos.getY() == 0 && m_basepos.getY() == m_Mere->getTaille().getY())
+        {
             test = 1;
         }
-        else if(m_refpos.getY() == m_taille.getY() && m_basepos.getY() == 0) {
+        else if(m_refpos.getY() == m_taille.getY() && m_basepos.getY() == 0)
+        {
             test = 1;
         }
-        else {
+        else
+        {
             std::cout << "Appui situe dans le bloc mere" << std::endl;
         }
     }
-    else {
+    else
+    {
         test = 1;
     }
 
@@ -221,12 +254,12 @@ void ajouterBlock(Block &bRoom,
 
 void Block::dessinerLiaisonsBase(Svgfile& svgout)const
 {
-    svgout.addCross(m_liaison.getBasepos().getX(),m_liaison.getBasepos().getY(),5, "black");
+    svgout.addCross(m_Mere->getOrigine().getX() + m_liaison.getBasepos().getX(), m_Mere->getOrigine().getY() + m_liaison.getBasepos().getY(), 6, "black");
 }
 
 void Block::dessinerLiaisonsRef(Svgfile& svgout)const
 {
-    svgout.addCross(m_liaison.getRefpos().getX(),m_liaison.getRefpos().getY(),5, "black");
+    svgout.addCross(m_origine.getX() + m_liaison.getRefpos().getX(), m_origine.getY() + m_liaison.getRefpos().getY(), 4, "red");
 }
 
 ///************************///
@@ -252,26 +285,31 @@ void CouleurBlock::dessiner(Svgfile &svgout)const
 
 // FIXME (qdesa#1#11/25/19): trouver un element : debugger
 
-/*
+
 // on veut trouver l'indice
-Block* parcourir(Block& fils,const std::string& id)
+Block* Block::parcourir(const std::string& id)
 {
-    if (fils.getFille(0) == nullptr)
+    // si on est en bout de chaine
+    if (!m_Filles.size())
     {
         return nullptr;
     }
-    for(auto petit_fils : fils.getFilles())
+    // sinon
+    for(auto petit_fils : m_Filles)
     {
+        // si le petit fils a la bonne id on le retourne
         if (petit_fils->getId() == id)
         {
             return petit_fils;
         }
-        else if (petit_fils->getFille(0) == nullptr)
+        // sinon si le petit fils est en bout de chaine
+        else if (!petit_fils->getFilles().size())
         { }
+        //sinon on le parcours à nouveau
         else
         {
             Block* p;
-            p = parcourir(*petit_fils, id);
+            p = petit_fils->parcourir(id);
 
             if(p != nullptr)
             {
@@ -281,4 +319,3 @@ Block* parcourir(Block& fils,const std::string& id)
     }
     return nullptr;
 }
-*/
