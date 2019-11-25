@@ -96,20 +96,24 @@ Coords operator*(double m, const Coords& c)
 /// Test de comparaison (inferieur ou egal) entre 2 coords
 bool operator<=(const Coords& c1, const Coords& c2)
 {
-    if(c1.m_x <= c2.m_x && c1.m_y <= c2.m_y) {
+    if(c1.m_x <= c2.m_x && c1.m_y <= c2.m_y)
+    {
         return 1;
     }
-    else {
+    else
+    {
         return 0;
     }
 }
 
 bool operator>=(const Coords& c1, const Coords& c2)
 {
-    if(c1.m_x >= c2.m_x && c1.m_y >= c2.m_y) {
+    if(c1.m_x >= c2.m_x && c1.m_y >= c2.m_y)
+    {
         return 1;
     }
-    else {
+    else
+    {
         return 0;
     }
 }

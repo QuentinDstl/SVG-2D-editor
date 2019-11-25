@@ -16,29 +16,37 @@ protected :
     Coords m_origine;
     Coords m_taille;
 
-    Liaison *m_liaison;
+    Liaison m_liaison;
+    Block* m_Mere;
 
 public :
-    Block(std::string _id, Coords _taille);
+    /// constructeurs
+    Block(std::string _id, Coords _taille, Block* _Mere);
     Block();
 
     ~Block()=default;
 
+    /// ajout et initialisation
     void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D);
     void initialiser(Coords _taille, std::string _id);
-    void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D, Block* _Mere);
+    void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D);
     void initialiserOrigine();
 
+    /// getteurs
     Block* getFille(unsigned int indice)const;
     Coords getTaille()const;
     Coords getOrigine()const;
-
-    void dessiner(Svgfile &svgout)const;
-
-    bool TestRefPos()const;
-
+    Liaison getLiaison()const;
+    Block* getMere()const;
     std::vector<Block*> getFilles () const;
 
+    /// dessiner
+    void dessiner(Svgfile &svgout)const;
+
+    /// test
+    bool TestRefPos()const;
+
+    /// sauvegarde
     void sauvegarde();
     void sauvegarderScene(std::vector <Block*> m_Filles);
 
@@ -74,6 +82,17 @@ inline Coords Block::getTaille()const {
 inline Coords Block::getOrigine()const {
 
     return m_origine;
+}
+
+inline Liaison Block::getLiaison()const {
+
+    return m_liaison;
+}
+
+
+inline Block* Block::getMere()const {
+
+    return m_Mere;
 }
 
 ///************************///

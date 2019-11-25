@@ -191,7 +191,7 @@
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
-1574540839 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\main.cpp
+1574700202 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\main.cpp
 	<iostream>
 	<fstream>
 	<vector>
@@ -202,18 +202,19 @@
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
-1574592860 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.h
+1574700005 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison.h"
 	"../svg/svgfile.h"
 	"../interface/couleur.h"
 
-1574518898 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison.h
+1574699749 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison.h
 	"coords.h"
 	"liaison.h"
 
-1574518898 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.h
+1574698995 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.h
+	<iostream>
 
 1574518898 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\svg\svgfile.h
 	<string>
@@ -227,19 +228,20 @@
 1574517612 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\util\util.h
 	<string>
 
-1574534548 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.cpp
+1574700267 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.cpp
 	"block.h"
 	"../svg/svgfile.h"
 	"liaison.h"
 
-1574518898 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.cpp
+1574699487 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.cpp
 	"coords.h"
 	"../util/util.h"
 	<iostream>
 
-1574518898 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison.cpp
+1574699487 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison.cpp
 	<iostream>
 	"liaison.h"
+	"coords.h"
 
 1574517612 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\couleur.cpp
 	"couleur.h"
@@ -247,7 +249,7 @@
 	"../util/util.h"
 	<iostream>
 
-1574518898 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\svg\svgfile.cpp
+1574699487 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\svg\svgfile.cpp
 	<iostream>
 	<sstream>
 
@@ -268,45 +270,46 @@
 	"../util/util.h"
 	<windows.h>
 
-1574634600 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\coords.cpp
+1574677407 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\coords.cpp
 	"coords.h"
 	"../util/util.h"
 	<iostream>
 
-1574621624 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\coords.h
+1574635746 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\coords.h
 	<iostream>
 
-1574519727 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\util\util.h
+1574635746 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\util\util.h
 	<string>
 
-1574632391 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison.cpp
+1574676479 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison.cpp
 	<iostream>
 	"liaison.h"
+	"coords.h"
 
-1574634483 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison.h
+1574677407 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison.h
 	"coords.h"
 	"liaison.h"
 
-1574519727 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\interface\couleur.cpp
+1574635746 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\interface\couleur.cpp
 	"couleur.h"
 	"../svg/svgfile.h"
 	"../util/util.h"
 	<iostream>
 
-1574519727 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\interface\couleur.h
+1574635746 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\interface\couleur.h
 	<string>
 	<cstdint>
 
-1574519727 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\svg\svgfile.h
+1574635746 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\svg\svgfile.h
 	<string>
 	<fstream>
 	<set>
 
-1574519727 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\svg\svgfile.cpp
+1574677407 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\svg\svgfile.cpp
 	<iostream>
 	<sstream>
 
-1574519727 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\util\util.cpp
+1574635746 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\util\util.cpp
 	"util.h"
 	<random>
 	<ctime>
@@ -323,19 +326,18 @@
 	"../util/util.h"
 	<windows.h>
 
-1574634501 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.cpp
+1574678166 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.cpp
 	"block.h"
 	"../svg/svgfile.h"
 	"liaison.h"
 
-1574634104 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.h
+1574675092 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison.h"
 	"../svg/svgfile.h"
-	"../interface/couleur.h"
 
-1574634397 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\main.cpp
+1574677945 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\main.cpp
 	<iostream>
 	<fstream>
 	<vector>
@@ -345,8 +347,6 @@
 	"src/interface/couleur.h"
 	"src/svg/svgfile.h"
 	"src/util/util.h"
-
-1574524172 D
 
 1574621624 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block - copie\src\class\coords.cpp
 	"coords.h"
@@ -368,79 +368,10 @@
 	"liaison.h"
 
 1574519727 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block - copie\src\interface\couleur.cpp
-
-1574528442 source:c:\users\c_per\projet_block\main.cpp
-	<iostream>
-	<fstream>
-	<vector>
-	"src/class/block.h"
-	"src/class/coords.h"
-	"src/class/liaison.h"
-	"src/interface/couleur.h"
-	"src/svg/svgfile.h"
-	"src/util/util.h"
-
-1574527988 c:\users\c_per\projet_block\src\class\block.h
-	<vector>
-	<iostream>
-	"liaison.h"
-	"../svg/svgfile.h"
-	"../interface/couleur.h"
-
-1574524172 c:\users\c_per\projet_block\src\class\liaison.h
-	"coords.h"
-	"liaison.h"
-
-1574524172 c:\users\c_per\projet_block\src\class\coords.h
-
-1574524172 c:\users\c_per\projet_block\src\svg\svgfile.h
-	<string>
-	<fstream>
-	<set>
-
-1574524172 c:\users\c_per\projet_block\src\interface\couleur.h
-	<string>
-	<cstdint>
-
-1574524172 c:\users\c_per\projet_block\src\util\util.h
-	<string>
-
-1574528994 source:c:\users\c_per\projet_block\src\class\block.cpp
-	"block.h"
-	"../svg/svgfile.h"
-	"liaison.h"
-
-1574524172 source:c:\users\c_per\projet_block\src\class\coords.cpp
-	"coords.h"
-	"../util/util.h"
-	<iostream>
-
-1574524172 source:c:\users\c_per\projet_block\src\class\liaison.cpp
-	<iostream>
-	"liaison.h"
-
-1574524172 source:c:\users\c_per\projet_block\src\interface\couleur.cpp
-
-1574632014 47b0764835eae79044f9e071924f27a3f10aa
 	"couleur.h"
 	"../svg/svgfile.h"
 	"../util/util.h"
 	<iostream>
-	"util.h"
-	<random>
-	<ctime>
-	<iostream>
-	<cstdio>
-	<streambuf>
-	<vector>
-	<cstdlib>
-	<cstdio>
-	<algorithm>
-	<cstring>
-	<iostream>
-	<thread>
-	"../util/util.h"
-	<windows.h>
 
 1574519727 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block - copie\src\interface\couleur.h
 	<string>
@@ -456,12 +387,21 @@
 	<sstream>
 
 1574519727 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block - copie\src\util\util.cpp
-
-1574524172 source:c:\users\c_per\projet_block\src\svg\svgfile.cpp
+	"util.h"
+	<random>
+	<ctime>
 	<iostream>
-	<sstream>
-
-1574524172 source:c:\users\c_per\projet_block\src\util\util.cpp
+	<cstdio>
+	<streambuf>
+	<vector>
+	<cstdlib>
+	<cstdio>
+	<algorithm>
+	<cstring>
+	<iostream>
+	<thread>
+	"../util/util.h"
+	<windows.h>
 
 1574632014 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block - copie\main.cpp
 	<iostream>
@@ -484,6 +424,4 @@
 	"block.h"
 	"../svg/svgfile.h"
 	"liaison.h"
-
-1574632014 "
 

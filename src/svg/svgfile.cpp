@@ -129,7 +129,7 @@ void Svgfile::addRectangle(double x1, double y1, double x2, double y2,
 }
 
 void Svgfile::addRectangle(double x1, double y1, double x2, double y2,
-                          double x3, double y3, double x4, double y4, std::string colorFill)
+                           double x3, double y3, double x4, double y4, std::string colorFill)
 {
     m_ostrm << "<polygon points=\" "
             << x1 << "," << y1 << " "
