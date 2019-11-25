@@ -57,7 +57,7 @@ void dessinerScene(Block &room)
 {
     Svgfile svgout;
 
-    toutDessiner(svgout, room);
+    room.toutDessiner(svgout, room);
     std::cout << "error dessiner scene" << std::endl;
     /*
     room.dessiner(svgout);

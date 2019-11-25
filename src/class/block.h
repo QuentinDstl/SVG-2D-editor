@@ -37,6 +37,7 @@ public :
     void dessiner(Svgfile &svgout)const;
     void dessinerLiaisonsBase(Svgfile &svgout)const;
     void dessinerLiaisonsRef(Svgfile& svgout)const;
+    void toutDessiner(Svgfile& svgout, Block &Racine);
 
     /// sauvegarde
     void sauvegarde();
@@ -53,7 +54,7 @@ public :
     {
         return m_pere;
     }
-    std::vector <Block*>& getFilles () const
+    std::vector <Block*> getFilles () const
     {
         return m_Filles;
     }
@@ -80,7 +81,6 @@ public :
     void dessiner(Svgfile &svgout)const;
 };
 
-void toutDessiner(Svgfile& svgout, Block &Racine);
 Block* parcourir(Block& fils,const std::string& id);
 
 #endif // BLOCK_H_INCLUDED

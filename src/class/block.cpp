@@ -52,7 +52,7 @@ void Block::dessiner(Svgfile &svgout)const
                         "grey");
 }
 
-void toutDessiner(Svgfile& svgout, Block &room)
+void Block::toutDessiner(Svgfile& svgout, Block &room)
 {
     if (room.getFille(0) == nullptr)
     {
