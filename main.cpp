@@ -18,15 +18,25 @@
 
 //void creerScene(Block* room); // option avec iterateur
 void creerScene(Block& room);
-void dessinerScene(Block &room); // a voir pour mettre en const le Block
+void dessinerScene(const Block &room); // a voir pour mettre en const le Block
 
 int main()
 {
     Block room;
-    //Block* blockIterateur = &room; //option avec iterateur
+    Block* blockIterateur = &room; //option avec iterateur
 
     creerScene(room);
     dessinerScene(room);
+
+    /// on cherche un bloc selon son id
+    if (room.parcourir("arm1") == nullptr)
+    {
+        std::cout << "[i] id fausse" << std::endl;
+    }
+    else
+    {
+    std::cout << "id trouve : " << room.parcourir("arm1")->getId() << std::endl;
+    }
 
     std::ofstream file {FICHIER};
 
@@ -73,33 +83,20 @@ void creerScene(Block &room)
     //room.getFille(0)->ajouterFille({200,50}, "arm", {0,70}, {0,0}, 0);
     //room.getFille(0)->ajouterFille({200,50}, "arm", {0,50}, {0,0}, 0);
 
-    room.getFille(0)->ajouterFille({25,HAUTEUR_SCENE-50}, "arm", {0,HAUTEUR_SCENE-50}, {0,0}, 0);
-    room.getFille(0)->ajouterFille({25,HAUTEUR_SCENE-50}, "arm", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0);
-    room.getFille(0)->getFille(0)->ajouterFille({60,20}, "arm", {0,0}, {25,HAUTEUR_SCENE/2}, 0);
+    room.getFille(0)->ajouterFille({25,HAUTEUR_SCENE-50}, "arm1", {0,HAUTEUR_SCENE-50}, {0,0}, 0);
+    room.getFille(0)->ajouterFille({25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0);
+    room.getFille(0)->getFille(0)->ajouterFille({60,20}, "arm3", {0,0}, {25,HAUTEUR_SCENE/2}, 0);
     room.getFille(0)->ajouterFille({25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
 
 }
 
-// FIXME (qdesa#2#11/25/19): dessiner scene : a debugger
-
-void dessinerScene(Block &room)
+void dessinerScene(const Block &room)
 {
     Svgfile svgout;
-
+    /// attention il faut dessiner le room à part !!!!
     //room.dessiner(svgout);
 
-    ///Affichage pointeur par pointeur => créer la boucle de parcours de l'arbre
-    room.getFille(0)->dessiner(svgout);
-    room.getFille(0)->getFille(0)->dessiner(svgout);
-    room.getFille(0)->getFille(1)->dessiner(svgout);
-    room.getFille(0)->getFille(0)->getFille(0)->dessiner(svgout);
-    room.getFille(0)->getFille(2)->dessiner(svgout);
-
-    //room.toutDessiner(svgout, room);
-    //std::cout << "error dessiner scene" << std::endl;
-    /*
-    room.dessiner(svgout);
-    room.getFille(0)->dessiner(svgout);
-    room.getFille(0)->getFille(0)->dessiner(svgout);
-    */
+    room.toutDessiner(svgout);
+    std::cout << "[i] croix rouge = position de reference / croix noir = position de base" << std::endl;
+    room.toutDessinerLiaisons(svgout);
 }

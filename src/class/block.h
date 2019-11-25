@@ -48,7 +48,8 @@ public :
     void dessiner(Svgfile &svgout)const;
     void dessinerLiaisonsBase(Svgfile &svgout)const;
     void dessinerLiaisonsRef(Svgfile& svgout)const;
-    void toutDessiner(Svgfile& svgout, Block &Racine);
+    void toutDessiner(Svgfile& svgout)const;
+    void toutDessinerLiaisons(Svgfile& svgout)const;
 
     /// test
     bool TestRefPos()const;
@@ -56,6 +57,8 @@ public :
     /// sauvegarde
     void sauvegarde();
     void sauvegarderScene(std::vector <Block*> m_Filles);
+
+    Block* parcourir(const std::string& id);
 
 };
 
@@ -74,40 +77,47 @@ bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bo
 
 ///METHODES INLINE
 
-inline Block* Block::getFille(unsigned int indice)const {
+inline Block* Block::getFille(unsigned int indice)const
+{
 
     return m_Filles[indice];
 }
 
 
-inline Coords Block::getTaille()const {
+inline Coords Block::getTaille()const
+{
 
     return m_taille;
 }
 
 
-inline Coords Block::getOrigine()const {
+inline Coords Block::getOrigine()const
+{
 
     return m_origine;
 }
 
-inline Liaison Block::getLiaison()const {
+inline Liaison Block::getLiaison()const
+{
 
     return m_liaison;
 }
 
 
-inline Block* Block::getMere()const {
+inline Block* Block::getMere()const
+{
 
     return m_Mere;
 }
 
-inline std::string Block::getId () const{
+inline std::string Block::getId () const
+{
 
     return m_id;
 }
 
-inline std::vector<Block*> Block::getFilles () const{
+inline std::vector<Block*> Block::getFilles () const
+{
 
     return m_Filles;
 }
@@ -126,7 +136,5 @@ public :
     // overwriting
     void dessiner(Svgfile &svgout)const;
 };
-
-Block* parcourir(Block& fils,const std::string& id);
 
 #endif // BLOCK_H_INCLUDED
