@@ -9,7 +9,7 @@ Block::Block(std::string _id, Coords _taille, Block* _Mere)
 
 /// Constructeur avec Initialisation nul
 Block::Block()
-    : m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{NULL}
+    : m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}
 {}
 
 
@@ -160,13 +160,14 @@ bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bo
 
 
 
-void ajouterBlock(Block &room,
+void ajouterBlock(Block &bRoom,
                   Coords _taille, std::string _id,
                   Coords _refpos, Coords _basepos)
 {
-    room.initialiser(_taille, _id);
-    room.initialiserLiaison(_refpos, _basepos, 0);
-    room.initialiserOrigine();
-    std::cout << room.getLiaison()->getBasepos();
+    bRoom.initialiser(_taille, _id);
+    bRoom.initialiserLiaison(_refpos, _basepos, 0);
+    bRoom.initialiserOrigine();
+    std::cout << "{adresse de la Liaison : " << bRoom.getLiaison() << "}";
+    std::cout << " - position de la liaison : " << bRoom.getLiaison()->getBasepos() << std::endl;
 }
 

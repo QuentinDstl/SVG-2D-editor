@@ -19,14 +19,24 @@ public :
     Liaison();
     ~Liaison() = default;
 
-    Coords getBasepos();
-    Coords getRefpos();
-    bool getPlan3D();
+    Coords getBasepos()
+    {
+        return m_basepos;
+    }
+    Coords getRefpos()
+    {
+        return m_refpos;
+    }
+    bool getPlan3D()
+    {
+
+        return m_plan3D;
+    }
 };
 
 
 ///METHODES INLINE
-
+/*
 inline Coords Liaison::getBasepos()
 {
 
@@ -47,7 +57,7 @@ inline bool Liaison::getPlan3D()
 
     return m_plan3D;
 }
-
+*/
 #endif // LIAISON_H_INCLUDED
 
 /// CLASS FILLE GLISSIERE
