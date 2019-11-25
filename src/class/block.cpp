@@ -52,6 +52,30 @@ void Block::dessiner(Svgfile &svgout)const
                         "grey");
 }
 
+void toutDessiner(Svgfile& svgout, Block &room)
+{
+    if (room.getFille(0) == nullptr)
+    {
+        std::cout << "pas de filles" << std::endl;
+    }
+    std::cout << "eror dessiner 2" << std::endl;
+
+    for(auto petit_fils : room.getFilles())
+    {
+        if (petit_fils->getFille(0) == nullptr)
+        {
+            std::cout << "feuille" << std::endl;
+        }
+
+        else
+        {
+            std::cout << "pre dessiner branche" << std::endl;
+            toutDessiner(svgout,*petit_fils);
+            std::cout << "dessiner branche" << std::endl;
+        }
+    }
+        std::cout << "eror dessiner 3" << std::endl;
+}
 
 void Block::ajouterFille(double _xTaille, double _yTaille, std::string _id,
                          double _refposX, double _refposY, double _baseposX, double _baseposY, Block* _pere)
@@ -162,4 +186,3 @@ Block* parcourir(Block& fils,const std::string& id)
     }
     return nullptr;
 }
-
