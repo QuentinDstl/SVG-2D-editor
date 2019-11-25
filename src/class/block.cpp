@@ -5,18 +5,13 @@
 /// lecture fichier
 #define FICHIER "sauvegarde.rom"
 
-
 ///Constructeur
-Block::Block(std::string _id, Coords _taille, Block* _Mere)
-    : m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_Mere{_Mere}
+Block::Block(std::string _id, Coords _taille, Block* _Mere) : m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_Mere{_Mere}
 {}
-
 
 /// Constructeur avec Initialisation nul
-Block::Block()
-    : m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}
+Block::Block() : m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}
 {}
-
 
 ///Initialisation du block
 void Block::initialiser(Coords _taille, std::string _id) {
@@ -65,8 +60,32 @@ void Block::dessiner(Svgfile &svgout)const
                         m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
                         "grey");
 }
+/*
+void Block::toutDessiner(Svgfile& svgout, Block &room)
+{
+    if (room.getFille(0) == nullptr)
+    {
+        std::cout << "pas de filles" << std::endl;
+    }
+    std::cout << "eror dessiner 2" << std::endl;
 
+    for(auto petit_fils : room.getFilles())
+    {
+        if (petit_fils->getFille(0) == nullptr)
+        {
+            std::cout << "feuille" << std::endl;
+        }
 
+        else
+        {
+            std::cout << "pre dessiner branche" << std::endl;
+            toutDessiner(svgout,*petit_fils);
+            std::cout << "dessiner branche" << std::endl;
+        }
+    }
+        std::cout << "eror dessiner 3" << std::endl;
+}
+*/
 void Block::ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D)
 {
 
@@ -186,19 +205,28 @@ bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bo
     return test;
 }
 
-
-
 void ajouterBlock(Block &bRoom,
                   Coords _taille, std::string _id,
                   Coords _refpos, Coords _basepos)
 {
     bRoom.initialiser(_taille, _id);
     bRoom.initialiserLiaison(_refpos, _basepos, 0);
-    std::cout << " position de la liaison initiale : " << bRoom.getLiaison().getBasepos() << std::endl;
     bRoom.initialiserOrigine();
-    std::cout << " - position de la liaison : " << bRoom.getLiaison().getBasepos() << std::endl;
+    std::cout << "[i] position de la liaison : " << bRoom.getLiaison().getBasepos() << std::endl;
 }
 
+
+/// dessiner liaisons
+
+void Block::dessinerLiaisonsBase(Svgfile& svgout)const
+{
+    svgout.addCross(m_liaison.getBasepos().getX(),m_liaison.getBasepos().getY(),5, "black");
+}
+
+void Block::dessinerLiaisonsRef(Svgfile& svgout)const
+{
+    svgout.addCross(m_liaison.getRefpos().getX(),m_liaison.getRefpos().getY(),5, "black");
+}
 
 ///************************///
 ///   CLASS FILLE COULEUR  ///
@@ -217,20 +245,39 @@ void CouleurBlock::dessiner(Svgfile &svgout)const
                         m_couleur);
 }
 
-
 ///************************///
 ///   TROUVER UN ELEMENT   ///
 ///************************///
-/*
-Block* trouverId(Block* fils,const std::string& id, unsigned int& couche, std::vector <unsigned int>& branches)
-{
-    do
-    {
-        if (fils->m_id == id)
-            return fils;
 
-        branches[couche] += 1;
-        trouverId();
-    }while (branches[couche] =! fils->getFilles().size());
+// FIXME (qdesa#1#11/25/19): trouver un element : debugger
+
+/*
+// on veut trouver l'indice
+Block* parcourir(Block& fils,const std::string& id)
+{
+    if (fils.getFille(0) == nullptr)
+    {
+        return nullptr;
+    }
+    for(auto petit_fils : fils.getFilles())
+    {
+        if (petit_fils->getId() == id)
+        {
+            return petit_fils;
+        }
+        else if (petit_fils->getFille(0) == nullptr)
+        { }
+        else
+        {
+            Block* p;
+            p = parcourir(*petit_fils, id);
+
+            if(p != nullptr)
+            {
+                return p;
+            }
+        }
+    }
+    return nullptr;
 }
 */

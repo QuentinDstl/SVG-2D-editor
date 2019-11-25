@@ -11,8 +11,10 @@
 class Block
 {
 protected :
+
     std::string m_id;
     std::vector <Block*> m_Filles;
+    Block* m_pere;
     Coords m_origine;
     Coords m_taille;
 
@@ -20,6 +22,7 @@ protected :
     Block* m_Mere;
 
 public :
+
     /// constructeurs
     Block(std::string _id, Coords _taille, Block* _Mere);
     Block();
@@ -39,9 +42,13 @@ public :
     Liaison getLiaison()const;
     Block* getMere()const;
     std::vector<Block*> getFilles () const;
+    std::string getId () const;
 
     /// dessiner
     void dessiner(Svgfile &svgout)const;
+    void dessinerLiaisonsBase(Svgfile &svgout)const;
+    void dessinerLiaisonsRef(Svgfile& svgout)const;
+    void toutDessiner(Svgfile& svgout, Block &Racine);
 
     /// test
     bool TestRefPos()const;
@@ -95,6 +102,16 @@ inline Block* Block::getMere()const {
     return m_Mere;
 }
 
+inline std::string Block::getId () const{
+
+    return m_id;
+}
+
+inline std::vector<Block*> Block::getFilles () const{
+
+    return m_Filles;
+}
+
 ///************************///
 ///  CLASS FILLE COULEUR   ///
 ///************************///
@@ -109,5 +126,7 @@ public :
     // overwriting
     void dessiner(Svgfile &svgout)const;
 };
+
+Block* parcourir(Block& fils,const std::string& id);
 
 #endif // BLOCK_H_INCLUDED

@@ -18,7 +18,7 @@
 
 //void creerScene(Block* room); // option avec iterateur
 void creerScene(Block& room);
-void dessinerScene(const Block &room);
+void dessinerScene(Block &room); // a voir pour mettre en const le Block
 
 int main()
 {
@@ -26,10 +26,12 @@ int main()
     //Block* blockIterateur = &room; //option avec iterateur
 
     std::ofstream file {FICHIER};
+
     if (!file)
     {
         std::cerr << "Ouverture impossible du fichier : " << FICHIER;
     }
+
 
     else
     {
@@ -38,6 +40,8 @@ int main()
 
     creerScene(room);
     dessinerScene(room);
+
+
 
     return 0;
 }
@@ -58,6 +62,7 @@ void creerScene(Block* iterateur)
     iterateur->getFille(0)->ajouterFille({25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
 
     //ajouterBlock(room, LARGEUR_SCENE, HAUTEUR_SCENE, "room", 0, 0, 0, 0);
+
     //iterateur->ajouterFille(LARGEUR_SCENE, 50, "sol", LARGEUR_SCENE/2, HAUTEUR_SCENE, LARGEUR_SCENE/2, 50);
     //iterateur = (iterateur->getFille(0));
 */
@@ -80,7 +85,9 @@ void creerScene(Block &room)
 
 }
 
-void dessinerScene(const Block &room)
+// FIXME (qdesa#2#11/25/19): dessiner scene : a debugger
+
+void dessinerScene(Block &room)
 {
     Svgfile svgout;
 
@@ -92,4 +99,12 @@ void dessinerScene(const Block &room)
     room.getFille(0)->getFille(1)->dessiner(svgout);
     room.getFille(0)->getFille(0)->getFille(0)->dessiner(svgout);
     room.getFille(0)->getFille(2)->dessiner(svgout);*/
+
+    //room.toutDessiner(svgout, room);
+    std::cout << "error dessiner scene" << std::endl;
+    /*
+    room.dessiner(svgout);
+    room.getFille(0)->dessiner(svgout);
+    room.getFille(0)->getFille(0)->dessiner(svgout);
+    */
 }

@@ -31,7 +31,6 @@ public :
     }
     bool getPlan3D() const
     {
-
         return m_plan3D;
     }
 };
