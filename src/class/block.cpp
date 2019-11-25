@@ -145,14 +145,24 @@ void Block::sauvegarderScene(std::vector <Block*> s)
 {
     std::ofstream ofs{FICHIER};
 
-    for ( size_t i=0; i<s.size(); ++i)
+
+    for (auto i : s)///Niveau 0
     {
-        ofs << s[i]->m_id << " " << s[i]->m_taille.getX() << " " << s[i]->m_taille.getY() << " " << s[i]->m_origine.getY() << " " << s[i]->m_origine.getX() << std::endl;
+        ofs << i->m_id << " " << i->m_taille.getX() << " " << i->m_taille.getY() << " " << i->m_origine.getY() << " " << i->m_origine.getX() << std::endl;
+        ofs << "[" << std::endl;
+        for ( auto v : i->m_Filles)///Niveau 1
+        {
+            ofs << "    " << v->m_id << " " << v->m_taille.getX() << " " << v->m_taille.getY() << " " << v->m_origine.getY() << " " << v->m_origine.getX() << std::endl;
+            ofs << "    [" << std::endl;
+            for ( auto z : v->m_Filles )///Niveau 2
+            {
+               ofs << "        "<< z->m_id << " " << z->m_taille.getX() << " " << z->m_taille.getY() << " " << z->m_origine.getY() << " " << z->m_origine.getX() << std::endl;
+            }
+            ofs << "    ]" << std::endl;
+        }
+        ofs << "]" << std::endl;
     }
-
-    ofs.close();
 }
-
 bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block *m_Mere) {
 
     bool test = 0;
