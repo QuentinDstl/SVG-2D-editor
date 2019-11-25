@@ -19,15 +19,17 @@ public :
     Liaison();
     ~Liaison() = default;
 
-    Coords getBasepos()
+    void setteur(Coords _refpos, Coords _basepos, bool _plan3D);
+
+    Coords getBasepos() const
     {
         return m_basepos;
     }
-    Coords getRefpos()
+    Coords getRefpos() const
     {
         return m_refpos;
     }
-    bool getPlan3D()
+    bool getPlan3D() const
     {
 
         return m_plan3D;

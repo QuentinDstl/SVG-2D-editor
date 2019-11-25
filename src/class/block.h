@@ -15,7 +15,7 @@ protected :
     Coords m_origine;
     Coords m_taille;
 
-    Liaison *m_liaison;
+    Liaison m_liaison;
     Block* m_Mere;
 
     //Couleur m_bordure
@@ -34,7 +34,7 @@ public :
     Block* getFille(unsigned int indice)const;
     Coords getTaille()const;
     Coords getOrigine()const;
-    Liaison* getLiaison()const;
+    Liaison getLiaison()const;
     Block* getMere()const;
 
     void dessiner(Svgfile &svgout)const;
@@ -75,7 +75,7 @@ inline Coords Block::getOrigine()const {
 }
 
 
-inline Liaison* Block::getLiaison()const {
+inline Liaison Block::getLiaison()const {
 
     return m_liaison;
 }

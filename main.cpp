@@ -19,8 +19,6 @@
 void creerScene(Block &room);
 void dessinerScene(const Block &room);
 
-
-
 int main()
 {
 
@@ -42,15 +40,11 @@ int main()
     return 0;
 }
 
-
-
-
 void creerScene(Block &room)
 {
 
     ajouterBlock(room, {LARGEUR_SCENE,HAUTEUR_SCENE}, "room", {0,0}, {0,0});
-    std::cout << "{adresse de la Liaison : " << room.getLiaison() << "}";
-    std::cout << " - position de la liaison : " << room.getLiaison()->getBasepos() << std::endl << std::endl;
+    std::cout << " - position de la liaison : " << room.getLiaison().getBasepos() << std::endl << std::endl;
     room.ajouterFille({LARGEUR_SCENE,50}, "sol", {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, 1);
     //room.getFille(0)->ajouterFille({200,50}, "arm", {0,50}, {0,0}, 0);
     //room.getFille(0)->getFille(0)->ajouterFille({20,20}, "arm", {0,0}, {200,0}, 0);
@@ -62,9 +56,6 @@ void creerScene(Block &room)
     room.getFille(0)->ajouterFille({25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
 }
 
-
-
-
 void dessinerScene(const Block &room)
 {
     Svgfile svgout;
@@ -73,8 +64,8 @@ void dessinerScene(const Block &room)
 
     ///Affichage pointeur par pointeur => créer la boucle de parcours de l'arbre
     room.getFille(0)->dessiner(svgout);
-    room.getFille(0)->getFille(0)->dessiner(svgout);
+    /*room.getFille(0)->getFille(0)->dessiner(svgout);
     room.getFille(0)->getFille(1)->dessiner(svgout);
     room.getFille(0)->getFille(0)->getFille(0)->dessiner(svgout);
-    room.getFille(0)->getFille(2)->dessiner(svgout);
+    room.getFille(0)->getFille(2)->dessiner(svgout);*/
 }

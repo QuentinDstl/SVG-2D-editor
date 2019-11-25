@@ -26,21 +26,23 @@ void Block::initialiser(Coords _taille, std::string _id) {
 // a partir de la methode de la class liaison
 void Block::initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D)
 {
-    Liaison _liaison{_refpos, _basepos, _plan3D};
-    m_liaison = &_liaison;
+    m_liaison.setteur(_refpos,_basepos,_plan3D);
 }
 
 /// Initialisation de m_origine
 // recupere l'origine de la mere et la soustrait a sa position de reference
 void Block::initialiserOrigine()
 {
+    std::cout << "position de la liaison dans initialiser: " << m_liaison.getBasepos() << std::endl;
     //std::cout << "basepos:" << m_liaison->getBasepos() << std::endl;
     //std::cout << "refpos:" << m_liaison->getRefpos() << std::endl;
-    if(m_Mere == NULL) {
-        m_origine = m_liaison->getBasepos() - m_liaison->getRefpos();
+    if(m_Mere == nullptr) {
+        std::cout << " == NULL"<< std::endl;
+        m_origine = m_liaison.getBasepos() - m_liaison.getRefpos();
     }
     else {
-        m_origine = m_Mere->getOrigine() + m_liaison->getBasepos() - m_liaison->getRefpos();
+        std::cout << " != NULL"<< std::endl;
+        m_origine = m_Mere->getOrigine() + m_liaison.getBasepos() - m_liaison.getRefpos();
     //std::cout << "origineMere:" << m_Mere->getOrigine() << std::endl;
     }
 
@@ -62,7 +64,7 @@ void Block::dessiner(Svgfile &svgout)const
 
 void Block::ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D)
 {
-    std::cout << getLiaison()->getBasepos();
+    std::cout << getLiaison().getBasepos();
     Block* nouv = new Block{_id, _taille, this};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
@@ -88,9 +90,9 @@ bool Block::TestRefPos()const {
 
     bool test = 0;
 
-    if(m_liaison->getRefpos() <= m_taille) {
-         if(m_liaison->getBasepos() <= m_Mere->getTaille()) {
-            if(TestBordure(m_taille, m_liaison->getRefpos(), m_liaison->getBasepos(), m_liaison->getPlan3D(), m_Mere)) {
+    if(m_liaison.getRefpos() <= m_taille) {
+         if(m_liaison.getBasepos() <= m_Mere->getTaille()) {
+            if(TestBordure(m_taille, m_liaison.getRefpos(), m_liaison.getBasepos(), m_liaison.getPlan3D(), m_Mere)) {
                 test = 1;
             }
          }
@@ -166,8 +168,8 @@ void ajouterBlock(Block &bRoom,
 {
     bRoom.initialiser(_taille, _id);
     bRoom.initialiserLiaison(_refpos, _basepos, 0);
+    std::cout << " position de la liaison initiale : " << bRoom.getLiaison().getBasepos() << std::endl;
     bRoom.initialiserOrigine();
-    std::cout << "{adresse de la Liaison : " << bRoom.getLiaison() << "}";
-    std::cout << " - position de la liaison : " << bRoom.getLiaison()->getBasepos() << std::endl;
+    std::cout << " - position de la liaison : " << bRoom.getLiaison().getBasepos() << std::endl;
 }
 

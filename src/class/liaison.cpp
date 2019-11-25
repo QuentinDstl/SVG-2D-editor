@@ -13,7 +13,12 @@ Liaison::Liaison()
     : m_refpos{0,0}, m_basepos{0,0}, m_plan3D{0}
 {}
 
-
+void Liaison::setteur(Coords _refpos, Coords _basepos, bool _plan3D)
+{
+    m_refpos = _refpos;
+    m_basepos = _basepos;
+    m_plan3D = _plan3D;
+}
 
 /// CLASS FILLE GLISSIERE
 
