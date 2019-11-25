@@ -31,7 +31,6 @@ public :
     }
     bool getPlan3D() const
     {
-
         return m_plan3D;
     }
 };
@@ -60,6 +59,7 @@ inline bool Liaison::getPlan3D()
     return m_plan3D;
 }
 */
+
 #endif // LIAISON_H_INCLUDED
 
 /// CLASS FILLE GLISSIERE
@@ -78,5 +78,4 @@ public :
 };
 
 #endif // LIAISON_G_H_INCLUDED*/
-
 

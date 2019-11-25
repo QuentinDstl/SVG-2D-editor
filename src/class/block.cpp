@@ -2,16 +2,16 @@
 #include "../svg/svgfile.h"
 #include "liaison.h"
 
+/// lecture fichier
+#define FICHIER "sauvegarde.rom"
 
-Block::Block(std::string _id, Coords _taille, Block* _Mere)
-    : m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_Mere{_Mere}
+///Constructeur
+Block::Block(std::string _id, Coords _taille, Block* _Mere) : m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_Mere{_Mere}
 {}
 
 /// Constructeur avec Initialisation nul
-Block::Block()
-    : m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}
+Block::Block() : m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}
 {}
-
 
 ///Initialisation du block
 void Block::initialiser(Coords _taille, std::string _id) {
@@ -33,12 +33,20 @@ void Block::initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D)
 // recupere l'origine de la mere et la soustrait a sa position de reference
 void Block::initialiserOrigine()
 {
+    std::cout << "position de la liaison dans initialiser: " << m_liaison.getBasepos() << std::endl;
+    //std::cout << "basepos:" << m_liaison->getBasepos() << std::endl;
+    //std::cout << "refpos:" << m_liaison->getRefpos() << std::endl;
     if(m_Mere == nullptr) {
+        std::cout << " == NULL"<< std::endl;
         m_origine = m_liaison.getBasepos() - m_liaison.getRefpos();
     }
     else {
+        std::cout << " != NULL"<< std::endl;
         m_origine = m_Mere->getOrigine() + m_liaison.getBasepos() - m_liaison.getRefpos();
+    //std::cout << "origineMere:" << m_Mere->getOrigine() << std::endl;
     }
+
+    //std::cout << "origine:" << m_origine << std::endl;
 
 }
 
@@ -52,10 +60,36 @@ void Block::dessiner(Svgfile &svgout)const
                         m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
                         "grey");
 }
+/*
+void Block::toutDessiner(Svgfile& svgout, Block &room)
+{
+    if (room.getFille(0) == nullptr)
+    {
+        std::cout << "pas de filles" << std::endl;
+    }
+    std::cout << "eror dessiner 2" << std::endl;
 
+    for(auto petit_fils : room.getFilles())
+    {
+        if (petit_fils->getFille(0) == nullptr)
+        {
+            std::cout << "feuille" << std::endl;
+        }
 
+        else
+        {
+            std::cout << "pre dessiner branche" << std::endl;
+            toutDessiner(svgout,*petit_fils);
+            std::cout << "dessiner branche" << std::endl;
+        }
+    }
+        std::cout << "eror dessiner 3" << std::endl;
+}
+*/
 void Block::ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D)
 {
+
+    std::cout << getLiaison().getBasepos();
     Block* nouv = new Block{_id, _taille, this};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
@@ -98,8 +132,36 @@ bool Block::TestRefPos()const {
     return test;
 }
 
+///Sauvegarde global de la scène
+//a modifier pour toutes les filles
+void Block::sauvegarde()
+{
+    sauvegarderScene(m_Filles);
+}
 
 
+///Sauvegarde des filles
+void Block::sauvegarderScene(std::vector <Block*> s)
+{
+    std::ofstream ofs{FICHIER};
+
+    for (auto i : s)///Niveau 0
+    {
+        ofs << i->m_id << " " << i->m_taille.getX() << " " << i->m_taille.getY() << " " << i->m_origine.getY() << " " << i->m_origine.getX() << std::endl;
+        ofs << "[" << std::endl;
+        for ( auto v : i->m_Filles)///Niveau 1
+        {
+            ofs << "    " << v->m_id << " " << v->m_taille.getX() << " " << v->m_taille.getY() << " " << v->m_origine.getY() << " " << v->m_origine.getX() << std::endl;
+            ofs << "    [" << std::endl;
+            for ( auto z : v->m_Filles )///Niveau 2
+            {
+               ofs << "        "<< z->m_id << " " << z->m_taille.getX() << " " << z->m_taille.getY() << " " << z->m_origine.getY() << " " << z->m_origine.getX() << std::endl;
+            }
+            ofs << "    ]" << std::endl;
+        }
+        ofs << "]" << std::endl;
+    }
+}
 bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block *m_Mere) {
 
     bool test = 0;
@@ -120,6 +182,7 @@ bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan
 
     return test;
 }
+
 
 
 
@@ -151,8 +214,6 @@ bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bo
     return test;
 }
 
-
-
 void ajouterBlock(Block &bRoom,
                   Coords _taille, std::string _id,
                   Coords _refpos, Coords _basepos)
@@ -160,5 +221,72 @@ void ajouterBlock(Block &bRoom,
     bRoom.initialiser(_taille, _id);
     bRoom.initialiserLiaison(_refpos, _basepos, 0);
     bRoom.initialiserOrigine();
+    std::cout << "[i] position de la liaison : " << bRoom.getLiaison().getBasepos() << std::endl;
 }
 
+
+/// dessiner liaisons
+
+void Block::dessinerLiaisonsBase(Svgfile& svgout)const
+{
+    svgout.addCross(m_liaison.getBasepos().getX(),m_liaison.getBasepos().getY(),5, "black");
+}
+
+void Block::dessinerLiaisonsRef(Svgfile& svgout)const
+{
+    svgout.addCross(m_liaison.getRefpos().getX(),m_liaison.getRefpos().getY(),5, "black");
+}
+
+///************************///
+///   CLASS FILLE COULEUR  ///
+///************************///
+
+CouleurBlock::CouleurBlock(Couleur _couleur) : m_couleur{_couleur}
+{ }
+
+// overwriting de dessiner pour afficher la couleur
+void CouleurBlock::dessiner(Svgfile &svgout)const
+{
+    svgout.addRectangle(m_origine.getX(), m_origine.getY(),
+                        m_origine.getX(), m_origine.getY() + m_taille.getY(),
+                        m_origine.getX() + m_taille.getX(), m_origine.getY(),
+                        m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
+                        m_couleur);
+}
+
+///************************///
+///   TROUVER UN ELEMENT   ///
+///************************///
+
+// FIXME (qdesa#1#11/25/19): trouver un element : debugger
+
+/*
+// on veut trouver l'indice
+Block* parcourir(Block& fils,const std::string& id)
+{
+    if (fils.getFille(0) == nullptr)
+    {
+        return nullptr;
+    }
+    for(auto petit_fils : fils.getFilles())
+    {
+        if (petit_fils->getId() == id)
+        {
+            return petit_fils;
+        }
+        else if (petit_fils->getFille(0) == nullptr)
+        { }
+        else
+        {
+            Block* p;
+            p = parcourir(*petit_fils, id);
+
+            if(p != nullptr)
+            {
+                return p;
+            }
+        }
+    }
+    return nullptr;
+}
+*/
