@@ -33,20 +33,12 @@ void Block::initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D)
 // recupere l'origine de la mere et la soustrait a sa position de reference
 void Block::initialiserOrigine()
 {
-    std::cout << "position de la liaison dans initialiser: " << m_liaison.getBasepos() << std::endl;
-    //std::cout << "basepos:" << m_liaison->getBasepos() << std::endl;
-    //std::cout << "refpos:" << m_liaison->getRefpos() << std::endl;
     if(m_Mere == nullptr) {
-        std::cout << " == NULL"<< std::endl;
         m_origine = m_liaison.getBasepos() - m_liaison.getRefpos();
     }
     else {
-        std::cout << " != NULL"<< std::endl;
         m_origine = m_Mere->getOrigine() + m_liaison.getBasepos() - m_liaison.getRefpos();
-    //std::cout << "origineMere:" << m_Mere->getOrigine() << std::endl;
     }
-
-    //std::cout << "origine:" << m_origine << std::endl;
 
 }
 
@@ -64,7 +56,6 @@ void Block::dessiner(Svgfile &svgout)const
 
 void Block::ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D)
 {
-    std::cout << getLiaison().getBasepos();
     Block* nouv = new Block{_id, _taille, this};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
@@ -168,8 +159,6 @@ void ajouterBlock(Block &bRoom,
 {
     bRoom.initialiser(_taille, _id);
     bRoom.initialiserLiaison(_refpos, _basepos, 0);
-    std::cout << " position de la liaison initiale : " << bRoom.getLiaison().getBasepos() << std::endl;
     bRoom.initialiserOrigine();
-    std::cout << " - position de la liaison : " << bRoom.getLiaison().getBasepos() << std::endl;
 }
 
