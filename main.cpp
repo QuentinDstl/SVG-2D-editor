@@ -13,8 +13,8 @@
 #define FICHIER "sauvegarde.rom"
 
 /// define scene
-#define HAUTEUR_SCENE 800
-#define LARGEUR_SCENE 1200
+#define HAUTEUR_SCENE 600
+#define LARGEUR_SCENE 1000
 
 //void creerScene(Block* room); // option avec iterateur
 void creerScene(Block& room);
@@ -73,10 +73,10 @@ void creerScene(Block &room)
     //room.getFille(0)->ajouterFille({200,50}, "arm", {0,70}, {0,0}, 0);
     //room.getFille(0)->ajouterFille({200,50}, "arm", {0,50}, {0,0}, 0);
 
-    //room.getFille(0)->ajouterFille({25,350}, "arm", {0,350}, {0,0}, 0);
-    //room.getFille(0)->ajouterFille({25,HAUTEUR_SCENE-50}, "arm", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0);
-    //room.getFille(0)->getFille(0)->ajouterFille({60,20}, "arm", {0,0}, {25,HAUTEUR_SCENE/2}, 0);
-    //room.getFille(0)->ajouterFille({25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
+    room.getFille(0)->ajouterFille({25,HAUTEUR_SCENE-50}, "arm", {0,HAUTEUR_SCENE-50}, {0,0}, 0);
+    room.getFille(0)->ajouterFille({25,HAUTEUR_SCENE-50}, "arm", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0);
+    room.getFille(0)->getFille(0)->ajouterFille({60,20}, "arm", {0,0}, {25,HAUTEUR_SCENE/2}, 0);
+    room.getFille(0)->ajouterFille({25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
 
 }
 
@@ -90,13 +90,13 @@ void dessinerScene(Block &room)
 
     ///Affichage pointeur par pointeur => créer la boucle de parcours de l'arbre
     room.getFille(0)->dessiner(svgout);
-    /*room.getFille(0)->getFille(0)->dessiner(svgout);
+    room.getFille(0)->getFille(0)->dessiner(svgout);
     room.getFille(0)->getFille(1)->dessiner(svgout);
     room.getFille(0)->getFille(0)->getFille(0)->dessiner(svgout);
-    room.getFille(0)->getFille(2)->dessiner(svgout);*/
+    room.getFille(0)->getFille(2)->dessiner(svgout);
 
     //room.toutDessiner(svgout, room);
-    std::cout << "error dessiner scene" << std::endl;
+    //std::cout << "error dessiner scene" << std::endl;
     /*
     room.dessiner(svgout);
     room.getFille(0)->dessiner(svgout);

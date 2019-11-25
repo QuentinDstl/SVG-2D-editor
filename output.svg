@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1000" height="800">
 
-<polygon points=" 0,750 0,800 1200,800 1200,750" style="fill:grey" />
+<polygon points=" 0,550 0,600 1000,600 1000,550" style="fill:grey" />
+<polygon points=" 0,0 0,550 25,550 25,0" style="fill:grey" />
+<polygon points=" 975,0 975,550 1000,550 1000,0" style="fill:grey" />
+<polygon points=" 25,300 25,320 85,320 85,300" style="fill:grey" />
+<polygon points=" 500,500 500,550 525,550 525,500" style="fill:grey" />
 
 
 </svg>
