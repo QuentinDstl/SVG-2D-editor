@@ -25,23 +25,19 @@ int main()
     Block room;
     //Block* blockIterateur = &room; //option avec iterateur
 
+    creerScene(room);
+    dessinerScene(room);
+
     std::ofstream file {FICHIER};
 
     if (!file)
     {
         std::cerr << "Ouverture impossible du fichier : " << FICHIER;
     }
-
-
     else
     {
         room.sauvegarde();
     }
-
-    creerScene(room);
-    dessinerScene(room);
-
-
 
     return 0;
 }

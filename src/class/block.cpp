@@ -139,12 +139,11 @@ void Block::sauvegarde()
     sauvegarderScene(m_Filles);
 }
 
+
 ///Sauvegarde des filles
-//a modifier pour toutes les filles
 void Block::sauvegarderScene(std::vector <Block*> s)
 {
     std::ofstream ofs{FICHIER};
-
 
     for (auto i : s)///Niveau 0
     {
