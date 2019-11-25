@@ -1,10 +1,11 @@
 #include <iostream>
 
 #include "liaison.h"
+#include "coords.h"
 
 /// Constructeur (reference de postion x, reference de postion y, position de base x, position de base y, bool : est il dans le plan)
-Liaison::Liaison(Coords _refpos, Coords _basepos, bool _plan3D, Block* _Mere)
-    : m_refpos{_refpos}, m_basepos{_basepos}, m_plan3D{_plan3D}, m_Mere{_Mere}
+Liaison::Liaison(Coords _refpos, Coords _basepos, bool _plan3D)
+    : m_refpos{_refpos}, m_basepos{_basepos}, m_plan3D{_plan3D}
 {}
 
 /// Constructeur avec Initialisation nul

@@ -16,23 +16,26 @@ protected :
     Coords m_taille;
 
     Liaison *m_liaison;
+    Block* m_Mere;
 
     //Couleur m_bordure
     //Couleur m_couleur
 public :
-    Block(std::string _id, Coords _taille);
+    Block(std::string _id, Coords _taille, Block* _Mere);
     Block();
 
     ~Block()=default;
 
     void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D);
     void initialiser(Coords _taille, std::string _id);
-    void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D, Block* _Mere);
+    void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D);
     void initialiserOrigine();
 
     Block* getFille(unsigned int indice)const;
     Coords getTaille()const;
     Coords getOrigine()const;
+    Liaison* getLiaison()const;
+    Block* getMere()const;
 
     void dessiner(Svgfile &svgout)const;
 
@@ -69,6 +72,18 @@ inline Coords Block::getTaille()const {
 inline Coords Block::getOrigine()const {
 
     return m_origine;
+}
+
+
+inline Liaison* Block::getLiaison()const {
+
+    return m_liaison;
+}
+
+
+inline Block* Block::getMere()const {
+
+    return m_Mere;
 }
 
 #endif // BLOCK_H_INCLUDED

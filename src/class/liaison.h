@@ -13,20 +13,40 @@ protected :
 
     bool m_plan3D;
 
-    Block* m_Mere;
 
 public :
-    Liaison(Coords _refpos, Coords _basepos, bool _plan3D, Block* _Mere);
+    Liaison(Coords _refpos, Coords _basepos, bool _plan3D);
     Liaison();
     ~Liaison() = default;
 
-    void initialiser(double _refposX, double _refposY, double _baseposX, double _baseposY);
-
     Coords getBasepos();
     Coords getRefpos();
-    Block* getMere();
     bool getPlan3D();
 };
+
+
+///METHODES INLINE
+
+inline Coords Liaison::getBasepos()
+{
+
+    return m_basepos;
+}
+
+
+inline Coords Liaison::getRefpos()
+{
+
+    return m_refpos;
+}
+
+
+
+inline bool Liaison::getPlan3D()
+{
+
+    return m_plan3D;
+}
 
 #endif // LIAISON_H_INCLUDED
 
@@ -48,33 +68,3 @@ public :
 #endif // LIAISON_G_H_INCLUDED*/
 
 
-
-
-///METHODES INLINE
-
-inline Coords Liaison::getBasepos()
-{
-
-    return m_basepos;
-}
-
-
-inline Coords Liaison::getRefpos()
-{
-
-    return m_refpos;
-}
-
-
-inline Block* Liaison::getMere()
-{
-
-    return m_Mere;
-}
-
-
-inline bool Liaison::getPlan3D()
-{
-
-    return m_plan3D;
-}
