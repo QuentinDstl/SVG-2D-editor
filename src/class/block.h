@@ -17,7 +17,6 @@ protected :
     Block* m_pere;
     Coords m_origine;
     Coords m_taille;
-
     Liaison m_liaison;
     Block* m_Mere;
 
@@ -36,6 +35,7 @@ public :
     void initialiserOrigine();
 
     /// getteurs
+    /* TOUS INLINE */
     Block* getFille(unsigned int indice)const;
     Coords getTaille()const;
     Coords getOrigine()const;
@@ -46,10 +46,12 @@ public :
 
     /// dessiner
     void dessiner(Svgfile &svgout)const;
+    void toutDessiner(Svgfile& svgout)const;
     void dessinerLiaisonsBase(Svgfile &svgout)const;
     void dessinerLiaisonsRef(Svgfile& svgout)const;
-    void toutDessiner(Svgfile& svgout)const;
     void toutDessinerLiaisons(Svgfile& svgout)const;
+    void dessinerId(Svgfile &svgout) const;
+    void toutDessinerId(Svgfile& svgout) const;
 
     /// test
     bool TestRefPos()const;
@@ -58,10 +60,10 @@ public :
     void sauvegarde();
     void sauvegarderScene(std::vector <Block*> m_Filles);
 
+    /// trouver un element
     Block* parcourir(const std::string& id);
 
 };
-
 
 ///FONCTIONS LIEES A LA CLASSE COORD
 void ajouterBlock(Block &room,
@@ -72,53 +74,42 @@ bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan
 
 bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block* m_Mere);
 
-
-
-
-///METHODES INLINE
+///************************///
+///    METHODES INLINES    ///
+///************************///
 
 inline Block* Block::getFille(unsigned int indice)const
 {
-
     return m_Filles[indice];
 }
 
-
 inline Coords Block::getTaille()const
 {
-
     return m_taille;
 }
 
-
 inline Coords Block::getOrigine()const
 {
-
     return m_origine;
 }
 
 inline Liaison Block::getLiaison()const
 {
-
     return m_liaison;
 }
 
-
 inline Block* Block::getMere()const
 {
-
     return m_Mere;
 }
 
 inline std::string Block::getId () const
 {
-
     return m_id;
 }
 
 inline std::vector<Block*> Block::getFilles () const
 {
-
     return m_Filles;
 }
 

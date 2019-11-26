@@ -52,7 +52,7 @@ int main()
     return 0;
 }
 
-/// TODO : voir pour terminer l'iterateur
+// NOTE (qdesa#1#11/26/19): voir avec charly si il veut passer par cette techique
 /*
 void creerScene(Block* iterateur)
 {
@@ -93,10 +93,11 @@ void creerScene(Block &room)
 void dessinerScene(const Block &room)
 {
     Svgfile svgout;
-    /// attention il faut dessiner le room à part !!!!
+    /* attention il faut dessiner le room à part */
     //room.dessiner(svgout);
 
     room.toutDessiner(svgout);
     std::cout << "[i] croix rouge = position de reference / croix noir = position de base" << std::endl;
     room.toutDessinerLiaisons(svgout);
+    room.toutDessinerId(svgout);
 }
