@@ -26,6 +26,11 @@
 <line x1="494" y1="556" x2="506" y2="544" stroke="black" />
 <line x1="496" y1="546" x2="504" y2="554" stroke="red" />
 <line x1="496" y1="554" x2="504" y2="546" stroke="red" />
+<text x="489.5" y="578.5" fill="black" >sol</text>
+<text x="-1.5" y="278.5" fill="black" >arm1</text>
+<text x="41" y="313.5" fill="black" >arm3</text>
+<text x="973.5" y="278.5" fill="black" >arm2</text>
+<text x="495" y="528.5" fill="black" >block</text>
 
 
 </svg>

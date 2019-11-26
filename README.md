@@ -1,6 +1,11 @@
 # projet_block
 [ECE 2019] Projet Ing-2 semestre 1
 
+FIXME :
+on a deux technique d'affichage dans Coords donc on peut en virer une des deux.
+
+
+
 - maj 01
 
 Ajout dans le svgfile de la fonction rectangle avec bordure (stroke), fonction qui a juste quelques parametres en plus dont la largeur et la couleur.
