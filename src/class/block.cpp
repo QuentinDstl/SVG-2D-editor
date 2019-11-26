@@ -145,7 +145,6 @@ void Block::toutDessinerLiaisons(Svgfile& svgout) const
 // methode qui permet d'afficher l'id d'un bloc sur le svg
 void Block::dessinerId(Svgfile &svgout) const
 {
-    std::cout << m_id << " : " << m_id.size() << std::endl;
     svgout.addText(m_origine.getX()+(m_taille.getX()/2) - (m_id.size())*3.5,m_origine.getY()+(m_taille.getY()/2)+3.5,m_id,"black");
 }
 
@@ -351,19 +350,23 @@ void ajouterBlock(Block &bRoom,
 ///************************///
 ///   CLASS FILLE COULEUR  ///
 ///************************///
-
-/*  */
+/*
 //
-CouleurBlock::CouleurBlock(Couleur _couleur) : m_couleur{_couleur}
+BlockCouleur::BlockCouleur(std::string _id, Coords _taille, Block* _Mere, Couleur _couleur)
+    : Block(_id, _taille, _Mere), m_couleur{_couleur}
 { }
 
-/*  */
+//
+BlockCouleur::BlockCouleur(std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure)
+    : Block(_id, _taille, _Mere), m_couleur{_couleur}, m_bordure{_bordure}
+{ }
+
 // overwriting de dessiner pour afficher la couleur en plus
-void CouleurBlock::dessiner(Svgfile &svgout)const
+void BlockCouleur::dessiner(Svgfile &svgout)const
 {
     svgout.addRectangle(m_origine.getX(), m_origine.getY(),
                         m_origine.getX(), m_origine.getY() + m_taille.getY(),
                         m_origine.getX() + m_taille.getX(), m_origine.getY(),
                         m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
                         m_couleur);
-}
+}*/

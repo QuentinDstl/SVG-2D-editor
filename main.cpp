@@ -53,6 +53,7 @@ int main()
 }
 
 // NOTE (qdesa#1#11/26/19): voir avec charly si il veut passer par cette techique
+// dans le cadre de l'utilisation du polymorphisme il est necessaire de passer par des adresses ou pointeurs
 /*
 void creerScene(Block* iterateur)
 {
