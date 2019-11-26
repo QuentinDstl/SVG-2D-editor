@@ -2,6 +2,15 @@
 #include "../svg/svgfile.h"
 #include "liaison.h"
 
+#include <iostream>
+#include <string>
+#include <vector>
+#include <fstream> /// Pour les fichiers
+#include <sstream> /// Pour les ostringstream
+
+#define HAUTEUR_SCENE 600
+#define LARGEUR_SCENE 1000
+
 /// definition lecture fichier :
 #define FICHIER "sauvegarde.rom"
 
@@ -61,7 +70,7 @@ void Block::ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
 
-    //methode qui teste si le block est bien relié au block mere
+    /*//methode qui teste si le block est bien relié au block mere
     if(!(nouv->TestRefPos()))
     {
         delete m_Filles[m_Filles.size()-1];
@@ -71,7 +80,7 @@ void Block::ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords
     else
     {
         std::cout << nouv->m_origine << std::endl;
-    }
+    }*/
 }
 
 ///*************************///
@@ -197,34 +206,33 @@ bool Block::TestRefPos()const
 }
 
 ///************************///
-///       SAUVEGARDE       ///
+///SAUVEGARDE ET CHARGEMENT///
 ///************************///
 
 /* Sauvegarde global de la scène */
 //a modifier pour toutes les filles
 void Block::sauvegarde()
 {
-    sauvegarderScene(m_Filles);
+    sauvegarderScene1(m_Filles);
 }
 
-
 /* Sauvegarde des filles */
-// methode qui recupere un vercteur de pointeur de block pour les sauvegarder
-void Block::sauvegarderScene(std::vector <Block*> s)
+// methode qui recupere un vecteur de pointeur de block pour les sauvegarder
+void Block::sauvegarderScene1(std::vector <Block*> s)
 {
     std::ofstream ofs{FICHIER};
 
     for (auto i : s)///Niveau 0
     {
-        ofs << i->m_id << " " << i->m_taille.getX() << " " << i->m_taille.getY() << " " << i->m_origine.getY() << " " << i->m_origine.getX() << std::endl;
+        ofs << i->m_id << " " << i->m_taille.getX() << " " << i->m_taille.getY() << " " << i->m_liaison.getRefpos().getX() << " " << i->m_liaison.getRefpos().getY() << " " << i->m_liaison.getBasepos().getX() << " " << i->m_liaison.getBasepos().getY() << " " << i->m_liaison.getPlan3D() << std::endl;
         ofs << "[" << std::endl;
         for ( auto v : i->m_Filles)///Niveau 1
         {
-            ofs << "    " << v->m_id << " " << v->m_taille.getX() << " " << v->m_taille.getY() << " " << v->m_origine.getY() << " " << v->m_origine.getX() << std::endl;
+            ofs << "    " << v->m_id << " " << v->m_taille.getX() << " " << v->m_taille.getY() << " " << v->m_liaison.getRefpos().getX() << " " << v->m_liaison.getRefpos().getY() << " " << v->m_liaison.getBasepos().getX() << " " << v->m_liaison.getBasepos().getY()<< " " << v->m_liaison.getPlan3D() <<  std::endl;
             ofs << "    [" << std::endl;
             for ( auto z : v->m_Filles )///Niveau 2
             {
-                ofs << "        "<< z->m_id << " " << z->m_taille.getX() << " " << z->m_taille.getY() << " " << z->m_origine.getY() << " " << z->m_origine.getX() << std::endl;
+                ofs << "        "<< z->m_id << " " << z->m_taille.getX() << " " << z->m_taille.getY() << " " << z->m_liaison.getRefpos().getX() << " " << z->m_liaison.getRefpos().getY() << " " << z->m_liaison.getBasepos().getX() << " " << z->m_liaison.getBasepos().getY()<< " " << z->m_liaison.getPlan3D() <<  std::endl;
             }
             ofs << "    ]" << std::endl;
         }
@@ -232,6 +240,102 @@ void Block::sauvegarderScene(std::vector <Block*> s)
     }
 }
 
+void Block::sauvegarderScene2(std::vector <Block*> s)
+{
+    std::ofstream ofs{"sauvegarde2.rom"};
+
+    for (auto i : s)///Niveau 0
+    {
+        ofs << i->m_id << " " << i->m_taille.getX() << " " << i->m_taille.getY() << " " << i->m_liaison.getRefpos().getX() << " " << i->m_liaison.getRefpos().getY() << " " << i->m_liaison.getBasepos().getX() << " " << i->m_liaison.getBasepos().getY() << " " << i->m_liaison.getPlan3D() << std::endl;
+        ofs << "[" << std::endl;
+        for ( auto v : i->m_Filles)///Niveau 1
+        {
+            ofs << "    " << v->m_id << " " << v->m_taille.getX() << " " << v->m_taille.getY() << " " << v->m_liaison.getRefpos().getX() << " " << v->m_liaison.getRefpos().getY() << " " << v->m_liaison.getBasepos().getX() << " " << v->m_liaison.getBasepos().getY()<< " " << v->m_liaison.getPlan3D() <<  std::endl;
+            ofs << "    [" << std::endl;
+            for ( auto z : v->m_Filles )///Niveau 2
+            {
+                ofs << "        "<< z->m_id << " " << z->m_taille.getX() << " " << z->m_taille.getY() << " " << z->m_liaison.getRefpos().getX() << " " << z->m_liaison.getRefpos().getY() << " " << z->m_liaison.getBasepos().getX() << " " << z->m_liaison.getBasepos().getY()<< " " << z->m_liaison.getPlan3D() <<  std::endl;
+            }
+            ofs << "    ]" << std::endl;
+        }
+        ofs << "]" << std::endl;
+    }
+}
+
+void Block::chargementScene()
+{
+    int niveau = 0;
+    /// Ouverture d'un fichier en lecture (ifstream => input file stream)
+    std::ifstream ifs{FICHIER};
+    /// Test ouverture, si problème alors quitter avec description de l'échec
+    if ( !ifs ) throw std::runtime_error( "Can't read/open data.txt" );
+    /// Ok à partir d'ici le fichier est bien ouvert
+
+    /// Lecture ligne par ligne : TRES IMPORTANT
+    std::string ligne;
+    std::getline(ifs, ligne);
+
+    /// On a une ligne avec contenu, avec on va fabriquer un "flot chaîne"
+    /// pour lire dedans comme si c'était une saisie clavier !
+    std::istringstream iss{ligne};
+    double tailleX,tailleY,refposX,refposY,baseposX,baseposY;
+    std::string id;
+    bool plan3D;
+    /// l'objet  iss  se comporte comme std::cin !
+    iss >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+
+    ajouterFille({tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+
+    std::cout << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
+
+    //sauvegarderScene2(m_Filles);
+
+    while ( std::getline(ifs, ligne) )
+    {
+/*Niv 1*/if ( ligne.size()>=1 && ligne[0]=='[' && niveau==0 )
+        {
+            niveau = 1;
+            std::cout << "Acces Niveau 1" << std::endl<< std::endl;
+            std::getline(ifs, ligne);
+        }
+        if ( ligne[0]==']' && niveau == 1 )
+        {
+            niveau =  0;
+            std::cout << "Fermeture du niveau 1" << std::endl<< std::endl;
+        }
+        if ( ligne[4]!='[' && ligne[4]!=']' && niveau == 1 )
+        {
+            std::cout << "Lecture du niveau 1" << std::endl<< std::endl;
+            std::istringstream iss{ligne};
+            iss >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+            std::cout << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
+            getFille(0)->ajouterFille({tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+        }
+
+/*Niv 2*/if ( ligne.size()>=4 && ligne[4]=='[' && niveau==1 )
+        {
+            niveau = 2;
+            std::cout << "Acces niveau 2" << std::endl<< std::endl;
+            std::getline(ifs, ligne);
+        }
+        if (ligne[4]==']' && niveau == 2 )
+        {
+            niveau = 1;
+            std::cout << "Fermeture du niveau 2" << std::endl<< std::endl;
+        }
+        if ( ligne[8]!='[' && ligne[8]!=']' && niveau == 2 )
+        {
+            std::cout << "Lecture du niveau 2" << std::endl<< std::endl;
+            std::istringstream iss{ligne};
+            iss >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+            std::cout << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
+            getFille(0)->getFille(0)->ajouterFille({tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+        }
+      /// Passage à la ligne suivante (prochain tour de boucle)
+    }
+    sauvegarderScene2(m_Filles);
+
+}
 ///************************///
 ///   TROUVER UN ELEMENT   ///
 ///************************///

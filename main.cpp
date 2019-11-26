@@ -20,6 +20,21 @@
 void creerScene(Block& room);
 void dessinerScene(const Block &room); // a voir pour mettre en const le Block
 
+/*
+///Main Version CHARGEMENT depuis fichier
+int main()
+{
+    Block room;
+    Block* blockIterateur = &room; //option avec iterateur
+
+    ajouterBlock(room, {LARGEUR_SCENE,HAUTEUR_SCENE}, "room", {0,0}, {0,0});
+
+    room.chargementScene();
+
+    return 0;
+}*/
+
+///Main version CREATION puis sauvegarde
 int main()
 {
     Block room;
@@ -39,7 +54,6 @@ int main()
     }
 
     std::ofstream file {FICHIER};
-
     if (!file)
     {
         std::cerr << "Ouverture impossible du fichier : " << FICHIER;
@@ -73,6 +87,7 @@ void creerScene(Block* iterateur)
     //iterateur->ajouterFille(LARGEUR_SCENE, 50, "sol", LARGEUR_SCENE/2, HAUTEUR_SCENE, LARGEUR_SCENE/2, 50);
     //iterateur = (iterateur->getFille(0));
 */
+
 void creerScene(Block &room)
 {
 

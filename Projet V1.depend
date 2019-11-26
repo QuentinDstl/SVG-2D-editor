@@ -426,7 +426,7 @@
 	"../svg/svgfile.h"
 	"liaison.h"
 
-1574708263 source:c:\users\c_per\projet_block\main.cpp
+1574777526 source:c:\users\c_per\projet_block\main.cpp
 	<iostream>
 	<fstream>
 	<vector>
@@ -437,18 +437,18 @@
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
-1574708263 c:\users\c_per\projet_block\src\class\block.h
+1574776143 c:\users\c_per\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison.h"
 	"../svg/svgfile.h"
 	"../interface/couleur.h"
 
-1574708263 c:\users\c_per\projet_block\src\class\liaison.h
+1574759763 c:\users\c_per\projet_block\src\class\liaison.h
 	"coords.h"
 	"liaison.h"
 
-1574660588 c:\users\c_per\projet_block\src\class\coords.h
+1574759763 c:\users\c_per\projet_block\src\class\coords.h
 	<iostream>
 
 1574524172 c:\users\c_per\projet_block\src\svg\svgfile.h
@@ -463,12 +463,12 @@
 1574524172 c:\users\c_per\projet_block\src\util\util.h
 	<string>
 
-1574708263 source:c:\users\c_per\projet_block\src\class\coords.cpp
+1574759763 source:c:\users\c_per\projet_block\src\class\coords.cpp
 	"coords.h"
 	"../util/util.h"
 	<iostream>
 
-1574708263 source:c:\users\c_per\projet_block\src\class\liaison.cpp
+1574759763 source:c:\users\c_per\projet_block\src\class\liaison.cpp
 	<iostream>
 	"liaison.h"
 	"coords.h"
@@ -500,8 +500,13 @@
 	"../util/util.h"
 	<windows.h>
 
-1574708263 source:c:\users\c_per\projet_block\src\class\block.cpp
+1574778847 source:c:\users\c_per\projet_block\src\class\block.cpp
 	"block.h"
 	"../svg/svgfile.h"
 	"liaison.h"
+	<iostream>
+	<string>
+	<vector>
+	<fstream>
+	<sstream>
 

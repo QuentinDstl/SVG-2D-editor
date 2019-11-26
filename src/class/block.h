@@ -14,7 +14,6 @@ protected :
 
     std::string m_id;
     std::vector <Block*> m_Filles;
-    Block* m_pere;
     Coords m_origine;
     Coords m_taille;
     Liaison m_liaison;
@@ -58,7 +57,9 @@ public :
 
     /// sauvegarde
     virtual void sauvegarde();
-    virtual void sauvegarderScene(std::vector <Block*> m_Filles);
+    virtual void sauvegarderScene1(std::vector <Block*> m_Filles);
+    virtual void sauvegarderScene2(std::vector <Block*> m_Filles);
+    virtual void chargementScene();
 
     /// trouver un element
     virtual Block* parcourir(const std::string& id);
