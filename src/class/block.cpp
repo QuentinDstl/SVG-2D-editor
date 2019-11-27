@@ -19,11 +19,11 @@
 ///*************************///
 
 /* constructeur de base */
-Block::Block(std::string _id, Coords _taille, Block* _Mere) : m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_Mere{_Mere}
+Block::Block(double _classe,std::string _id, Coords _taille, Block* _Mere) : m_classe{_classe}, m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_Mere{_Mere}
 {}
 
 /* Constructeur avec Initialisation nul */
-Block::Block() : m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}
+Block::Block() :m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}
 {}
 
 ///*************************///
@@ -63,9 +63,9 @@ void Block::initialiserOrigine()
 
 /* Creer une fille */
 // cree une nouvelle fille a partir de la mere
-void Block::ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D)
+void Block::ajouterFille(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D)
 {
-    Block* nouv = new Block{_id, _taille, this};
+    Block* nouv = new Block{_classe,_id, _taille, this};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
@@ -86,10 +86,10 @@ void Block::ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords
 
 /* Creer une fille couleur */
 // cree une nouvelle fille a partir de la mere
-void Block::ajouterFilleCouleur(Coords _taille, std::string _id, Coords _refpos,
+void Block::ajouterFilleCouleur(double _classe,Coords _taille, std::string _id, Coords _refpos,
                                 Coords _basepos, bool _plan3D, Couleur _couleur)
 {
-    BlockCouleur* nouv = new BlockCouleur{_id, _taille, this, _couleur};
+    BlockCouleur* nouv = new BlockCouleur{_classe, _id, _taille, this, _couleur};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
@@ -97,10 +97,10 @@ void Block::ajouterFilleCouleur(Coords _taille, std::string _id, Coords _refpos,
 
 /* Creer une fille couleur avec bordures*/
 // cree une nouvelle fille a partir de la mere
-void Block::ajouterFilleBordure(Coords _taille, std::string _id, Coords _refpos,
+void Block::ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos,
                   Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure)
 {
-    BlockCouleur* nouv = new BlockCouleur{_id, _taille, this, _couleur, _bordure};
+    BlockCouleur* nouv = new BlockCouleur{_classe,_id, _taille, this, _couleur, _bordure};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
@@ -305,15 +305,15 @@ void Block::chargementScene()
     /// On a une ligne avec contenu, avec on va fabriquer un "flot chaîne"
     /// pour lire dedans comme si c'était une saisie clavier !
     std::istringstream iss{ligne};
-    double tailleX,tailleY,refposX,refposY,baseposX,baseposY;
+    double classe,tailleX,tailleY,refposX,refposY,baseposX,baseposY;
     std::string id;
     bool plan3D;
     /// l'objet  iss  se comporte comme std::cin !
-    iss >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+    iss >> classe >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D ;
 
-    ajouterFille({tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+    ajouterFille(classe,{tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
 
-    std::cout << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
+    std::cout << classe << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
 
     //sauvegarderScene2(m_Filles);
 
@@ -334,11 +334,10 @@ void Block::chargementScene()
         {
             std::cout << "Lecture du niveau 1" << std::endl<< std::endl;
             std::istringstream iss{ligne};
-            iss >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-            std::cout << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
-            getFille(0)->ajouterFille({tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            iss >> classe >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+            std::cout << classe << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
+            getFille(0)->ajouterFille(classe,{tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
         }
-
 /*Niv 2*/if ( ligne.size()>=4 && ligne[4]=='[' && niveau==1 )
         {
             niveau = 2;
@@ -354,9 +353,9 @@ void Block::chargementScene()
         {
             std::cout << "Lecture du niveau 2" << std::endl<< std::endl;
             std::istringstream iss{ligne};
-            iss >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-            std::cout << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
-            getFille(0)->getFille(0)->ajouterFille({tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            iss >> classe >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+            std::cout << classe << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
+            getFille(0)->getFille(0)->ajouterFille(classe,{tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
         }
       /// Passage à la ligne suivante (prochain tour de boucle)
     }
@@ -492,13 +491,13 @@ void ajouterBlock(Block &bRoom,
 
 //
 
-BlockCouleur::BlockCouleur(std::string _id, Coords _taille, Block* _Mere, Couleur _couleur)
-    : Block(_id, _taille, _Mere), m_couleur{_couleur}, m_bordure{m_couleur}
+BlockCouleur::BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur)
+    : Block(_classe,_id, _taille, _Mere), m_couleur{_couleur}, m_bordure{m_couleur}
 { }
 
 
-BlockCouleur::BlockCouleur(std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure)
-    : Block(_id, _taille, _Mere), m_couleur{_couleur}, m_bordure{_bordure}
+BlockCouleur::BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure)
+    : Block(_classe,_id, _taille, _Mere), m_couleur{_couleur}, m_bordure{_bordure}
 { }
 
 // overwriting de dessiner pour afficher la couleur en plus

@@ -11,7 +11,7 @@
 class Block
 {
 protected :
-
+    double m_classe;
     std::string m_id;
     std::vector <Block*> m_Filles;
     Coords m_origine;
@@ -22,15 +22,15 @@ protected :
 public :
 
     /// constructeurs
-    Block(std::string _id, Coords _taille, Block* _Mere);
+    Block(double classe, std::string _id, Coords _taille, Block* _Mere);
     Block();
 
     virtual ~Block()=default;
 
     /// ajout et initialisation
-    virtual void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D);
-    virtual void ajouterFilleCouleur(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
-    virtual void ajouterFilleBordure(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
+    virtual void ajouterFille(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D);
+    virtual void ajouterFilleCouleur(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
+    virtual void ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
     virtual void initialiser(Coords _taille, std::string _id);
     virtual void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void initialiserOrigine();
@@ -44,6 +44,7 @@ public :
     virtual Block* getMere()const;
     virtual std::vector<Block*> getFilles () const;
     virtual std::string getId () const;
+    virtual double getClasse () const;
 
     /// dessiner
     virtual void dessiner(Svgfile &svgout)const;
@@ -106,6 +107,11 @@ inline Block* Block::getMere()const
     return m_Mere;
 }
 
+inline double Block::getClasse()const
+{
+    return m_classe;
+}
+
 inline std::string Block::getId () const
 {
     return m_id;
@@ -131,8 +137,8 @@ public :
 
     /* OVERWRITING */
     /// constructeurs
-    BlockCouleur(std::string _id, Coords _taille, Block* _Mere, Couleur _couleur);
-    BlockCouleur(std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure);
+    BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur);
+    BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure);
 
     /// ajout et initialisation
     //virtual void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);

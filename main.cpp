@@ -55,6 +55,7 @@ int main()
     }
     */
 
+
     //room.parcourir("arm3")->getBordure().afficher();
 
     std::ofstream file {FICHIER};
@@ -75,18 +76,18 @@ int main()
 void creerScene(Block* iterateur)
 {
     ajouterBlock(*iterateur, {LARGEUR_SCENE,HAUTEUR_SCENE}, "room", {0,0}, {0,0});
-    iterateur->ajouterFille({LARGEUR_SCENE,50}, "sol", {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, 1);
+    iterateur->ajouterFille(0,{LARGEUR_SCENE,50}, "sol", {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, 1);
 
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
 
-    iterateur->ajouterFille({25,HAUTEUR_SCENE-50}, "arm1", {0,HAUTEUR_SCENE-50}, {0,0}, 0);
-    iterateur->ajouterFilleBordure({25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0,{200,100,100},{0,10,0});
-    iterateur->ajouterFille({25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
+    iterateur->ajouterFille(0,{25,HAUTEUR_SCENE-50}, "arm1", {0,HAUTEUR_SCENE-50}, {0,0}, 0);
+    iterateur->ajouterFilleBordure(0,{25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0,{200,100,100},{0,10,0});
+    iterateur->ajouterFille(0,{25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
 
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
-    iterateur->ajouterFilleCouleur({60,20}, "arm3", {0,0}, {25,HAUTEUR_SCENE/2}, 0,{50,150,100});
+    iterateur->ajouterFilleCouleur(0,{60,20}, "arm3", {0,0}, {25,HAUTEUR_SCENE/2}, 0,{50,150,100});
 }
 
 /*

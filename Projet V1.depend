@@ -431,7 +431,7 @@
 	"../svg/svgfile.h"
 	"liaison.h"
 
-1574777526 source:c:\users\c_per\projet_block\main.cpp
+1574874059 source:c:\users\c_per\projet_block\main.cpp
 	<iostream>
 	<fstream>
 	<vector>
@@ -442,18 +442,18 @@
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
-1574776143 c:\users\c_per\projet_block\src\class\block.h
+1574874188 c:\users\c_per\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison.h"
 	"../svg/svgfile.h"
 	"../interface/couleur.h"
 
-1574759763 c:\users\c_per\projet_block\src\class\liaison.h
+1574778998 c:\users\c_per\projet_block\src\class\liaison.h
 	"coords.h"
 	"liaison.h"
 
-1574759763 c:\users\c_per\projet_block\src\class\coords.h
+1574839845 c:\users\c_per\projet_block\src\class\coords.h
 	<iostream>
 
 1574524172 c:\users\c_per\projet_block\src\svg\svgfile.h
@@ -461,24 +461,24 @@
 	<fstream>
 	<set>
 
-1574524172 c:\users\c_per\projet_block\src\interface\couleur.h
+1574839845 c:\users\c_per\projet_block\src\interface\couleur.h
 	<string>
 	<cstdint>
 
 1574524172 c:\users\c_per\projet_block\src\util\util.h
 	<string>
 
-1574759763 source:c:\users\c_per\projet_block\src\class\coords.cpp
+1574839845 source:c:\users\c_per\projet_block\src\class\coords.cpp
 	"coords.h"
 	"../util/util.h"
 	<iostream>
 
-1574759763 source:c:\users\c_per\projet_block\src\class\liaison.cpp
+1574778998 source:c:\users\c_per\projet_block\src\class\liaison.cpp
 	<iostream>
 	"liaison.h"
 	"coords.h"
 
-1574524172 source:c:\users\c_per\projet_block\src\interface\couleur.cpp
+1574839845 source:c:\users\c_per\projet_block\src\interface\couleur.cpp
 	"couleur.h"
 	"../svg/svgfile.h"
 	"../util/util.h"
@@ -505,7 +505,7 @@
 	"../util/util.h"
 	<windows.h>
 
-1574778847 source:c:\users\c_per\projet_block\src\class\block.cpp
+1574839845 source:c:\users\c_per\projet_block\src\class\block.cpp
 	"block.h"
 	"../svg/svgfile.h"
 	"liaison.h"
