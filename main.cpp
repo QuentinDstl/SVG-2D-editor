@@ -43,15 +43,19 @@ int main()
     creerScene(blockIterateur);
     dessinerScene(room);
 
+    /*
     /// on cherche un bloc selon son id
-    if (room.parcourir("arm5") == nullptr)
+    if (room.parcourir("arm3") == nullptr)
     {
         std::cout << "[i] id fausse" << std::endl;
     }
     else
     {
-    std::cout << "id trouve : " << room.parcourir("arm5")->getId() << std::endl;
+    std::cout << "id trouve : " << room.parcourir("arm3")->getId() << std::endl;
     }
+    */
+
+    //room.parcourir("arm3")->getBordure().afficher();
 
     std::ofstream file {FICHIER};
     if (!file)
@@ -77,13 +81,12 @@ void creerScene(Block* iterateur)
     iterateur = iterateur->getFille(0);
 
     iterateur->ajouterFille({25,HAUTEUR_SCENE-50}, "arm1", {0,HAUTEUR_SCENE-50}, {0,0}, 0);
-    iterateur->ajouterFille({25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0);
+    iterateur->ajouterFilleBordure({25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0,{200,100,100},{0,10,0});
     iterateur->ajouterFille({25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
 
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
-    iterateur->ajouterFille({60,20}, "arm3", {0,0}, {25,HAUTEUR_SCENE/2}, 0);
-    iterateur->ajouterFilleCouleur({25,HAUTEUR_SCENE-50}, "arm4", {0,HAUTEUR_SCENE-50}, {0,0}, 0, {50,0,200});
+    iterateur->ajouterFilleCouleur({60,20}, "arm3", {0,0}, {25,HAUTEUR_SCENE/2}, 0,{50,150,100});
 }
 
 /*

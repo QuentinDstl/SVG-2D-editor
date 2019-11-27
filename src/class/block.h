@@ -143,12 +143,11 @@ public :
 
     /// getteurs
     /* TOUS INLINE */
-    //virtual Couleur getCouleur()const;
-    //virtual Couleur getBordure()const;
+    virtual Couleur getCouleur()const;
+    virtual Couleur getBordure()const;
 
     /// dessiner
     virtual void dessiner(Svgfile &svgout)const;
-    //virtual void toutDessiner(Svgfile& svgout)const;
 
     // TODO (qdesa#1#11/26/19): Pour Charles : Sauvegarde : elements de couleurs
     /// sauvegarde
@@ -159,5 +158,19 @@ public :
     /// trouver un element
     //virtual Block* parcourir(const std::string& id);
 };
+
+///************************///
+///    METHODES INLINES    ///
+///************************///
+
+inline Couleur BlockCouleur::getCouleur()const
+{
+    return m_couleur;
+}
+
+inline Couleur BlockCouleur::getBordure()const
+{
+    return m_bordure;
+}
 
 #endif // BLOCK_H_INCLUDED

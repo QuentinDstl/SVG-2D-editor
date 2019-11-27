@@ -14,6 +14,7 @@ public :
     void muter(double amplitude);
 
     operator std::string() const;
+    friend bool operator!=(const Couleur& c1, const Couleur& c2);
 
 private :
     // uint8_t équivalent à unsigned char :

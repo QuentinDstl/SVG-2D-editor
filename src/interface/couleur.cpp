@@ -67,3 +67,16 @@ Couleur::operator std::string() const
 {
     return Svgfile::makeRGB(m_rouge, m_vert, m_bleu);
 }
+
+/* Comparaison couleur */
+bool operator!=(const Couleur& c1, const Couleur& c2)
+{
+    if(c1.m_rouge != c2.m_rouge && c1.m_vert != c2.m_vert && c1.m_bleu != c2.m_bleu)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
