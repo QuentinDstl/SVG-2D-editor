@@ -35,6 +35,8 @@ int main()
     if(bc)
         bc->getCouleur().afficher();
 
+    std::cout << "trouver racine : " << trouverRacine(*blockIterateur)->getId() << std::endl;
+
     ///sauvegarde et chargement
     std::ofstream file {FICHIER};
     if (!file)

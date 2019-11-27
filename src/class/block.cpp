@@ -449,16 +449,16 @@ void ajouterBlock(Block &bRoom,
 ///************************///
 
 
-Block* trouverRacine(Block &room)
+Block* trouverRacine(Block &block)
 {
-    if(room.getMere() == nullptr)
+    if(block.getMere() == nullptr)
     {
-        return &room;
+        return &block;
     }
     else
     {
         Block* p;
-        p = trouverRacine(*room.getMere());
+        p = trouverRacine(*block.getMere());
 
             if(p != nullptr)
             {

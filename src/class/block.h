@@ -75,7 +75,7 @@ bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan
 bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block* m_Mere);
 
 //PARCOURS ET RACINE
-Block* trouverRacine(Block &room);
+Block* trouverRacine(Block &block);
 Block* parcourir(std::string id, const Block &room);
 Block* parcourir(Coords taille, Coords origine, const Block &room);
 
