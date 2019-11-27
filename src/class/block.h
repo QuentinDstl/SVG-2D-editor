@@ -63,9 +63,6 @@ public :
     virtual void sauvegarderScene2(std::vector <Block*> m_Filles);
     virtual void chargementScene();
 
-    /// trouver un element
-    virtual Block* parcourir(const std::string& id);
-
 };
 
 ///FONCTIONS LIEES A LA CLASSE COORD
@@ -76,6 +73,11 @@ void ajouterBlock(Block &room,
 bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block* m_Mere);
 
 bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block* m_Mere);
+
+//PARCOURS ET RACINE
+Block* trouverRacine(Block &room);
+Block* parcourir(std::string id, const Block &room);
+Block* parcourir(Coords taille, Coords origine, const Block &room);
 
 ///************************///
 ///    METHODES INLINES    ///

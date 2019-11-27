@@ -140,6 +140,19 @@ bool operator>=(const Coords& c1, const Coords& c2)
     }
 }
 
+/* Comparaison vectoriel (==) */
+bool operator==(const Coords& c1, const Coords& c2)
+{
+    if(c1.m_x == c2.m_x && c1.m_y == c2.m_y)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 ///*************************///
 ///  AFFICHAGE D'UN COORDS  ///
 ///*************************///

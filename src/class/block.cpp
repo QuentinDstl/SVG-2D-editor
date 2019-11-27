@@ -37,7 +37,7 @@ void Block::initialiser(Coords _taille, std::string _id)
     m_origine = {0,0};
     m_taille = {_taille.getX(),_taille.getY()};
     m_id = _id;
-    m_Mere = NULL;
+    m_Mere = nullptr;
 }
 
 /* Initialisation de la lisaison */
@@ -121,6 +121,7 @@ void Block::dessiner(Svgfile &svgout)const
                         "grey");
 }
 
+// TODO (qdesa#1#11/27/19): voir pour virer
 /* Dessin de toutes des Filles */
 // methode recursive qui appel la methode dessiner
 // attention elle ne dessine que les filles du block this
@@ -363,45 +364,10 @@ void Block::chargementScene()
     sauvegarderScene2(m_Filles);
 
 }
-///************************///
-///   TROUVER UN ELEMENT   ///
-///************************///
 
-/* Trouver l'id */
-// methode recursive de parcours qui cherche l'id
-// elle renvois le pointeur sur le bloc si l'id correspond sinon elle renvoit un nullptr
-Block* Block::parcourir(const std::string& id)
-{
-    // si on est en bout de chaine
-    if (!m_Filles.size())
-    {
-        return nullptr;
-    }
-    // sinon
-    for(auto petit_fils : m_Filles)
-    {
-        // si le petit fils a la bonne id on le retourne
-        if (petit_fils->getId() == id)
-        {
-            return petit_fils;
-        }
-        // sinon si le petit fils est en bout de chaine
-        else if (!petit_fils->getFilles().size())
-        { }
-        //sinon on le parcours à nouveau
-        else
-        {
-            Block* p;
-            p = petit_fils->parcourir(id);
-
-            if(p != nullptr)
-            {
-                return p;
-            }
-        }
-    }
-    return nullptr;
-}
+///************************///
+///   FONCTIONS DE COORDS  ///
+///************************///
 
 /*  */
 //
@@ -476,6 +442,96 @@ void ajouterBlock(Block &bRoom,
     bRoom.initialiserLiaison(_refpos, _basepos, 0);
     bRoom.initialiserOrigine();
     //std::cout << "[i] position de la liaison : " << bRoom.getLiaison().getBasepos() << std::endl;
+}
+
+///************************///
+///   PARCOURS ET RACINE   ///
+///************************///
+
+
+Block* trouverRacine(Block &room)
+{
+    if(room.getMere() == nullptr)
+    {
+        return &room;
+    }
+    else
+    {
+        Block* p;
+        p = trouverRacine(*room.getMere());
+
+            if(p != nullptr)
+            {
+                return p;
+            }
+    }
+    return nullptr;
+}
+
+Block* parcourir(std::string id, const Block &room)
+{
+    // si on est en bout de chaine
+    if (!room.getFilles().size())
+    {
+        return nullptr;
+    }
+    // sinon on se ballade dans les filles
+    for(const auto& petit_fils : room.getFilles())
+    {
+        // si le petit fils a la bonne id on le retourne
+        if (petit_fils->getId() == id)
+        {
+            return petit_fils;
+        }
+        // sinon si le petit fils est en bout de chaine
+        else if (!petit_fils->getFilles().size())
+        { }
+        //sinon on le parcours à nouveau
+        else
+        {
+            Block* p;
+            p = parcourir(id,*petit_fils);
+
+            if(p != nullptr)
+            {
+                return p;
+            }
+        }
+    }
+    return nullptr;
+}
+
+Block* parcourir(Coords taille, Coords origine, const Block &room)
+{
+    // si on est en bout de chaine
+    if (!room.getFilles().size())
+    {
+        return nullptr;
+    }
+    // sinon on se ballade dans les filles
+    for(const auto& petit_fils : room.getFilles())
+    {
+        // si le petit fils a les bonnes coordonnees
+        if (petit_fils->getTaille()==taille && petit_fils->getOrigine()==origine)
+        {
+            return petit_fils;
+        }
+        // sinon si le petit fils est en bout de chaine
+        else if (!petit_fils->getFilles().size())
+        { }
+        //sinon on le parcours à nouveau
+        else
+        {
+            Block* p;
+            p = parcourir(taille,origine,*petit_fils);
+
+            if(p != nullptr)
+            {
+                return p;
+            }
+        }
+    }
+    return nullptr;
 }
 
 ////////////////////////////////////////
