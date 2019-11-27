@@ -23,7 +23,7 @@ Block::Block(double _classe,std::string _id, Coords _taille, Block* _Mere) : m_c
 {}
 
 /* Constructeur avec Initialisation nul */
-Block::Block() :m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}
+Block::Block() : m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}
 {}
 
 ///*************************///
@@ -34,10 +34,11 @@ Block::Block() :m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nu
 // reinitialise le bloc a nul
 void Block::initialiser(Coords _taille, std::string _id)
 {
+    m_classe = 0;
     m_origine = {0,0};
     m_taille = {_taille.getX(),_taille.getY()};
     m_id = _id;
-    m_Mere = NULL;
+    m_Mere = nullptr;
 }
 
 /* Initialisation de la lisaison */
@@ -98,7 +99,7 @@ void Block::ajouterFilleCouleur(double _classe,Coords _taille, std::string _id, 
 /* Creer une fille couleur avec bordures*/
 // cree une nouvelle fille a partir de la mere
 void Block::ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos,
-                  Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure)
+                                Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure)
 {
     BlockCouleur* nouv = new BlockCouleur{_classe,_id, _taille, this, _couleur, _bordure};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
@@ -121,6 +122,7 @@ void Block::dessiner(Svgfile &svgout)const
                         "grey");
 }
 
+// TODO (qdesa#1#11/27/19): voir pour virer
 /* Dessin de toutes des Filles */
 // methode recursive qui appel la methode dessiner
 // attention elle ne dessine que les filles du block this
@@ -135,9 +137,9 @@ void Block::toutDessiner(Svgfile& svgout) const
         {
             BlockCouleur* petit_fils_couleur = dynamic_cast<BlockCouleur*>(petit_fils);
             if (petit_fils_couleur)
-                    petit_fils_couleur->dessiner(svgout);
+                petit_fils_couleur->dessiner(svgout);
             else
-            petit_fils->dessiner(svgout);
+                petit_fils->dessiner(svgout);
             petit_fils->toutDessiner(svgout);
         }
     }
@@ -295,7 +297,8 @@ void Block::chargementScene()
     /// Ouverture d'un fichier en lecture (ifstream => input file stream)
     std::ifstream ifs{FICHIER};
     /// Test ouverture, si problème alors quitter avec description de l'échec
-    if ( !ifs ) throw std::runtime_error( "Can't read/open data.txt" );
+    if ( !ifs )
+        throw std::runtime_error( "Can't read/open data.txt" );
     /// Ok à partir d'ici le fichier est bien ouvert
 
     /// Lecture ligne par ligne : TRES IMPORTANT
@@ -311,7 +314,7 @@ void Block::chargementScene()
     /// l'objet  iss  se comporte comme std::cin !
     iss >> classe >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D ;
 
-    ajouterFille(classe,{tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+    ajouterFille(classe, {tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
 
     std::cout << classe << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
 
@@ -319,7 +322,7 @@ void Block::chargementScene()
 
     while ( std::getline(ifs, ligne) )
     {
-/*Niv 1*/if ( ligne.size()>=1 && ligne[0]=='[' && niveau==0 )
+        /*Niv 1*/if ( ligne.size()>=1 && ligne[0]=='[' && niveau==0 )
         {
             niveau = 1;
             std::cout << "Acces Niveau 1" << std::endl<< std::endl;
@@ -336,9 +339,9 @@ void Block::chargementScene()
             std::istringstream iss{ligne};
             iss >> classe >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
             std::cout << classe << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
-            getFille(0)->ajouterFille(classe,{tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            getFille(0)->ajouterFille(classe, {tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
         }
-/*Niv 2*/if ( ligne.size()>=4 && ligne[4]=='[' && niveau==1 )
+        /*Niv 2*/if ( ligne.size()>=4 && ligne[4]=='[' && niveau==1 )
         {
             niveau = 2;
             std::cout << "Acces niveau 2" << std::endl<< std::endl;
@@ -355,52 +358,17 @@ void Block::chargementScene()
             std::istringstream iss{ligne};
             iss >> classe >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
             std::cout << classe << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
-            getFille(0)->getFille(0)->ajouterFille(classe,{tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            getFille(0)->getFille(0)->ajouterFille(classe, {tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
         }
-      /// Passage à la ligne suivante (prochain tour de boucle)
+        /// Passage à la ligne suivante (prochain tour de boucle)
     }
     sauvegarderScene2(m_Filles);
 
 }
-///************************///
-///   TROUVER UN ELEMENT   ///
-///************************///
 
-/* Trouver l'id */
-// methode recursive de parcours qui cherche l'id
-// elle renvois le pointeur sur le bloc si l'id correspond sinon elle renvoit un nullptr
-Block* Block::parcourir(const std::string& id)
-{
-    // si on est en bout de chaine
-    if (!m_Filles.size())
-    {
-        return nullptr;
-    }
-    // sinon
-    for(auto petit_fils : m_Filles)
-    {
-        // si le petit fils a la bonne id on le retourne
-        if (petit_fils->getId() == id)
-        {
-            return petit_fils;
-        }
-        // sinon si le petit fils est en bout de chaine
-        else if (!petit_fils->getFilles().size())
-        { }
-        //sinon on le parcours à nouveau
-        else
-        {
-            Block* p;
-            p = petit_fils->parcourir(id);
-
-            if(p != nullptr)
-            {
-                return p;
-            }
-        }
-    }
-    return nullptr;
-}
+///************************///
+///   FONCTIONS DE COORDS  ///
+///************************///
 
 /*  */
 //
@@ -477,6 +445,96 @@ void ajouterBlock(Block &bRoom,
     //std::cout << "[i] position de la liaison : " << bRoom.getLiaison().getBasepos() << std::endl;
 }
 
+///************************///
+///   PARCOURS ET RACINE   ///
+///************************///
+
+
+Block* trouverRacine(Block &block)
+{
+    if(block.getMere() == nullptr)
+    {
+        return &block;
+    }
+    else
+    {
+        Block* p;
+        p = trouverRacine(*block.getMere());
+
+        if(p != nullptr)
+        {
+            return p;
+        }
+    }
+    return nullptr;
+}
+
+Block* parcourir(std::string id, const Block &room)
+{
+    // si on est en bout de chaine
+    if (!room.getFilles().size())
+    {
+        return nullptr;
+    }
+    // sinon on se ballade dans les filles
+    for(const auto& petit_fils : room.getFilles())
+    {
+        // si le petit fils a la bonne id on le retourne
+        if (petit_fils->getId() == id)
+        {
+            return petit_fils;
+        }
+        // sinon si le petit fils est en bout de chaine
+        else if (!petit_fils->getFilles().size())
+        { }
+        //sinon on le parcours à nouveau
+        else
+        {
+            Block* p;
+            p = parcourir(id,*petit_fils);
+
+            if(p != nullptr)
+            {
+                return p;
+            }
+        }
+    }
+    return nullptr;
+}
+
+Block* parcourir(Coords taille, Coords origine, const Block &room)
+{
+    // si on est en bout de chaine
+    if (!room.getFilles().size())
+    {
+        return nullptr;
+    }
+    // sinon on se ballade dans les filles
+    for(const auto& petit_fils : room.getFilles())
+    {
+        // si le petit fils a les bonnes coordonnees
+        if (petit_fils->getTaille()==taille && petit_fils->getOrigine()==origine)
+        {
+            return petit_fils;
+        }
+        // sinon si le petit fils est en bout de chaine
+        else if (!petit_fils->getFilles().size())
+        { }
+        //sinon on le parcours à nouveau
+        else
+        {
+            Block* p;
+            p = parcourir(taille,origine,*petit_fils);
+
+            if(p != nullptr)
+            {
+                return p;
+            }
+        }
+    }
+    return nullptr;
+}
+
 ////////////////////////////////////////
 ////                                ////
 ////                                ////
@@ -504,17 +562,17 @@ BlockCouleur::BlockCouleur(double _classe,std::string _id, Coords _taille, Block
 void BlockCouleur::dessiner(Svgfile &svgout)const
 {
     if(m_bordure != m_couleur)
-    svgout.addRectangle(m_origine.getX(), m_origine.getY(),
-                        m_origine.getX(), m_origine.getY() + m_taille.getY(),
-                        m_origine.getX() + m_taille.getX(), m_origine.getY(),
-                        m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
-                        m_couleur,2,m_bordure);
+        svgout.addRectangle(m_origine.getX(), m_origine.getY(),
+                            m_origine.getX(), m_origine.getY() + m_taille.getY(),
+                            m_origine.getX() + m_taille.getX(), m_origine.getY(),
+                            m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
+                            m_couleur,2,m_bordure);
     else
-    svgout.addRectangle(m_origine.getX(), m_origine.getY(),
-                        m_origine.getX(), m_origine.getY() + m_taille.getY(),
-                        m_origine.getX() + m_taille.getX(), m_origine.getY(),
-                        m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
-                        m_couleur);
+        svgout.addRectangle(m_origine.getX(), m_origine.getY(),
+                            m_origine.getX(), m_origine.getY() + m_taille.getY(),
+                            m_origine.getX() + m_taille.getX(), m_origine.getY(),
+                            m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
+                            m_couleur);
 }
 
 void initialiser(Coords _taille, std::string _id, Couleur _couleur)
