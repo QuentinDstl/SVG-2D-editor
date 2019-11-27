@@ -55,7 +55,8 @@ int main()
     }
     */
 
-    //room.parcourir("arm3")->getBordure().afficher();
+    // TODO (qdesa#1#11/27/19): demander au prof
+    //room.parcourir("arm3")->getCouleur().afficher();
 
     std::ofstream file {FICHIER};
     if (!file)
