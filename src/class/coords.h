@@ -16,9 +16,8 @@ public :
     Coords(double _x, double _y);
     Coords();
 
-    /// aleatoir & affichage
+    /// aleatoire
     static Coords aleatoire(double amplitude);
-    void afficher() const;
 
     /// getteurs & setteurs
     void modifierX(double x);

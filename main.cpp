@@ -16,8 +16,8 @@
 #define HAUTEUR_SCENE 600
 #define LARGEUR_SCENE 1000
 
-//void creerScene(Block* room); // option avec iterateur
-void creerScene(Block& room);
+void creerScene(Block* room); // option avec iterateur
+//void creerScene(Block& room);
 void dessinerScene(const Block &room); // a voir pour mettre en const le Block
 
 /*
@@ -40,17 +40,17 @@ int main()
     Block room;
     Block* blockIterateur = &room; //option avec iterateur
 
-    creerScene(room);
+    creerScene(blockIterateur);
     dessinerScene(room);
 
     /// on cherche un bloc selon son id
-    if (room.parcourir("arm1") == nullptr)
+    if (room.parcourir("arm5") == nullptr)
     {
         std::cout << "[i] id fausse" << std::endl;
     }
     else
     {
-    std::cout << "id trouve : " << room.parcourir("arm1")->getId() << std::endl;
+    std::cout << "id trouve : " << room.parcourir("arm5")->getId() << std::endl;
     }
 
     std::ofstream file {FICHIER};
@@ -66,28 +66,27 @@ int main()
     return 0;
 }
 
-// NOTE (qdesa#1#11/26/19): voir avec charly si il veut passer par cette techique
-// dans le cadre de l'utilisation du polymorphisme il est necessaire de passer par des adresses ou pointeurs
-/*
+
+// dans le cadre de l'utilisation du polymorphisme il est necessaire de passer par des adresses ou reference
 void creerScene(Block* iterateur)
 {
-
-
     ajouterBlock(*iterateur, {LARGEUR_SCENE,HAUTEUR_SCENE}, "room", {0,0}, {0,0});
     iterateur->ajouterFille({LARGEUR_SCENE,50}, "sol", {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, 1);
 
+    //on rentre dans les filles
+    iterateur = iterateur->getFille(0);
 
-    iterateur->getFille(0)->ajouterFille({25,350}, "arm", {0,350}, {0,0}, 0);
-    iterateur->getFille(0)->ajouterFille({25,HAUTEUR_SCENE-50}, "arm", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0);
-    iterateur->getFille(0)->getFille(0)->ajouterFille({60,20}, "arm", {0,0}, {25,HAUTEUR_SCENE/2}, 0);
-    iterateur->getFille(0)->ajouterFille({25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
+    iterateur->ajouterFille({25,HAUTEUR_SCENE-50}, "arm1", {0,HAUTEUR_SCENE-50}, {0,0}, 0);
+    iterateur->ajouterFille({25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0);
+    iterateur->ajouterFille({25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
 
-    //ajouterBlock(room, LARGEUR_SCENE, HAUTEUR_SCENE, "room", 0, 0, 0, 0);
+    //on rentre dans les filles
+    iterateur = iterateur->getFille(0);
+    iterateur->ajouterFille({60,20}, "arm3", {0,0}, {25,HAUTEUR_SCENE/2}, 0);
+    iterateur->ajouterFilleCouleur({25,HAUTEUR_SCENE-50}, "arm4", {0,HAUTEUR_SCENE-50}, {0,0}, 0, {50,0,200});
+}
 
-    //iterateur->ajouterFille(LARGEUR_SCENE, 50, "sol", LARGEUR_SCENE/2, HAUTEUR_SCENE, LARGEUR_SCENE/2, 50);
-    //iterateur = (iterateur->getFille(0));
-*/
-
+/*
 void creerScene(Block &room)
 {
 
@@ -103,8 +102,9 @@ void creerScene(Block &room)
     room.getFille(0)->ajouterFille({25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0);
     room.getFille(0)->getFille(0)->ajouterFille({60,20}, "arm3", {0,0}, {25,HAUTEUR_SCENE/2}, 0);
     room.getFille(0)->ajouterFille({25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
-
+    room.getFille(0)->getFille(0)->ajouterFilleCouleur({25,HAUTEUR_SCENE-50}, "arm4", {0,HAUTEUR_SCENE-50}, {0,0}, 0, {50,0,200});
 }
+*/
 
 void dessinerScene(const Block &room)
 {

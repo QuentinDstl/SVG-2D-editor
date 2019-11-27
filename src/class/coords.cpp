@@ -17,7 +17,7 @@ Coords::Coords()
 {}
 
 ///*************************///
-///  ALEATOIRE & AFFICHAGE  ///
+///        ALEATOIRE        ///
 ///*************************///
 
 // NOTE (qdesa#3#11/26/19): a virer si c'est pas utilise
@@ -26,13 +26,6 @@ Coords Coords::aleatoire(double amplitude)
 {
     return { util::alea(-amplitude, amplitude),
              util::alea(-amplitude, amplitude) };
-}
-
-// FIXME (qdesa#2#11/26/19): premiere technique d'affichage de coords
-/* affichage de Coords*/
-void Coords::afficher() const
-{
-    std::cout << "(" << m_x << ", " << m_y << ")";
 }
 
 ///*************************///
@@ -151,7 +144,6 @@ bool operator>=(const Coords& c1, const Coords& c2)
 ///  AFFICHAGE D'UN COORDS  ///
 ///*************************///
 
-// FIXME (qdesa#2#11/26/19): deuxieme technique d'affichage de coords
 /* Affichage d'un coords */
 std::ostream& operator<<(std::ostream& out, const Coords& c)
 {

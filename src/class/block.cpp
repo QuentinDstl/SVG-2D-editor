@@ -70,6 +70,7 @@ void Block::ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
 
+    // FIXME (qdesa#1#11/26/19): on laisse ou pas clement ?
     /*//methode qui teste si le block est bien relié au block mere
     if(!(nouv->TestRefPos()))
     {
@@ -439,7 +440,7 @@ bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bo
     return test;
 }
 
-/*  */
+/* Ajout d'un bloc sans pere */
 //
 void ajouterBlock(Block &bRoom,
                   Coords _taille, std::string _id,
@@ -451,16 +452,25 @@ void ajouterBlock(Block &bRoom,
     //std::cout << "[i] position de la liaison : " << bRoom.getLiaison().getBasepos() << std::endl;
 }
 
-///************************///
-///   CLASS FILLE COULEUR  ///
-///************************///
-/*
+////////////////////////////////////////
+////                                ////
+////                                ////
+////      CLASS FILLE COULEUR       ////
+////                                ////
+////                                ////
+////////////////////////////////////////
+
+///*************************///
+///       OVERWRITING       ///
+///*************************///
+
 //
+
 BlockCouleur::BlockCouleur(std::string _id, Coords _taille, Block* _Mere, Couleur _couleur)
     : Block(_id, _taille, _Mere), m_couleur{_couleur}
 { }
 
-//
+
 BlockCouleur::BlockCouleur(std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure)
     : Block(_id, _taille, _Mere), m_couleur{_couleur}, m_bordure{_bordure}
 { }
@@ -473,4 +483,34 @@ void BlockCouleur::dessiner(Svgfile &svgout)const
                         m_origine.getX() + m_taille.getX(), m_origine.getY(),
                         m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
                         m_couleur);
-}*/
+}
+
+void Block::ajouterFilleCouleur(Coords _taille, std::string _id, Coords _refpos,
+                                Coords _basepos, bool _plan3D, Couleur _couleur)
+{
+    BlockCouleur* nouv = new BlockCouleur{_id, _taille, this, _couleur};
+    nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
+    nouv->initialiserOrigine();
+    m_Filles.push_back(nouv);
+}
+
+void Block::ajouterFilleBordure(Coords _taille, std::string _id, Coords _refpos,
+                  Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure)
+{
+    BlockCouleur* nouv = new BlockCouleur{_id, _taille, this, _couleur, _bordure};
+    nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
+    nouv->initialiserOrigine();
+    m_Filles.push_back(nouv);
+}
+
+/*
+    virtual void initialiser(Coords _taille, std::string _id, Couleur _couleur);
+    virtual void initialiser(Coords _taille, std::string _id, Couleur _couleur, Couleur _bordure);
+
+    virtual Couleur getCouleur()const;
+    virtual Couleur getBordure()const;
+
+    /// dessiner
+
+    //virtual void toutDessiner(Svgfile& svgout)const;
+*/

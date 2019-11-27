@@ -29,6 +29,8 @@ public :
 
     /// ajout et initialisation
     virtual void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D);
+    virtual void ajouterFilleCouleur(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
+    virtual void ajouterFilleBordure(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
     virtual void initialiser(Coords _taille, std::string _id);
     virtual void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void initialiserOrigine();
@@ -133,16 +135,16 @@ public :
     BlockCouleur(std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure);
 
     /// ajout et initialisation
-    virtual void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
-    virtual void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
+    //virtual void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
+    //virtual void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
 
-    virtual void initialiser(Coords _taille, std::string _id, Couleur _couleur);
-    virtual void initialiser(Coords _taille, std::string _id, Couleur _couleur, Couleur _bordure);
+    //virtual void initialiser(Coords _taille, std::string _id, Couleur _couleur);
+    //virtual void initialiser(Coords _taille, std::string _id, Couleur _couleur, Couleur _bordure);
 
     /// getteurs
     /* TOUS INLINE */
-    virtual Couleur getCouleur()const;
-    virtual Couleur getBordure()const;
+    //virtual Couleur getCouleur()const;
+    //virtual Couleur getBordure()const;
 
     /// dessiner
     virtual void dessiner(Svgfile &svgout)const;
