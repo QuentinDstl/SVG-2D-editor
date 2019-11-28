@@ -8,6 +8,8 @@
 #include "../svg/svgfile.h"
 #include "../interface/couleur.h"
 
+class BlockCouleur;
+
 class Block
 {
 protected :
@@ -23,7 +25,7 @@ protected :
 public :
 
     /// constructeurs
-    Block(double classe, std::string _id, Coords _taille, Block* _Mere);
+    Block(double _classe, std::string _id, Coords _taille, Block* _Mere);
     Block();
 
     virtual ~Block()=default;
@@ -32,6 +34,7 @@ public :
     virtual void ajouterFille(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void ajouterFilleCouleur(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
     virtual void ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
+    virtual void ajouterFilleCercle(double _classe,double _rayon, std::string _id, double _angle, Coords _basepos, bool _plan3D);
     virtual void initialiser(Coords _taille, std::string _id);
     virtual void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void initialiserOrigine();
@@ -49,7 +52,6 @@ public :
 
     /// dessiner
     virtual void dessiner(Svgfile &svgout)const;
-    virtual void toutDessiner(Svgfile& svgout)const;
     virtual void dessinerLiaisonsBase(Svgfile &svgout)const;
     virtual void dessinerLiaisonsRef(Svgfile& svgout)const;
     virtual void toutDessinerLiaisons(Svgfile& svgout)const;
@@ -147,13 +149,6 @@ public :
     BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur);
     BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure);
 
-    /// ajout et initialisation
-    //virtual void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
-    //virtual void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
-
-    //virtual void initialiser(Coords _taille, std::string _id, Couleur _couleur);
-    //virtual void initialiser(Coords _taille, std::string _id, Couleur _couleur, Couleur _bordure);
-
     /// getteurs
     /* TOUS INLINE */
     virtual Couleur getCouleur()const;
@@ -186,54 +181,4 @@ inline Couleur BlockCouleur::getBordure()const
     return m_bordure;
 }
 
-////////////////////////////////////////////////////////////////
-////                                                        ////
-////                                                        ////
-////                   CLASS FILLE CERCLE                   ////
-////                                                        ////
-////                                                        ////
-////////////////////////////////////////////////////////////////
-
-/*
-class BlockCercle : public Block
-{
-public:
-
-    /// constructeurs
-    BlockCercle(double classe, std::string _id, Coords _taille, Block* _Mere);
-    BlockCercle();
-
-    /// ajout et initialisation
-    virtual void ajouterFille(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D);
-    virtual void ajouterFilleCouleur(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
-    virtual void ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
-    virtual void initialiser(Coords _taille, std::string _id);
-    virtual void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D);
-    virtual void initialiserOrigine();
-
-    /// getteurs
-    // INLINE
-    virtual Block* getFille(unsigned int indice)const;
-    virtual Coords getTaille()const;
-    virtual Coords getOrigine()const;
-    virtual Liaison getLiaison()const;
-    virtual Block* getMere()const;
-    virtual std::vector<Block*> getFilles () const;
-    virtual std::string getId () const;
-    virtual double getClasse () const;
-
-    /// dessiner
-    virtual void dessiner(Svgfile &svgout)const;
-    virtual void toutDessiner(Svgfile& svgout)const;
-    virtual void dessinerLiaisonsBase(Svgfile &svgout)const;
-    virtual void dessinerLiaisonsRef(Svgfile& svgout)const;
-    virtual void toutDessinerLiaisons(Svgfile& svgout)const;
-    virtual void dessinerId(Svgfile &svgout) const;
-    virtual void toutDessinerId(Svgfile& svgout) const;
-
-    /// test
-    virtual bool TestRefPos()const;
-
-}
-*/
 #endif // BLOCK_H_INCLUDED

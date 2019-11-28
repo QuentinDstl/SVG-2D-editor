@@ -1,4 +1,5 @@
-#include "block.h"
+
+#include "block_cercle.h"
 #include "../svg/svgfile.h"
 #include "liaison.h"
 
@@ -107,6 +108,15 @@ void Block::ajouterFilleBordure(double _classe,Coords _taille, std::string _id, 
     m_Filles.push_back(nouv);
 }
 
+void Block::ajouterFilleCercle(double _classe,double _rayon, std::string _id, double _angle,
+                                Coords _basepos, bool _plan3D)
+{
+    BlockCercle* nouv = new BlockCercle{_classe,_id, _rayon, this};
+    nouv->initialiserLiaison(_angle, _basepos, _plan3D);
+    nouv->initialiserOrigine();
+    m_Filles.push_back(nouv);
+}
+
 ///*************************///
 ///         DESSINER        ///
 ///*************************///
@@ -120,29 +130,6 @@ void Block::dessiner(Svgfile &svgout)const
                         m_origine.getX() + m_taille.getX(), m_origine.getY(),
                         m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
                         "grey");
-}
-
-// TODO (qdesa#1#11/27/19): voir pour virer
-/* Dessin de toutes des Filles */
-// methode recursive qui appel la methode dessiner
-// attention elle ne dessine que les filles du block this
-void Block::toutDessiner(Svgfile& svgout) const
-{
-    // si le tableau de fille est vide c'est donc une feuille
-    if (!m_Filles.size())
-    {}
-    else
-    {
-        for(auto petit_fils : m_Filles)
-        {
-            BlockCouleur* petit_fils_couleur = dynamic_cast<BlockCouleur*>(petit_fils);
-            if (petit_fils_couleur)
-                petit_fils_couleur->dessiner(svgout);
-            else
-                petit_fils->dessiner(svgout);
-            petit_fils->toutDessiner(svgout);
-        }
-    }
 }
 
 /* Dessin liaison de base */
@@ -574,14 +561,3 @@ void BlockCouleur::dessiner(Svgfile &svgout)const
                             m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
                             m_couleur);
 }
-
-void initialiser(Coords _taille, std::string _id, Couleur _couleur)
-{
-// TODO (qdesa#1#11/27/19): faire l'initialisation couleur
-}
-
-void initialiser(Coords _taille, std::string _id, Couleur _couleur, Couleur _bordure)
-{
-// TODO (qdesa#1#11/27/19): faire l'initialisation bordures
-}
-

@@ -2,7 +2,7 @@
 #include <fstream>
 #include <vector>
 
-#include "src/class/block.h"
+#include "src/class/block_cercle.h"
 #include "src/class/coords.h"
 #include "src/class/liaison.h"
 #include "src/interface/couleur.h"
@@ -75,6 +75,10 @@ void creerScene(Block* iterateur)
     iterateur->ajouterFilleCouleur(0, {60,20}, "arm4", {60,10}, {0,HAUTEUR_SCENE/2}, 0, {200,150,100});
     iterateur = iterateur->getFille(0);
     iterateur->ajouterFille(0,{100,100},"object1",{60,10},{0,10},0);
+
+    iterateur = trouverRacine(*iterateur);
+    iterateur = iterateur->getFille(0)->getFille(0)->getFille(0); // on est sur arm3
+    iterateur->ajouterFilleCercle(0,20,"cercle",270,{60,20},0);
 }
 
 void dessinerScene(const Block &room)
@@ -102,7 +106,15 @@ void toutDessiner(Svgfile &svgout,const Block &room)
             if (petit_fils_couleur)
                 petit_fils_couleur->dessiner(svgout);
             else
-                petit_fils->dessiner(svgout);
+            {
+                BlockCercle* petit_fils_cercle = dynamic_cast<BlockCercle*>(petit_fils);
+
+                if(petit_fils_cercle)
+                    petit_fils_cercle->dessiner(svgout);
+
+                else
+                    petit_fils->dessiner(svgout);
+            }
 
             toutDessiner(svgout,*petit_fils);
         }
