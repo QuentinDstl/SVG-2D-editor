@@ -8,6 +8,8 @@
 #include "../svg/svgfile.h"
 #include "../interface/couleur.h"
 
+class BlockCouleur;
+
 class Block
 {
 protected :
@@ -23,7 +25,7 @@ protected :
 public :
 
     /// constructeurs
-    Block(double classe, std::string _id, Coords _taille, Block* _Mere);
+    Block(double _classe, std::string _id, Coords _taille, Block* _Mere);
     Block();
 
     virtual ~Block()=default;
@@ -32,6 +34,7 @@ public :
     virtual void ajouterFille(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void ajouterFilleCouleur(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
     virtual void ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
+    virtual void ajouterFilleCercle(double _classe,double _rayon, std::string _id, double _angle, Coords _basepos, bool _plan3D);
     virtual void initialiser(Coords _taille, std::string _id);
     virtual void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void initialiserOrigine();
@@ -49,7 +52,6 @@ public :
 
     /// dessiner
     virtual void dessiner(Svgfile &svgout)const;
-    virtual void toutDessiner(Svgfile& svgout)const;
     virtual void dessinerLiaisonsBase(Svgfile &svgout)const;
     virtual void dessinerLiaisonsRef(Svgfile& svgout)const;
     virtual void toutDessinerLiaisons(Svgfile& svgout)const;
@@ -125,9 +127,13 @@ inline std::vector<Block*> Block::getFilles () const
     return m_Filles;
 }
 
-///************************///
-///  CLASS FILLE COULEUR   ///
-///************************///
+////////////////////////////////////////////////////////////////
+////                                                        ////
+////                                                        ////
+////                  CLASS FILLE COULEUR                   ////
+////                                                        ////
+////                                                        ////
+////////////////////////////////////////////////////////////////
 
 class BlockCouleur : public Block
 {
@@ -142,13 +148,6 @@ public :
     /// constructeurs
     BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur);
     BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure);
-
-    /// ajout et initialisation
-    //virtual void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
-    //virtual void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
-
-    //virtual void initialiser(Coords _taille, std::string _id, Couleur _couleur);
-    //virtual void initialiser(Coords _taille, std::string _id, Couleur _couleur, Couleur _bordure);
 
     /// getteurs
     /* TOUS INLINE */
