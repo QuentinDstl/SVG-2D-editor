@@ -21,13 +21,13 @@ protected :
 
 public :
 
-    /// constructeurs
+    /// Constructeurs
     Block(double classe, std::string _id, Coords _taille, Block* _Mere);
     Block();
 
     virtual ~Block()=default;
 
-    /// ajout et initialisation
+    /// Ajout et initialisation
     virtual void ajouterFille(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void ajouterFilleCouleur(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
     virtual void ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
@@ -35,7 +35,7 @@ public :
     virtual void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void initialiserOrigine();
 
-    /// getteurs
+    /// Getteurs
     /* TOUS INLINE */
     virtual Block* getFille(unsigned int indice)const;
     virtual Coords getTaille()const;
@@ -46,7 +46,7 @@ public :
     virtual std::string getId () const;
     virtual double getClasse () const;
 
-    /// dessiner
+    /// Dessiner
     virtual void dessiner(Svgfile &svgout)const;
     virtual void toutDessiner(Svgfile& svgout)const;
     virtual void dessinerLiaisonsBase(Svgfile &svgout)const;
@@ -55,16 +55,16 @@ public :
     virtual void dessinerId(Svgfile &svgout) const;
     virtual void toutDessinerId(Svgfile& svgout) const;
 
-    /// test
+    /// Test
     virtual bool TestRefPos()const;
 
-    /// sauvegarde
+    /// Sauvegarde
     virtual void sauvegarde();
     virtual void sauvegarderScene1(std::vector <Block*> m_Filles);
     virtual void sauvegarderScene2(std::vector <Block*> m_Filles);
     virtual void chargementScene();
 
-    /// trouver un element
+    /// Trouver un element
     virtual Block* parcourir(const std::string& id);
 
 };
@@ -136,32 +136,32 @@ protected :
 public :
 
     /* OVERWRITING */
-    /// constructeurs
+    /// Constructeurs
     BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur);
     BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure);
 
-    /// ajout et initialisation
+    /// Ajout et initialisation
     //virtual void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
     //virtual void ajouterFille(Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
 
     //virtual void initialiser(Coords _taille, std::string _id, Couleur _couleur);
     //virtual void initialiser(Coords _taille, std::string _id, Couleur _couleur, Couleur _bordure);
 
-    /// getteurs
+    /// Getteurs
     /* TOUS INLINE */
     virtual Couleur getCouleur()const;
     virtual Couleur getBordure()const;
 
-    /// dessiner
+    /// Dessiner
     virtual void dessiner(Svgfile &svgout)const;
 
     // TODO (qdesa#1#11/26/19): Pour Charles : Sauvegarde : elements de couleurs
-    /// sauvegarde
+    /// Sauvegarde
     /*virtual void sauvegarde();
     virtual void sauvegarderScene(std::vector <Block*> m_Filles);*/
 
     // TODO (qdesa#1#11/26/19): voir pour la fonction parcourir dans Block
-    /// trouver un element
+    /// Trouver un element
     //virtual Block* parcourir(const std::string& id);
 };
 

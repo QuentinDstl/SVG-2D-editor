@@ -11,7 +11,7 @@
 #define HAUTEUR_SCENE 600
 #define LARGEUR_SCENE 1000
 
-/// definition lecture fichier :
+/// Definition lecture fichier :
 #define FICHIER "sauvegarde.rom"
 
 ///*************************///
@@ -19,11 +19,11 @@
 ///*************************///
 
 /* constructeur de base */
-Block::Block(double _classe,std::string _id, Coords _taille, Block* _Mere) : m_classe{_classe}, m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_Mere{_Mere}
+Block::Block (double _classe,std::string _id, Coords _taille, Block* _Mere) : m_classe{_classe}, m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_Mere{_Mere}
 {}
 
 /* Constructeur avec Initialisation nul */
-Block::Block() :m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}
+Block::Block() : m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}
 {}
 
 ///*************************///
@@ -237,14 +237,13 @@ bool Block::TestRefPos()const
 ///************************///
 
 /* Sauvegarde global de la scène */
-//a modifier pour toutes les filles
 void Block::sauvegarde()
 {
     sauvegarderScene1(m_Filles);
 }
 
-/* Sauvegarde des filles */
-// methode qui recupere un vecteur de pointeur de block pour les sauvegarder
+/* Sauvegarde des filles pour la sauvegarde standard */
+// Methode qui recupere un vecteur de pointeur de block pour les sauvegarder
 void Block::sauvegarderScene1(std::vector <Block*> s)
 {
     std::ofstream ofs{FICHIER};
@@ -267,6 +266,8 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
     }
 }
 
+/* Sauvegarde des filles pour la sauvegarde après la lecture du fichier de sauvegarde pour vérification */
+// Methode qui recupere un vecteur de pointeur de block pour les sauvegarder
 void Block::sauvegarderScene2(std::vector <Block*> s)
 {
     std::ofstream ofs{"sauvegarde2.rom"};
@@ -309,13 +310,12 @@ void Block::chargementScene()
     std::string id;
     bool plan3D;
     /// l'objet  iss  se comporte comme std::cin !
-    iss >> classe >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D ;
+    iss >> classe ;
+    iss >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
 
     ajouterFille(classe,{tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
 
     std::cout << classe << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
-
-    //sauvegarderScene2(m_Filles);
 
     while ( std::getline(ifs, ligne) )
     {
@@ -327,14 +327,15 @@ void Block::chargementScene()
         }
         if ( ligne[0]==']' && niveau == 1 )
         {
-            niveau =  0;
+            niveau = 0;
             std::cout << "Fermeture du niveau 1" << std::endl<< std::endl;
         }
         if ( ligne[4]!='[' && ligne[4]!=']' && niveau == 1 )
         {
             std::cout << "Lecture du niveau 1" << std::endl<< std::endl;
             std::istringstream iss{ligne};
-            iss >> classe >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+            iss >> classe ;
+            iss >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
             std::cout << classe << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
             getFille(0)->ajouterFille(classe,{tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
         }
@@ -353,14 +354,13 @@ void Block::chargementScene()
         {
             std::cout << "Lecture du niveau 2" << std::endl<< std::endl;
             std::istringstream iss{ligne};
-            iss >> classe >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+            iss >> classe ;
+            iss >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
             std::cout << classe << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
             getFille(0)->getFille(0)->ajouterFille(classe,{tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
         }
-      /// Passage à la ligne suivante (prochain tour de boucle)
-    }
+    }/// Passage à la ligne suivante (prochain tour de boucle)
     sauvegarderScene2(m_Filles);
-
 }
 ///************************///
 ///   TROUVER UN ELEMENT   ///

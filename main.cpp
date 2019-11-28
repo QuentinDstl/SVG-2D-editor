@@ -20,7 +20,7 @@ void creerScene(Block* room); // option avec iterateur
 //void creerScene(Block& room);
 void dessinerScene(const Block &room); // a voir pour mettre en const le Block
 
-/*
+
 ///Main Version CHARGEMENT depuis fichier
 int main()
 {
@@ -32,8 +32,8 @@ int main()
     room.chargementScene();
 
     return 0;
-}*/
-
+}
+/*
 ///Main version CREATION puis sauvegarde
 int main()
 {
@@ -53,7 +53,7 @@ int main()
     {
     std::cout << "id trouve : " << room.parcourir("arm3")->getId() << std::endl;
     }
-    */
+
 
 
     //room.parcourir("arm3")->getBordure().afficher();
@@ -69,7 +69,7 @@ int main()
     }
 
     return 0;
-}
+}*/
 
 
 // dans le cadre de l'utilisation du polymorphisme il est necessaire de passer par des adresses ou reference
@@ -82,12 +82,12 @@ void creerScene(Block* iterateur)
     iterateur = iterateur->getFille(0);
 
     iterateur->ajouterFille(0,{25,HAUTEUR_SCENE-50}, "arm1", {0,HAUTEUR_SCENE-50}, {0,0}, 0);
-    iterateur->ajouterFilleBordure(0,{25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0,{200,100,100},{0,10,0});
+    iterateur->ajouterFilleBordure(2,{25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0,{200,100,100},{0,10,0});
     iterateur->ajouterFille(0,{25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
 
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
-    iterateur->ajouterFilleCouleur(0,{60,20}, "arm3", {0,0}, {25,HAUTEUR_SCENE/2}, 0,{50,150,100});
+    iterateur->ajouterFilleCouleur(1,{60,20}, "arm3", {0,0}, {25,HAUTEUR_SCENE/2}, 0,{50,150,100});
 }
 
 /*
