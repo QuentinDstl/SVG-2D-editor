@@ -11,7 +11,7 @@ protected :
 
     Coords m_refpos;
     Coords m_basepos;
-    bool m_plan3D;
+    bool m_plan;
 
 public :
 
@@ -24,7 +24,7 @@ public :
     void setteur(Coords _refpos, Coords _basepos, bool _plan3D);
     Coords getBasepos() const;
     Coords getRefpos() const;
-    bool getPlan3D() const;
+    bool getPlan() const;
 };
 
 ///************************///
@@ -44,9 +44,9 @@ inline Coords Liaison::getRefpos() const
 
 
 
-inline bool Liaison::getPlan3D() const
+inline bool Liaison::getPlan() const
 {
-    return m_plan3D;
+    return m_plan;
 }
 
 #endif // LIAISON_H_INCLUDED

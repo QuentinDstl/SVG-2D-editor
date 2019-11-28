@@ -4,6 +4,13 @@
 FIXME :
 on a deux technique d'affichage dans Coords donc on peut en virer une des deux.
 
+---- Numéro avec la classe ----
+0 : ajouter Fille
+1 : ajouter Fille Bordure 
+2 : ajouter Fille Couleur
+3 : ajouter Fille Cercle 
+4 : ajouter Fille Couleur Cercle
+5 : ajouter Fille Couleur Cercle Bordure
 
 
 - maj 01

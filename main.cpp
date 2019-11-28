@@ -75,28 +75,24 @@ void creerScene(Block* iterateur)
 
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
-
-
-
-
     iterateur->ajouterFille(0, {25,HAUTEUR_SCENE-50}, "arm1", {0,HAUTEUR_SCENE-50}, {0,0}, 0);
-    iterateur->ajouterFilleBordure(0, {25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0, {200,100,100}, {0,10,0});
+    iterateur->ajouterFilleBordure(1, {25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0, {200,100,100}, {0,10,0});
     iterateur->ajouterFille(0, {25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
 
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
-    iterateur->ajouterFilleCouleur(0, {60,20}, "arm3", {0,0}, {25,HAUTEUR_SCENE/2}, 0, {50,150,100});
+    iterateur->ajouterFilleCouleur(2, {60,20}, "arm3", {0,0}, {25,HAUTEUR_SCENE/2}, 0, {50,150,100});
 
     iterateur = trouverRacine(*iterateur);
     iterateur = iterateur->getFille(0);
     iterateur = iterateur->getFille(1);
-    iterateur->ajouterFilleCouleur(0, {60,20}, "arm4", {60,10}, {0,HAUTEUR_SCENE/2}, 0, {200,150,100});
+    iterateur->ajouterFilleCouleur(2, {60,20}, "arm4", {60,10}, {0,HAUTEUR_SCENE/2}, 0, {200,150,100});
     iterateur = iterateur->getFille(0);
     iterateur->ajouterFille(0,{100,100},"object1",{60,10},{0,10},0);
 
     iterateur = trouverRacine(*iterateur);
     iterateur = iterateur->getFille(0)->getFille(0)->getFille(0); // on est sur arm3
-    iterateur->ajouterFilleCercle(0,20,"cercle",270,{60,20},0);
+    iterateur->ajouterFilleCercle(3,20,"cercle",270,{60,20},0);
 }
 
 void dessinerScene(const Block &room)
