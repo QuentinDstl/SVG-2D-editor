@@ -16,9 +16,8 @@
 #define HAUTEUR_SCENE 600
 #define LARGEUR_SCENE 1000
 
-void creerScene(Block* room); // option avec iterateur
-//void creerScene(Block& room);
-void dessinerScene(const Block &room); // a voir pour mettre en const le Block
+void creerScene(Block* room);
+void dessinerScene(const Block &room);
 
 void toutDessiner(Svgfile &svgout, const Block &room);
 
@@ -26,13 +25,13 @@ void toutDessiner(Svgfile &svgout, const Block &room);
 int main()
 {
     Block room;
-    Block* blockIterateur = &room; //option avec iterateur
+    Block* blockIterateur = &room;
 
     creerScene(blockIterateur);
     dessinerScene(room);
 
-    std::cout << "couleur block arm3 : ";
-    BlockCouleur* bc = dynamic_cast<BlockCouleur*> (parcourir("arm3",room));
+    std::cout << "couleur block object1 : ";
+    BlockCouleur* bc = dynamic_cast<BlockCouleur*> (parcourir("object1",room));
     if(bc)
         bc->getCouleur().afficher();
 
@@ -73,28 +72,10 @@ void creerScene(Block* iterateur)
     iterateur = trouverRacine(*iterateur);
     iterateur = iterateur->getFille(0);
     iterateur = iterateur->getFille(1);
-    iterateur->ajouterFilleCouleur(0, {60,20}, "arm3", {60,10}, {0,HAUTEUR_SCENE/2}, 0, {50,150,100});
+    iterateur->ajouterFilleCouleur(0, {60,20}, "arm4", {60,10}, {0,HAUTEUR_SCENE/2}, 0, {200,150,100});
+    iterateur = iterateur->getFille(0);
+    iterateur->ajouterFille(0,{100,100},"object1",{60,10},{0,10},0);
 }
-
-/*
-void creerScene(Block &room)
-{
-
-    ajouterBlock(room, {LARGEUR_SCENE,HAUTEUR_SCENE}, "room", {0,0}, {0,0});
-    room.ajouterFille({LARGEUR_SCENE,50}, "sol", {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, 1);
-
-    //room.getFille(0)->ajouterFille({200,50}, "arm", {0,50}, {0,0}, 0);
-    //room.getFille(0)->getFille(0)->ajouterFille({20,20}, "arm", {0,0}, {200,0}, 0);
-    //room.getFille(0)->ajouterFille({200,50}, "arm", {0,70}, {0,0}, 0);
-    //room.getFille(0)->ajouterFille({200,50}, "arm", {0,50}, {0,0}, 0);
-
-    room.getFille(0)->ajouterFille({25,HAUTEUR_SCENE-50}, "arm1", {0,HAUTEUR_SCENE-50}, {0,0}, 0);
-    room.getFille(0)->ajouterFille({25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0);
-    room.getFille(0)->getFille(0)->ajouterFille({60,20}, "arm3", {0,0}, {25,HAUTEUR_SCENE/2}, 0);
-    room.getFille(0)->ajouterFille({25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0);
-    room.getFille(0)->getFille(0)->ajouterFilleCouleur({25,HAUTEUR_SCENE-50}, "arm4", {0,HAUTEUR_SCENE-50}, {0,0}, 0, {50,0,200});
-}
-*/
 
 void dessinerScene(const Block &room)
 {
@@ -103,7 +84,6 @@ void dessinerScene(const Block &room)
     //room.dessiner(svgout);
     toutDessiner(svgout,room);
 
-    //room.toutDessiner(svgout);
     std::cout << "[i] croix rouge = position de reference / croix noir = position de base" << std::endl;
     room.toutDessinerLiaisons(svgout);
     room.toutDessinerId(svgout);

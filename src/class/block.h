@@ -125,9 +125,13 @@ inline std::vector<Block*> Block::getFilles () const
     return m_Filles;
 }
 
-///************************///
-///  CLASS FILLE COULEUR   ///
-///************************///
+////////////////////////////////////////////////////////////////
+////                                                        ////
+////                                                        ////
+////                  CLASS FILLE COULEUR                   ////
+////                                                        ////
+////                                                        ////
+////////////////////////////////////////////////////////////////
 
 class BlockCouleur : public Block
 {
@@ -182,4 +186,54 @@ inline Couleur BlockCouleur::getBordure()const
     return m_bordure;
 }
 
+////////////////////////////////////////////////////////////////
+////                                                        ////
+////                                                        ////
+////                   CLASS FILLE CERCLE                   ////
+////                                                        ////
+////                                                        ////
+////////////////////////////////////////////////////////////////
+
+/*
+class BlockCercle : public Block
+{
+public:
+
+    /// constructeurs
+    BlockCercle(double classe, std::string _id, Coords _taille, Block* _Mere);
+    BlockCercle();
+
+    /// ajout et initialisation
+    virtual void ajouterFille(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D);
+    virtual void ajouterFilleCouleur(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
+    virtual void ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
+    virtual void initialiser(Coords _taille, std::string _id);
+    virtual void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D);
+    virtual void initialiserOrigine();
+
+    /// getteurs
+    // INLINE
+    virtual Block* getFille(unsigned int indice)const;
+    virtual Coords getTaille()const;
+    virtual Coords getOrigine()const;
+    virtual Liaison getLiaison()const;
+    virtual Block* getMere()const;
+    virtual std::vector<Block*> getFilles () const;
+    virtual std::string getId () const;
+    virtual double getClasse () const;
+
+    /// dessiner
+    virtual void dessiner(Svgfile &svgout)const;
+    virtual void toutDessiner(Svgfile& svgout)const;
+    virtual void dessinerLiaisonsBase(Svgfile &svgout)const;
+    virtual void dessinerLiaisonsRef(Svgfile& svgout)const;
+    virtual void toutDessinerLiaisons(Svgfile& svgout)const;
+    virtual void dessinerId(Svgfile &svgout) const;
+    virtual void toutDessinerId(Svgfile& svgout) const;
+
+    /// test
+    virtual bool TestRefPos()const;
+
+}
+*/
 #endif // BLOCK_H_INCLUDED
