@@ -191,18 +191,18 @@
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
-1574821604 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\main.cpp
+1574908699 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\main.cpp
 	<iostream>
 	<fstream>
 	<vector>
-	"src/class/block.h"
+	"src/class/block_cercle.h"
 	"src/class/coords.h"
 	"src/class/liaison.h"
 	"src/interface/couleur.h"
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
-1574820261 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.h
+1574907460 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison.h"
@@ -213,7 +213,7 @@
 	"coords.h"
 	"liaison.h"
 
-1574798005 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.h
+1574894204 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.h
 	<iostream>
 
 1574518898 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\svg\svgfile.h
@@ -228,8 +228,8 @@
 1574517612 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\util\util.h
 	<string>
 
-1574821461 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.cpp
-	"block.h"
+1574907527 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.cpp
+	"block_cercle.h"
 	"../svg/svgfile.h"
 	"liaison.h"
 	<iostream>
@@ -238,7 +238,7 @@
 	<fstream>
 	<sstream>
 
-1574821376 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.cpp
+1574894204 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.cpp
 	"coords.h"
 	"../util/util.h"
 	<iostream>
@@ -431,18 +431,18 @@
 	"../svg/svgfile.h"
 	"liaison.h"
 
-1574876147 source:c:\users\c_per\projet_block\main.cpp
+1574940734 source:c:\users\c_per\projet_block\main.cpp
 	<iostream>
 	<fstream>
 	<vector>
-	"src/class/block.h"
+	"src/class/block_cercle.h"
 	"src/class/coords.h"
 	"src/class/liaison.h"
 	"src/interface/couleur.h"
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
-1574875886 c:\users\c_per\projet_block\src\class\block.h
+1574940786 c:\users\c_per\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison.h"
@@ -453,7 +453,7 @@
 	"coords.h"
 	"liaison.h"
 
-1574839845 c:\users\c_per\projet_block\src\class\coords.h
+1574940350 c:\users\c_per\projet_block\src\class\coords.h
 	<iostream>
 
 1574524172 c:\users\c_per\projet_block\src\svg\svgfile.h
@@ -468,7 +468,7 @@
 1574524172 c:\users\c_per\projet_block\src\util\util.h
 	<string>
 
-1574839845 source:c:\users\c_per\projet_block\src\class\coords.cpp
+1574940350 source:c:\users\c_per\projet_block\src\class\coords.cpp
 	"coords.h"
 	"../util/util.h"
 	<iostream>
@@ -505,8 +505,8 @@
 	"../util/util.h"
 	<windows.h>
 
-1574876411 source:c:\users\c_per\projet_block\src\class\block.cpp
-	"block.h"
+1574940350 source:c:\users\c_per\projet_block\src\class\block.cpp
+	"block_cercle.h"
 	"../svg/svgfile.h"
 	"liaison.h"
 	<iostream>
@@ -514,4 +514,18 @@
 	<vector>
 	<fstream>
 	<sstream>
+
+1574908264 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_cercle.cpp
+	"block_cercle.h"
+	<math.h>
+
+1574907460 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_cercle.h
+	"block.h"
+
+1574940350 c:\users\c_per\projet_block\src\class\block_cercle.h
+	"block.h"
+
+1574940350 source:c:\users\c_per\projet_block\src\class\block_cercle.cpp
+	"block_cercle.h"
+	<math.h>
 

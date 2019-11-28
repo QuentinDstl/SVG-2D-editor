@@ -48,6 +48,7 @@ public :
     // Comparaison vectoriel
     friend bool operator<=(const Coords& c1, const Coords& c2);
     friend bool operator>=(const Coords& c1, const Coords& c2);
+    friend bool operator==(const Coords& c1, const Coords& c2);
 
     // Affichage d'un Coords
     friend std::ostream& operator<<(std::ostream& out, const Coords& c);
