@@ -2,9 +2,15 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
+<<<<<<< HEAD
 	<File name="src\class\block_cercle.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="2672" topLine="53" />
+=======
+	<File name="main.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1479" topLine="17" />
+>>>>>>> fb96f5cebd4c6b555218186a19a38152e7eac9ae
 		</Cursor>
 		<Folding>
 			<Collapse line="55" />
@@ -17,6 +23,7 @@
 			<Collapse line="160" />
 		</Folding>
 	</File>
+<<<<<<< HEAD
 	<File name="src\class\block_cercle.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1379" topLine="20" />
@@ -25,8 +32,25 @@
 	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="2316" topLine="66" />
+=======
+	<File name="src\interface\couleur.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="694" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="src\class\block.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="10050" topLine="237" />
+>>>>>>> fb96f5cebd4c6b555218186a19a38152e7eac9ae
+		</Cursor>
+		<Folding>
+			<Collapse line="135" />
+			<Collapse line="146" />
+			<Collapse line="153" />
+			<Collapse line="162" />
+		</Folding>
+	</File>
+<<<<<<< HEAD
 	<File name="src\class\block.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="2915" topLine="64" />
@@ -57,21 +81,61 @@
 	<File name="src\class\block.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="944" topLine="28" />
-		</Cursor>
-	</File>
-	<File name="src\class\block_bordure.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+=======
+	<File name="src\interface\couleur.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="186" topLine="0" />
+			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="src\class\liaison.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="848" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\class\block.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2305" topLine="0" />
+>>>>>>> fb96f5cebd4c6b555218186a19a38152e7eac9ae
+		</Cursor>
+	</File>
+	<File name="src\class\bordure.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="261" topLine="0" />
+		</Cursor>
+	</File>
+<<<<<<< HEAD
 	<File name="src\class\liaison.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+=======
+	<File name="src\class\liaison.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+>>>>>>> fb96f5cebd4c6b555218186a19a38152e7eac9ae
 		<Cursor>
 			<Cursor1 position="464" topLine="0" />
 		</Cursor>
 	</File>
+<<<<<<< HEAD
 	<File name="src\class\liaison.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="848" topLine="45" />
+=======
+	<File name="src\class\block_cercle.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="267" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\class\block_bordure.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="509" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\class\block_cercle.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="354" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\class\block_bordure.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="186" topLine="0" />
+>>>>>>> fb96f5cebd4c6b555218186a19a38152e7eac9ae
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

@@ -13,8 +13,6 @@ class BlockCercle : public Block
         /// Getteurs
         // INLINE
         virtual double getRayon()const;
-        //virtual Coords getOrigine()const;
-        //virtual Liaison getLiaison()const;
 
         /// Dessiner
         virtual void dessiner(Svgfile &svgout)const;
@@ -44,18 +42,5 @@ inline double BlockCercle::getRayon()const
 {
     return m_taille.getX();
 }
-
-// a voir pour changer et faire le centre du cercle
-/*
-inline Coords BlockCercle::getOrigine()const
-{
-    return m_taille.getX();
-}
-
-inline Coords BlockCercle::getLiaison()const
-{
-    return m_taille.getX();
-}
-*/
 
 #endif // BLOCK_CERCLE_H_INCLUDED

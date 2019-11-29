@@ -26,6 +26,7 @@ class Couleur
         uint8_t getBleu () const ;
 };
 
+
 ///************************///
 ///    METHODES INLINES    ///
 ///************************///
