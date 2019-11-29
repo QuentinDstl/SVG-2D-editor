@@ -1,5 +1,5 @@
 
-#include "block_cercle.h"
+#include "block.h"
 #include "../svg/svgfile.h"
 #include "liaison.h"
 #include "block_cercle.h"
@@ -21,54 +21,23 @@
 ///*************************///
 
 /* constructeur de base */
-Block::Block (double _classe,std::string _id, Coords _taille, Block* _Mere,Couleur _couleur) : m_classe{_classe}, m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_Mere{_Mere},m_couleur{_couleur}
+Block::Block (std::string _id, Coords _taille, Couleur _couleur, Block* _Mere) :
+    m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_couleur{_couleur}, m_Mere{_Mere}, m_liaison{{0,0},{0,0},0}
 {}
 
 /* Constructeur avec Initialisation nul */
-Block::Block() : m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}, m_couleur{10,10,10}
+Block::Block() : m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_couleur{10,10,10}, m_Mere{nullptr}, m_liaison{{0,0},{0,0},0}
 {}
 
 ///*************************///
-/// AJOUT ET INITIALISATION ///
+///          AJOUT          ///
 ///*************************///
-
-/* Initialisation du block */
-// reinitialise le bloc a nul
-void Block::initialiser(Coords _taille, std::string _id)
-{
-    m_classe = 0;
-    m_origine = {0,0};
-    m_taille = {_taille.getX(),_taille.getY()};
-    m_id = _id;
-    m_Mere = nullptr;
-}
-
-/* Initialisation de la lisaison */
-// a partir de la methode de la class liaison
-void Block::initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D)
-{
-    m_liaison.setteur(_refpos,_basepos,_plan3D);
-}
-
-/* Initialisation de m_origine */
-// recupere l'origine de la mere et la soustrait a sa position de reference
-void Block::initialiserOrigine()
-{
-    if(m_Mere == nullptr)
-    {
-        m_origine = m_liaison.getBasepos() - m_liaison.getRefpos();
-    }
-    else
-    {
-        m_origine = m_Mere->getOrigine() + m_liaison.getBasepos() - m_liaison.getRefpos();
-    }
-}
 
 /* Creer une fille */
 // cree une nouvelle fille a partir de la mere
-void Block::ajouterFille(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D,Couleur _couleur)
+void Block::ajouterFille(std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D)
 {
-    Block* nouv = new Block{_classe,_id, _taille, this,_couleur};
+    Block* nouv = new Block{_id, _taille, _couleur, this};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
@@ -98,13 +67,50 @@ void Block::ajouterFilleBordure(double _classe,Coords _taille, std::string _id, 
     m_Filles.push_back(nouv);
 }*/
 
-void Block::ajouterFilleCercle(double _classe,double _rayon, std::string _id, double _angle, Coords _basepos, bool _plan3D, Couleur _couleur)
+/*void Block::ajouterFilleCercle(double _classe,double _rayon, std::string _id, double _angle, Coords _basepos, bool _plan3D, Couleur _couleur)
 {
-    BlockCercle* nouv = new BlockCercle{_classe,_id, _rayon, this, _couleur};
+    BlockCercle* nouv = new BlockCercle{_id, _rayon, _couleur, this};
     nouv->initialiserLiaison(_angle, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
+}*/
+
+///*************************///
+///      INITIALISATION     ///
+///*************************///
+
+/* Initialisation du block */
+// reinitialise le bloc a nul
+void Block::initialiser(std::string _id, Coords _taille, Couleur _couleur)
+{
+    m_id = _id;
+    m_origine = {0,0};
+    m_taille = {_taille.getX(),_taille.getY()};
+    m_couleur = _couleur;
+    m_Mere = nullptr;
 }
+
+/* Initialisation de la lisaison */
+// a partir de la methode de la class liaison
+void Block::initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D)
+{
+    m_liaison.setteur(_refpos,_basepos,_plan3D);
+}
+
+/* Initialisation de m_origine */
+// recupere l'origine de la mere et la soustrait a sa position de reference
+void Block::initialiserOrigine()
+{
+    if(m_Mere == nullptr)
+    {
+        m_origine = m_liaison.getBasepos() - m_liaison.getRefpos();
+    }
+    else
+    {
+        m_origine = m_Mere->getOrigine() + m_liaison.getBasepos() - m_liaison.getRefpos();
+    }
+}
+
 
 ///*************************///
 ///         DESSINER        ///
@@ -118,7 +124,7 @@ void Block::dessiner(Svgfile &svgout)const
                         m_origine.getX(), m_origine.getY() + m_taille.getY(),
                         m_origine.getX() + m_taille.getX(), m_origine.getY(),
                         m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
-                        "grey");
+                        m_couleur);
 }
 
 /* Dessin liaison de base */
@@ -215,14 +221,14 @@ bool Block::TestRefPos()const
 ///************************///
 
 /* Sauvegarde global de la scène */
-void Block::sauvegarde()
+/*void Block::sauvegarde()
 {
     sauvegarderScene1(m_Filles);
 }
 
 /* Sauvegarde des filles pour la sauvegarde standard */
 // Methode qui recupere un vecteur de pointeur de block pour les sauvegarder
-void Block::sauvegarderScene1(std::vector <Block*> s)
+/*void Block::sauvegarderScene1(std::vector <Block*> s)
 {
     std::ofstream ofs{FICHIER};
 
@@ -251,7 +257,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                 ofs << "    " << c1->m_classe << " " << c1->m_id << " " << c1->m_rayon << " " << c1->m_angle << " " <<  std::endl;
             }*/
 
-            ofs << "    [" << std::endl;
+            /*ofs << "    [" << std::endl;
 
 
             for ( auto z : v->m_Filles )///Niveau 2
@@ -278,7 +284,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
 
 /* Sauvegarde des filles pour la sauvegarde après la lecture du fichier de sauvegarde pour vérification */
 // Methode qui recupere un vecteur de pointeur de block pour les sauvegarder
-void Block::sauvegarderScene2(std::vector <Block*> s)
+/*void Block::sauvegarderScene2(std::vector <Block*> s)
 {
     std::ofstream ofs{"sauvegarde2.rom"};
 
@@ -332,7 +338,7 @@ void Block::chargementScene()
 
     while ( std::getline(ifs, ligne) )
     {
-        /*Niv 1*/if ( ligne.size()>=1 && ligne[0]=='[' && niveau==0 )
+        /*Niv 1*//*if ( ligne.size()>=1 && ligne[0]=='[' && niveau==0 )
         {
             niveau = 1;
             std::cout << "Acces Niveau 1" << std::endl<< std::endl;
@@ -352,7 +358,7 @@ void Block::chargementScene()
             std::cout << classe << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
             getFille(0)->ajouterFille(classe, {tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D,{rouge,vert,bleu});
         }
-        /*Niv 2*/if ( ligne.size()>=4 && ligne[4]=='[' && niveau==1 )
+        /*Niv 2*//*if ( ligne.size()>=4 && ligne[4]=='[' && niveau==1 )
         {
             niveau = 2;
             std::cout << "Acces niveau 2" << std::endl<< std::endl;
@@ -375,6 +381,29 @@ void Block::chargementScene()
 
     }/// Passage à la ligne suivante (prochain tour de boucle)
     sauvegarderScene2(m_Filles);
+}*/
+
+
+///******************************************************************************************************************
+///                                                                                                             *****
+///                               FONCTIONS LIEES A LA CLASSE BLOCK                                             *****
+///                                                                                                             *****
+///******************************************************************************************************************
+
+///************************///
+///         AJOUT          ///
+///************************///
+
+/* Ajout d'un bloc sans pere */
+//
+void ajouterBlock(Block &room,
+                  std::string _id, Coords _taille, Couleur _couleur,
+                  Coords _refpos, Coords _basepos)
+{
+    room.initialiser(_id, _taille, _couleur);
+    room.initialiserLiaison(_refpos, _basepos, 0);
+    room.initialiserOrigine();
+    //std::cout << "[i] position de la liaison : " << bRoom.getLiaison().getBasepos() << std::endl;
 }
 
 ///************************///
@@ -444,17 +473,7 @@ bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bo
     return test;
 }
 
-/* Ajout d'un bloc sans pere */
-//
-void ajouterBlock(Block &bRoom,
-                  Coords _taille, std::string _id,
-                  Coords _refpos, Coords _basepos)
-{
-    bRoom.initialiser(_taille, _id);
-    bRoom.initialiserLiaison(_refpos, _basepos, 0);
-    bRoom.initialiserOrigine();
-    //std::cout << "[i] position de la liaison : " << bRoom.getLiaison().getBasepos() << std::endl;
-}
+
 
 ///************************///
 ///   PARCOURS ET RACINE   ///

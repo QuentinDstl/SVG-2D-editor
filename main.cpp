@@ -8,6 +8,7 @@
 #include "src/interface/couleur.h"
 #include "src/svg/svgfile.h"
 #include "src/util/util.h"
+#include "src/class/block.h"
 
 /// lecture fichier
 #define FICHIER "sauvegarde.rom"
@@ -45,7 +46,7 @@ int main()
     creerScene(blockIterateur);
     dessinerScene(room);
 
-    std::cout << "couleur block object1 : ";
+    /*std::cout << "couleur block object1 : ";
     BlockCouleur* bc = dynamic_cast<BlockCouleur*> (parcourir("object1",room));
     if(bc)
         bc->getCouleur().afficher();
@@ -61,7 +62,7 @@ int main()
     else
     {
         room.sauvegarde();
-    }
+    }*/
 
     return 0;
 }
@@ -70,37 +71,41 @@ int main()
 // dans le cadre de l'utilisation du polymorphisme il est necessaire de passer par des adresses ou reference
 void creerScene(Block* iterateur)
 {
-    ajouterBlock(*iterateur, {LARGEUR_SCENE,HAUTEUR_SCENE}, "room", {0,0}, {0,0});
-    iterateur->ajouterFille(0, {LARGEUR_SCENE,50}, "sol", {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, 1,{50,50,50});
+    ajouterBlock(*iterateur, "room", {LARGEUR_SCENE,HAUTEUR_SCENE}, {50,200,200}, {0,0}, {0,0});
+    iterateur->ajouterFille("sol", {LARGEUR_SCENE,50}, {50,50,50}, {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, 1);
 
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
-    iterateur->ajouterFille(0, {25,HAUTEUR_SCENE-50}, "arm1", {0,HAUTEUR_SCENE-50}, {0,0}, 0,{50,50,50});
+    iterateur->ajouterFille("arm1", {25,HAUTEUR_SCENE-50}, {250,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, 0);
    // iterateur->ajouterFilleBordure(1, {25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0, {200,100,100}, {0,10,0});
-    iterateur->ajouterFille(0, {25,50}, "block", {0,50}, {LARGEUR_SCENE/2,0}, 0,{50,50,50});
+    iterateur->ajouterFille("block", {25,50}, {50,50,50}, {0,50}, {LARGEUR_SCENE/2,0}, 0);
 
     //on rentre dans les filles
-    iterateur = iterateur->getFille(0);
-    iterateur->ajouterFille(2, {60,20}, "arm3", {0,0}, {25,HAUTEUR_SCENE/2}, 0, {50,150,100});
+    /*iterateur = iterateur->getFille(0);
+    iterateur->ajouterFille("arm3", {60,20}, {50,150,100}, {0,0}, {25,HAUTEUR_SCENE/2}, 0);
 
     iterateur = trouverRacine(*iterateur);
     iterateur = iterateur->getFille(0);
     iterateur = iterateur->getFille(1);
-    iterateur->ajouterFille(2, {60,20}, "arm4", {60,10}, {0,HAUTEUR_SCENE/2}, 0, {200,150,100});
+    iterateur->ajouterFille("arm4", {60,20}, {200,150,100}, {60,10}, {0,HAUTEUR_SCENE/2}, 0);
     iterateur = iterateur->getFille(0);
-    iterateur->ajouterFille(0,{100,100},"object1",{60,10},{0,10},0,{50,50,50});
+    iterateur->ajouterFille("object1", {100,100}, {50,50,50}, {60,10},{0,10},0);
 
-    iterateur = trouverRacine(*iterateur);
-    iterateur = iterateur->getFille(0)->getFille(0)->getFille(0); // on est sur arm3
-    iterateur->ajouterFilleCercle(3,20,"cercle",270,{60,20},0,{50,50,50});
+    //iterateur = trouverRacine(*iterateur);
+    //iterateur = iterateur->getFille(0)->getFille(0)->getFille(0); // on est sur arm3
+    //iterateur->ajouterFilleCercle(3,20,"cercle",270,{60,20},0,{50,50,50});*/
+
 }
 
 void dessinerScene(const Block &room)
 {
     Svgfile svgout;
     /* attention il faut dessiner le room à part */
-    //room.dessiner(svgout);
-    toutDessiner(svgout,room);
+    room.dessiner(svgout);
+    room.getFille(0)->dessiner(svgout);
+    room.getFille(0)->getFille(0)->dessiner(svgout);
+    room.getFille(0)->getFille(1)->dessiner(svgout);
+    //toutDessiner(svgout,room);
 
     std::cout << "[i] croix rouge = position de reference / croix noir = position de base" << std::endl;
     room.toutDessinerLiaisons(svgout);
@@ -115,13 +120,13 @@ void toutDessiner(Svgfile &svgout,const Block &room)
     {
         for(const auto& petit_fils : room.getFilles())
         {
-                BlockCercle* petit_fils_cercle = dynamic_cast<BlockCercle*>(petit_fils);
+                //BlockCercle* petit_fils_cercle = dynamic_cast<BlockCercle*>(petit_fils);
 
-                if(petit_fils_cercle)
+                /*if(petit_fils_cercle)
                     petit_fils_cercle->dessiner(svgout);
 
-                else
-                    petit_fils->dessiner(svgout);
+                else*/
+                petit_fils->dessiner(svgout);
         }
             //toutDessiner(svgout,*petit_fils);
     }

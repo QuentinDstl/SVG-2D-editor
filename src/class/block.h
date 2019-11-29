@@ -12,33 +12,35 @@ class Block
 {
 protected :
 
-    double m_classe;
     std::string m_id;
-    std::vector <Block*> m_Filles;
     Coords m_origine;
     Coords m_taille;
-    Liaison m_liaison;
-    Block* m_Mere;
     Couleur m_couleur;
+
+    Block* m_Mere;
+    Liaison m_liaison;
+    std::vector <Block*> m_Filles;
 
 public :
 
 
-    /// constructeurs
-    Block(double _classe, std::string _id, Coords _taille, Block* _Mere,Couleur _couleur);
+    ///CONSTRUCTEURS
+    Block (std::string _id, Coords _taille, Couleur _couleur, Block* _Mere);
     Block();
 
     virtual ~Block()=default;
 
-    /// Ajout et initialisation
-    virtual void ajouterFille(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
+    ///AJOUT
+    virtual void ajouterFille(std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D);
     //virtual void ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
-    virtual void ajouterFilleCercle(double _classe,double _rayon, std::string _id, double _angle, Coords _basepos, bool _plan3D, Couleur _couleur);
-    virtual void initialiser(Coords _taille, std::string _id);
+    //virtual void ajouterFilleCercle(double _classe,double _rayon, std::string _id, double _angle, Coords _basepos, bool _plan3D, Couleur _couleur);
+
+    ///INITIALIALISATION
+    virtual void initialiser(std::string _id, Coords _taille, Couleur _couleur);
     virtual void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void initialiserOrigine();
 
-    /// Getteurs
+    ///GETTEURS
     /* TOUS INLINE */
     virtual Block* getFille(unsigned int indice)const;
     virtual Coords getTaille()const;
@@ -47,9 +49,8 @@ public :
     virtual Block* getMere()const;
     virtual std::vector<Block*> getFilles () const;
     virtual std::string getId () const;
-    virtual double getClasse () const;
 
-    /// Dessiner
+    ///DESSINER
     virtual void dessiner(Svgfile &svgout)const;
     virtual void dessinerLiaisonsBase(Svgfile &svgout)const;
     virtual void dessinerLiaisonsRef(Svgfile& svgout)const;
@@ -57,23 +58,28 @@ public :
     virtual void dessinerId(Svgfile &svgout) const;
     virtual void toutDessinerId(Svgfile& svgout) const;
 
-    /// Test
+    ///TEST DES COORDS
     virtual bool TestRefPos()const;
 
-    /// Sauvegarde
-    virtual void sauvegarde();
+    ///SAUVEGARDE
+    /*virtual void sauvegarde();
     virtual void sauvegarderScene1(std::vector <Block*> m_Filles);
     virtual void sauvegarderScene2(std::vector <Block*> m_Filles);
-    virtual void chargementScene();
+    virtual void chargementScene();*/
 
 
 };
 
-///FONCTIONS LIEES A LA CLASSE COORD
+///**********************************///
+///FONCTIONS LIEES A LA CLASSE BLOCK ///
+///**********************************///
+
+///AJOUT
 void ajouterBlock(Block &room,
-                  Coords _taille, std::string _id,
+                  std::string _id, Coords _taille, Couleur _couleur,
                   Coords _refpos, Coords _basepos);
 
+///TEST DES COORDS
 bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block* m_Mere);
 
 bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block* m_Mere);
@@ -112,11 +118,6 @@ inline Block* Block::getMere()const
     return m_Mere;
 }
 
-inline double Block::getClasse()const
-{
-    return m_classe;
-}
-
 inline std::string Block::getId () const
 {
     return m_id;
@@ -126,45 +127,5 @@ inline std::vector<Block*> Block::getFilles () const
 {
     return m_Filles;
 }
-
-////////////////////////////////////////////////////////////////
-////                                                        ////
-////                                                        ////
-////                  CLASS FILLE COULEUR                   ////
-////                                                        ////
-////                                                        ////
-////////////////////////////////////////////////////////////////
-
-class BlockCouleur : public Block
-{
-protected :
-
-    Couleur m_couleur;
-    Couleur m_bordure;
-
-public :
-
-    /* OVERWRITING */
-    /// Constructeurs
-    BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur);
-    BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure);
-
-    /// getteurs
-    /* TOUS INLINE */
-    virtual Couleur getCouleur()const;
-    virtual Couleur getBordure()const;
-
-    /// Dessiner
-    virtual void dessiner(Svgfile &svgout)const;
-
-    // TODO (qdesa#1#11/26/19): Pour Charles : Sauvegarde : elements de couleurs
-    /// Sauvegarde
-    /*virtual void sauvegarde();
-    virtual void sauvegarderScene(std::vector <Block*> m_Filles);*/
-
-    // TODO (qdesa#1#11/26/19): voir pour la fonction parcourir dans Block
-    /// Trouver un element
-    //virtual Block* parcourir(const std::string& id);
-};
 
 #endif // BLOCK_H_INCLUDED
