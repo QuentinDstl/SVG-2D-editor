@@ -66,13 +66,24 @@ void Block::ajouterFilleBordure(double _classe,Coords _taille, std::string _id, 
     m_Filles.push_back(nouv);
 }*/
 
-/*void Block::ajouterFilleCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D)
+void Block::ajouterFilleCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D)
 {
-    BlockCercle* nouv = new BlockCercle{_id, _rayon, _couleur, this};
+    BlockCercle* nouv = new BlockCercle{_classe, _id, _rayon, _couleur, this};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
-}*/
+
+    if(!(nouv->TestRefPos()))
+    {
+        delete m_Filles[m_Filles.size()-1];
+        m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
+        std::cout << "Liaison incorrect" << std::endl;
+    }
+    else
+    {
+        std::cout << nouv->m_origine << std::endl;
+    }
+}
 
 ///*************************///
 ///      INITIALISATION     ///

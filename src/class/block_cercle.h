@@ -10,8 +10,6 @@ class BlockCercle : public Block
         BlockCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Block* _Mere);
         BlockCercle();
 
-        virtual void initialiserLiaison(double _angle, Coords _basepos, bool _plan3D);
-
         /// Getteurs
         // INLINE
         virtual double getRayon()const;
@@ -25,6 +23,17 @@ class BlockCercle : public Block
         virtual bool TestRefPos()const;
 
 };
+
+bool RefPosDansCercle(Liaison m_liaison, Coords m_taille);
+
+bool TestBordureRecCercle(Coords m_taille, Coords m_refpos, Coords m_basepos, unsigned int m_plan, std::string m_id, Block *m_Mere);
+bool RefPosSurBordureCercle(Coords m_refpos, Coords m_taille);
+
+bool TestBordureAdjacenteRecCercle(Coords m_taille, Coords m_refpos, Coords m_basepos, unsigned int m_plan, std::string m_id, Block* m_Mere);
+bool CercleADroiteDeMereRec(Coords m_refpos, Coords m_taille, Coords m_basepos, Block* m_Mere);
+bool CercleAGaucheDeMereRec(Coords m_refpos, Coords m_taille, Coords m_basepos);
+bool CercleEnDessousDeMereRec(Coords m_refpos, Coords m_taille, Coords m_basepos, Block* m_Mere);
+bool CercleAuDessusDeMereRec(Coords m_refpos, Coords m_taille, Coords m_basepos);
 
 
 ///************************///

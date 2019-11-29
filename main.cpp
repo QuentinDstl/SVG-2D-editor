@@ -75,7 +75,8 @@ void creerScene(Block* iterateur)
     iterateur = iterateur->getFille(0);
     iterateur->ajouterFille(0, "arm1", {25,HAUTEUR_SCENE-50}, {250,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, 0);
    // iterateur->ajouterFilleBordure(1, {25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0, {200,100,100}, {0,10,0});
-    iterateur->ajouterFille(0, "block", {25,50}, {50,50,50}, {15,45}, {LARGEUR_SCENE/2,0}, 1);
+    //iterateur->ajouterFille(0, "block", {25,50}, {50,50,50}, {15,45}, {LARGEUR_SCENE/2,0}, 1);
+    iterateur->getFille(0)->ajouterFilleCercle(0, "cercle", 10, {180,110,50}, {0,10}, {25,300}, 0);
 
     //on rentre dans les filles
     /*iterateur = iterateur->getFille(0);
@@ -101,7 +102,7 @@ void dessinerScene(const Block &room)
     room.dessiner(svgout);
     room.getFille(0)->dessiner(svgout);
     room.getFille(0)->getFille(0)->dessiner(svgout);
-    room.getFille(0)->getFille(1)->dessiner(svgout);
+    room.getFille(0)->getFille(0)->getFille(0)->dessiner(svgout);
     //toutDessiner(svgout,room);
 
     std::cout << "[i] croix rouge = position de reference / croix noir = position de base" << std::endl;
