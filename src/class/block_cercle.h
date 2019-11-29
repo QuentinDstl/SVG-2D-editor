@@ -5,25 +5,24 @@
 
 class BlockCercle : public Block
 {
-public:
+    public:
+        /// Constructeurs
+        BlockCercle(double _classe, std::string _id, double _rayon, Block* _Mere,Couleur _couleur);
+        BlockCercle();
 
-    /// constructeurs
-    BlockCercle(double _classe, std::string _id, double _rayon, Block* _Mere,Couleur _couleur);
-    BlockCercle();
+        virtual void initialiserLiaison(double _angle, Coords _basepos, bool _plan3D);
 
-    virtual void initialiserLiaison(double _angle, Coords _basepos, bool _plan3D);
+        /// Getteurs
+        // INLINE
+        virtual double getRayon()const;
+        //virtual Coords getOrigine()const;
+        //virtual Liaison getLiaison()const;
 
-    /// getteurs
-    // INLINE
-    virtual double getRayon()const;
-    //virtual Coords getOrigine()const;
-    //virtual Liaison getLiaison()const;
+        /// Dessiner
+        virtual void dessiner(Svgfile &svgout)const;
 
-    /// dessiner
-    virtual void dessiner(Svgfile &svgout)const;
-
-    /// test
-    virtual bool TestRefPos()const;
+        /// Test
+        virtual bool TestRefPos()const;
 
 };
 

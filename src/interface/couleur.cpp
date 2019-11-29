@@ -4,14 +4,12 @@
 #include <iostream>
 
 Couleur::Couleur(uint8_t rouge, uint8_t vert, uint8_t bleu)
-    : m_rouge{rouge}, m_vert{vert}, m_bleu{bleu}
-{ }
-
+: m_rouge{rouge}, m_vert{vert}, m_bleu{bleu}
+{}
 
 Couleur::Couleur()
-    : Couleur(0, 0, 0) // Délégation de constructeur
-{ }
-
+: Couleur(0, 0, 0)
+{}
 
 void Couleur::afficher() const
 {

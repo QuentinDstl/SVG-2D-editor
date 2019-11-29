@@ -431,25 +431,27 @@
 	"../svg/svgfile.h"
 	"liaison.h"
 
-1575028729 source:c:\users\c_per\projet_block\main.cpp
+1575032541 source:c:\users\c_per\projet_block\main.cpp
 	<iostream>
 	<fstream>
 	<vector>
 	"src/class/block_cercle.h"
 	"src/class/coords.h"
 	"src/class/liaison.h"
+	"src/class/bordure.h"
+	"src/class/block_bordure.h"
 	"src/interface/couleur.h"
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
-1575028767 c:\users\c_per\projet_block\src\class\block.h
+1575031266 c:\users\c_per\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison.h"
 	"../svg/svgfile.h"
 	"../interface/couleur.h"
 
-1575026676 c:\users\c_per\projet_block\src\class\liaison.h
+1575031942 c:\users\c_per\projet_block\src\class\liaison.h
 	"coords.h"
 	"liaison.h"
 
@@ -461,7 +463,7 @@
 	<fstream>
 	<set>
 
-1575026676 c:\users\c_per\projet_block\src\interface\couleur.h
+1575031155 c:\users\c_per\projet_block\src\interface\couleur.h
 	<string>
 	<cstdint>
 
@@ -473,12 +475,12 @@
 	"../util/util.h"
 	<iostream>
 
-1575026676 source:c:\users\c_per\projet_block\src\class\liaison.cpp
+1575032110 source:c:\users\c_per\projet_block\src\class\liaison.cpp
 	<iostream>
 	"liaison.h"
 	"coords.h"
 
-1575026676 source:c:\users\c_per\projet_block\src\interface\couleur.cpp
+1575031737 source:c:\users\c_per\projet_block\src\interface\couleur.cpp
 	"couleur.h"
 	"../svg/svgfile.h"
 	"../util/util.h"
@@ -505,7 +507,7 @@
 	"../util/util.h"
 	<windows.h>
 
-1575027915 source:c:\users\c_per\projet_block\src\class\block.cpp
+1575032937 source:c:\users\c_per\projet_block\src\class\block.cpp
 	"block_cercle.h"
 	"../svg/svgfile.h"
 	"liaison.h"
@@ -523,10 +525,27 @@
 1574907460 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_cercle.h
 	"block.h"
 
-1575027222 c:\users\c_per\projet_block\src\class\block_cercle.h
+1575031630 c:\users\c_per\projet_block\src\class\block_cercle.h
 	"block.h"
 
-1575027222 source:c:\users\c_per\projet_block\src\class\block_cercle.cpp
+1575028827 source:c:\users\c_per\projet_block\src\class\block_cercle.cpp
 	"block_cercle.h"
 	<math.h>
+
+1575032110 source:c:\users\c_per\projet_block\src\class\bordure.cpp
+	"bordure.h"
+	"../svg/svgfile.h"
+	"../util/util.h"
+	<iostream>
+
+1575031942 c:\users\c_per\projet_block\src\class\bordure.h
+	"../interface/couleur.h"
+
+1575033300 c:\users\c_per\projet_block\src\class\block_bordure.h
+	"block.h"
+	"block_bordure.h"
+	"bordure.h"
+
+1575033175 source:c:\users\c_per\projet_block\src\class\block_bordure.cpp
+	"block_bordure.h"
 

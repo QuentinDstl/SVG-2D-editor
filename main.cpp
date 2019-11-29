@@ -5,20 +5,21 @@
 #include "src/class/block_cercle.h"
 #include "src/class/coords.h"
 #include "src/class/liaison.h"
+#include "src/class/bordure.h"
+#include "src/class/block_bordure.h"
 #include "src/interface/couleur.h"
 #include "src/svg/svgfile.h"
 #include "src/util/util.h"
 
-/// lecture fichier
+/// Lecture fichier
 #define FICHIER "sauvegarde.rom"
 
-/// define scene
+/// Define scene
 #define HAUTEUR_SCENE 600
 #define LARGEUR_SCENE 1000
 
 void creerScene(Block* room);
 void dessinerScene(const Block &room);
-
 void toutDessiner(Svgfile &svgout, const Block &room);
 
 /*
@@ -45,10 +46,6 @@ int main()
     creerScene(blockIterateur);
     dessinerScene(room);
 
-    std::cout << "couleur block object1 : ";
-    BlockCouleur* bc = dynamic_cast<BlockCouleur*> (parcourir("object1",room));
-    if(bc)
-        bc->getCouleur().afficher();
 
     std::cout << "trouver racine : " << trouverRacine(*blockIterateur)->getId() << std::endl;
 

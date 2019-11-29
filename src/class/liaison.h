@@ -7,24 +7,23 @@ class Block;
 
 class Liaison
 {
-protected :
+    protected :
 
-    Coords m_refpos;
-    Coords m_basepos;
-    bool m_plan;
+        Coords m_refpos;
+        Coords m_basepos;
+        bool m_plan;
 
-public :
+    public :
+        /// Constructeurs
+        Liaison(Coords _refpos, Coords _basepos, bool _plan3D);
+        Liaison();
+        ~Liaison() = default;
 
-    /// constructeurs
-    Liaison(Coords _refpos, Coords _basepos, bool _plan3D);
-    Liaison();
-    ~Liaison() = default;
-
-    /// getteurs et setteurs
-    void setteur(Coords _refpos, Coords _basepos, bool _plan3D);
-    Coords getBasepos() const;
-    Coords getRefpos() const;
-    bool getPlan() const;
+        /// Getteurs et setteurs
+        void setteur(Coords _refpos, Coords _basepos, bool _plan3D);
+        Coords getBasepos() const;
+        Coords getRefpos() const;
+        bool getPlan() const;
 };
 
 ///************************///
@@ -36,13 +35,10 @@ inline Coords Liaison::getBasepos() const
     return m_basepos;
 }
 
-
 inline Coords Liaison::getRefpos() const
 {
     return m_refpos;
 }
-
-
 
 inline bool Liaison::getPlan() const
 {

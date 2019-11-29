@@ -6,26 +6,29 @@
 
 class Couleur
 {
-public :
-    Couleur(uint8_t rouge, uint8_t vert, uint8_t bleu);
-    Couleur();
-    void afficher() const;
-    void saisir();
-    void muter(double amplitude);
+    private :
+        // uint8_t équivalent à unsigned char :
+        // unsigned 8 bits (8 bits non signé)
+        uint8_t m_rouge, m_vert, m_bleu;
 
-    operator std::string() const;
-    friend bool operator!=(const Couleur& c1, const Couleur& c2);
+    public :
+        Couleur(uint8_t rouge, uint8_t vert, uint8_t bleu);
+        Couleur();
+        void afficher() const;
+        void saisir();
+        void muter(double amplitude);
 
-    uint8_t getRouge () const ;
-    uint8_t getVert () const ;
-    uint8_t getBleu () const ;
+        operator std::string() const;
+        friend bool operator!=(const Couleur& c1, const Couleur& c2);
 
-private :
-    // uint8_t équivalent à unsigned char :
-    // unsigned 8 bits (8 bits non signé)
-    uint8_t m_rouge, m_vert, m_bleu;
+        uint8_t getRouge () const ;
+        uint8_t getVert () const ;
+        uint8_t getBleu () const ;
 };
 
+///************************///
+///    METHODES INLINES    ///
+///************************///
 
 inline uint8_t Couleur::getRouge() const
 {

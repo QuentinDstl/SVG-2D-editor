@@ -1,4 +1,3 @@
-
 #include "block_cercle.h"
 #include "../svg/svgfile.h"
 #include "liaison.h"
@@ -21,11 +20,13 @@
 ///*************************///
 
 /* constructeur de base */
-Block::Block (double _classe,std::string _id, Coords _taille, Block* _Mere,Couleur _couleur) : m_classe{_classe}, m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_Mere{_Mere},m_couleur{_couleur}
+Block::Block (double _classe,std::string _id, Coords _taille, Block* _Mere,Couleur _couleur)
+: m_classe{_classe}, m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_Mere{_Mere}, m_couleur{_couleur}
 {}
 
 /* Constructeur avec Initialisation nul */
-Block::Block() : m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}, m_couleur{10,10,10}
+Block::Block()
+: m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}, m_couleur{10,10,10}
 {}
 
 ///*************************///
