@@ -66,10 +66,10 @@ void Block::ajouterFilleBordure(double _classe,Coords _taille, std::string _id, 
     m_Filles.push_back(nouv);
 }*/
 
-/*void Block::ajouterFilleCercle(double _classe,double _rayon, std::string _id, double _angle, Coords _basepos, bool _plan3D, Couleur _couleur)
+/*void Block::ajouterFilleCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D)
 {
     BlockCercle* nouv = new BlockCercle{_id, _rayon, _couleur, this};
-    nouv->initialiserLiaison(_angle, _basepos, _plan3D);
+    nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
 }*/
@@ -234,6 +234,8 @@ bool Block::TestRefPos()const
     }
     return test;
 }
+
+//bool Block::TestCollision()const
 
 ///************************///
 ///SAUVEGARDE ET CHARGEMENT///
