@@ -207,23 +207,23 @@ bool Block::TestRefPos()const
 {
     bool test = 0;
 
-    if(m_liaison.getRefpos() <= m_taille)
+    if(RefPosDansBloc(m_liaison, m_taille))
     {
-        if(m_liaison.getBasepos() <= m_Mere->getTaille())
+        if(BasePosDansBlocMere(m_liaison, m_Mere))
         {
-            if(TestBordure(m_taille, m_liaison.getRefpos(), m_liaison.getBasepos(), m_liaison.getPlan(), m_Mere))
+            if(TestBordure(m_taille, m_liaison.getRefpos(), m_liaison.getBasepos(), m_liaison.getPlan(), m_id, m_Mere))
             {
                 test = 1;
             }
         }
         else
         {
-            std::cout << "Appui non situe sur le bloc mere" << std::endl;
+            std::cout << "[e]" << m_id << " : " << "Appui non situe sur le bloc mere" << std::endl;
         }
     }
     else
     {
-        std::cout << "Appui non situe sur le bloc fille" << std::endl;
+        std::cout << "[e]" << m_id << " : " <<  "Appui non situe sur le bloc fille" << std::endl;
     }
     return test;
 }
@@ -422,60 +422,92 @@ void ajouterBlock(Block &room,
 ///   FONCTIONS DE COORDS  ///
 ///************************///
 
-/*  */
-//
-bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block *m_Mere)
+bool RefPosDansBloc(Liaison m_liaison, Coords m_taille) {
+
+    if(m_liaison.getRefpos() <= m_taille) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+bool BasePosDansBlocMere(Liaison m_liaison, Block* m_Mere) {
+
+    if(m_liaison.getBasepos() <= m_Mere->getTaille()) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, unsigned int m_plan, std::string m_id, Block *m_Mere)
 {
     bool test = 0;
 
-    if(m_refpos.getX() == 0 || m_refpos.getX() == m_taille.getX() || m_refpos.getY() == 0 || m_refpos.getY() == m_taille.getY())
+    if(RefPosSurBordure(m_refpos, m_taille))
     {
-        if(m_basepos.getX() == 0 || m_basepos.getX() == m_Mere->getTaille().getX() || m_basepos.getY() == 0 || m_basepos.getY() == m_Mere->getTaille().getY())
+        if(BasePosSurBordure(m_basepos, m_Mere))
         {
-            if(TestBordureAdjacente(m_taille, m_refpos, m_basepos, m_plan3D,m_Mere))
+            if(TestBordureAdjacente(m_taille, m_refpos, m_basepos, m_plan, m_id, m_Mere))
             {
                 test = 1;
             }
         }
         else
         {
-            std::cout << "Appui non situe sur la bordure du bloc mere" << std::endl;
+            std::cout << "[e]" << m_id << " : " << "Appui non situe sur la bordure du bloc mere" << std::endl;
         }
     }
     else
     {
-        std::cout << "Appui non situe sur la bordure du bloc fille" << std::endl;
+        std::cout << "[e]" << m_id << " : " << "Appui non situe sur la bordure du bloc fille" << std::endl;
     }
     return test;
 }
 
-/*  */
-//
-bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block* m_Mere)
-{
+bool RefPosSurBordure(Coords m_refpos, Coords m_taille) {
+
+    if(m_refpos.getX() == 0 || m_refpos.getX() == m_taille.getX() || m_refpos.getY() == 0 || m_refpos.getY() == m_taille.getY()) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+bool BasePosSurBordure(Coords m_basepos, Block* m_Mere) {
+
+    if(m_basepos.getX() == 0 || m_basepos.getX() == m_Mere->getTaille().getX() || m_basepos.getY() == 0 || m_basepos.getY() == m_Mere->getTaille().getY()) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, unsigned int m_plan, std::string m_id, Block* m_Mere) {
+
     bool test = 0;
 
-    if(m_plan3D == 0)
-    {
-        if(m_refpos.getX() == 0 && m_basepos.getX() == m_Mere->getTaille().getX())
-        {
+    if(m_plan == m_Mere->getLiaison().getPlan()) {
+        if(BlocADroiteDeMere(m_refpos, m_basepos, m_Mere)) {
             test = 1;
         }
-        else if(m_refpos.getX() == m_taille.getX() && m_basepos.getX() == 0)
-        {
+        else if(BlocAGaucheDeMere(m_refpos, m_basepos, m_taille)) {
             test = 1;
         }
-        else if(m_refpos.getY() == 0 && m_basepos.getY() == m_Mere->getTaille().getY())
-        {
+        else if(BlocEnDessousDeMere(m_refpos, m_basepos, m_Mere)) {
             test = 1;
         }
-        else if(m_refpos.getY() == m_taille.getY() && m_basepos.getY() == 0)
-        {
+        else if(BlocAuDessusDeMere(m_refpos, m_basepos, m_taille)) {
+
             test = 1;
         }
         else
         {
-            std::cout << "Appui situe dans le bloc mere" << std::endl;
+            std::cout << "[e]" << m_id << " : " << "Appui situe dans le bloc mere" << std::endl;
         }
     }
     else
@@ -485,7 +517,45 @@ bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bo
     return test;
 }
 
+bool BlocADroiteDeMere(Coords m_refpos, Coords m_basepos, Block* m_Mere) {
 
+    if(m_refpos.getX() == 0 && m_basepos.getX() == m_Mere->getTaille().getX()) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+bool BlocAGaucheDeMere(Coords m_refpos, Coords m_basepos, Coords m_taille) {
+
+    if(m_refpos.getX() == m_taille.getX() && m_basepos.getX() == 0) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+bool BlocEnDessousDeMere(Coords m_refpos, Coords m_basepos, Block* m_Mere) {
+
+    if(m_refpos.getY() == 0 && m_basepos.getY() == m_Mere->getTaille().getY()) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+bool BlocAuDessusDeMere(Coords m_refpos, Coords m_basepos, Coords m_taille) {
+
+    if(m_refpos.getY() == m_taille.getY() && m_basepos.getY() == 0) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
 
 ///************************///
 ///   PARCOURS ET RACINE   ///

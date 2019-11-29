@@ -83,11 +83,22 @@ void ajouterBlock(Block &room,
                   Coords _refpos, Coords _basepos);
 
 ///TEST DES COORDS
-bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block* m_Mere);
+bool RefPosDansBloc(Liaison m_liaison, Coords m_taille);
+bool BasePosDansBlocMere(Liaison m_liaison, Block* m_Mere);
 
-bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, bool m_plan3D, Block* m_Mere);
+bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, unsigned int m_plan, std::string m_id, Block *m_Mere);
+bool RefPosSurBordure(Coords m_refpos, Coords m_taille);
+bool RefPosSurBordure(Coords m_refpos, Coords m_taille);
+bool BasePosSurBordure(Coords m_basepos, Block* m_Mere);
 
-//PARCOURS ET RACINE
+bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, unsigned int m_plan, std::string m_id, Block* m_Mere);
+bool BlocADroiteDeMere(Coords m_refpos, Coords m_basepos, Block* m_Mere);
+bool BlocAGaucheDeMere(Coords m_refpos, Coords m_basepos, Coords m_taille);
+bool BlocEnDessousDeMere(Coords m_refpos, Coords m_basepos, Block* m_Mere);
+bool BlocAuDessusDeMere(Coords m_refpos, Coords m_basepos, Coords m_taille);
+
+
+///PARCOURS ET RACINE
 Block* trouverRacine(Block &block);
 Block* parcourir(std::string id, const Block &room);
 Block* parcourir(Coords taille, Coords origine, const Block &room);

@@ -286,22 +286,22 @@
 1575030161 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\util\util.h
 	<string>
 
-1575039787 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison.cpp
+1575040473 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison.cpp
 	<iostream>
 	"liaison.h"
 	"coords.h"
 
-1575039095 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison.h
+1575040473 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison.h
 	"coords.h"
 	"liaison.h"
 
-1575038811 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\interface\couleur.cpp
+1575040473 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\interface\couleur.cpp
 	"couleur.h"
 	"../svg/svgfile.h"
 	"../util/util.h"
 	<iostream>
 
-1575038811 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\interface\couleur.h
+1575040473 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\interface\couleur.h
 	<string>
 	<cstdint>
 
@@ -331,9 +331,8 @@
 	"../util/util.h"
 	<windows.h>
 
-1575038811 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.cpp
+1575042043 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.cpp
 	"block.h"
-	"block_cercle.h"
 	"../svg/svgfile.h"
 	"liaison.h"
 	"block_cercle.h"
@@ -343,14 +342,14 @@
 	<fstream>
 	<sstream>
 
-1575040208 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.h
+1575041949 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison.h"
 	"../svg/svgfile.h"
 	"../interface/couleur.h"
 
-1575039862 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\main.cpp
+1575042205 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\main.cpp
 	<iostream>
 	<fstream>
 	<vector>
@@ -544,10 +543,10 @@
 
 1575028827 D
 
-1575039924 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle.h
+1575040473 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle.h
 	"block.h"
 
-1575039982 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle.cpp
+1575041793 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle.cpp
 	"block_cercle.h"
 	<math.h>
 
@@ -572,18 +571,18 @@
 
 1575033175 43281a01eae645c37914633c63574c6643f35
 
-1575039722 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_bordure.cpp
+1575040473 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_bordure.cpp
 	"block_bordure.h"
 
-1575038811 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_bordure.h
+1575040473 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_bordure.h
 	"block.h"
 	"block_bordure.h"
 	"bordure.h"
 
-1575038811 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\bordure.h
+1575040473 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\bordure.h
 	"../interface/couleur.h"
 
-1575038811 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\bordure.cpp
+1575040473 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\bordure.cpp
 	"bordure.h"
 	"../svg/svgfile.h"
 	"../util/util.h"
