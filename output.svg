@@ -4,6 +4,7 @@
 <polygon points=" 0,0 0,600 1000,600 1000,0" style="fill:rgb(50,200,200)" />
 <polygon points=" 0,550 0,600 1000,600 1000,550" style="fill:rgb(0,101,200)" />
 <polygon points=" 0,0 0,550 25,550 25,0" style="fill:rgb(250,0,0)" />
+<circle cx="35" cy="300" r="10" fill="grey" />
 <line x1="494" y1="594" x2="506" y2="606" stroke="black" />
 <line x1="494" y1="606" x2="506" y2="594" stroke="black" />
 <line x1="496" y1="596" x2="504" y2="604" stroke="red" />
@@ -12,8 +13,13 @@
 <line x1="-6" y1="556" x2="6" y2="544" stroke="black" />
 <line x1="-4" y1="546" x2="4" y2="554" stroke="red" />
 <line x1="-4" y1="554" x2="4" y2="546" stroke="red" />
+<line x1="19" y1="294" x2="31" y2="306" stroke="black" />
+<line x1="19" y1="306" x2="31" y2="294" stroke="black" />
+<line x1="21" y1="296" x2="29" y2="304" stroke="red" />
+<line x1="21" y1="304" x2="29" y2="296" stroke="red" />
 <text x="489.5" y="578.5" fill="black" >sol</text>
 <text x="-1.5" y="278.5" fill="white" >arm1</text>
+<text x="19" y="303.5" fill="black" >cercle</text>
 
 
 </svg>

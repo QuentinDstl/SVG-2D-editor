@@ -36,8 +36,8 @@ int main()
     room.chargementScene();
 
     return 0;
-}*/
-
+}
+*/
 
 
 ///Main version CREATION puis sauvegarde
@@ -78,7 +78,7 @@ void creerScene(Block* iterateur)
     iterateur->ajouterFille(0, "arm1", {25,HAUTEUR_SCENE-50}, {250,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, false);
    // iterateur->ajouterFilleBordure(1, {25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0, {200,100,100}, {0,10,0});
     //iterateur->ajouterFille(0, "block", {25,50}, {50,50,50}, {15,45}, {LARGEUR_SCENE/2,0}, 1);
-    iterateur->getFille(0)->ajouterFilleCercle(0, "cercle", 10, {180,110,50}, {0,10}, {25,300}, false);
+    iterateur->getFille(0)->ajouterFilleCercle(0, "cercle", 10, {180,110,50}, {-10,0}, {25,300}, false);
 
 
     //on rentre dans les filles

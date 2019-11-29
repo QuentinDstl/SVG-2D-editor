@@ -254,7 +254,10 @@ bool Block::TestRefPos()const
     return test;
 }
 
-//bool Block::TestCollision()const
+/*bool Block::TestCollision(Coords taille, Coords origine, const Block &room)const
+{
+    parcourir()
+}*/
 
 ///************************///
 ///SAUVEGARDE ET CHARGEMENT///
