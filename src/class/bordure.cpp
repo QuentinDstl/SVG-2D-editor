@@ -8,9 +8,9 @@
 ///*************************///
 
 Bordure::Bordure(Couleur _bordure)
-: m_bordure{_bordure}
+    : m_bordure{_bordure}
 {}
 
 Bordure::Bordure()
-: m_bordure(0, 0, 0)
+    : m_bordure(0, 0, 0)
 {}

@@ -76,7 +76,7 @@ void creerScene(Block* iterateur)
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
     iterateur->ajouterFille(0, "arm1", {25,HAUTEUR_SCENE-50}, {250,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, false);
-   // iterateur->ajouterFilleBordure(1, {25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0, {200,100,100}, {0,10,0});
+    // iterateur->ajouterFilleBordure(1, {25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0, {200,100,100}, {0,10,0});
     iterateur->ajouterFille(0, "block", {25,50}, {50,50,50}, {15,45}, {LARGEUR_SCENE/2,0}, true);
 
     //on rentre dans les filles
@@ -117,16 +117,16 @@ void toutDessiner(Svgfile &svgout,const Block &room)
     {
         for(const auto& petit_fils : room.getFilles())
         {
-                /*
-                BlockCercle* petit_fils_cercle = dynamic_cast<BlockCercle*>(petit_fils);
+            /*
+            BlockCercle* petit_fils_cercle = dynamic_cast<BlockCercle*>(petit_fils);
 
-                if(petit_fils_cercle)
-                    petit_fils_cercle->dessiner(svgout);
+            if(petit_fils_cercle)
+                petit_fils_cercle->dessiner(svgout);
 
-                else
-                */
-                petit_fils->dessiner(svgout);
-                toutDessiner(svgout,*petit_fils);
+            else
+            */
+            petit_fils->dessiner(svgout);
+            toutDessiner(svgout,*petit_fils);
         }
 
     }
@@ -140,18 +140,18 @@ void toutDessinerPlan(Svgfile &svgout,const Block &room, unsigned int plan)
     {
         for(const auto& petit_fils : room.getFilles())
         {
-                /*
-                BlockCercle* petit_fils_cercle = dynamic_cast<BlockCercle*>(petit_fils);
+            /*
+            BlockCercle* petit_fils_cercle = dynamic_cast<BlockCercle*>(petit_fils);
 
-                if(petit_fils_cercle)
-                    petit_fils_cercle->dessiner(svgout);
+            if(petit_fils_cercle)
+                petit_fils_cercle->dessiner(svgout);
 
-                else
-                */
-                std::cout << " " << petit_fils->getLiaison().getPlan() << ",";
-                if (petit_fils->getLiaison().getPlan() <= plan)
-                    petit_fils->dessiner(svgout);
-                toutDessinerPlan(svgout,*petit_fils,plan);
+            else
+            */
+            std::cout << " " << petit_fils->getLiaison().getPlan() << ",";
+            if (petit_fils->getLiaison().getPlan() <= plan)
+                petit_fils->dessiner(svgout);
+            toutDessinerPlan(svgout,*petit_fils,plan);
         }
 
     }
