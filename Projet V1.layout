@@ -2,28 +2,14 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="src\class\block.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1297" topLine="27" />
-		</Cursor>
-		<Folding>
-			<Collapse line="102" />
-			<Collapse line="132" />
-			<Collapse line="139" />
-			<Collapse line="148" />
-			<Collapse line="166" />
-			<Collapse line="173" />
-			<Collapse line="194" />
-		</Folding>
-	</File>
-	<File name="src\class\liaison.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="511" topLine="6" />
+			<Cursor1 position="2311" topLine="66" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+	<File name="src\class\block.h" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3564" topLine="0" />
+			<Cursor1 position="2796" topLine="72" />
 		</Cursor>
 	</File>
 	<File name="src\class\block_cercle.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -31,29 +17,34 @@
 			<Cursor1 position="227" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="src\class\liaison.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="758" topLine="0" />
+		</Cursor>
+	</File>
 	<File name="src\interface\couleur.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1658" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\class\block.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\class\block.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2796" topLine="72" />
-		</Cursor>
-	</File>
-	<File name="src\class\block_cercle.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="319" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\class\liaison.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="427" topLine="6" />
+			<Cursor1 position="1704" topLine="18" />
 		</Cursor>
 	</File>
 	<File name="src\interface\couleur.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="815" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\class\liaison.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="873" topLine="32" />
+		</Cursor>
+	</File>
+	<File name="src\class\block_cercle.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="319" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

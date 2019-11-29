@@ -42,8 +42,7 @@ void Block::ajouterFille(std::string _id, Coords _taille, Couleur _couleur, Coor
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
 
-    // FIXME (qdesa#1#11/26/19): on laisse ou pas clement ?
-    /*//methode qui teste si le block est bien relié au block mere
+    //methode qui teste de la position du nouveau block dans la scene
     if(!(nouv->TestRefPos()))
     {
         delete m_Filles[m_Filles.size()-1];
@@ -53,7 +52,7 @@ void Block::ajouterFille(std::string _id, Coords _taille, Couleur _couleur, Coor
     else
     {
         std::cout << nouv->m_origine << std::endl;
-    }*/
+    }
 }
 
 /*
@@ -94,7 +93,19 @@ void Block::initialiser(std::string _id, Coords _taille, Couleur _couleur)
 // a partir de la methode de la class liaison
 void Block::initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D)
 {
-    m_liaison.setteur(_refpos,_basepos,_plan3D);
+    unsigned int _plan;
+    if(_plan3D == 1) {
+            _plan = m_Mere->getLiaison().getPlan() + 1;
+    }
+    else {
+        if(m_Mere!=NULL) {
+            _plan = m_Mere->getLiaison().getPlan();
+        }
+        else {
+            _plan = 0;
+        }
+    }
+    m_liaison.setteur(_refpos,_basepos,_plan);
 }
 
 /* Initialisation de m_origine */

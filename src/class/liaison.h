@@ -11,20 +11,20 @@ protected :
 
     Coords m_refpos;
     Coords m_basepos;
-    bool m_plan;
+    unsigned int m_plan;
 
 public :
 
     /// constructeurs
-    Liaison(Coords _refpos, Coords _basepos, bool _plan3D);
+    Liaison(Coords _refpos, Coords _basepos, unsigned int _plan);
     Liaison();
     ~Liaison() = default;
 
     /// getteurs et setteurs
-    void setteur(Coords _refpos, Coords _basepos, bool _plan3D);
+    void setteur(Coords _refpos, Coords _basepos, unsigned int _plan);
     Coords getBasepos() const;
     Coords getRefpos() const;
-    bool getPlan() const;
+    unsigned int getPlan() const;
 };
 
 ///************************///
@@ -44,7 +44,7 @@ inline Coords Liaison::getRefpos() const
 
 
 
-inline bool Liaison::getPlan() const
+inline unsigned int Liaison::getPlan() const
 {
     return m_plan;
 }
