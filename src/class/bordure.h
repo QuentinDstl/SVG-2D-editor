@@ -12,14 +12,14 @@ class Bordure
         /// Constructeurs
         Bordure(Couleur _bordure);
         Bordure();
-        virtual Couleur getBordure () const;
+        virtual Couleur getBordure ();
 };
 
 ///************************///
 ///    METHODES INLINES    ///
 ///************************///
 
-inline Couleur Bordure::getBordure() const
+inline Couleur Bordure::getBordure()
 {
     return m_bordure;
 }
