@@ -28,15 +28,16 @@ void toutDessiner(Svgfile &svgout, const Block &room);
 int main()
 {
     Block room;
-    Block* blockIterateur = &room; //option avec iterateur
+    Block* blockIterateur = &room;
 
-    ajouterBlock(room, {LARGEUR_SCENE,HAUTEUR_SCENE}, "room", {0,0}, {0,0});
+    ajouterBlock(room, 0, "room", {LARGEUR_SCENE,HAUTEUR_SCENE}, {50,200,200}, {0,0}, {0,0});
 
     room.chargementScene();
 
     return 0;
-}
-*/
+}*/
+
+
 
 ///Main version CREATION puis sauvegarde
 int main()
@@ -58,7 +59,7 @@ int main()
     }
     else
     {
-        //room.sauvegarde();
+        room.sauvegarde();
     }
 
     return 0;

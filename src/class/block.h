@@ -65,10 +65,9 @@ public :
     virtual bool TestRefPos()const;
 
     ///SAUVEGARDE
-    /*virtual void sauvegarde();
+    virtual void sauvegarde();
     virtual void sauvegarderScene1(std::vector <Block*> m_Filles);
-    virtual void sauvegarderScene2(std::vector <Block*> m_Filles);
-    virtual void chargementScene();*/
+    virtual void chargementScene();
 
 
 };
