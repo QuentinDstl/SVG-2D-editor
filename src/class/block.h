@@ -10,8 +10,10 @@
 
 class Block
 {
+
 protected :
 
+    double m_classe;
     std::string m_id;
     Coords m_origine;
     Coords m_taille;
@@ -25,18 +27,18 @@ public :
 
 
     ///CONSTRUCTEURS
-    Block (std::string _id, Coords _taille, Couleur _couleur, Block* _Mere);
+    Block (double m_classe, std::string _id, Coords _taille, Couleur _couleur, Block* _Mere);
     Block();
 
     virtual ~Block()=default;
 
     ///AJOUT
-    virtual void ajouterFille(std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D);
+    virtual void ajouterFille(double m_clase, std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D);
     //virtual void ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
     //virtual void ajouterFilleCercle(double _classe,double _rayon, std::string _id, double _angle, Coords _basepos, bool _plan3D, Couleur _couleur);
 
     ///INITIALIALISATION
-    virtual void initialiser(std::string _id, Coords _taille, Couleur _couleur);
+    virtual void initialiser(double m_classe, std::string _id, Coords _taille, Couleur _couleur);
     virtual void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void initialiserOrigine();
 
@@ -49,6 +51,7 @@ public :
     virtual Block* getMere()const;
     virtual std::vector<Block*> getFilles () const;
     virtual std::string getId () const;
+    virtual double getClasse () const;
 
     ///DESSINER
     virtual void dessiner(Svgfile &svgout)const;
@@ -76,7 +79,7 @@ public :
 
 ///AJOUT
 void ajouterBlock(Block &room,
-                  std::string _id, Coords _taille, Couleur _couleur,
+                  double _classe, std::string _id, Coords _taille, Couleur _couleur,
                   Coords _refpos, Coords _basepos);
 
 ///TEST DES COORDS
@@ -93,29 +96,34 @@ Block* parcourir(Coords taille, Coords origine, const Block &room);
 ///    METHODES INLINES    ///
 ///************************///
 
-inline Block* Block::getFille(unsigned int indice)const
+inline Block* Block::getFille(unsigned int indice) const
 {
     return m_Filles[indice];
 }
 
-inline Coords Block::getTaille()const
+inline Coords Block::getTaille() const
 {
     return m_taille;
 }
 
-inline Coords Block::getOrigine()const
+inline Coords Block::getOrigine() const
 {
     return m_origine;
 }
 
-inline Liaison Block::getLiaison()const
+inline Liaison Block::getLiaison() const
 {
     return m_liaison;
 }
 
-inline Block* Block::getMere()const
+inline Block* Block::getMere() const
 {
     return m_Mere;
+}
+
+inline double Block::getClasse() const
+{
+    return m_classe;
 }
 
 inline std::string Block::getId () const

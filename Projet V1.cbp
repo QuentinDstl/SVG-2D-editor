@@ -35,8 +35,12 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/class/block.cpp" />
 		<Unit filename="src/class/block.h" />
+		<Unit filename="src/class/block_bordure.cpp" />
+		<Unit filename="src/class/block_bordure.h" />
 		<Unit filename="src/class/block_cercle.cpp" />
 		<Unit filename="src/class/block_cercle.h" />
+		<Unit filename="src/class/bordure.cpp" />
+		<Unit filename="src/class/bordure.h" />
 		<Unit filename="src/class/coords.cpp" />
 		<Unit filename="src/class/coords.h" />
 		<Unit filename="src/class/liaison.cpp" />

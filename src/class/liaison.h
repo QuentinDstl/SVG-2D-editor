@@ -7,6 +7,7 @@ class Block;
 
 class Liaison
 {
+
 protected :
 
     Coords m_refpos;
@@ -25,6 +26,7 @@ public :
     Coords getBasepos() const;
     Coords getRefpos() const;
     unsigned int getPlan() const;
+
 };
 
 ///************************///
@@ -36,13 +38,10 @@ inline Coords Liaison::getBasepos() const
     return m_basepos;
 }
 
-
 inline Coords Liaison::getRefpos() const
 {
     return m_refpos;
 }
-
-
 
 inline unsigned int Liaison::getPlan() const
 {

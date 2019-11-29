@@ -1,4 +1,3 @@
-
 #include "block.h"
 #include "../svg/svgfile.h"
 #include "liaison.h"
@@ -21,12 +20,13 @@
 ///*************************///
 
 /* constructeur de base */
-Block::Block (std::string _id, Coords _taille, Couleur _couleur, Block* _Mere) :
-    m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_couleur{_couleur}, m_Mere{_Mere}, m_liaison{{0,0},{0,0},0}
+Block::Block (double _classe, std::string _id, Coords _taille, Couleur _couleur, Block* _Mere) :
+    m_classe{_classe}, m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_couleur{_couleur}, m_Mere{_Mere}, m_liaison{{0,0},{0,0},0}
 {}
 
 /* Constructeur avec Initialisation nul */
-Block::Block() : m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_couleur{10,10,10}, m_Mere{nullptr}, m_liaison{{0,0},{0,0},0}
+Block::Block() :
+    m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_couleur{10,10,10}, m_Mere{nullptr}, m_liaison{{0,0},{0,0},0}
 {}
 
 ///*************************///
@@ -35,9 +35,9 @@ Block::Block() : m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_couleur{10,10,10}, 
 
 /* Creer une fille */
 // cree une nouvelle fille a partir de la mere
-void Block::ajouterFille(std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D)
+void Block::ajouterFille(double _classe, std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D)
 {
-    Block* nouv = new Block{_id, _taille, _couleur, this};
+    Block* nouv = new Block{_classe, _id, _taille, _couleur, this};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
@@ -80,8 +80,9 @@ void Block::ajouterFilleBordure(double _classe,Coords _taille, std::string _id, 
 
 /* Initialisation du block */
 // reinitialise le bloc a nul
-void Block::initialiser(std::string _id, Coords _taille, Couleur _couleur)
+void Block::initialiser(double _classe, std::string _id, Coords _taille, Couleur _couleur)
 {
+    m_classe = _classe;
     m_id = _id;
     m_origine = {0,0};
     m_taille = {_taille.getX(),_taille.getY()};
@@ -408,10 +409,10 @@ void Block::chargementScene()
 /* Ajout d'un bloc sans pere */
 //
 void ajouterBlock(Block &room,
-                  std::string _id, Coords _taille, Couleur _couleur,
+                  double _classe, std::string _id, Coords _taille, Couleur _couleur,
                   Coords _refpos, Coords _basepos)
 {
-    room.initialiser(_id, _taille, _couleur);
+    room.initialiser(_classe, _id, _taille, _couleur);
     room.initialiserLiaison(_refpos, _basepos, 0);
     room.initialiserOrigine();
     //std::cout << "[i] position de la liaison : " << bRoom.getLiaison().getBasepos() << std::endl;
@@ -575,38 +576,3 @@ Block* parcourir(Coords taille, Coords origine, const Block &room)
     }
     return nullptr;
 }
-
-////////////////////////////////////////////////////////////////
-////                                                        ////
-////                                                        ////
-////                  CLASS FILLE COULEUR                   ////
-////                                                        ////
-////                                                        ////
-////////////////////////////////////////////////////////////////
-
-///*************************///
-///       OVERWRITING       ///
-///*************************///
-
-/*
-BlockBordure::BlockBordure(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure): Block(_classe,_id, _taille, _Mere, _couleur),m_bordure{_bordure}
-{ }
-
-
-// overwriting de dessiner pour afficher la couleur en plus
-void BlockBordure::dessiner(Svgfile &svgout)const
-{
-    if(m_bordure != m_couleur)
-        svgout.addRectangle(m_origine.getX(), m_origine.getY(),
-                            m_origine.getX(), m_origine.getY() + m_taille.getY(),
-                            m_origine.getX() + m_taille.getX(), m_origine.getY(),
-                            m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
-                            m_couleur,2,m_bordure);
-    else
-        svgout.addRectangle(m_origine.getX(), m_origine.getY(),
-                            m_origine.getX(), m_origine.getY() + m_taille.getY(),
-                            m_origine.getX() + m_taille.getX(), m_origine.getY(),
-                            m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
-                            m_couleur);
-}
-*/

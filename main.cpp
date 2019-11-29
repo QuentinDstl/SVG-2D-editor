@@ -5,21 +5,22 @@
 #include "src/class/block_cercle.h"
 #include "src/class/coords.h"
 #include "src/class/liaison.h"
+#include "src/class/bordure.h"
+#include "src/class/block_bordure.h"
 #include "src/interface/couleur.h"
 #include "src/svg/svgfile.h"
 #include "src/util/util.h"
 #include "src/class/block.h"
 
-/// lecture fichier
+/// Lecture fichier
 #define FICHIER "sauvegarde.rom"
 
-/// define scene
+/// Define scene
 #define HAUTEUR_SCENE 600
 #define LARGEUR_SCENE 1000
 
 void creerScene(Block* room);
 void dessinerScene(const Block &room);
-
 void toutDessiner(Svgfile &svgout, const Block &room);
 
 /*
@@ -46,10 +47,6 @@ int main()
     creerScene(blockIterateur);
     dessinerScene(room);
 
-    /*std::cout << "couleur block object1 : ";
-    BlockCouleur* bc = dynamic_cast<BlockCouleur*> (parcourir("object1",room));
-    if(bc)
-        bc->getCouleur().afficher();
 
     std::cout << "trouver racine : " << trouverRacine(*blockIterateur)->getId() << std::endl;
 
@@ -61,8 +58,8 @@ int main()
     }
     else
     {
-        room.sauvegarde();
-    }*/
+        //room.sauvegarde();
+    }
 
     return 0;
 }
@@ -71,14 +68,14 @@ int main()
 // dans le cadre de l'utilisation du polymorphisme il est necessaire de passer par des adresses ou reference
 void creerScene(Block* iterateur)
 {
-    ajouterBlock(*iterateur, "room", {LARGEUR_SCENE,HAUTEUR_SCENE}, {50,200,200}, {0,0}, {0,0});
-    iterateur->ajouterFille("sol", {LARGEUR_SCENE,50}, {50,50,50}, {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, 1);
+    ajouterBlock(*iterateur, 0, "room", {LARGEUR_SCENE,HAUTEUR_SCENE}, {50,200,200}, {0,0}, {0,0});
+    iterateur->ajouterFille(0, "sol", {LARGEUR_SCENE,50}, {50,50,50}, {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, 1);
 
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
-    iterateur->ajouterFille("arm1", {25,HAUTEUR_SCENE-50}, {250,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, 0);
+    iterateur->ajouterFille(0, "arm1", {25,HAUTEUR_SCENE-50}, {250,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, 0);
    // iterateur->ajouterFilleBordure(1, {25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0, {200,100,100}, {0,10,0});
-    iterateur->ajouterFille("block", {25,50}, {50,50,50}, {0,50}, {LARGEUR_SCENE/2,0}, 0);
+    iterateur->ajouterFille(0, "block", {25,50}, {50,50,50}, {0,50}, {LARGEUR_SCENE/2,0}, 0);
 
     //on rentre dans les filles
     /*iterateur = iterateur->getFille(0);
