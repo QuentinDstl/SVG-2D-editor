@@ -191,70 +191,74 @@
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
-1574908699 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\main.cpp
+1575044468 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\main.cpp
 	<iostream>
 	<fstream>
 	<vector>
 	"src/class/block_cercle.h"
 	"src/class/coords.h"
 	"src/class/liaison.h"
+	"src/class/bordure.h"
+	"src/class/block_bordure.h"
 	"src/interface/couleur.h"
 	"src/svg/svgfile.h"
 	"src/util/util.h"
+	"src/class/block.h"
 
-1574907460 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.h
+1575040671 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison.h"
 	"../svg/svgfile.h"
 	"../interface/couleur.h"
 
-1574734156 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison.h
+1575040671 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison.h
 	"coords.h"
 	"liaison.h"
 
-1574894204 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.h
+1575040666 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.h
 	<iostream>
 
-1574518898 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\svg\svgfile.h
+1575041332 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\svg\svgfile.h
 	<string>
 	<fstream>
 	<set>
 
-1574821415 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\couleur.h
+1575040671 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\couleur.h
 	<string>
 	<cstdint>
 
 1574517612 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\util\util.h
 	<string>
 
-1574907527 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.cpp
-	"block_cercle.h"
+1575044265 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.cpp
+	"block.h"
 	"../svg/svgfile.h"
 	"liaison.h"
+	"block_cercle.h"
 	<iostream>
 	<string>
 	<vector>
 	<fstream>
 	<sstream>
 
-1574894204 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.cpp
+1575040666 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\coords.cpp
 	"coords.h"
 	"../util/util.h"
 	<iostream>
 
-1574734156 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison.cpp
+1575040671 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison.cpp
 	<iostream>
 	"liaison.h"
 	"coords.h"
 
-1574821300 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\couleur.cpp
+1575040671 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\couleur.cpp
 	"couleur.h"
 	"../svg/svgfile.h"
 	"../util/util.h"
 	<iostream>
 
-1574699487 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\svg\svgfile.cpp
+1575041332 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\svg\svgfile.cpp
 	<iostream>
 	<sstream>
 
@@ -527,11 +531,11 @@
 	<fstream>
 	<sstream>
 
-1574908264 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_cercle.cpp
+1575040671 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_cercle.cpp
 	"block_cercle.h"
 	<math.h>
 
-1574907460 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_cercle.h
+1575040671 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_cercle.h
 	"block.h"
 
 1575031630 c:\users\c_per\projet_block\src\class\block_cercle.h
@@ -583,6 +587,23 @@
 	"../interface/couleur.h"
 
 1575040473 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\bordure.cpp
+	"bordure.h"
+	"../svg/svgfile.h"
+	"../util/util.h"
+	<iostream>
+
+1575040671 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\bordure.h
+	"../interface/couleur.h"
+
+1575040671 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_bordure.h
+	"block.h"
+	"block_bordure.h"
+	"bordure.h"
+
+1575040671 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_bordure.cpp
+	"block_bordure.h"
+
+1575040671 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\bordure.cpp
 	"bordure.h"
 	"../svg/svgfile.h"
 	"../util/util.h"

@@ -95,7 +95,7 @@ void Block::initialiser(double _classe, std::string _id, Coords _taille, Couleur
 void Block::initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D)
 {
     unsigned int _plan;
-    if(_plan3D == 1) {
+    if(_plan3D) {
             _plan = m_Mere->getLiaison().getPlan() + 1;
     }
     else {
@@ -177,7 +177,13 @@ void Block::toutDessinerLiaisons(Svgfile& svgout) const
 // methode qui permet d'afficher l'id d'un bloc sur le svg
 void Block::dessinerId(Svgfile &svgout) const
 {
-    svgout.addText(m_origine.getX()+(m_taille.getX()/2) - (m_id.size())*3.5,m_origine.getY()+(m_taille.getY()/2)+3.5,m_id,"black");
+    // on ecrit le nom du bloc en noir uniquement si la couleur du block de base n'est pas trop sombre
+    if ((((int)m_couleur.getBleu() > 100) && ((int)m_couleur.getRouge() > 100)) ||
+        (((int)m_couleur.getBleu() > 100) && ((int)m_couleur.getVert() > 100)) ||
+        (((int)m_couleur.getVert() > 100) && ((int)m_couleur.getRouge() > 100)))
+        svgout.addText(m_origine.getX()+(m_taille.getX()/2) - (m_id.size())*3.5,m_origine.getY()+(m_taille.getY()/2)+3.5,m_id,"black");
+    else
+        svgout.addText(m_origine.getX()+(m_taille.getX()/2) - (m_id.size())*3.5,m_origine.getY()+(m_taille.getY()/2)+3.5,m_id,"white");
 }
 
 /* Affichage de tous les ID */
