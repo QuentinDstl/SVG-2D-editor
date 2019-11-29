@@ -211,7 +211,14 @@ bool Block::TestRefPos()const
     {
         if(BasePosDansBlocMere(m_liaison, m_Mere))
         {
-            if(TestBordure(m_taille, m_liaison.getRefpos(), m_liaison.getBasepos(), m_liaison.getPlan(), m_id, m_Mere))
+            if(MemePlan(m_liaison, m_Mere))
+            {
+                if(TestBordure(m_taille, m_liaison.getRefpos(), m_liaison.getBasepos(), m_liaison.getPlan(), m_id, m_Mere))
+                {
+                    test = 1;
+                }
+            }
+            else
             {
                 test = 1;
             }
@@ -422,6 +429,16 @@ void ajouterBlock(Block &room,
 ///   FONCTIONS DE COORDS  ///
 ///************************///
 
+bool MemePlan(Liaison m_liaison, Block *m_Mere) {
+
+    if(m_liaison.getPlan() == m_Mere->getLiaison().getPlan()) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
 bool RefPosDansBloc(Liaison m_liaison, Coords m_taille) {
 
     if(m_liaison.getRefpos() <= m_taille) {
@@ -442,8 +459,7 @@ bool BasePosDansBlocMere(Liaison m_liaison, Block* m_Mere) {
     }
 }
 
-bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, unsigned int m_plan, std::string m_id, Block *m_Mere)
-{
+bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, unsigned int m_plan, std::string m_id, Block *m_Mere) {
     bool test = 0;
 
     if(RefPosSurBordure(m_refpos, m_taille))
@@ -560,7 +576,6 @@ bool BlocAuDessusDeMere(Coords m_refpos, Coords m_basepos, Coords m_taille) {
 ///************************///
 ///   PARCOURS ET RACINE   ///
 ///************************///
-
 
 Block* trouverRacine(Block &block)
 {

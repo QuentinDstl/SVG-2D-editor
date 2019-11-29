@@ -83,6 +83,7 @@ void ajouterBlock(Block &room,
                   Coords _refpos, Coords _basepos);
 
 ///TEST DES COORDS
+bool MemePlan(Liaison m_liaison, Block *m_Mere);
 bool RefPosDansBloc(Liaison m_liaison, Coords m_taille);
 bool BasePosDansBlocMere(Liaison m_liaison, Block* m_Mere);
 
