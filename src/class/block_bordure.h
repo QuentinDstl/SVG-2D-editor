@@ -12,7 +12,17 @@ class BlockBordure : public Block, Bordure
         /// Constructeurs
         BlockBordure(double _classe, std::string _id, Coords _taille, Block* _Mere,Couleur _couleur,Bordure _bordure);
         BlockBordure();
+        Couleur getBordure();
 };
+
+///************************///
+///    METHODES INLINES    ///
+///************************///
+
+inline Couleur BlockBordure::getBordure()
+{
+    return m_bordure;
+}
 
 #endif // BLOCK_BORDURE_H_INCLUDED
 

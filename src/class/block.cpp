@@ -267,12 +267,12 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
         if ((i->m_classe) == 0){
             ofs << i->m_classe <<" "<< i->m_id <<" "<< i->m_taille.getX() <<" "<< i->m_taille.getY() <<" "<< (int)i->m_couleur.getRouge() <<" "<< (int)i->m_couleur.getVert() <<" "<< (int)i->m_couleur.getBleu() <<" "<< i->m_liaison.getRefpos().getX() <<" "<< i->m_liaison.getRefpos().getY() <<" "<< i->m_liaison.getBasepos().getX() <<" "<< i->m_liaison.getBasepos().getY() <<" "<< i->m_liaison.getPlan() << std::endl;
         }
-        if ((i->m_classe) == 1){
+        if ((i->m_classe) == 1){///faire cast
             ofs << i->m_classe <<" "<< i->m_id <<" "<< i->m_taille.getX() <<" "<< i->m_taille.getY() <<" "<< (int)i->m_couleur.getRouge() <<" "<< (int)i->m_couleur.getVert() <<" "<< (int)i->m_couleur.getBleu() <<" "<< i->m_liaison.getRefpos().getX() <<" "<< i->m_liaison.getRefpos().getY() <<" "<< i->m_liaison.getBasepos().getX() <<" "<< i->m_liaison.getBasepos().getY() <<" "<< i->m_liaison.getPlan() << std::endl;
         }
         if ((i->m_classe) == 2){
             BlockBordure* a1 = dynamic_cast<BlockBordure*>(i);
-            ofs << a1->m_classe <<" "<< a1->m_id <<" "<< a1->m_taille.getX() <<" "<< a1->m_taille.getY() <<" "<< (int)a1->m_couleur.getRouge() <<" "<< (int)a1->m_couleur.getVert() <<" "<< (int)a1->m_couleur.getBleu() <<" "<< /*(int)a1->getBordure().getRouge() <<" "<< (int)a1->m_couleur.getVert() <<" "<< (int)a1->m_couleur.getBleu()<<" "<<*/ a1->m_liaison.getRefpos().getX() <<" "<< a1->m_liaison.getRefpos().getY() <<" "<< a1->m_liaison.getBasepos().getX() <<" "<< a1->m_liaison.getBasepos().getY() <<" "<< a1->m_liaison.getPlan() << std::endl;
+            ofs << a1->m_classe <<" "<< a1->m_id <<" "<< a1->m_taille.getX() <<" "<< a1->m_taille.getY() <<" "<< (int)a1->m_couleur.getRouge() <<" "<< (int)a1->m_couleur.getVert() <<" "<< (int)a1->m_couleur.getBleu() <<" "<< (int)a1->getBordure().getRouge() <<" "<< (int)a1->getBordure().getVert() <<" "<< (int)a1->getBordure().getBleu()<<" "<< a1->m_liaison.getRefpos().getX() <<" "<< a1->m_liaison.getRefpos().getY() <<" "<< a1->m_liaison.getBasepos().getX() <<" "<< a1->m_liaison.getBasepos().getY() <<" "<< a1->m_liaison.getPlan() << std::endl;
         }
         ofs << "[" << std::endl;
 

@@ -12,16 +12,6 @@ class Bordure
         /// Constructeurs
         Bordure(Couleur _bordure);
         Bordure();
-        virtual Couleur getBordure ();
 };
-
-///************************///
-///    METHODES INLINES    ///
-///************************///
-
-inline Couleur Bordure::getBordure()
-{
-    return m_bordure;
-}
 
 #endif // BORDURE_H_INCLUDED
