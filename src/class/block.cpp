@@ -21,11 +21,11 @@
 ///*************************///
 
 /* constructeur de base */
-Block::Block (double _classe,std::string _id, Coords _taille, Block* _Mere) : m_classe{_classe}, m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_Mere{_Mere}
+Block::Block (double _classe,std::string _id, Coords _taille, Block* _Mere,Couleur _couleur) : m_classe{_classe}, m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_Mere{_Mere},m_couleur{_couleur}
 {}
 
 /* Constructeur avec Initialisation nul */
-Block::Block() : m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}
+Block::Block() : m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_Mere{nullptr}, m_couleur{10,10,10}
 {}
 
 ///*************************///
@@ -66,9 +66,9 @@ void Block::initialiserOrigine()
 
 /* Creer une fille */
 // cree une nouvelle fille a partir de la mere
-void Block::ajouterFille(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D)
+void Block::ajouterFille(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D,Couleur _couleur)
 {
-    Block* nouv = new Block{_classe,_id, _taille, this};
+    Block* nouv = new Block{_classe,_id, _taille, this,_couleur};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
@@ -87,32 +87,20 @@ void Block::ajouterFille(double _classe,Coords _taille, std::string _id, Coords 
     }*/
 }
 
-/* Creer une fille couleur */
+/*
+ Creer une fille couleur avec bordures
 // cree une nouvelle fille a partir de la mere
-void Block::ajouterFilleCouleur(double _classe,Coords _taille, std::string _id, Coords _refpos,
-                                Coords _basepos, bool _plan3D, Couleur _couleur)
+void Block::ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure)
 {
-    BlockCouleur* nouv = new BlockCouleur{_classe, _id, _taille, this, _couleur};
+    BlockBordure* nouv = new BlockBordure{_classe,_id, _taille, this, _couleur, _bordure};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
-}
+}*/
 
-/* Creer une fille couleur avec bordures*/
-// cree une nouvelle fille a partir de la mere
-void Block::ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos,
-                                Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure)
+void Block::ajouterFilleCercle(double _classe,double _rayon, std::string _id, double _angle, Coords _basepos, bool _plan3D, Couleur _couleur)
 {
-    BlockCouleur* nouv = new BlockCouleur{_classe,_id, _taille, this, _couleur, _bordure};
-    nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
-    nouv->initialiserOrigine();
-    m_Filles.push_back(nouv);
-}
-
-void Block::ajouterFilleCercle(double _classe,double _rayon, std::string _id, double _angle,
-                                Coords _basepos, bool _plan3D)
-{
-    BlockCercle* nouv = new BlockCercle{_classe,_id, _rayon, this};
+    BlockCercle* nouv = new BlockCercle{_classe,_id, _rayon, this, _couleur};
     nouv->initialiserLiaison(_angle, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
@@ -250,15 +238,15 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
             if ((v->m_classe) == 0){
                 ofs << "    " << v->m_classe << " " << v->m_id << " " << v->m_taille.getX() << " " << v->m_taille.getY() << " " << v->m_liaison.getRefpos().getX() << " " << v->m_liaison.getRefpos().getY() << " " << v->m_liaison.getBasepos().getX() << " " << v->m_liaison.getBasepos().getY() << " " << v->m_liaison.getPlan() << std::endl;
             }
-            if ((v->m_classe) == 1){
-                BlockCouleur* a1 = dynamic_cast<BlockCouleur*>(v);
+            /*if ((v->m_classe) == 1){
+                BlockBordure* a1 = dynamic_cast<BlockBordure*>(v);
                 ofs << "    " << a1->m_classe << " " << a1->m_id << " " << a1->m_taille.getX() << " " << a1->m_taille.getY() << " " << a1->m_liaison.getRefpos().getX() << " " << a1->m_liaison.getRefpos().getY() << " " << a1->m_liaison.getBasepos().getX() <<" "<< a1->m_liaison.getBasepos().getY() << " " << a1->m_liaison.getPlan()<<" "<< (int)a1->getCouleur().getRouge() << " " << (int)a1->getCouleur().getVert() << " " << (int)a1->getCouleur().getBleu() << " " << (int)a1->getBordure().getRouge() << " " << (int)a1->getBordure().getVert() << " " << (int)a1->getBordure().getBleu() <<  std::endl;
             }
             if ((v->m_classe) == 2){
-                BlockCouleur* b1 = dynamic_cast<BlockCouleur*>(v);
+                BlockBordure* b1 = dynamic_cast<BlockBordure*>(v);
                 ofs << "    " << b1->m_classe << " " << b1->m_id << " " << b1->m_taille.getX() << " " << b1->m_taille.getY() << " " << b1->m_liaison.getRefpos().getX() << " " << b1->m_liaison.getRefpos().getY() << " " << b1->m_liaison.getBasepos().getX() <<" "<< b1->m_liaison.getBasepos().getY() << " " << b1->m_liaison.getPlan()<<" "<< (int)b1->getCouleur().getRouge() << " " << (int)b1->getCouleur().getVert() << " " << (int)b1->getCouleur().getBleu() <<  std::endl;
             }
-            /*if ((v->m_classe) == 3){
+            if ((v->m_classe) == 3){
                 BlockCercle* c1 = dynamic_cast<BlockCercle*>(v);
                 ofs << "    " << c1->m_classe << " " << c1->m_id << " " << c1->m_rayon << " " << c1->m_angle << " " <<  std::endl;
             }*/
@@ -312,6 +300,7 @@ void Block::sauvegarderScene2(std::vector <Block*> s)
     }
 }
 
+
 void Block::chargementScene()
 {
     int niveau = 0;
@@ -330,13 +319,14 @@ void Block::chargementScene()
     /// pour lire dedans comme si c'était une saisie clavier !
     std::istringstream iss{ligne};
     double classe,tailleX,tailleY,refposX,refposY,baseposX,baseposY;
+    uint8_t rouge,vert,bleu;
     std::string id;
     bool plan3D;
     /// l'objet  iss  se comporte comme std::cin !
     iss >> classe ;
-    iss >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+    iss >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D >> rouge >> vert >> bleu;
 
-    ajouterFille(classe, {tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+    ajouterFille(classe, {tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D,{rouge,vert,bleu});
 
     std::cout << classe << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
 
@@ -360,7 +350,7 @@ void Block::chargementScene()
             iss >> classe ;
             iss >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
             std::cout << classe << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
-            getFille(0)->ajouterFille(classe, {tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            getFille(0)->ajouterFille(classe, {tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D,{rouge,vert,bleu});
         }
         /*Niv 2*/if ( ligne.size()>=4 && ligne[4]=='[' && niveau==1 )
         {
@@ -380,7 +370,7 @@ void Block::chargementScene()
             iss >> classe ;
             iss >> id >> tailleX >> tailleY >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
             std::cout << classe << id << tailleX << tailleY << refposX << refposY << baseposX << baseposY << plan3D << std::endl << std::endl ;
-            getFille(0)->getFille(0)->ajouterFille(classe, {tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            getFille(0)->getFille(0)->ajouterFille(classe, {tailleX,tailleY},id, {refposX,refposY}, {baseposX,baseposY}, plan3D,{rouge,vert,bleu});
         }
 
     }/// Passage à la ligne suivante (prochain tour de boucle)
@@ -568,19 +558,13 @@ Block* parcourir(Coords taille, Coords origine, const Block &room)
 ///       OVERWRITING       ///
 ///*************************///
 
-//
-
-BlockCouleur::BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur)
-    : Block(_classe,_id, _taille, _Mere), m_couleur{_couleur}, m_bordure{m_couleur}
+/*
+BlockBordure::BlockBordure(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure): Block(_classe,_id, _taille, _Mere, _couleur),m_bordure{_bordure}
 { }
 
-
-BlockCouleur::BlockCouleur(double _classe,std::string _id, Coords _taille, Block* _Mere, Couleur _couleur, Couleur _bordure)
-    : Block(_classe,_id, _taille, _Mere), m_couleur{_couleur}, m_bordure{_bordure}
-{ }
 
 // overwriting de dessiner pour afficher la couleur en plus
-void BlockCouleur::dessiner(Svgfile &svgout)const
+void BlockBordure::dessiner(Svgfile &svgout)const
 {
     if(m_bordure != m_couleur)
         svgout.addRectangle(m_origine.getX(), m_origine.getY(),
@@ -595,3 +579,4 @@ void BlockCouleur::dessiner(Svgfile &svgout)const
                             m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
                             m_couleur);
 }
+*/

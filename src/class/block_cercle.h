@@ -8,7 +8,7 @@ class BlockCercle : public Block
 public:
 
     /// constructeurs
-    BlockCercle(double _classe, std::string _id, double _rayon, Block* _Mere);
+    BlockCercle(double _classe, std::string _id, double _rayon, Block* _Mere,Couleur _couleur);
     BlockCercle();
 
     virtual void initialiserLiaison(double _angle, Coords _basepos, bool _plan3D);

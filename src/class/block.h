@@ -8,8 +8,6 @@
 #include "../svg/svgfile.h"
 #include "../interface/couleur.h"
 
-class BlockCouleur;
-
 class Block
 {
 protected :
@@ -21,21 +19,21 @@ protected :
     Coords m_taille;
     Liaison m_liaison;
     Block* m_Mere;
+    Couleur m_couleur;
 
 public :
 
 
     /// constructeurs
-    Block(double _classe, std::string _id, Coords _taille, Block* _Mere);
+    Block(double _classe, std::string _id, Coords _taille, Block* _Mere,Couleur _couleur);
     Block();
 
     virtual ~Block()=default;
 
     /// Ajout et initialisation
-    virtual void ajouterFille(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D);
-    virtual void ajouterFilleCouleur(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
-    virtual void ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
-    virtual void ajouterFilleCercle(double _classe,double _rayon, std::string _id, double _angle, Coords _basepos, bool _plan3D);
+    virtual void ajouterFille(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur);
+    //virtual void ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
+    virtual void ajouterFilleCercle(double _classe,double _rayon, std::string _id, double _angle, Coords _basepos, bool _plan3D, Couleur _couleur);
     virtual void initialiser(Coords _taille, std::string _id);
     virtual void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void initialiserOrigine();
@@ -168,19 +166,5 @@ public :
     /// Trouver un element
     //virtual Block* parcourir(const std::string& id);
 };
-
-///************************///
-///    METHODES INLINES    ///
-///************************///
-
-inline Couleur BlockCouleur::getCouleur()const
-{
-    return m_couleur;
-}
-
-inline Couleur BlockCouleur::getBordure()const
-{
-    return m_bordure;
-}
 
 #endif // BLOCK_H_INCLUDED
