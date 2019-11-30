@@ -51,6 +51,8 @@
 		<Unit filename="src/class/liaison_glissiere.h" />
 		<Unit filename="src/interface/couleur.cpp" />
 		<Unit filename="src/interface/couleur.h" />
+		<Unit filename="src/interface/menu.cpp" />
+		<Unit filename="src/interface/menu.h" />
 		<Unit filename="src/svg/svgfile.cpp" />
 		<Unit filename="src/svg/svgfile.h" />
 		<Unit filename="src/util/util.cpp" />

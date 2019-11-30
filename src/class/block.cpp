@@ -15,8 +15,8 @@
 #define MAX_COLOR 100
 
 /// Definition lecture fichier :
-#define FICHIERSAUV "sauvegarde.rom"
-#define FICHIERTEST "sauvegarde2.rom"
+#define FICHIERSAUV "src/rom/sauvegarde.rom"
+#define FICHIERTEST "src/rom/sauvegarde2.rom"
 
 ///*************************///
 ///      CONSTRUCTEURS      ///
@@ -402,7 +402,7 @@ void Block::sauvegarde()
     sauvegarderScene1(m_Filles);
 }
 
-/*Sauvegarde des filles pour la sauvegarde standard */
+/*Sauvegarde de la scène*/
 // Methode qui recupere un vecteur de pointeur de block pour les sauvegarder
 void Block::sauvegarderScene1(std::vector <Block*> s)
 {
@@ -416,7 +416,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
             ofs << i->m_classe <<" "<< i->m_id <<" "<< i->m_taille.getX() <<" "<< i->m_taille.getY() <<" "<< (int)i->m_couleur.getRouge()
             <<" "<< (int)i->m_couleur.getVert() <<" "<< (int)i->m_couleur.getBleu() <<" "<< i->m_liaison->getRefpos().getX()
             <<" "<< i->m_liaison->getRefpos().getY() <<" "<< i->m_liaison->getBasepos().getX() <<" "<< i->m_liaison->getBasepos().getY()
-            <<" "<< i->m_liaison->getPlan() << std::endl;
+            <<" "<< (unsigned int)i->m_liaison->getPlan() << std::endl;
         }
         if ((i->m_classe) == 1)
         {
@@ -424,7 +424,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
             ofs << c1->m_classe <<" "<< c1->m_id <<" "<< c1->getRayon() <<" "<< (int)c1->m_couleur.getRouge()
             <<" "<< (int)c1->m_couleur.getVert() <<" "<< (int)c1->m_couleur.getBleu() <<" "<< c1->m_liaison->getRefpos().getX()
             <<" "<< c1->m_liaison->getRefpos().getY() <<" "<< c1->m_liaison->getBasepos().getX() <<" "<< c1->m_liaison->getBasepos().getY()
-            <<" "<< c1->m_liaison->getPlan() << std::endl;
+            <<" "<< (unsigned int)c1->m_liaison->getPlan() << std::endl;
         }
         if ((i->m_classe) == 2)
         {
@@ -433,7 +433,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
             <<" "<< (int)a1->m_couleur.getVert() <<" "<< (int)a1->m_couleur.getBleu() <<" "<< (int)a1->getBordure().getRouge()
             <<" "<< (int)a1->getBordure().getVert() <<" "<< (int)a1->getBordure().getBleu()<<" "<< a1->m_liaison->getRefpos().getX()
             <<" "<< a1->m_liaison->getRefpos().getY() <<" "<< a1->m_liaison->getBasepos().getX() <<" "<< a1->m_liaison->getBasepos().getY()
-            <<" "<< a1->m_liaison->getPlan() << std::endl;
+            <<" "<< (unsigned int)a1->m_liaison->getPlan() << std::endl;
         }
         if ((i->m_classe) == 3)
         {
@@ -442,7 +442,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
             <<" "<< (int)b1->m_couleur.getVert() <<" "<< (int)b1->m_couleur.getBleu() <<" "<< (int)b1->getBordure().getRouge()
             <<" "<< (int)b1->getBordure().getVert() <<" "<< (int)b1->getBordure().getBleu()<<" "<< b1->m_liaison->getRefpos().getX()
             <<" "<< b1->m_liaison->getRefpos().getY() <<" "<< b1->m_liaison->getBasepos().getX() <<" "<< b1->m_liaison->getBasepos().getY()
-            <<" "<< b1->m_liaison->getPlan() << std::endl;
+            <<" "<< (unsigned int)b1->m_liaison->getPlan() << std::endl;
         }
         ofs << "[" << std::endl;
 
@@ -453,7 +453,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                 ofs <<"    "<< v->m_classe <<" "<< v->m_id <<" "<< v->m_taille.getX() <<" "<< v->m_taille.getY() <<" "<< (int)v->m_couleur.getRouge()
                 <<" "<< (int)v->m_couleur.getVert() <<" "<< (int)v->m_couleur.getBleu() <<" "<< v->m_liaison->getRefpos().getX()
                 <<" "<< v->m_liaison->getRefpos().getY() <<" "<< v->m_liaison->getBasepos().getX() <<" "<< v->m_liaison->getBasepos().getY()
-                <<" "<< v->m_liaison->getPlan() << std::endl;
+                <<" "<< (unsigned int)v->m_liaison->getPlan() << std::endl;
             }
             if ((v->m_classe) == 1)
             {
@@ -461,7 +461,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                 ofs <<"    "<< c2->m_classe <<" "<< c2->m_id <<" "<< c2->getRayon() <<" "<< (int)c2->m_couleur.getRouge()
                 <<" "<< (int)c2->m_couleur.getVert() <<" "<< (int)c2->m_couleur.getBleu() <<" "<< c2->m_liaison->getRefpos().getX()
                 <<" "<< c2->m_liaison->getRefpos().getY() <<" "<< c2->m_liaison->getBasepos().getX() <<" "<< c2->m_liaison->getBasepos().getY()
-                <<" "<< c2->m_liaison->getPlan() << std::endl;
+                <<" "<< (unsigned int)c2->m_liaison->getPlan() << std::endl;
             }
             if ((v->m_classe) == 2)
             {
@@ -470,7 +470,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                 <<" "<< (int)a2->m_couleur.getVert() <<" "<< (int)a2->m_couleur.getBleu() <<" "<< (int)a2->getBordure().getRouge()
                 <<" "<< (int)a2->getBordure().getVert() <<" "<< (int)a2->getBordure().getBleu()<<" "<< a2->m_liaison->getRefpos().getX()
                 <<" "<< a2->m_liaison->getRefpos().getY() <<" "<< a2->m_liaison->getBasepos().getX() <<" "<< a2->m_liaison->getBasepos().getY()
-                <<" "<< a2->m_liaison->getPlan() << std::endl;
+                <<" "<< (unsigned int)a2->m_liaison->getPlan() << std::endl;
             }
             if ((v->m_classe) == 3)
             {
@@ -479,7 +479,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                 <<" "<< (int)b2->m_couleur.getVert() <<" "<< (int)b2->m_couleur.getBleu() <<" "<< (int)b2->getBordure().getRouge()
                 <<" "<< (int)b2->getBordure().getVert() <<" "<< (int)b2->getBordure().getBleu()<<" "<< b2->m_liaison->getRefpos().getX()
                 <<" "<< b2->m_liaison->getRefpos().getY() <<" "<< b2->m_liaison->getBasepos().getX() <<" "<< b2->m_liaison->getBasepos().getY()
-                <<" "<< b2->m_liaison->getPlan() << std::endl;
+                <<" "<< (unsigned int)b2->m_liaison->getPlan() << std::endl;
             }
             ofs << "    [" << std::endl;
 
@@ -490,7 +490,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                     ofs <<"        "<< z->m_classe <<" "<< z->m_id <<" "<< z->m_taille.getX() <<" "<< z->m_taille.getY() <<" "<< (int)z->m_couleur.getRouge()
                     <<" "<< (int)z->m_couleur.getVert() <<" "<< (int)z->m_couleur.getBleu() <<" "<< z->m_liaison->getRefpos().getX()
                     <<" "<< z->m_liaison->getRefpos().getY() <<" "<< z->m_liaison->getBasepos().getX() <<" "<< z->m_liaison->getBasepos().getY()
-                    <<" "<< z->m_liaison->getPlan() << std::endl;
+                    <<" "<< (unsigned int)z->m_liaison->getPlan() << std::endl;
                 }
                 if ((z->m_classe) == 1)
                 {
@@ -498,7 +498,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                     ofs <<"        "<< c3->m_classe <<" "<< c3->m_id <<" "<< c3->getRayon() <<" "<< (int)c3->m_couleur.getRouge()
                     <<" "<< (int)c3->m_couleur.getVert() <<" "<< (int)c3->m_couleur.getBleu() <<" "<< c3->m_liaison->getRefpos().getX()
                     <<" "<< c3->m_liaison->getRefpos().getY() <<" "<< c3->m_liaison->getBasepos().getX() <<" "<< c3->m_liaison->getBasepos().getY()
-                    <<" "<< c3->m_liaison->getPlan() << std::endl;
+                    <<" "<< (unsigned int)c3->m_liaison->getPlan() << std::endl;
                 }
                 if ((z->m_classe) == 2)
                 {
@@ -507,7 +507,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                     <<" "<< (int)a3->m_couleur.getVert() <<" "<< (int)a3->m_couleur.getBleu() <<" "<< (int)a3->getBordure().getRouge()
                     <<" "<< (int)a3->getBordure().getVert() <<" "<< (int)a3->getBordure().getBleu()<<" "<< a3->m_liaison->getRefpos().getX()
                     <<" "<< a3->m_liaison->getRefpos().getY() <<" "<< a3->m_liaison->getBasepos().getX() <<" "<< a3->m_liaison->getBasepos().getY()
-                    <<" "<< a3->m_liaison->getPlan() << std::endl;
+                    <<" "<< (unsigned int)a3->m_liaison->getPlan() << std::endl;
                 }
                 if ((z->m_classe) == 3)
                 {
@@ -516,7 +516,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                     <<" "<< (int)b3->m_couleur.getVert() <<" "<< (int)b3->m_couleur.getBleu() <<" "<< (int)b3->getBordure().getRouge()
                     <<" "<< (int)b3->getBordure().getVert() <<" "<< (int)b3->getBordure().getBleu()<<" "<< b3->m_liaison->getRefpos().getX()
                     <<" "<< b3->m_liaison->getRefpos().getY() <<" "<< b3->m_liaison->getBasepos().getX() <<" "<< b3->m_liaison->getBasepos().getY()
-                    <<" "<< b3->m_liaison->getPlan() << std::endl;
+                    <<" "<< (unsigned int)b3->m_liaison->getPlan() << std::endl;
                 }
                 ofs << "        [" << std::endl;
 
@@ -527,7 +527,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                         ofs << "            "<< b->m_classe <<" "<< b->m_id <<" "<< b->m_taille.getX() <<" "<< b->m_taille.getY() <<" "<< (int)b->m_couleur.getRouge()
                         <<" "<< (int)b->m_couleur.getVert() <<" "<< (int)b->m_couleur.getBleu() <<" "<< b->m_liaison->getRefpos().getX()
                         <<" "<< b->m_liaison->getRefpos().getY() <<" "<< b->m_liaison->getBasepos().getX() <<" "<< b->m_liaison->getBasepos().getY()
-                        <<" "<< b->m_liaison->getPlan() << std::endl;
+                        <<" "<< (unsigned int)b->m_liaison->getPlan() << std::endl;
                     }
                     if ((b->m_classe) == 1)
                     {
@@ -535,7 +535,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                         ofs << "            "<< c4->m_classe <<" "<< c4->m_id <<" "<< c4->getRayon() <<" "<< (int)c4->m_couleur.getRouge()
                         <<" "<< (int)c4->m_couleur.getVert() <<" "<< (int)c4->m_couleur.getBleu() <<" "<< c4->m_liaison->getRefpos().getX()
                         <<" "<< c4->m_liaison->getRefpos().getY() <<" "<< c4->m_liaison->getBasepos().getX() <<" "<< c4->m_liaison->getBasepos().getY()
-                        <<" "<< c4->m_liaison->getPlan() << std::endl;
+                        <<" "<< (unsigned int)c4->m_liaison->getPlan() << std::endl;
                     }
                     if ((b->m_classe) == 2)
                     {
@@ -544,7 +544,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                         <<" "<< (int)a4->m_couleur.getVert() <<" "<< (int)a4->m_couleur.getBleu() <<" "<< (int)a4->getBordure().getRouge()
                         <<" "<< (int)a4->getBordure().getVert() <<" "<< (int)a4->getBordure().getBleu()<<" "<< a4->m_liaison->getRefpos().getX()
                         <<" "<< a4->m_liaison->getRefpos().getY() <<" "<< a4->m_liaison->getBasepos().getX() <<" "<< a4->m_liaison->getBasepos().getY()
-                        <<" "<< a4->m_liaison->getPlan() << std::endl;
+                        <<" "<< (unsigned int)a4->m_liaison->getPlan() << std::endl;
                     }
                     if ((b->m_classe) == 3)
                     {
@@ -553,7 +553,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                         <<" "<< (int)b4->m_couleur.getVert() <<" "<< (int)b4->m_couleur.getBleu() <<" "<< (int)b4->getBordure().getRouge()
                         <<" "<< (int)b4->getBordure().getVert() <<" "<< (int)b4->getBordure().getBleu()<<" "<< b4->m_liaison->getRefpos().getX()
                         <<" "<< b4->m_liaison->getRefpos().getY() <<" "<< b4->m_liaison->getBasepos().getX() <<" "<< b4->m_liaison->getBasepos().getY()
-                        <<" "<< b4->m_liaison->getPlan() << std::endl;
+                        <<" "<< (unsigned int)b4->m_liaison->getPlan() << std::endl;
                     }
                     ofs << "            [" << std::endl;
 
@@ -563,7 +563,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                         {
                             ofs << "                " << r->m_classe <<" "<< r->m_id <<" "<< r->m_taille.getX() <<" "<< r->m_taille.getY() <<" "<< (int)r->m_couleur.getRouge()
                             <<" "<< (int)r->m_couleur.getVert() <<" "<< (int)r->m_couleur.getBleu() <<" "<< r->m_liaison->getRefpos().getX() <<" "<< r->m_liaison->getRefpos().getY()
-                            <<" "<< r->m_liaison->getBasepos().getX() <<" "<< r->m_liaison->getBasepos().getY() <<" "<< r->m_liaison->getPlan() << std::endl;
+                            <<" "<< r->m_liaison->getBasepos().getX() <<" "<< r->m_liaison->getBasepos().getY() <<" "<< (unsigned int)r->m_liaison->getPlan() << std::endl;
                         }
                         if ((r->m_classe) == 1)
                         {
@@ -571,7 +571,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                             ofs << "                " << c5->m_classe <<" "<< c5->m_id <<" "<< c5->getRayon() <<" "<< (int)c5->m_couleur.getRouge()
                             <<" "<< (int)c5->m_couleur.getVert() <<" "<< (int)c5->m_couleur.getBleu() <<" "<< c5->m_liaison->getRefpos().getX()
                             <<" "<< c5->m_liaison->getRefpos().getY() <<" "<< c5->m_liaison->getBasepos().getX() <<" "<< c5->m_liaison->getBasepos().getY()
-                            <<" "<< c5->m_liaison->getPlan() << std::endl;
+                            <<" "<< (unsigned int)c5->m_liaison->getPlan() << std::endl;
                         }
                         if ((r->m_classe) == 2)
                         {
@@ -580,7 +580,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                             <<" "<< (int)a5->m_couleur.getVert() <<" "<< (int)a5->m_couleur.getBleu() <<" "<< (int)a5->getBordure().getRouge()
                             <<" "<< (int)a5->getBordure().getVert() <<" "<< (int)a5->getBordure().getBleu()<<" "<< a5->m_liaison->getRefpos().getX()
                             <<" "<< a5->m_liaison->getRefpos().getY() <<" "<< a5->m_liaison->getBasepos().getX() <<" "<< a5->m_liaison->getBasepos().getY()
-                            <<" "<< a5->m_liaison->getPlan() << std::endl;
+                            <<" "<< (unsigned int)a5->m_liaison->getPlan() << std::endl;
                         }
                         if ((r->m_classe) == 3)
                         {
@@ -589,7 +589,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                             <<" "<< (int)b5->m_couleur.getVert() <<" "<< (int)b5->m_couleur.getBleu() <<" "<< (int)b5->getBordure().getRouge()
                             <<" "<< (int)b5->getBordure().getVert() <<" "<< (int)b5->getBordure().getBleu()<<" "<< b5->m_liaison->getRefpos().getX()
                             <<" "<< b5->m_liaison->getRefpos().getY() <<" "<< b5->m_liaison->getBasepos().getX() <<" "<< b5->m_liaison->getBasepos().getY()
-                            <<" "<< b5->m_liaison->getPlan() << std::endl;
+                            <<" "<< (unsigned int)b5->m_liaison->getPlan() << std::endl;
                         }
                     }
                     ofs << "            ]" << std::endl;
@@ -602,15 +602,16 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
     }
 }
 
+/*Chargement de la scène depuis le fichier de sauvegarde*/
 void Block::chargementScene()
 {
     int niveau = 0;
+    int compteurniv1 = 0;
+    int compteurniv2 = 0;
+    int compteurniv3 = 0;
+    int compteurniv4 = 0;
     /// Ouverture d'un fichier en lecture (ifstream => input file stream)
     std::ifstream ifs{FICHIERSAUV};
-    /// Test ouverture, si problème alors quitter avec description de l'échec
-    if ( !ifs )
-        throw std::runtime_error( "Can't read/open data.txt" );
-    /// Ok à partir d'ici le fichier est bien ouvert
 
     /// Lecture ligne par ligne : TRES IMPORTANT
     std::string ligne;
@@ -619,17 +620,17 @@ void Block::chargementScene()
     /// On a une ligne avec contenu, avec on va fabriquer un "flot chaîne"
     /// pour lire dedans comme si c'était une saisie clavier !
     std::istringstream iss{ligne};
-    double classe,tailleX,tailleY,refposX,refposY,baseposX,baseposY;
-    int rouge,vert,bleu;
+    double classe,tailleX,tailleY,refposX,refposY,baseposX,baseposY,rayon;
+    int rouge,vert,bleu,rougeb,vertb,bleub;
     std::string id;
-    bool plan3D;
+    unsigned int plan3D;
     /// l'objet  iss  se comporte comme std::cin !
     iss >> classe ;
-    iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+    iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
 
-    ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+    ajouterFilleBordure(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, plan3D);
 
-    std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+    std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
 
     while ( std::getline(ifs, ligne) )
     {
@@ -639,22 +640,40 @@ void Block::chargementScene()
             std::cout << "Acces Niveau 1" << std::endl<< std::endl;
             std::getline(ifs, ligne);
         }
-
-
         if ( ligne[0]==']' && niveau == 1 )
         {
             niveau = 0;
             std::cout << "Fermeture du niveau 1" << std::endl<< std::endl;
         }
-
         if ( ligne[4]!='[' && ligne[4]!=']' && niveau == 1 )
         {
             std::cout << "Lecture du niveau 1" << std::endl<< std::endl;
             std::istringstream iss{ligne};
             iss >> classe ;
-            iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-            std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
-            getFille(0)->ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            if (classe == 0)
+            {
+                iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+            if (classe == 1)
+            {
+                iss >> id >> rayon >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->ajouterFilleCercle(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+            if (classe == 2)
+            {
+                iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->ajouterFilleBordure(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+            if (classe == 3)
+            {
+                iss >> id >> rayon >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->ajouterFilleCercleBordure(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
         }
 
         /*Niv 2*/if ( ligne.size()>=4 && ligne[4]=='[' && niveau==1 )
@@ -667,17 +686,124 @@ void Block::chargementScene()
         {
             niveau = 1;
             std::cout << "Fermeture du niveau 2" << std::endl<< std::endl;
+            compteurniv1 = compteurniv1 +1;
         }
         if ( ligne[8]!='[' && ligne[8]!=']' && niveau == 2 )
         {
             std::cout << "Lecture du niveau 2" << std::endl<< std::endl;
             std::istringstream iss{ligne};
             iss >> classe ;
-            iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-            std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
-            getFille(0)->getFille(0)->ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            if (classe == 0)
+            {
+                iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->getFille(compteurniv1)->ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+            if (classe == 1)
+            {
+                iss >> id >> rayon >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->getFille(compteurniv1)->ajouterFilleCercle(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+            if (classe == 2)
+            {
+                iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->getFille(compteurniv1)->ajouterFilleBordure(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+            if (classe == 3)
+            {
+                iss >> id >> rayon >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->getFille(compteurniv1)->ajouterFilleCercleBordure(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
         }
 
+        /*Niv 3*/if ( ligne.size()>=8 && ligne[8]=='[' && niveau==2 )
+        {
+            niveau = 3;
+            std::cout << "Acces niveau 3" << std::endl<< std::endl;
+            std::getline(ifs, ligne);
+        }
+        if (ligne[8]==']' && niveau == 3 )
+        {
+            niveau = 2;
+            std::cout << "Fermeture du niveau 3" << std::endl<< std::endl;
+            compteurniv2 = compteurniv2 +1;
+        }
+        if ( ligne[12]!='[' && ligne[12]!=']' && niveau == 3 )
+        {
+            std::cout << "Lecture du niveau 3" << std::endl<< std::endl;
+            std::istringstream iss{ligne};
+            iss >> classe ;
+            if (classe == 0)
+            {
+                iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+            if (classe == 1)
+            {
+                iss >> id >> rayon >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->ajouterFilleCercle(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+            if (classe == 2)
+            {
+                iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->ajouterFilleBordure(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+            if (classe == 3)
+            {
+                iss >> id >> rayon >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->ajouterFilleCercleBordure(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+        }
+
+        /*Niv 4*/ if ( ligne.size()>=12 && ligne[12]=='[' && niveau==3 )
+        {
+            niveau = 4;
+            std::cout << "Acces niveau 4" << std::endl<< std::endl;
+            std::getline(ifs, ligne);
+        }
+        if (ligne[12]==']' && niveau == 4 )
+        {
+            niveau = 3;
+            std::cout << "Fermeture du niveau 4" << std::endl<< std::endl;
+            compteurniv3 = compteurniv3 +1;
+        }
+        if ( ligne[16]!='[' && ligne[16]!=']' && niveau == 4 )
+        {
+            std::cout << "Lecture du niveau 4" << std::endl<< std::endl;
+            std::istringstream iss{ligne};
+            iss >> classe ;
+            if (classe == 0)
+            {
+                iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->getFille(compteurniv3)->ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+            if (classe == 1)
+            {
+                iss >> id >> rayon >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->getFille(compteurniv3)->ajouterFilleCercle(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+            if (classe == 2)
+            {
+                iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->getFille(compteurniv3)->ajouterFilleBordure(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+            if (classe == 3)
+            {
+                iss >> id >> rayon >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+                std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
+                getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->getFille(compteurniv3)->ajouterFilleCercleBordure(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, plan3D);
+            }
+        }
     }/// Passage à la ligne suivante (prochain tour de boucle)
     sauvegarderScene1(m_Filles);
 }

@@ -13,7 +13,7 @@
 #include "../class/block_cercle_bordure.h"
 
 /// Lecture fichier
-#define FICHIER "sauvegarde.rom"
+#define FICHIER "src/rom/sauvegarde.rom"
 
 /// Define scene
 #define HAUTEUR_SCENE 600
