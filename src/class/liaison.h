@@ -19,13 +19,13 @@ public :
     /// constructeurs
     Liaison(Coords _refpos, Coords _basepos, unsigned int _plan);
     Liaison();
-    ~Liaison() = default;
+    virtual ~Liaison() = default;
 
     /// getteurs et setteurs
-    void setteur(Coords _refpos, Coords _basepos, unsigned int _plan);
-    Coords getBasepos() const;
-    Coords getRefpos() const;
-    unsigned int getPlan() const;
+    virtual void setteur(Coords _refpos, Coords _basepos, unsigned int _plan);
+    virtual Coords getBasepos() const;
+    virtual Coords getRefpos() const;
+    virtual unsigned int getPlan() const;
 
 };
 

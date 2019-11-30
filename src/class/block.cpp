@@ -1,6 +1,5 @@
 #include "block.h"
 #include "../svg/svgfile.h"
-#include "liaison.h"
 #include "block_cercle.h"
 #include "block_bordure.h"
 
@@ -12,6 +11,7 @@
 
 #define HAUTEUR_SCENE 600
 #define LARGEUR_SCENE 1000
+#define MAX_COLOR 100
 
 /// Definition lecture fichier :
 #define FICHIERSAUV "sauvegarde.rom"
@@ -23,12 +23,12 @@
 
 /* constructeur de base */
 Block::Block (double _classe, std::string _id, Coords _taille, Couleur _couleur, Block* _Mere) :
-    m_classe{_classe}, m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_couleur{_couleur}, m_Mere{_Mere}, m_liaison{{0,0},{0,0},0}
+    m_classe{_classe}, m_id{_id}, m_origine{0,0}, m_taille{_taille}, m_couleur{_couleur}, m_Mere{_Mere}, m_liaison{nullptr}
 {}
 
 /* Constructeur avec Initialisation nul */
 Block::Block() :
-    m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_couleur{10,10,10}, m_Mere{nullptr}, m_liaison{{0,0},{0,0},0}
+    m_classe{0}, m_id{"A"}, m_origine{0,0}, m_taille{0,0}, m_couleur{10,10,10}, m_Mere{nullptr}, m_liaison{nullptr}
 {}
 
 ///*************************///
@@ -41,6 +41,26 @@ void Block::ajouterFille(double _classe, std::string _id, Coords _taille, Couleu
 {
     Block* nouv = new Block{_classe, _id, _taille, _couleur, this};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
+    nouv->initialiserOrigine();
+    m_Filles.push_back(nouv);
+
+    //methode qui teste de la position du nouveau block dans la scene
+    if(!(nouv->TestRefPos()))
+    {
+        delete m_Filles[m_Filles.size()-1];
+        m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
+        std::cout << "Liaison incorrect" << std::endl;
+    }
+    else
+    {
+        std::cout << nouv->m_origine << std::endl;
+    }
+}
+
+void Block::ajouterFilleGlissiere(double _classe, std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D)
+{
+    Block* nouv = new Block{_classe, _id, _taille, _couleur, this};
+    nouv->initialiserGlissiere(_refpos, _basepos, _baseposfin, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
 
@@ -99,20 +119,45 @@ void Block::initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D)
     unsigned int _plan;
     if(_plan3D)
     {
-        _plan = m_Mere->getLiaison().getPlan() + 1;
+        _plan = m_Mere->getLiaison()->getPlan() + 1;
     }
     else
     {
         if(m_Mere!=NULL)
         {
-            _plan = m_Mere->getLiaison().getPlan();
+            _plan = m_Mere->getLiaison()->getPlan();
         }
         else
         {
             _plan = 0;
         }
     }
-    m_liaison.setteur(_refpos,_basepos,_plan);
+    m_liaison = new Liaison(_refpos,_basepos,_plan);
+}
+
+void Block::initialiserGlissiere(Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D)
+{
+        unsigned int _plan;
+    if(_plan3D)
+    {
+        _plan = m_Mere->getLiaison()->getPlan() + 1;
+    }
+    else
+    {
+        if(m_Mere!=NULL)
+        {
+            _plan = m_Mere->getLiaison()->getPlan();
+        }
+        else
+        {
+            _plan = 0;
+        }
+    }
+    //LiaisonGlissiere* glissiere = dynamic_cast<LiaisonGlissiere*>()
+    // test
+    LiaisonGlissiere* nouv = new LiaisonGlissiere(_refpos,_basepos,_baseposfin,_plan);
+    m_liaison = nouv;
+    //m_liaison = new LiaisonGlissiere(_refpos,_basepos,_baseposfin,_plan);
 }
 
 /* Initialisation de m_origine */
@@ -121,11 +166,11 @@ void Block::initialiserOrigine()
 {
     if(m_Mere == nullptr)
     {
-        m_origine = m_liaison.getBasepos() - m_liaison.getRefpos();
+        m_origine = m_liaison->getBasepos() - m_liaison->getRefpos();
     }
     else
     {
-        m_origine = m_Mere->getOrigine() + m_liaison.getBasepos() - m_liaison.getRefpos();
+        m_origine = m_Mere->getOrigine() + m_liaison->getBasepos() - m_liaison->getRefpos();
     }
 }
 
@@ -149,14 +194,40 @@ void Block::dessiner(Svgfile &svgout)const
 // affichage svg d'une croix noir a l'emplacement de la liaison de base
 void Block::dessinerLiaisonsBase(Svgfile& svgout)const
 {
-    svgout.addCross(m_Mere->getOrigine().getX() + m_liaison.getBasepos().getX(), m_Mere->getOrigine().getY() + m_liaison.getBasepos().getY(), 6, "black");
+    // on regarde si la couleur de la mere et de la fille n'a pas une de ses valeurs trop foncee (definir avec MAX_COLOR : valeur de reference)
+    std::string couleur {"white"};
+    if ((((int)getMere()->getCouleur().getBleu() > MAX_COLOR) && ((int)m_couleur.getBleu() > MAX_COLOR))
+        || (((int)(int)getMere()->getCouleur().getVert() > MAX_COLOR) && ((int)m_couleur.getBleu() > MAX_COLOR))
+        || (((int)(int)getMere()->getCouleur().getRouge() > MAX_COLOR)) && ((int)m_couleur.getBleu() > MAX_COLOR))
+            couleur = "black";
+    LiaisonGlissiere* glissiere = dynamic_cast<LiaisonGlissiere*>(m_liaison);
+    if (glissiere)
+    {
+        // dessin de la croix position de base
+        svgout.addCross(m_Mere->getOrigine().getX() + glissiere->getBasepos().getX(), m_Mere->getOrigine().getY() + glissiere->getBasepos().getY(), 6, couleur);
+        // dessin de la croix position de base fin
+        svgout.addCross(m_Mere->getOrigine().getX() + glissiere->getFinbasepos().getX(), m_Mere->getOrigine().getY() + glissiere->getFinbasepos().getY(), 6, couleur);
+        // dessin du trait
+        svgout.addLine(m_Mere->getOrigine().getX() + glissiere->getBasepos().getX(), m_Mere->getOrigine().getY() + glissiere->getBasepos().getY(),
+                        m_Mere->getOrigine().getX() + glissiere->getFinbasepos().getX(), m_Mere->getOrigine().getY() + glissiere->getFinbasepos().getY(), couleur);
+    }
+
+    else
+    {
+
+    }
+    svgout.addCross(m_Mere->getOrigine().getX() + m_liaison->getBasepos().getX(), m_Mere->getOrigine().getY() + m_liaison->getBasepos().getY(), 6, couleur);
 }
 
 /* Dessin liaison de reference */
 // affichage svg d'une croix rouge a l'emplacement de la liaison de reference
 void Block::dessinerLiaisonsRef(Svgfile& svgout)const
 {
-    svgout.addCross(m_origine.getX() + m_liaison.getRefpos().getX(), m_origine.getY() + m_liaison.getRefpos().getY(), 4, "red");
+    std::string couleur {"red"};
+    // si la fille est de couleur rouge alors on change la couleur
+    if ((int)m_couleur.getRouge() > 200)
+        couleur = "blue";
+    svgout.addCross(m_origine.getX() + m_liaison->getRefpos().getX(), m_origine.getY() + m_liaison->getRefpos().getY(), 4, couleur);
 }
 
 /* Dessin de toutes les liaisons */
@@ -184,9 +255,7 @@ void Block::toutDessinerLiaisons(Svgfile& svgout) const
 void Block::dessinerId(Svgfile &svgout) const
 {
     // on ecrit le nom du bloc en noir uniquement si la couleur du block de base n'est pas trop sombre
-    if ((((int)m_couleur.getBleu() > 100) && ((int)m_couleur.getRouge() > 100)) ||
-            (((int)m_couleur.getBleu() > 100) && ((int)m_couleur.getVert() > 100)) ||
-            (((int)m_couleur.getVert() > 100) && ((int)m_couleur.getRouge() > 100)))
+    if (((int)m_couleur.getBleu() > MAX_COLOR) || ((int)m_couleur.getVert() > MAX_COLOR) || ((int)m_couleur.getRouge() > MAX_COLOR))
         svgout.addText(m_origine.getX()+(m_taille.getX()/2) - (m_id.size())*3.5,m_origine.getY()+(m_taille.getY()/2)+3.5,m_id,"black");
     else
         svgout.addText(m_origine.getX()+(m_taille.getX()/2) - (m_id.size())*3.5,m_origine.getY()+(m_taille.getY()/2)+3.5,m_id,"white");
@@ -219,13 +288,13 @@ bool Block::TestRefPos()const
 {
     bool test = 0;
 
-    if(RefPosDansBloc(m_liaison, m_taille))
+    if(RefPosDansBloc(*m_liaison, m_taille))
     {
-        if(BasePosDansBlocMere(m_liaison, m_Mere))
+        if(BasePosDansBlocMere(*m_liaison, m_Mere))
         {
-            if(MemePlan(m_liaison, m_Mere))
+            if(MemePlan(*m_liaison, m_Mere))
             {
-                if(TestBordure(m_taille, m_liaison.getRefpos(), m_liaison.getBasepos(), m_liaison.getPlan(), m_id, m_Mere))
+                if(TestBordure(m_taille, m_liaison->getRefpos(), m_liaison->getBasepos(), m_liaison->getPlan(), m_id, m_Mere))
                 {
                     test = 1;
                 }
@@ -270,16 +339,26 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
     {
         if ((i->m_classe) == 0)
         {
-            ofs << i->m_classe <<" "<< i->m_id <<" "<< i->m_taille.getX() <<" "<< i->m_taille.getY() <<" "<< (int)i->m_couleur.getRouge() <<" "<< (int)i->m_couleur.getVert() <<" "<< (int)i->m_couleur.getBleu() <<" "<< i->m_liaison.getRefpos().getX() <<" "<< i->m_liaison.getRefpos().getY() <<" "<< i->m_liaison.getBasepos().getX() <<" "<< i->m_liaison.getBasepos().getY() <<" "<< i->m_liaison.getPlan() << std::endl;
+            ofs << i->m_classe <<" "<< i->m_id <<" "<< i->m_taille.getX() <<" "<< i->m_taille.getY() <<" "<< (int)i->m_couleur.getRouge()
+            <<" "<< (int)i->m_couleur.getVert() <<" "<< (int)i->m_couleur.getBleu() <<" "<< i->m_liaison->getRefpos().getX()
+            <<" "<< i->m_liaison->getRefpos().getY() <<" "<< i->m_liaison->getBasepos().getX() <<" "<< i->m_liaison->getBasepos().getY()
+            <<" "<< i->m_liaison->getPlan() << std::endl;
         }
         if ((i->m_classe) == 1) ///faire cast
         {
-            ofs << i->m_classe <<" "<< i->m_id <<" "<< i->m_taille.getX() <<" "<< i->m_taille.getY() <<" "<< (int)i->m_couleur.getRouge() <<" "<< (int)i->m_couleur.getVert() <<" "<< (int)i->m_couleur.getBleu() <<" "<< i->m_liaison.getRefpos().getX() <<" "<< i->m_liaison.getRefpos().getY() <<" "<< i->m_liaison.getBasepos().getX() <<" "<< i->m_liaison.getBasepos().getY() <<" "<< i->m_liaison.getPlan() << std::endl;
+            ofs << i->m_classe <<" "<< i->m_id <<" "<< i->m_taille.getX() <<" "<< i->m_taille.getY() <<" "<< (int)i->m_couleur.getRouge()
+            <<" "<< (int)i->m_couleur.getVert() <<" "<< (int)i->m_couleur.getBleu() <<" "<< i->m_liaison->getRefpos().getX()
+            <<" "<< i->m_liaison->getRefpos().getY() <<" "<< i->m_liaison->getBasepos().getX() <<" "<< i->m_liaison->getBasepos().getY()
+            <<" "<< i->m_liaison->getPlan() << std::endl;
         }
         if ((i->m_classe) == 2)
         {
             BlockBordure* a1 = dynamic_cast<BlockBordure*>(i);
-            ofs << a1->m_classe <<" "<< a1->m_id <<" "<< a1->m_taille.getX() <<" "<< a1->m_taille.getY() <<" "<< (int)a1->m_couleur.getRouge() <<" "<< (int)a1->m_couleur.getVert() <<" "<< (int)a1->m_couleur.getBleu() <<" "<< (int)a1->getBordure().getRouge() <<" "<< (int)a1->getBordure().getVert() <<" "<< (int)a1->getBordure().getBleu()<<" "<< a1->m_liaison.getRefpos().getX() <<" "<< a1->m_liaison.getRefpos().getY() <<" "<< a1->m_liaison.getBasepos().getX() <<" "<< a1->m_liaison.getBasepos().getY() <<" "<< a1->m_liaison.getPlan() << std::endl;
+            ofs << a1->m_classe <<" "<< a1->m_id <<" "<< a1->m_taille.getX() <<" "<< a1->m_taille.getY() <<" "<< (int)a1->m_couleur.getRouge()
+            <<" "<< (int)a1->m_couleur.getVert() <<" "<< (int)a1->m_couleur.getBleu() <<" "<< (int)a1->getBordure().getRouge()
+            <<" "<< (int)a1->getBordure().getVert() <<" "<< (int)a1->getBordure().getBleu()<<" "<< a1->m_liaison->getRefpos().getX()
+            <<" "<< a1->m_liaison->getRefpos().getY() <<" "<< a1->m_liaison->getBasepos().getX() <<" "<< a1->m_liaison->getBasepos().getY()
+            <<" "<< a1->m_liaison->getPlan() << std::endl;
         }
         ofs << "[" << std::endl;
 
@@ -287,16 +366,26 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
         {
             if ((v->m_classe) == 0)
             {
-                ofs <<"    "<< v->m_classe <<" "<< v->m_id <<" "<< v->m_taille.getX() <<" "<< v->m_taille.getY() <<" "<< (int)v->m_couleur.getRouge() <<" "<< (int)v->m_couleur.getVert() <<" "<< (int)v->m_couleur.getBleu() <<" "<< v->m_liaison.getRefpos().getX() <<" "<< v->m_liaison.getRefpos().getY() <<" "<< v->m_liaison.getBasepos().getX() <<" "<< v->m_liaison.getBasepos().getY() <<" "<< v->m_liaison.getPlan() << std::endl;
+                ofs <<"    "<< v->m_classe <<" "<< v->m_id <<" "<< v->m_taille.getX() <<" "<< v->m_taille.getY() <<" "<< (int)v->m_couleur.getRouge()
+                <<" "<< (int)v->m_couleur.getVert() <<" "<< (int)v->m_couleur.getBleu() <<" "<< v->m_liaison->getRefpos().getX()
+                <<" "<< v->m_liaison->getRefpos().getY() <<" "<< v->m_liaison->getBasepos().getX() <<" "<< v->m_liaison->getBasepos().getY()
+                <<" "<< v->m_liaison->getPlan() << std::endl;
             }
             if ((v->m_classe) == 1)
             {
-                ofs <<"    "<< v->m_classe <<" "<< v->m_id <<" "<< v->m_taille.getX() <<" "<< v->m_taille.getY() <<" "<< (int)v->m_couleur.getRouge() <<" "<< (int)v->m_couleur.getVert() <<" "<< (int)v->m_couleur.getBleu() <<" "<< v->m_liaison.getRefpos().getX() <<" "<< v->m_liaison.getRefpos().getY() <<" "<< v->m_liaison.getBasepos().getX() <<" "<< v->m_liaison.getBasepos().getY() <<" "<< v->m_liaison.getPlan() << std::endl;
+                ofs <<"    "<< v->m_classe <<" "<< v->m_id <<" "<< v->m_taille.getX() <<" "<< v->m_taille.getY() <<" "<< (int)v->m_couleur.getRouge()
+                <<" "<< (int)v->m_couleur.getVert() <<" "<< (int)v->m_couleur.getBleu() <<" "<< v->m_liaison->getRefpos().getX()
+                <<" "<< v->m_liaison->getRefpos().getY() <<" "<< v->m_liaison->getBasepos().getX() <<" "<< v->m_liaison->getBasepos().getY()
+                <<" "<< v->m_liaison->getPlan() << std::endl;
             }
             if ((v->m_classe) == 2)
             {
                 BlockBordure* a2 = dynamic_cast<BlockBordure*>(v);
-                ofs <<"    "<< a2->m_classe <<" "<< a2->m_id <<" "<< a2->m_taille.getX() <<" "<< a2->m_taille.getY() <<" "<< (int)a2->m_couleur.getRouge() <<" "<< (int)a2->m_couleur.getVert() <<" "<< (int)a2->m_couleur.getBleu() <<" "<< /*(int)a2->getBordure().getRouge() <<" "<< (int)a2->m_couleur.getVert() <<" "<< (int)a2->m_couleur.getBleu()<<" "<<*/ a2->m_liaison.getRefpos().getX() <<" "<< a2->m_liaison.getRefpos().getY() <<" "<< a2->m_liaison.getBasepos().getX() <<" "<< a2->m_liaison.getBasepos().getY() <<" "<< a2->m_liaison.getPlan() << std::endl;
+                ofs <<"    "<< a2->m_classe <<" "<< a2->m_id <<" "<< a2->m_taille.getX() <<" "<< a2->m_taille.getY() <<" "<< (int)a2->m_couleur.getRouge()
+                <<" "<< (int)a2->m_couleur.getVert() <<" "<< (int)a2->m_couleur.getBleu() <<" "<< /*(int)a2->getBordure().getRouge()
+                <<" "<< (int)a2->m_couleur.getVert() <<" "<< (int)a2->m_couleur.getBleu()<<" "<<*/ a2->m_liaison->getRefpos().getX()
+                <<" "<< a2->m_liaison->getRefpos().getY() <<" "<< a2->m_liaison->getBasepos().getX() <<" "<< a2->m_liaison->getBasepos().getY()
+                <<" "<< a2->m_liaison->getPlan() << std::endl;
             }
             ofs << "    [" << std::endl;
 
@@ -304,16 +393,26 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
             {
                 if ((z->m_classe) == 0)
                 {
-                    ofs <<"        "<< z->m_classe <<" "<< z->m_id <<" "<< z->m_taille.getX() <<" "<< z->m_taille.getY() <<" "<< (int)z->m_couleur.getRouge() <<" "<< (int)z->m_couleur.getVert() <<" "<< (int)z->m_couleur.getBleu() <<" "<< z->m_liaison.getRefpos().getX() <<" "<< z->m_liaison.getRefpos().getY() <<" "<< z->m_liaison.getBasepos().getX() <<" "<< z->m_liaison.getBasepos().getY() <<" "<< z->m_liaison.getPlan() << std::endl;
+                    ofs <<"        "<< z->m_classe <<" "<< z->m_id <<" "<< z->m_taille.getX() <<" "<< z->m_taille.getY() <<" "<< (int)z->m_couleur.getRouge()
+                    <<" "<< (int)z->m_couleur.getVert() <<" "<< (int)z->m_couleur.getBleu() <<" "<< z->m_liaison->getRefpos().getX()
+                    <<" "<< z->m_liaison->getRefpos().getY() <<" "<< z->m_liaison->getBasepos().getX() <<" "<< z->m_liaison->getBasepos().getY()
+                    <<" "<< z->m_liaison->getPlan() << std::endl;
                 }
                 if ((z->m_classe) == 1)
                 {
-                    ofs <<"        "<< z->m_classe <<" "<< z->m_id <<" "<< z->m_taille.getX() <<" "<< z->m_taille.getY() <<" "<< (int)z->m_couleur.getRouge() <<" "<< (int)z->m_couleur.getVert() <<" "<< (int)z->m_couleur.getBleu() <<" "<< z->m_liaison.getRefpos().getX() <<" "<< z->m_liaison.getRefpos().getY() <<" "<< z->m_liaison.getBasepos().getX() <<" "<< z->m_liaison.getBasepos().getY() <<" "<< z->m_liaison.getPlan() << std::endl;
+                    ofs <<"        "<< z->m_classe <<" "<< z->m_id <<" "<< z->m_taille.getX() <<" "<< z->m_taille.getY() <<" "<< (int)z->m_couleur.getRouge()
+                    <<" "<< (int)z->m_couleur.getVert() <<" "<< (int)z->m_couleur.getBleu() <<" "<< z->m_liaison->getRefpos().getX()
+                    <<" "<< z->m_liaison->getRefpos().getY() <<" "<< z->m_liaison->getBasepos().getX() <<" "<< z->m_liaison->getBasepos().getY()
+                    <<" "<< z->m_liaison->getPlan() << std::endl;
                 }
                 if ((z->m_classe) == 2)
                 {
                     BlockBordure* a3 = dynamic_cast<BlockBordure*>(z);
-                    ofs <<"        "<< a3->m_classe <<" "<< a3->m_id <<" "<< a3->m_taille.getX() <<" "<< a3->m_taille.getY() <<" "<< (int)a3->m_couleur.getRouge() <<" "<< (int)a3->m_couleur.getVert() <<" "<< (int)a3->m_couleur.getBleu() <<" "<< /*(int)a3->getBordure().getRouge() <<" "<< (int)a3->m_couleur.getVert() <<" "<< (int)a3->m_couleur.getBleu()<<" "<<*/ a3->m_liaison.getRefpos().getX() <<" "<< a3->m_liaison.getRefpos().getY() <<" "<< a3->m_liaison.getBasepos().getX() <<" "<< a3->m_liaison.getBasepos().getY() <<" "<< a3->m_liaison.getPlan() << std::endl;
+                    ofs <<"        "<< a3->m_classe <<" "<< a3->m_id <<" "<< a3->m_taille.getX() <<" "<< a3->m_taille.getY() <<" "<< (int)a3->m_couleur.getRouge()
+                    <<" "<< (int)a3->m_couleur.getVert() <<" "<< (int)a3->m_couleur.getBleu() <<" "<< /*(int)a3->getBordure().getRouge()
+                    <<" "<< (int)a3->m_couleur.getVert() <<" "<< (int)a3->m_couleur.getBleu()<<" "<<*/ a3->m_liaison->getRefpos().getX()
+                    <<" "<< a3->m_liaison->getRefpos().getY() <<" "<< a3->m_liaison->getBasepos().getX() <<" "<< a3->m_liaison->getBasepos().getY()
+                    <<" "<< a3->m_liaison->getPlan() << std::endl;
                 }
                 ofs << "        [" << std::endl;
 
@@ -321,16 +420,26 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                 {
                     if ((b->m_classe) == 0)
                     {
-                        ofs << "            "<< b->m_classe <<" "<< b->m_id <<" "<< b->m_taille.getX() <<" "<< b->m_taille.getY() <<" "<< (int)b->m_couleur.getRouge() <<" "<< (int)b->m_couleur.getVert() <<" "<< (int)b->m_couleur.getBleu() <<" "<< b->m_liaison.getRefpos().getX() <<" "<< b->m_liaison.getRefpos().getY() <<" "<< b->m_liaison.getBasepos().getX() <<" "<< b->m_liaison.getBasepos().getY() <<" "<< b->m_liaison.getPlan() << std::endl;
+                        ofs << "            "<< b->m_classe <<" "<< b->m_id <<" "<< b->m_taille.getX() <<" "<< b->m_taille.getY() <<" "<< (int)b->m_couleur.getRouge()
+                        <<" "<< (int)b->m_couleur.getVert() <<" "<< (int)b->m_couleur.getBleu() <<" "<< b->m_liaison->getRefpos().getX()
+                        <<" "<< b->m_liaison->getRefpos().getY() <<" "<< b->m_liaison->getBasepos().getX() <<" "<< b->m_liaison->getBasepos().getY()
+                        <<" "<< b->m_liaison->getPlan() << std::endl;
                     }
                     if ((b->m_classe) == 1)
                     {
-                        ofs << "            "<< b->m_classe <<" "<< b->m_id <<" "<< b->m_taille.getX() <<" "<< b->m_taille.getY() <<" "<< (int)b->m_couleur.getRouge() <<" "<< (int)b->m_couleur.getVert() <<" "<< (int)b->m_couleur.getBleu() <<" "<< b->m_liaison.getRefpos().getX() <<" "<< b->m_liaison.getRefpos().getY() <<" "<< b->m_liaison.getBasepos().getX() <<" "<< b->m_liaison.getBasepos().getY() <<" "<< b->m_liaison.getPlan() << std::endl;
+                        ofs << "            "<< b->m_classe <<" "<< b->m_id <<" "<< b->m_taille.getX() <<" "<< b->m_taille.getY() <<" "<< (int)b->m_couleur.getRouge()
+                        <<" "<< (int)b->m_couleur.getVert() <<" "<< (int)b->m_couleur.getBleu() <<" "<< b->m_liaison->getRefpos().getX()
+                        <<" "<< b->m_liaison->getRefpos().getY() <<" "<< b->m_liaison->getBasepos().getX() <<" "<< b->m_liaison->getBasepos().getY()
+                        <<" "<< b->m_liaison->getPlan() << std::endl;
                     }
                     if ((b->m_classe) == 2)
                     {
                         BlockBordure* a4 = dynamic_cast<BlockBordure*>(b);
-                        ofs << "            "<< a4->m_classe <<" "<< a4->m_id <<" "<< a4->m_taille.getX() <<" "<< a4->m_taille.getY() <<" "<< (int)a4->m_couleur.getRouge() <<" "<< (int)a4->m_couleur.getVert() <<" "<< (int)a4->m_couleur.getBleu() <<" "<< /*(int)a4->getBordure().getRouge() <<" "<< (int)a4->m_couleur.getVert() <<" "<< (int)a4->m_couleur.getBleu()<<" "<<*/ a4->m_liaison.getRefpos().getX() <<" "<< a4->m_liaison.getRefpos().getY() <<" "<< a4->m_liaison.getBasepos().getX() <<" "<< a4->m_liaison.getBasepos().getY() <<" "<< a4->m_liaison.getPlan() << std::endl;
+                        ofs << "            "<< a4->m_classe <<" "<< a4->m_id <<" "<< a4->m_taille.getX() <<" "<< a4->m_taille.getY() <<" "<< (int)a4->m_couleur.getRouge()
+                        <<" "<< (int)a4->m_couleur.getVert() <<" "<< (int)a4->m_couleur.getBleu() <<" "<< /*(int)a4->getBordure().getRouge()
+                        <<" "<< (int)a4->m_couleur.getVert() <<" "<< (int)a4->m_couleur.getBleu()<<" "<<*/ a4->m_liaison->getRefpos().getX()
+                        <<" "<< a4->m_liaison->getRefpos().getY() <<" "<< a4->m_liaison->getBasepos().getX() <<" "<< a4->m_liaison->getBasepos().getY()
+                        <<" "<< a4->m_liaison->getPlan() << std::endl;
                     }
                     ofs << "            [" << std::endl;
 
@@ -338,16 +447,23 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                     {
                         if ((r->m_classe) == 0)
                         {
-                            ofs << "                " << r->m_classe <<" "<< r->m_id <<" "<< r->m_taille.getX() <<" "<< r->m_taille.getY() <<" "<< (int)r->m_couleur.getRouge() <<" "<< (int)r->m_couleur.getVert() <<" "<< (int)r->m_couleur.getBleu() <<" "<< r->m_liaison.getRefpos().getX() <<" "<< r->m_liaison.getRefpos().getY() <<" "<< r->m_liaison.getBasepos().getX() <<" "<< r->m_liaison.getBasepos().getY() <<" "<< r->m_liaison.getPlan() << std::endl;
+                            ofs << "                " << r->m_classe <<" "<< r->m_id <<" "<< r->m_taille.getX() <<" "<< r->m_taille.getY() <<" "<< (int)r->m_couleur.getRouge()
+                            <<" "<< (int)r->m_couleur.getVert() <<" "<< (int)r->m_couleur.getBleu() <<" "<< r->m_liaison->getRefpos().getX() <<" "<< r->m_liaison->getRefpos().getY()
+                            <<" "<< r->m_liaison->getBasepos().getX() <<" "<< r->m_liaison->getBasepos().getY() <<" "<< r->m_liaison->getPlan() << std::endl;
                         }
                         if ((r->m_classe) == 1)
                         {
-                            ofs << "                " << r->m_classe <<" "<< r->m_id <<" "<< r->m_taille.getX() <<" "<< r->m_taille.getY() <<" "<< (int)r->m_couleur.getRouge() <<" "<< (int)r->m_couleur.getVert() <<" "<< (int)r->m_couleur.getBleu() <<" "<< r->m_liaison.getRefpos().getX() <<" "<< r->m_liaison.getRefpos().getY() <<" "<< r->m_liaison.getBasepos().getX() <<" "<< r->m_liaison.getBasepos().getY() <<" "<< r->m_liaison.getPlan() << std::endl;
+                            ofs << "                " << r->m_classe <<" "<< r->m_id <<" "<< r->m_taille.getX() <<" "<< r->m_taille.getY() <<" "<< (int)r->m_couleur.getRouge()
+                            <<" "<< (int)r->m_couleur.getVert() <<" "<< (int)r->m_couleur.getBleu() <<" "<< r->m_liaison->getRefpos().getX() <<" "<< r->m_liaison->getRefpos().getY()
+                            <<" "<< r->m_liaison->getBasepos().getX() <<" "<< r->m_liaison->getBasepos().getY() <<" "<< r->m_liaison->getPlan() << std::endl;
                         }
                         if ((r->m_classe) == 2)
                         {
                             BlockBordure* a5 = dynamic_cast<BlockBordure*>(r);
-                            ofs << "                " << a5->m_classe <<" "<< a5->m_id <<" "<< a5->m_taille.getX() <<" "<< a5->m_taille.getY() <<" "<< (int)a5->m_couleur.getRouge() <<" "<< (int)a5->m_couleur.getVert() <<" "<< (int)a5->m_couleur.getBleu() <<" "<< /*(int)a5->getBordure().getRouge() <<" "<< (int)a5->m_couleur.getVert() <<" "<< (int)a5->m_couleur.getBleu()<<" "<<*/ a5->m_liaison.getRefpos().getX() <<" "<< a5->m_liaison.getRefpos().getY() <<" "<< a5->m_liaison.getBasepos().getX() <<" "<< a5->m_liaison.getBasepos().getY() <<" "<< a5->m_liaison.getPlan() << std::endl;
+                            ofs << "                " << a5->m_classe <<" "<< a5->m_id <<" "<< a5->m_taille.getX() <<" "<< a5->m_taille.getY() <<" "<< (int)a5->m_couleur.getRouge()
+                            <<" "<< (int)a5->m_couleur.getVert() <<" "<< (int)a5->m_couleur.getBleu() <<" "<< /*(int)a5->getBordure().getRouge() <<" "<< (int)a5->m_couleur.getVert()
+                            <<" "<< (int)a5->m_couleur.getBleu()<<" "<<*/ a5->m_liaison->getRefpos().getX() <<" "<< a5->m_liaison->getRefpos().getY() <<" "<< a5->m_liaison->getBasepos().getX()
+                            <<" "<< a5->m_liaison->getBasepos().getY() <<" "<< a5->m_liaison->getPlan() << std::endl;
                         }
                     }
                     ofs << "            ]" << std::endl;
@@ -460,17 +576,17 @@ void ajouterBlock(Block &room,
     room.initialiser(_classe, _id, _taille, _couleur);
     room.initialiserLiaison(_refpos, _basepos, 0);
     room.initialiserOrigine();
-    //std::cout << "[i] position de la liaison : " << bRoom.getLiaison().getBasepos() << std::endl;
+    //std::cout << "[i] position de la liaison : " << bRoom.getLiaison()->getBasepos() << std::endl;
 }
 
 ///************************///
 ///   FONCTIONS DE COORDS  ///
 ///************************///
 
-bool MemePlan(Liaison m_liaison, Block *m_Mere)
+bool MemePlan(Liaison &m_liaison, Block *m_Mere)
 {
 
-    if(m_liaison.getPlan() == m_Mere->getLiaison().getPlan())
+    if(m_liaison.getPlan() == m_Mere->getLiaison()->getPlan())
     {
         return 1;
     }
@@ -480,7 +596,7 @@ bool MemePlan(Liaison m_liaison, Block *m_Mere)
     }
 }
 
-bool RefPosDansBloc(Liaison m_liaison, Coords m_taille)
+bool RefPosDansBloc(Liaison &m_liaison, Coords m_taille)
 {
 
     if(m_liaison.getRefpos() <= m_taille)
@@ -493,7 +609,7 @@ bool RefPosDansBloc(Liaison m_liaison, Coords m_taille)
     }
 }
 
-bool BasePosDansBlocMere(Liaison m_liaison, Block* m_Mere)
+bool BasePosDansBlocMere(Liaison &m_liaison, Block* m_Mere)
 {
 
     if(m_liaison.getBasepos() <= m_Mere->getTaille())
@@ -562,7 +678,7 @@ bool TestBordureAdjacente(Coords m_taille, Coords m_refpos, Coords m_basepos, un
 
     bool test = 0;
 
-    if(m_plan == m_Mere->getLiaison().getPlan())
+    if(m_plan == m_Mere->getLiaison()->getPlan())
     {
         if(BlocADroiteDeMere(m_refpos, m_basepos, m_Mere))
         {

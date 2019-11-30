@@ -3,22 +3,33 @@
 
 <polygon points=" 0,0 0,600 1000,600 1000,0" style="fill:rgb(50,200,200)" />
 <polygon points=" 0,550 0,600 1000,600 1000,550" style="fill:rgb(0,101,200)" />
-<polygon points=" 0,0 0,550 25,550 25,0" style="fill:rgb(250,0,0)" />
+<polygon points=" 0,0 0,550 25,550 25,0" style="fill:rgb(99,0,0)" />
+<polygon points=" 25,-10 25,30 125,30 125,-10" style="fill:rgb(190,50,50)" />
 <polygon points=" 485,505 485,555 510,555 510,505" style="fill:rgb(50,50,50)" />
 <line x1="494" y1="594" x2="506" y2="606" stroke="black" />
 <line x1="494" y1="606" x2="506" y2="594" stroke="black" />
 <line x1="496" y1="596" x2="504" y2="604" stroke="red" />
 <line x1="496" y1="604" x2="504" y2="596" stroke="red" />
-<line x1="-6" y1="544" x2="6" y2="556" stroke="black" />
-<line x1="-6" y1="556" x2="6" y2="544" stroke="black" />
+<line x1="-6" y1="544" x2="6" y2="556" stroke="white" />
+<line x1="-6" y1="556" x2="6" y2="544" stroke="white" />
 <line x1="-4" y1="546" x2="4" y2="554" stroke="red" />
 <line x1="-4" y1="554" x2="4" y2="546" stroke="red" />
-<line x1="494" y1="544" x2="506" y2="556" stroke="black" />
-<line x1="494" y1="556" x2="506" y2="544" stroke="black" />
+<line x1="19" y1="4" x2="31" y2="16" stroke="white" />
+<line x1="19" y1="16" x2="31" y2="4" stroke="white" />
+<line x1="19" y1="54" x2="31" y2="66" stroke="white" />
+<line x1="19" y1="66" x2="31" y2="54" stroke="white" />
+<line x1="25" y1="10" x2="25" y2="60" stroke="white" />
+<line x1="19" y1="4" x2="31" y2="16" stroke="white" />
+<line x1="19" y1="16" x2="31" y2="4" stroke="white" />
+<line x1="21" y1="6" x2="29" y2="14" stroke="red" />
+<line x1="21" y1="14" x2="29" y2="6" stroke="red" />
+<line x1="494" y1="544" x2="506" y2="556" stroke="white" />
+<line x1="494" y1="556" x2="506" y2="544" stroke="white" />
 <line x1="496" y1="546" x2="504" y2="554" stroke="red" />
 <line x1="496" y1="554" x2="504" y2="546" stroke="red" />
 <text x="489.5" y="578.5" fill="black" >sol</text>
 <text x="-1.5" y="278.5" fill="white" >arm1</text>
+<text x="50.5" y="13.5" fill="black" >etagere</text>
 <text x="480" y="533.5" fill="white" >block</text>
 
 
