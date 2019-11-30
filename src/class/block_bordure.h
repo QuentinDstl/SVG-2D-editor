@@ -11,18 +11,9 @@ public:
     /// Constructeurs
     BlockBordure(double _classe,std::string _id, Coords _taille, Couleur _couleur, Bordure _bordure, Block* _Mere);
     BlockBordure();
-    Couleur getBordure();
+
     void dessiner(Svgfile & svgout)const;
 };
-
-///************************///
-///    METHODES INLINES    ///
-///************************///
-
-inline Couleur BlockBordure::getBordure()
-{
-    return m_bordure;
-}
 
 #endif // BLOCK_BORDURE_H_INCLUDED
 

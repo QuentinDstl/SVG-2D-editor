@@ -12,9 +12,9 @@ BlockBordure::BlockBordure()
 
 void BlockBordure::dessiner(Svgfile & svgout)const
 {
-    svgout.addRectangle(m_origine.getX(), m_origine.getY(),
-                        m_origine.getX(), m_origine.getY() + m_taille.getY(),
-                        m_origine.getX() + m_taille.getX(), m_origine.getY(),
-                        m_origine.getX() + m_taille.getX(), m_origine.getY() + m_taille.getY(),
-                        m_couleur, 2, m_bordure);
+    svgout.addRectangle(m_origine.getX() +0.6, m_origine.getY() +0.6,
+                        m_origine.getX() +0.6, m_origine.getY() + m_taille.getY() -0.6,
+                        m_origine.getX() + m_taille.getX()-0.6, m_origine.getY() +0.6,
+                        m_origine.getX() + m_taille.getX()-0.6, m_origine.getY() + m_taille.getY()-0.6,
+                        m_couleur, m_largeur, m_bordure);
 }

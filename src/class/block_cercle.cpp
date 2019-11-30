@@ -19,7 +19,7 @@ BlockCercle::BlockCercle() : Block()
 /// dessiner
 void BlockCercle::dessiner(Svgfile &svgout)const
 {
-    svgout.addDisk(m_origine.getX(), m_origine.getY(),m_taille.getX(),"grey");
+    svgout.addDisk(m_origine.getX(), m_origine.getY(),m_taille.getX(), m_couleur);
 }
 
 
