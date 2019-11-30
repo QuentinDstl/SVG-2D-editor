@@ -45,6 +45,8 @@
 		<Unit filename="src/class/coords.h" />
 		<Unit filename="src/class/liaison.cpp" />
 		<Unit filename="src/class/liaison.h" />
+		<Unit filename="src/class/liaison_glissiere.cpp" />
+		<Unit filename="src/class/liaison_glissiere.h" />
 		<Unit filename="src/interface/couleur.cpp" />
 		<Unit filename="src/interface/couleur.h" />
 		<Unit filename="src/svg/svgfile.cpp" />

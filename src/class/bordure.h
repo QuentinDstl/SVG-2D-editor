@@ -5,13 +5,13 @@
 
 class Bordure
 {
-    protected :
-        Couleur m_bordure;
+protected :
+    Couleur m_bordure;
 
-    public :
-        /// Constructeurs
-        Bordure(Couleur _bordure);
-        Bordure();
+public :
+    /// Constructeurs
+    Bordure(Couleur _bordure);
+    Bordure();
 };
 
 #endif // BORDURE_H_INCLUDED

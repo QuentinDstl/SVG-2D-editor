@@ -1,7 +1,5 @@
 #include <iostream>
-
 #include "liaison.h"
-#include "coords.h"
 
 ///*************************///
 ///      CONSTRUCTEURS      ///
@@ -23,6 +21,7 @@ Liaison::Liaison()
 ///        SETTEURS         ///
 ///*************************///
 
+/* Setteur de liaison */
 void Liaison::setteur(Coords _refpos, Coords _basepos, unsigned int _plan)
 {
     m_refpos = _refpos;

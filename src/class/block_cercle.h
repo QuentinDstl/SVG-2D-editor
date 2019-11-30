@@ -5,20 +5,21 @@
 
 class BlockCercle : public Block
 {
-    public:
-        /// Constructeurs
-        BlockCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Block* _Mere);
-        BlockCercle();
+public:
+    /// Constructeurs
+    BlockCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Block* _Mere);
+    BlockCercle();
 
-        /// Getteurs
-        // INLINE
-        virtual double getRayon()const;
+    /// Getteurs
+    // INLINE
+    virtual double getRayon()const;
 
-        /// Dessiner
-        virtual void dessiner(Svgfile &svgout)const;
 
-        /// Test
-        virtual bool TestRefPos()const;
+    /// Dessiner
+    virtual void dessiner(Svgfile &svgout)const;
+
+    /// Test
+    virtual bool TestRefPos()const;
 
 };
 

@@ -8,11 +8,13 @@
 ///*************************///
 
 /// constructeurs
-BlockCercle::BlockCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Block* _Mere) : Block(_classe, _id, {_rayon,0}, _couleur, _Mere)
+BlockCercle::BlockCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Block* _Mere) : Block(_classe, _id,
+{
+    _rayon,0
+}, _couleur, _Mere)
 { }
 BlockCercle::BlockCercle() : Block()
 { }
-
 
 /// dessiner
 void BlockCercle::dessiner(Svgfile &svgout)const
@@ -26,13 +28,13 @@ bool BlockCercle::TestRefPos()const
 {
     bool test = 0;
 
-    if(RefPosDansCercle(m_liaison, m_taille))
+    if(RefPosDansCercle(*m_liaison, m_taille))
     {
-        if(BasePosDansBlocMere(m_liaison, m_Mere))
+        if(BasePosDansBlocMere(*m_liaison, m_Mere))
         {
-            if(MemePlan(m_liaison, m_Mere))
+            if(MemePlan(*m_liaison, m_Mere))
             {
-                if(TestBordureRecCercle(m_taille, m_liaison.getRefpos(), m_liaison.getBasepos(), m_liaison.getPlan(), m_id, m_Mere)) {
+                if(TestBordureRecCercle(m_taille, m_liaison->getRefpos(), m_liaison->getBasepos(), m_liaison->getPlan(), m_id, m_Mere)) {
                     test = 1;
                 }
             }

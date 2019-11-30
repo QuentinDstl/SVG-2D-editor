@@ -4,7 +4,7 @@
 #include <vector>
 #include <iostream>
 
-#include "liaison.h"
+#include "liaison_glissiere.h"
 #include "../svg/svgfile.h"
 #include "../interface/couleur.h"
 
@@ -20,7 +20,7 @@ protected :
     Couleur m_couleur;
 
     Block* m_Mere;
-    Liaison m_liaison;
+    Liaison *m_liaison;
     std::vector <Block*> m_Filles;
 
 public :
@@ -34,12 +34,14 @@ public :
 
     ///AJOUT
     virtual void ajouterFille(double m_clase, std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D);
+    virtual void ajouterFilleGlissiere(double _classe, std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D);
     //virtual void ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
     virtual void ajouterFilleCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D);
 
     ///INITIALIALISATION
     virtual void initialiser(double m_classe, std::string _id, Coords _taille, Couleur _couleur);
     virtual void initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D);
+    virtual void initialiserGlissiere(Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D);
     virtual void initialiserOrigine();
 
     ///GETTEURS
@@ -47,11 +49,12 @@ public :
     virtual Block* getFille(unsigned int indice)const;
     virtual Coords getTaille()const;
     virtual Coords getOrigine()const;
-    virtual Liaison getLiaison()const;
+    virtual Liaison* getLiaison()const;
     virtual Block* getMere()const;
     virtual std::vector<Block*> getFilles () const;
     virtual std::string getId () const;
     virtual double getClasse () const;
+    virtual Couleur getCouleur () const;
 
     ///DESSINER
     virtual void dessiner(Svgfile &svgout)const;
@@ -81,9 +84,9 @@ void ajouterBlock(Block &room,
                   Coords _refpos, Coords _basepos);
 
 ///TEST DES COORDS
-bool MemePlan(Liaison m_liaison, Block *m_Mere);
-bool RefPosDansBloc(Liaison m_liaison, Coords m_taille);
-bool BasePosDansBlocMere(Liaison m_liaison, Block* m_Mere);
+bool MemePlan(Liaison &m_liaison, Block *m_Mere);
+bool RefPosDansBloc(Liaison &m_liaison, Coords m_taille);
+bool BasePosDansBlocMere(Liaison &m_liaison, Block* m_Mere);
 
 bool TestBordure(Coords m_taille, Coords m_refpos, Coords m_basepos, unsigned int m_plan, std::string m_id, Block *m_Mere);
 bool RefPosSurBordure(Coords m_refpos, Coords m_taille);
@@ -120,7 +123,7 @@ inline Coords Block::getOrigine() const
     return m_origine;
 }
 
-inline Liaison Block::getLiaison() const
+inline Liaison* Block::getLiaison() const
 {
     return m_liaison;
 }
@@ -143,6 +146,11 @@ inline std::string Block::getId () const
 inline std::vector<Block*> Block::getFilles () const
 {
     return m_Filles;
+}
+
+inline Couleur Block::getCouleur () const
+{
+    return m_couleur;
 }
 
 #endif // BLOCK_H_INCLUDED
