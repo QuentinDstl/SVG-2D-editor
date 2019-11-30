@@ -47,7 +47,7 @@ int main()
     return 0;
 }*/
 
-///Main version CREATION puis sauvegarde
+///Main pour test de CHARLES
 int main()
 {
     Block room;
