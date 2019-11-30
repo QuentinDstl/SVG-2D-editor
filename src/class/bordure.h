@@ -12,6 +12,8 @@ public :
     /// Constructeurs
     Bordure(Couleur _bordure);
     Bordure();
+
+    virtual ~Bordure()=default;
 };
 
 #endif // BORDURE_H_INCLUDED

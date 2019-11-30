@@ -35,7 +35,7 @@ public :
     ///AJOUT
     virtual void ajouterFille(double m_clase, std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void ajouterFilleGlissiere(double _classe, std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D);
-    //virtual void ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure);
+    virtual void ajouterFilleBordure(double _classe, std::string _id, Coords _taille, Couleur _couleur, Couleur _bordure, Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void ajouterFilleCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D);
 
     ///INITIALIALISATION

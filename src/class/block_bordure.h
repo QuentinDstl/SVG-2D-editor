@@ -5,13 +5,14 @@
 #include "bordure.h"
 
 
-class BlockBordure : public Block, Bordure
+class BlockBordure : public Block, public Bordure
 {
 public:
     /// Constructeurs
-    BlockBordure(double _classe, std::string _id, Coords _taille, Block* _Mere,Couleur _couleur,Bordure _bordure);
+    BlockBordure(double _classe,std::string _id, Coords _taille, Couleur _couleur, Bordure _bordure, Block* _Mere);
     BlockBordure();
     Couleur getBordure();
+    void dessiner(Svgfile & svgout)const;
 };
 
 ///************************///

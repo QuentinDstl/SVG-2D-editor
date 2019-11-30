@@ -77,16 +77,27 @@ void Block::ajouterFilleGlissiere(double _classe, std::string _id, Coords _taill
     }
 }
 
-/*
- Creer une fille couleur avec bordures
+
+// Creer une fille couleur avec bordures
 // cree une nouvelle fille a partir de la mere
-void Block::ajouterFilleBordure(double _classe,Coords _taille, std::string _id, Coords _refpos, Coords _basepos, bool _plan3D, Couleur _couleur, Couleur _bordure)
+void Block::ajouterFilleBordure(double _classe, std::string _id, Coords _taille, Couleur _couleur, Couleur _bordure, Coords _refpos, Coords _basepos, bool _plan3D)
 {
-    BlockBordure* nouv = new BlockBordure{_classe,_id, _taille, this, _couleur, _bordure};
+    BlockBordure* nouv = new BlockBordure{_classe,_id, _taille, _couleur, _bordure, this};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
-}*/
+
+    if(!(nouv->TestRefPos()))
+    {
+        delete m_Filles[m_Filles.size()-1];
+        m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
+        std::cout << "Liaison incorrect" << std::endl;
+    }
+    else
+    {
+        std::cout << nouv->m_origine << std::endl;
+    }
+}
 
 void Block::ajouterFilleCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D)
 {

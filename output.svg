@@ -5,7 +5,7 @@
 <polygon points=" 0,550 0,600 1000,600 1000,550" style="fill:rgb(0,101,200)" />
 <polygon points=" 0,0 0,550 25,550 25,0" style="fill:rgb(99,0,0)" />
 <polygon points=" 25,-10 25,30 125,30 125,-10" style="fill:rgb(190,50,50)" />
-<polygon points=" 485,505 485,555 510,555 510,505" style="fill:rgb(50,50,50)" />
+<polygon points=" 485,505 485,555 510,555 510,505" style="fill:rgb(50,50,50);stroke:rgb(250,250,250);stroke-width:2" />
 <line x1="494" y1="594" x2="506" y2="606" stroke="black" />
 <line x1="494" y1="606" x2="506" y2="594" stroke="black" />
 <line x1="496" y1="596" x2="504" y2="604" stroke="red" />
