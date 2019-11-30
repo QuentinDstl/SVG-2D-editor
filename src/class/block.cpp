@@ -2,6 +2,7 @@
 #include "../svg/svgfile.h"
 #include "block_cercle.h"
 #include "block_bordure.h"
+#include "block_cercle_bordure.h"
 
 #include <iostream>
 #include <string>
@@ -102,6 +103,25 @@ void Block::ajouterFilleBordure(double _classe, std::string _id, Coords _taille,
 void Block::ajouterFilleCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D)
 {
     BlockCercle* nouv = new BlockCercle{_classe, _id, _rayon, _couleur, this};
+    nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
+    nouv->initialiserOrigine();
+    m_Filles.push_back(nouv);
+
+    if(!(nouv->TestRefPos()))
+    {
+        delete m_Filles[m_Filles.size()-1];
+        m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
+        std::cout << "Liaison incorrect" << std::endl;
+    }
+    else
+    {
+        std::cout << nouv->m_origine << std::endl;
+    }
+}
+
+void Block::ajouterFilleCercleBordure(double _classe, std::string _id, double _rayon, Couleur _couleur, Couleur _bordure, Coords _refpos, Coords _basepos, bool _plan3D)
+{
+    BlockCercleBordure* nouv = new BlockCercleBordure{_classe, _id, _rayon, _couleur, _bordure, this};
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);

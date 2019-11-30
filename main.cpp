@@ -70,7 +70,7 @@ int main()
 void creerScene(Block* iterateur)
 {
     ajouterBlock(*iterateur, 0, "room", {LARGEUR_SCENE,HAUTEUR_SCENE}, {50,200,200}, {0,0}, {0,0});
-    iterateur->ajouterFille(0, "sol", {LARGEUR_SCENE,50}, {0,101,200}, {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, true);
+    iterateur->ajouterFilleBordure(0, "sol", {LARGEUR_SCENE,50}, {0,101,200}, {0, 250,0}, {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, true);
 
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
@@ -78,9 +78,9 @@ void creerScene(Block* iterateur)
 
     iterateur->ajouterFille(0, "arm1", {25,HAUTEUR_SCENE-50}, {99,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, false);
     // iterateur->ajouterFilleBordure(1, {25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0, {200,100,100}, {0,10,0});
-    iterateur->ajouterFilleBordure(0, "block", {25,50}, {50,50,50}, {250,250,250}, {15,45}, {LARGEUR_SCENE/2,0}, true);
+    iterateur->ajouterFilleCercleBordure(0, "block", 25, {50,50,50}, {250,250,250}, {0,25}, {LARGEUR_SCENE/2,0}, true);
     iterateur = iterateur->getFille(1);
-    iterateur->ajouterFille(0, "block2", {10,10}, {0,0,0}, {10,0}, {0,0}, false);
+    //iterateur->ajouterFille(0, "block2", {10,10}, {0,0,0}, {10,0}, {0,0}, false);
     /*iterateur = iterateur->getFille(0);
     iterateur->ajouterFilleGlissiere(0,"etagere",{100,40},{190,50,50},{0,20},{25,10},{25,60},false);*/
 

@@ -39,6 +39,8 @@
 		<Unit filename="src/class/block_bordure.h" />
 		<Unit filename="src/class/block_cercle.cpp" />
 		<Unit filename="src/class/block_cercle.h" />
+		<Unit filename="src/class/block_cercle_bordure.cpp" />
+		<Unit filename="src/class/block_cercle_bordure.h" />
 		<Unit filename="src/class/bordure.cpp" />
 		<Unit filename="src/class/bordure.h" />
 		<Unit filename="src/class/coords.cpp" />

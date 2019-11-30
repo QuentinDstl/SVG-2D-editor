@@ -333,25 +333,26 @@
 	"../util/util.h"
 	<windows.h>
 
-1575101560 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.cpp
+1575108526 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.cpp
 	"block.h"
 	"../svg/svgfile.h"
 	"block_cercle.h"
 	"block_bordure.h"
+	"block_cercle_bordure.h"
 	<iostream>
 	<string>
 	<vector>
 	<fstream>
 	<sstream>
 
-1575101553 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.h
+1575108472 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison_glissiere.h"
 	"../svg/svgfile.h"
 	"../interface/couleur.h"
 
-1575106388 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\main.cpp
+1575108435 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\main.cpp
 	<iostream>
 	<fstream>
 	<vector>
@@ -550,7 +551,7 @@
 1575100884 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle.h
 	"block.h"
 
-1575105443 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle.cpp
+1575108277 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle.cpp
 	"block_cercle.h"
 	<math.h>
 
@@ -575,7 +576,7 @@
 
 1575033175 43281a01eae645c37914633c63574c6643f35
 
-1575106957 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_bordure.cpp
+1575107063 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_bordure.cpp
 	"block_bordure.h"
 
 1575104829 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_bordure.h
@@ -618,4 +619,11 @@
 
 1575100651 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison_glissiere.cpp
 	"liaison_glissiere.h"
+
+1575108325 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle_bordure.cpp
+	"block_cercle_bordure.h"
+
+1575108576 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle_bordure.h
+	"block_cercle.h"
+	"bordure.h"
 

@@ -8,10 +8,8 @@
 ///*************************///
 
 /// constructeurs
-BlockCercle::BlockCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Block* _Mere) : Block(_classe, _id,
-{
-    _rayon,0
-}, _couleur, _Mere)
+BlockCercle::BlockCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Block* _Mere)
+    : Block(_classe, _id, {_rayon,0}, _couleur, _Mere)
 { }
 BlockCercle::BlockCercle() : Block()
 { }
