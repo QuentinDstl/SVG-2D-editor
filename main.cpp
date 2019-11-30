@@ -49,7 +49,6 @@ int main()
     creerScene(blockIterateur);
     dessinerScene(room);
 
-
     std::cout << "trouver racine : " << trouverRacine(*blockIterateur)->getId() << std::endl;
 
     ///sauvegarde et chargement
@@ -75,9 +74,11 @@ void creerScene(Block* iterateur)
 
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
-    iterateur->ajouterFille(0, "arm1", {25,HAUTEUR_SCENE-50}, {250,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, false);
+    iterateur->ajouterFille(0, "arm1", {25,HAUTEUR_SCENE-50}, {99,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, false);
     // iterateur->ajouterFilleBordure(1, {25,HAUTEUR_SCENE-50}, "arm2", {25,HAUTEUR_SCENE-50}, {LARGEUR_SCENE,0}, 0, {200,100,100}, {0,10,0});
     iterateur->ajouterFille(0, "block", {25,50}, {50,50,50}, {15,45}, {LARGEUR_SCENE/2,0}, true);
+    iterateur = iterateur->getFille(0);
+    iterateur->ajouterFilleGlissiere(0,"etagere",{100,40},{190,50,50},{0,20},{25,10},{25,60},false);
 
     //on rentre dans les filles
     /*iterateur = iterateur->getFille(0);
@@ -104,7 +105,7 @@ void dessinerScene(const Block &room)
     toutDessiner(svgout,room);
     //toutDessinerPlan(svgout,room,2);
 
-    std::cout << "[i] croix rouge = position de reference / croix noir = position de base" << std::endl;
+    std::cout << "[i] croix rouge/bleu = position de reference / croix noir/blanc = position de base" << std::endl;
     room.toutDessinerLiaisons(svgout);
     room.toutDessinerId(svgout);
 }
@@ -148,8 +149,8 @@ void toutDessinerPlan(Svgfile &svgout,const Block &room, unsigned int plan)
 
             else
             */
-            std::cout << " " << petit_fils->getLiaison().getPlan() << ",";
-            if (petit_fils->getLiaison().getPlan() <= plan)
+            std::cout << " " << petit_fils->getLiaison()->getPlan() << ",";
+            if (petit_fils->getLiaison()->getPlan() <= plan)
                 petit_fils->dessiner(svgout);
             toutDessinerPlan(svgout,*petit_fils,plan);
         }

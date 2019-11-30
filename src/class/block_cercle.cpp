@@ -18,7 +18,7 @@ BlockCercle::BlockCercle() : Block()
 
 void BlockCercle::initialiserLiaison(double _angle, Coords _basepos, bool _plan3D)
 {
-    m_liaison.setteur({m_origine.getX() + m_taille.getX()*cos(_angle*(PI/180)),m_origine.getY() + m_taille.getX()*sin(_angle*(PI/180))},_basepos,_plan3D);
+    m_liaison->setteur({m_origine.getX() + m_taille.getX()*cos(_angle*(PI/180)),m_origine.getY() + m_taille.getX()*sin(_angle*(PI/180))},_basepos,_plan3D);
 }
 
 /// dessiner
