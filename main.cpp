@@ -38,7 +38,8 @@ int main()
     dessinerScene(room);
 
     return 0;
-}*/
+}
+*/
 
 
 
@@ -89,7 +90,7 @@ void creerScene(Block* iterateur)
     iterateur = iterateur->getMere();
     iterateur->ajouterFilleBordure(2, "arm", {25,10}, {180,180,40}, {0,0,0}, {0,5}, {25,15}, false);
     iterateur->ajouterFilleBordure(2, "arm", {25,10}, {180,180,40}, {0,0,0}, {25,5}, {0,15}, false);
-    iterateur->ajouterFilleBordure(2, "", {25,15}, {220,220,60}, {0,0,0}, {0,0}, {0,35}, true);
+    iterateur->ajouterFilleBordure(2, "SALUT", {25,15}, {220,220,60}, {0,0,0}, {0,0}, {0,35}, true);
 
     iterateur = iterateur->getFille(1);
     iterateur->ajouterFilleCercleBordure(3, "hand", 5, {220,220,60}, {0,0,0}, {-5,0}, {25,5}, false);
