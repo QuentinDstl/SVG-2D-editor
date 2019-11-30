@@ -254,11 +254,6 @@ bool Block::TestRefPos()const
     return test;
 }
 
-/*bool Block::TestCollision(Coords taille, Coords origine, const Block &room)const
-{
-    parcourir()
-}*/
-
 ///************************///
 ///SAUVEGARDE ET CHARGEMENT///
 ///************************///
@@ -610,7 +605,7 @@ bool BlocAuDessusDeMere(Coords m_refpos, Coords m_basepos, Coords m_taille) {
 ///   PARCOURS ET RACINE   ///
 ///************************///
 
-Block* trouverRacine(Block &block)
+const Block* trouverRacine(const Block &block)
 {
     if(block.getMere() == nullptr)
     {
@@ -618,7 +613,7 @@ Block* trouverRacine(Block &block)
     }
     else
     {
-        Block* p;
+        const Block* p;
         p = trouverRacine(*block.getMere());
 
         if(p != nullptr)
@@ -652,39 +647,6 @@ Block* parcourir(std::string id, const Block &room)
         {
             Block* p;
             p = parcourir(id,*petit_fils);
-
-            if(p != nullptr)
-            {
-                return p;
-            }
-        }
-    }
-    return nullptr;
-}
-
-Block* parcourir(Coords taille, Coords origine, const Block &room)
-{
-    // si on est en bout de chaine
-    if (!room.getFilles().size())
-    {
-        return nullptr;
-    }
-    // sinon on se ballade dans les filles
-    for(const auto& petit_fils : room.getFilles())
-    {
-        // si le petit fils a les bonnes coordonnees
-        if (petit_fils->getTaille()==taille && petit_fils->getOrigine()==origine)
-        {
-            return petit_fils;
-        }
-        // sinon si le petit fils est en bout de chaine
-        else if (!petit_fils->getFilles().size())
-        { }
-        //sinon on le parcours à nouveau
-        else
-        {
-            Block* p;
-            p = parcourir(taille,origine,*petit_fils);
 
             if(p != nullptr)
             {

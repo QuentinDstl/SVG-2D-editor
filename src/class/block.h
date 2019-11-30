@@ -68,8 +68,6 @@ public :
     virtual void sauvegarde();
     virtual void sauvegarderScene1(std::vector <Block*> m_Filles);
     virtual void chargementScene();
-
-
 };
 
 
@@ -98,11 +96,10 @@ bool BlocAGaucheDeMere(Coords m_refpos, Coords m_basepos, Coords m_taille);
 bool BlocEnDessousDeMere(Coords m_refpos, Coords m_basepos, Block* m_Mere);
 bool BlocAuDessusDeMere(Coords m_refpos, Coords m_basepos, Coords m_taille);
 
-
 ///PARCOURS ET RACINE
-Block* trouverRacine(Block &block);
+const Block* trouverRacine(const Block &block);
 Block* parcourir(std::string id, const Block &room);
-Block* parcourir(Coords taille, Coords origine, const Block &room);
+Block* parcourirCollision(const Block &block, const Block &room);
 
 ///************************///
 ///    METHODES INLINES    ///
