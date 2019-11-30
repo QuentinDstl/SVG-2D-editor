@@ -63,31 +63,30 @@ bool menu(Block *racine)
 void creerScene(Block* iterateur)
 {
     ajouterBlock(*iterateur, 0, "room", {LARGEUR_SCENE,HAUTEUR_SCENE}, {50,200,200}, {0,0}, {0,0});
-    iterateur->ajouterFilleBordure(0, "sol", {LARGEUR_SCENE,50}, {0,101,200}, {0, 250,0}, {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, true);
+    iterateur->ajouterFilleBordure(2, "sol", {LARGEUR_SCENE,50}, {0,101,200}, {0, 250,0}, {LARGEUR_SCENE/2,50}, {LARGEUR_SCENE/2,HAUTEUR_SCENE}, true);
 
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
-
     iterateur->ajouterFille(0, "arm1", {25,HAUTEUR_SCENE-50}, {99,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, false);
 
-    iterateur->ajouterFilleGlissiereBordure(0, "robot", {25,50}, {180,180,40}, {0,0,0}, {12,50}, {200,0}, {LARGEUR_SCENE-200,0}, false);
+    iterateur->ajouterFilleGlissiereBordure(4, "robot", {25,50}, {180,180,40}, {0,0,0}, {12,50}, {200,0}, {LARGEUR_SCENE-200,0}, false);
     iterateur = iterateur->getFille(1);
-    iterateur->ajouterFilleCercleBordure(0, "tete", 20, {180,180,40}, {0,0,0}, {0,20}, {12,0},false);
+    iterateur->ajouterFilleCercleBordure(3, "tete", 20, {180,180,40}, {0,0,0}, {0,20}, {12,0},false);
     iterateur = iterateur->getFille(0);
-    iterateur->ajouterFilleCercleBordure(0, "oeil", 6, {200,20,20}, {0,0,0}, {0,0}, {-7,0}, true);
-    iterateur->ajouterFilleCercleBordure(0, "oeil", 6, {200,20,20}, {0,0,0}, {0,0}, {7,0}, true);
+    iterateur->ajouterFilleCercleBordure(3, "oeil", 6, {200,20,20}, {0,0,0}, {0,0}, {-7,0}, true);
+    iterateur->ajouterFilleCercleBordure(3, "oeil", 6, {200,20,20}, {0,0,0}, {0,0}, {7,0}, true);
 
     iterateur = iterateur->getMere();
-    iterateur->ajouterFilleBordure(0, "arm", {25,10}, {180,180,40}, {0,0,0}, {0,5}, {25,15}, false);
-    iterateur->ajouterFilleBordure(0, "arm", {25,10}, {180,180,40}, {0,0,0}, {25,5}, {0,15}, false);
-    iterateur->ajouterFilleBordure(0, "", {25,15}, {220,220,60}, {0,0,0}, {0,0}, {0,35}, true);
+    iterateur->ajouterFilleBordure(2, "arm", {25,10}, {180,180,40}, {0,0,0}, {0,5}, {25,15}, false);
+    iterateur->ajouterFilleBordure(2, "arm", {25,10}, {180,180,40}, {0,0,0}, {25,5}, {0,15}, false);
+    iterateur->ajouterFilleBordure(2, "salut", {25,15}, {220,220,60}, {0,0,0}, {0,0}, {0,35}, true);
 
     iterateur = iterateur->getFille(1);
-    iterateur->ajouterFilleCercleBordure(0, "hand", 5, {220,220,60}, {0,0,0}, {-5,0}, {25,5}, false);
+    iterateur->ajouterFilleCercleBordure(3, "hand", 5, {220,220,60}, {0,0,0}, {-5,0}, {25,5}, false);
 
     iterateur = iterateur->getMere();
     iterateur = iterateur->getFille(2);
-    iterateur->ajouterFilleCercleBordure(0, "hand", 5, {220,220,60}, {0,0,0}, {5,0}, {0,5}, false);
+    iterateur->ajouterFilleCercleBordure(3, "hand", 5, {220,220,60}, {0,0,0}, {5,0}, {0,5}, false);
 }
 
 void dessinerScene(const Block &room)
