@@ -14,17 +14,17 @@
 }*/
 
 
-
+/*
 ///Main version CREATION puis sauvegarde
 int main()
 {
-    ///** Declaration et Initialisation **///
+    ///** Declaration et Initialisation **
 
     Block room;
     Block* blockIterateur = &room;
     bool fin = false;
 
-    ///** Boucle du menu **///
+    ///** Boucle du menu **
     while(!fin)
     {
         creerScene(blockIterateur);
@@ -42,6 +42,28 @@ int main()
             room.sauvegarde();
         }
         fin = true;
+    }
+
+    return 0;
+}*/
+
+///Main version CREATION puis sauvegarde
+int main()
+{
+    Block room;
+    Block* blockIterateur = &room;
+
+    creerScene(blockIterateur);
+
+    ///sauvegarde et chargement
+    std::ofstream file {FICHIER};
+    if (!file)
+    {
+        std::cerr << "Ouverture impossible du fichier : " << FICHIER;
+    }
+    else
+    {
+        room.sauvegarde();
     }
 
     return 0;

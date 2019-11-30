@@ -434,21 +434,10 @@
 	"../svg/svgfile.h"
 	"liaison.h"
 
-1575132787 source:c:\users\c_per\projet_block\main.cpp
-	<iostream>
-	<fstream>
-	<vector>
-	"src/class/block_cercle.h"
-	"src/class/coords.h"
-	"src/class/liaison.h"
-	"src/class/bordure.h"
-	"src/class/block_bordure.h"
-	"src/interface/couleur.h"
-	"src/svg/svgfile.h"
-	"src/util/util.h"
-	"src/class/block.h"
+1575148303 source:c:\users\c_per\projet_block\main.cpp
+	"src/interface/menu.h"
 
-1575117660 c:\users\c_per\projet_block\src\class\block.h
+1575138514 c:\users\c_per\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison_glissiere.h"
@@ -479,7 +468,7 @@
 	"../util/util.h"
 	<iostream>
 
-1575117660 source:c:\users\c_per\projet_block\src\class\liaison.cpp
+1575138514 source:c:\users\c_per\projet_block\src\class\liaison.cpp
 	<iostream>
 	"liaison.h"
 
@@ -510,7 +499,7 @@
 	"../util/util.h"
 	<windows.h>
 
-1575132928 source:c:\users\c_per\projet_block\src\class\block.cpp
+1575147878 source:c:\users\c_per\projet_block\src\class\block.cpp
 	"block.h"
 	"../svg/svgfile.h"
 	"block_cercle.h"
@@ -532,7 +521,7 @@
 1575117660 c:\users\c_per\projet_block\src\class\block_cercle.h
 	"block.h"
 
-1575117660 source:c:\users\c_per\projet_block\src\class\block_cercle.cpp
+1575138514 source:c:\users\c_per\projet_block\src\class\block_cercle.cpp
 	"block_cercle.h"
 	<math.h>
 
@@ -626,7 +615,7 @@
 1575117660 source:c:\users\c_per\projet_block\src\class\block_cercle_bordure.cpp
 	"block_cercle_bordure.h"
 
-1575117660 source:c:\users\c_per\projet_block\src\class\liaison_glissiere.cpp
+1575138514 source:c:\users\c_per\projet_block\src\class\liaison_glissiere.cpp
 	"liaison_glissiere.h"
 
 1575113065 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_cercle_bordure.h
@@ -649,4 +638,31 @@
 	"../class/block_bordure.h"
 	"../util/util.h"
 	"../class/block_cercle_bordure.h"
+
+1575138514 c:\users\c_per\projet_block\src\interface\menu.h
+	<iostream>
+	<fstream>
+	<vector>
+	"../class/block_cercle.h"
+	"../class/coords.h"
+	"../class/liaison.h"
+	"../class/block_bordure.h"
+	"../util/util.h"
+	"../class/block_cercle_bordure.h"
+
+1575149260 source:c:\users\c_per\projet_block\src\interface\menu.cpp
+	"menu.h"
+
+1575151676 source:c:\users\c_per\projet_block\src\rom\lsauvegarde.cpp
+	"../class/block.h"
+	"../svg/svgfile.h"
+	"../class/block_cercle.h"
+	"../class/block_bordure.h"
+	"../class/block_cercle_bordure.h"
+	"../class/liaison_glissiere.h"
+	<iostream>
+	<string>
+	<vector>
+	<fstream>
+	<sstream>
 
