@@ -6,12 +6,12 @@
 
 /* Constructeur */
 LiaisonGlissiere::LiaisonGlissiere(Coords _refpos, Coords _basepos, Coords _finbasepos, unsigned int _plan)
-: Liaison(_refpos, _basepos, _plan), m_finbasepos{_finbasepos}
+    : Liaison(_refpos, _basepos, _plan), m_finbasepos{_finbasepos}
 {}
 
 /* Constructeur avec Initialisation nul */
 LiaisonGlissiere::LiaisonGlissiere()
-: Liaison(), m_finbasepos{0,0}
+    : Liaison(), m_finbasepos{0,0}
 {}
 
 ///*************************///

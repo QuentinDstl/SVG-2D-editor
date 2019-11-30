@@ -15,8 +15,8 @@
 #define MAX_COLOR 100
 
 /// Definition lecture fichier :
-#define FICHIERSAUV "sauvegarde.rom"
-#define FICHIERTEST "sauvegarde2.rom"
+#define FICHIERSAUV "src/rom/sauvegarde.rom"
+#define FICHIERTEST "src/rom/sauvegarde2.rom"
 
 ///*************************///
 ///      CONSTRUCTEURS      ///
@@ -50,18 +50,17 @@ void Block::ajouterFille(double _classe, std::string _id, Coords _taille, Couleu
     {
         delete m_Filles[m_Filles.size()-1];
         m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
-        std::cout << "Liaison incorrect" << std::endl;
-    }
-    else
-    {
-        std::cout << nouv->m_origine << std::endl;
+        std::cout << "[e] liaison incorrect" << std::endl;
     }
 }
 
 void Block::ajouterFilleGlissiere(double _classe, std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D)
 {
     Block* nouv = new Block{_classe, _id, _taille, _couleur, this};
-    nouv->initialiserGlissiere(_refpos, _basepos, _baseposfin, _plan3D);
+    if(_basepos == _baseposfin)
+        nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
+    else
+        nouv->initialiserGlissiere(_refpos, _basepos, _baseposfin, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
 
@@ -70,11 +69,7 @@ void Block::ajouterFilleGlissiere(double _classe, std::string _id, Coords _taill
     {
         delete m_Filles[m_Filles.size()-1];
         m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
-        std::cout << "Liaison incorrect" << std::endl;
-    }
-    else
-    {
-        std::cout << nouv->m_origine << std::endl;
+        std::cout << "[e] liaison incorrect" << std::endl;
     }
 }
 
@@ -92,11 +87,26 @@ void Block::ajouterFilleBordure(double _classe, std::string _id, Coords _taille,
     {
         delete m_Filles[m_Filles.size()-1];
         m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
-        std::cout << "Liaison incorrect" << std::endl;
+        std::cout << "[e] liaison incorrect" << std::endl;
     }
+}
+
+void Block::ajouterFilleGlissiereBordure(double _classe, std::string _id, Coords _taille, Couleur _couleur, Couleur _bordure, Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D)
+{
+    BlockBordure* nouv = new BlockBordure{_classe,_id, _taille, _couleur, _bordure, this};
+    if(_basepos == _baseposfin)
+        nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     else
+        nouv->initialiserGlissiere(_refpos, _basepos, _baseposfin, _plan3D);
+    nouv->initialiserOrigine();
+    m_Filles.push_back(nouv);
+
+    //methode qui teste de la position du nouveau block dans la scene
+    if(!(nouv->TestRefPos()))
     {
-        std::cout << nouv->m_origine << std::endl;
+        delete m_Filles[m_Filles.size()-1];
+        m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
+        std::cout << "[e] liaison incorrect" << std::endl;
     }
 }
 
@@ -111,11 +121,25 @@ void Block::ajouterFilleCercle(double _classe, std::string _id, double _rayon, C
     {
         delete m_Filles[m_Filles.size()-1];
         m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
-        std::cout << "Liaison incorrect" << std::endl;
+        std::cout << "[e] liaison incorrect" << std::endl;
     }
+}
+
+void Block::ajouterFilleCercleGlissiere(double _classe, std::string _id, double _rayon, Couleur _couleur, Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D)
+{
+    BlockCercle* nouv = new BlockCercle{_classe, _id, _rayon, _couleur, this};
+    if(_basepos == _baseposfin)
+        nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     else
+        nouv->initialiserGlissiere(_refpos, _basepos, _baseposfin, _plan3D);
+    nouv->initialiserOrigine();
+    m_Filles.push_back(nouv);
+
+    if(!(nouv->TestRefPos()))
     {
-        std::cout << nouv->m_origine << std::endl;
+        delete m_Filles[m_Filles.size()-1];
+        m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
+        std::cout << "[e] liaison incorrect" << std::endl;
     }
 }
 
@@ -130,11 +154,25 @@ void Block::ajouterFilleCercleBordure(double _classe, std::string _id, double _r
     {
         delete m_Filles[m_Filles.size()-1];
         m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
-        std::cout << "Liaison incorrect" << std::endl;
+        std::cout << "[e] liaison incorrect" << std::endl;
     }
+}
+
+void Block::ajouterFilleCercleGlissiereBordure(double _classe, std::string _id, double _rayon, Couleur _couleur, Couleur _bordure, Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D)
+{
+    BlockCercleBordure* nouv = new BlockCercleBordure{_classe, _id, _rayon, _couleur, _bordure, this};
+    if(_basepos == _baseposfin)
+        nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     else
+        nouv->initialiserGlissiere(_refpos, _basepos, _baseposfin, _plan3D);
+    nouv->initialiserOrigine();
+    m_Filles.push_back(nouv);
+
+    if(!(nouv->TestRefPos()))
     {
-        std::cout << nouv->m_origine << std::endl;
+        delete m_Filles[m_Filles.size()-1];
+        m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
+        std::cout << "[e] liaison incorrect" << std::endl;
     }
 }
 
@@ -240,13 +278,11 @@ void Block::dessinerLiaisonsBase(Svgfile& svgout)const
     std::string couleur {"white"};
     if ((((int)getMere()->getCouleur().getBleu() > MAX_COLOR) && ((int)m_couleur.getBleu() > MAX_COLOR))
         || (((int)(int)getMere()->getCouleur().getVert() > MAX_COLOR) && ((int)m_couleur.getBleu() > MAX_COLOR))
-        || (((int)(int)getMere()->getCouleur().getRouge() > MAX_COLOR)) && ((int)m_couleur.getBleu() > MAX_COLOR))
+        || (((int)(int)getMere()->getCouleur().getRouge() > MAX_COLOR) && ((int)m_couleur.getBleu() > MAX_COLOR)))
             couleur = "black";
     LiaisonGlissiere* glissiere = dynamic_cast<LiaisonGlissiere*>(m_liaison);
     if (glissiere)
     {
-        // dessin de la croix position de base
-        svgout.addCross(m_Mere->getOrigine().getX() + glissiere->getBasepos().getX(), m_Mere->getOrigine().getY() + glissiere->getBasepos().getY(), 6, couleur);
         // dessin de la croix position de base fin
         svgout.addCross(m_Mere->getOrigine().getX() + glissiere->getFinbasepos().getX(), m_Mere->getOrigine().getY() + glissiere->getFinbasepos().getY(), 6, couleur);
         // dessin du trait
@@ -254,11 +290,9 @@ void Block::dessinerLiaisonsBase(Svgfile& svgout)const
                         m_Mere->getOrigine().getX() + glissiere->getFinbasepos().getX(), m_Mere->getOrigine().getY() + glissiere->getFinbasepos().getY(), couleur);
     }
 
-    else
-    {
-
-    }
+    // dessin de la croix position de base
     svgout.addCross(m_Mere->getOrigine().getX() + m_liaison->getBasepos().getX(), m_Mere->getOrigine().getY() + m_liaison->getBasepos().getY(), 6, couleur);
+
 }
 
 /* Dessin liaison de reference */
@@ -774,6 +808,15 @@ void Block::chargementScene()
     sauvegarderScene1(m_Filles);
 }
 
+///************************///
+///       TRANSLATION      ///
+///************************///
+
+void Block::translation(int distance)
+{
+    std::cout << "lol c'est pas code";
+}
+
 
 ///******************************************************************************************************************
 ///                                                                                                             *****
@@ -983,7 +1026,7 @@ bool BlocAuDessusDeMere(Coords m_refpos, Coords m_basepos, Coords m_taille)
 ///   PARCOURS ET RACINE   ///
 ///************************///
 
-const Block* trouverRacine(const Block &block)
+Block* trouverRacine(Block &block)
 {
     if(block.getMere() == nullptr)
     {
@@ -991,7 +1034,7 @@ const Block* trouverRacine(const Block &block)
     }
     else
     {
-        const Block* p;
+        Block* p;
         p = trouverRacine(*block.getMere());
 
         if(p != nullptr)

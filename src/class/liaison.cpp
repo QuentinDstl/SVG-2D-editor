@@ -14,7 +14,7 @@ Liaison::Liaison(Coords _refpos, Coords _basepos, unsigned int _plan)
 
 /* Constructeur avec Initialisation nul */
 Liaison::Liaison()
-: m_refpos{0,0}, m_basepos{0,0}, m_plan{0}
+    : m_refpos{0,0}, m_basepos{0,0}, m_plan{0}
 {}
 
 ///*************************///

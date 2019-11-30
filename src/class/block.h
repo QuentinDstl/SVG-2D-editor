@@ -36,8 +36,11 @@ public :
     virtual void ajouterFille(double m_clase, std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D);
     virtual void ajouterFilleGlissiere(double _classe, std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D);
     virtual void ajouterFilleBordure(double _classe, std::string _id, Coords _taille, Couleur _couleur, Couleur _bordure, Coords _refpos, Coords _basepos, bool _plan3D);
+    virtual void ajouterFilleGlissiereBordure(double _classe, std::string _id, Coords _taille, Couleur _couleur, Couleur _bordure, Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D);
     virtual void ajouterFilleCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D);
+    virtual void ajouterFilleCercleGlissiere(double _classe, std::string _id, double _rayon, Couleur _couleur, Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D);
     virtual void ajouterFilleCercleBordure(double _classe, std::string _id, double _rayon, Couleur _couleur, Couleur _bordure, Coords _refpos, Coords _basepos, bool _plan3D);
+    virtual void ajouterFilleCercleGlissiereBordure(double _classe, std::string _id, double _rayon, Couleur _couleur, Couleur _bordure, Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D);
 
     ///INITIALIALISATION
     virtual void initialiser(double m_classe, std::string _id, Coords _taille, Couleur _couleur);
@@ -72,6 +75,9 @@ public :
     virtual void sauvegarde();
     virtual void sauvegarderScene1(std::vector <Block*> m_Filles);
     virtual void chargementScene();
+
+    ///TRANSLATION
+    virtual void translation(int distance);
 };
 
 
@@ -101,7 +107,7 @@ bool BlocEnDessousDeMere(Coords m_refpos, Coords m_basepos, Block* m_Mere);
 bool BlocAuDessusDeMere(Coords m_refpos, Coords m_basepos, Coords m_taille);
 
 ///PARCOURS ET RACINE
-const Block* trouverRacine(const Block &block);
+Block* trouverRacine(Block &block);
 Block* parcourir(std::string id, const Block &room);
 Block* parcourirCollision(const Block &block, const Block &room);
 
