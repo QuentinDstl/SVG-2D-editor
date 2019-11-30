@@ -77,7 +77,7 @@ public :
     virtual void chargementScene();
 
     ///TRANSLATION
-    virtual void translation(int distance);
+    //virtual void translation(int distance);
 };
 
 
@@ -109,7 +109,7 @@ bool BlocAuDessusDeMere(Coords m_refpos, Coords m_basepos, Coords m_taille);
 ///PARCOURS ET RACINE
 Block* trouverRacine(Block &block);
 Block* parcourir(std::string id, const Block &room);
-Block* parcourirCollision(const Block &block, const Block &room);
+Block* trouverCollision(Block &block, Block &room);
 
 ///************************///
 ///    METHODES INLINES    ///

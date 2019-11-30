@@ -28,6 +28,7 @@ int main()
     while(!fin)
     {
         creerScene(blockIterateur);
+        dessinerScene(*blockIterateur);
         fin = menu(blockIterateur);
 
         ///sauvegarde et chargement

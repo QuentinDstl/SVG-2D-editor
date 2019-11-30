@@ -27,7 +27,7 @@ bool menu(Block *racine)
                 {
                     int deplacement = 0;
                     std::cin >> deplacement;
-                    iterateur->translation(deplacement);
+                    //iterateur->translation(deplacement);
                     break;
                 }
                 else
@@ -54,7 +54,7 @@ bool menu(Block *racine)
     }
 
     dessinerScene(*racine);
-    //std::cout << "trouver racine : " << trouverRacine(*blockIterateur)->getId() << std::endl;
+    std::cout << "trouver racine : " << racine->getId() << std::endl;
 
     return fin;
 }
@@ -68,26 +68,30 @@ void creerScene(Block* iterateur)
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
 
-    iterateur->ajouterFille(0, "arm1", {25,HAUTEUR_SCENE-50}, {99,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, false);
+    iterateur->ajouterFille(0, "mur", {25,HAUTEUR_SCENE-50}, {99,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, false);
 
     iterateur->ajouterFilleGlissiereBordure(0, "robot", {25,50}, {180,180,40}, {0,0,0}, {12,50}, {200,0}, {LARGEUR_SCENE-200,0}, false);
     iterateur = iterateur->getFille(1);
     iterateur->ajouterFilleCercleBordure(0, "tete", 20, {180,180,40}, {0,0,0}, {0,20}, {12,0},false);
     iterateur = iterateur->getFille(0);
-    iterateur->ajouterFilleCercleBordure(0, "oeil", 6, {200,20,20}, {0,0,0}, {0,0}, {-7,0}, true);
-    iterateur->ajouterFilleCercleBordure(0, "oeil", 6, {200,20,20}, {0,0,0}, {0,0}, {7,0}, true);
+    iterateur->ajouterFilleCercleBordure(0, "oeil1", 6, {200,20,20}, {0,0,0}, {0,0}, {-7,0}, true);
+    iterateur->ajouterFilleCercleBordure(0, "oeil2", 6, {200,20,20}, {0,0,0}, {0,0}, {7,0}, true);
 
     iterateur = iterateur->getMere();
-    iterateur->ajouterFilleBordure(0, "arm", {25,10}, {180,180,40}, {0,0,0}, {0,5}, {25,15}, false);
-    iterateur->ajouterFilleBordure(0, "arm", {25,10}, {180,180,40}, {0,0,0}, {25,5}, {0,15}, false);
+    iterateur->ajouterFilleBordure(0, "arm1", {25,10}, {180,180,40}, {0,0,0}, {0,5}, {25,15}, false);
+    iterateur->ajouterFilleBordure(0, "arm2", {25,10}, {180,180,40}, {0,0,0}, {25,5}, {0,15}, false);
     iterateur->ajouterFilleBordure(0, "", {25,15}, {220,220,60}, {0,0,0}, {0,0}, {0,35}, true);
 
     iterateur = iterateur->getFille(1);
-    iterateur->ajouterFilleCercleBordure(0, "hand", 5, {220,220,60}, {0,0,0}, {-5,0}, {25,5}, false);
+    iterateur->ajouterFilleCercleBordure(0, "hand1", 5, {220,220,60}, {0,0,0}, {-5,0}, {25,5}, false);
 
     iterateur = iterateur->getMere();
     iterateur = iterateur->getFille(2);
-    iterateur->ajouterFilleCercleBordure(0, "hand", 5, {220,220,60}, {0,0,0}, {5,0}, {0,5}, false);
+    iterateur->ajouterFilleCercleBordure(0, "hand2", 5, {220,220,60}, {0,0,0}, {5,0}, {0,5}, false);
+
+    iterateur = trouverRacine(*iterateur);
+    iterateur = iterateur->getFille(0)->getFille(0);
+    iterateur->ajouterFilleGlissiere(0, "etagere", {60,30}, {100,100,40}, {0,15}, {25,HAUTEUR_SCENE/2}, {25,HAUTEUR_SCENE-100}, false);
 }
 
 void dessinerScene(const Block &room)
