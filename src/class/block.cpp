@@ -375,7 +375,7 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
     std::ofstream ofs{FICHIERSAUV};
     //std::ofstream ofs{FICHIERTEST};
 
-    for (auto i : s)///Niveau 0
+    for (auto i : s)///Niveau 0 et de marqueur 1
     {
         if ((i->m_classe) == 0)
         {
@@ -384,12 +384,13 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
             <<" "<< i->m_liaison->getRefpos().getY() <<" "<< i->m_liaison->getBasepos().getX() <<" "<< i->m_liaison->getBasepos().getY()
             <<" "<< i->m_liaison->getPlan() << std::endl;
         }
-        if ((i->m_classe) == 1) ///faire cast
+        if ((i->m_classe) == 1)
         {
-            ofs << i->m_classe <<" "<< i->m_id <<" "<< i->m_taille.getX() <<" "<< i->m_taille.getY() <<" "<< (int)i->m_couleur.getRouge()
-            <<" "<< (int)i->m_couleur.getVert() <<" "<< (int)i->m_couleur.getBleu() <<" "<< i->m_liaison->getRefpos().getX()
-            <<" "<< i->m_liaison->getRefpos().getY() <<" "<< i->m_liaison->getBasepos().getX() <<" "<< i->m_liaison->getBasepos().getY()
-            <<" "<< i->m_liaison->getPlan() << std::endl;
+            BlockCercle* c1 = dynamic_cast<BlockCercle*>(i);
+            ofs << c1->m_classe <<" "<< c1->m_id <<" "<< c1->getRayon() <<" "<< (int)c1->m_couleur.getRouge()
+            <<" "<< (int)c1->m_couleur.getVert() <<" "<< (int)c1->m_couleur.getBleu() <<" "<< c1->m_liaison->getRefpos().getX()
+            <<" "<< c1->m_liaison->getRefpos().getY() <<" "<< c1->m_liaison->getBasepos().getX() <<" "<< c1->m_liaison->getBasepos().getY()
+            <<" "<< c1->m_liaison->getPlan() << std::endl;
         }
         if ((i->m_classe) == 2)
         {
@@ -400,9 +401,18 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
             <<" "<< a1->m_liaison->getRefpos().getY() <<" "<< a1->m_liaison->getBasepos().getX() <<" "<< a1->m_liaison->getBasepos().getY()
             <<" "<< a1->m_liaison->getPlan() << std::endl;
         }
+        if ((i->m_classe) == 3)
+        {
+            BlockCercleBordure* b1 = dynamic_cast<BlockCercleBordure*>(i);
+            ofs << b1->m_classe <<" "<< b1->m_id <<" "<< b1->getRayon() <<" "<< (int)b1->m_couleur.getRouge()
+            <<" "<< (int)b1->m_couleur.getVert() <<" "<< (int)b1->m_couleur.getBleu() <<" "<< (int)b1->getBordure().getRouge()
+            <<" "<< (int)b1->getBordure().getVert() <<" "<< (int)b1->getBordure().getBleu()<<" "<< b1->m_liaison->getRefpos().getX()
+            <<" "<< b1->m_liaison->getRefpos().getY() <<" "<< b1->m_liaison->getBasepos().getX() <<" "<< b1->m_liaison->getBasepos().getY()
+            <<" "<< b1->m_liaison->getPlan() << std::endl;
+        }
         ofs << "[" << std::endl;
 
-        for ( auto v : i->m_Filles)///Niveau 1
+        for ( auto v : i->m_Filles)///Niveau 1 et de marqueur 2
         {
             if ((v->m_classe) == 0)
             {
@@ -413,23 +423,33 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
             }
             if ((v->m_classe) == 1)
             {
-                ofs <<"    "<< v->m_classe <<" "<< v->m_id <<" "<< v->m_taille.getX() <<" "<< v->m_taille.getY() <<" "<< (int)v->m_couleur.getRouge()
-                <<" "<< (int)v->m_couleur.getVert() <<" "<< (int)v->m_couleur.getBleu() <<" "<< v->m_liaison->getRefpos().getX()
-                <<" "<< v->m_liaison->getRefpos().getY() <<" "<< v->m_liaison->getBasepos().getX() <<" "<< v->m_liaison->getBasepos().getY()
-                <<" "<< v->m_liaison->getPlan() << std::endl;
+                BlockCercle* c2 = dynamic_cast<BlockCercle*>(v);
+                ofs <<"    "<< c2->m_classe <<" "<< c2->m_id <<" "<< c2->getRayon() <<" "<< (int)c2->m_couleur.getRouge()
+                <<" "<< (int)c2->m_couleur.getVert() <<" "<< (int)c2->m_couleur.getBleu() <<" "<< c2->m_liaison->getRefpos().getX()
+                <<" "<< c2->m_liaison->getRefpos().getY() <<" "<< c2->m_liaison->getBasepos().getX() <<" "<< c2->m_liaison->getBasepos().getY()
+                <<" "<< c2->m_liaison->getPlan() << std::endl;
             }
             if ((v->m_classe) == 2)
             {
                 BlockBordure* a2 = dynamic_cast<BlockBordure*>(v);
                 ofs <<"    "<< a2->m_classe <<" "<< a2->m_id <<" "<< a2->m_taille.getX() <<" "<< a2->m_taille.getY() <<" "<< (int)a2->m_couleur.getRouge()
-                <<" "<< (int)a2->m_couleur.getVert() <<" "<< (int)a2->m_couleur.getBleu() <<" "<< /*(int)a2->getBordure().getRouge()
-                <<" "<< (int)a2->m_couleur.getVert() <<" "<< (int)a2->m_couleur.getBleu()<<" "<<*/ a2->m_liaison->getRefpos().getX()
+                <<" "<< (int)a2->m_couleur.getVert() <<" "<< (int)a2->m_couleur.getBleu() <<" "<< (int)a2->getBordure().getRouge()
+                <<" "<< (int)a2->getBordure().getVert() <<" "<< (int)a2->getBordure().getBleu()<<" "<< a2->m_liaison->getRefpos().getX()
                 <<" "<< a2->m_liaison->getRefpos().getY() <<" "<< a2->m_liaison->getBasepos().getX() <<" "<< a2->m_liaison->getBasepos().getY()
                 <<" "<< a2->m_liaison->getPlan() << std::endl;
             }
+            if ((v->m_classe) == 3)
+            {
+                BlockCercleBordure* b2 = dynamic_cast<BlockCercleBordure*>(v);
+                ofs <<"    "<< b2->m_classe <<" "<< b2->m_id <<" "<< b2->getRayon() <<" "<< (int)b2->m_couleur.getRouge()
+                <<" "<< (int)b2->m_couleur.getVert() <<" "<< (int)b2->m_couleur.getBleu() <<" "<< (int)b2->getBordure().getRouge()
+                <<" "<< (int)b2->getBordure().getVert() <<" "<< (int)b2->getBordure().getBleu()<<" "<< b2->m_liaison->getRefpos().getX()
+                <<" "<< b2->m_liaison->getRefpos().getY() <<" "<< b2->m_liaison->getBasepos().getX() <<" "<< b2->m_liaison->getBasepos().getY()
+                <<" "<< b2->m_liaison->getPlan() << std::endl;
+            }
             ofs << "    [" << std::endl;
 
-            for ( auto z : v->m_Filles )///Niveau 2
+            for ( auto z : v->m_Filles )///Niveau 2 et de marqueur 3
             {
                 if ((z->m_classe) == 0)
                 {
@@ -440,23 +460,33 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                 }
                 if ((z->m_classe) == 1)
                 {
-                    ofs <<"        "<< z->m_classe <<" "<< z->m_id <<" "<< z->m_taille.getX() <<" "<< z->m_taille.getY() <<" "<< (int)z->m_couleur.getRouge()
-                    <<" "<< (int)z->m_couleur.getVert() <<" "<< (int)z->m_couleur.getBleu() <<" "<< z->m_liaison->getRefpos().getX()
-                    <<" "<< z->m_liaison->getRefpos().getY() <<" "<< z->m_liaison->getBasepos().getX() <<" "<< z->m_liaison->getBasepos().getY()
-                    <<" "<< z->m_liaison->getPlan() << std::endl;
+                    BlockCercle* c3 = dynamic_cast<BlockCercle*>(z);
+                    ofs <<"        "<< c3->m_classe <<" "<< c3->m_id <<" "<< c3->getRayon() <<" "<< (int)c3->m_couleur.getRouge()
+                    <<" "<< (int)c3->m_couleur.getVert() <<" "<< (int)c3->m_couleur.getBleu() <<" "<< c3->m_liaison->getRefpos().getX()
+                    <<" "<< c3->m_liaison->getRefpos().getY() <<" "<< c3->m_liaison->getBasepos().getX() <<" "<< c3->m_liaison->getBasepos().getY()
+                    <<" "<< c3->m_liaison->getPlan() << std::endl;
                 }
                 if ((z->m_classe) == 2)
                 {
                     BlockBordure* a3 = dynamic_cast<BlockBordure*>(z);
                     ofs <<"        "<< a3->m_classe <<" "<< a3->m_id <<" "<< a3->m_taille.getX() <<" "<< a3->m_taille.getY() <<" "<< (int)a3->m_couleur.getRouge()
-                    <<" "<< (int)a3->m_couleur.getVert() <<" "<< (int)a3->m_couleur.getBleu() <<" "<< /*(int)a3->getBordure().getRouge()
-                    <<" "<< (int)a3->m_couleur.getVert() <<" "<< (int)a3->m_couleur.getBleu()<<" "<<*/ a3->m_liaison->getRefpos().getX()
+                    <<" "<< (int)a3->m_couleur.getVert() <<" "<< (int)a3->m_couleur.getBleu() <<" "<< (int)a3->getBordure().getRouge()
+                    <<" "<< (int)a3->getBordure().getVert() <<" "<< (int)a3->getBordure().getBleu()<<" "<< a3->m_liaison->getRefpos().getX()
                     <<" "<< a3->m_liaison->getRefpos().getY() <<" "<< a3->m_liaison->getBasepos().getX() <<" "<< a3->m_liaison->getBasepos().getY()
                     <<" "<< a3->m_liaison->getPlan() << std::endl;
                 }
+                if ((z->m_classe) == 3)
+                {
+                    BlockCercleBordure* b3 = dynamic_cast<BlockCercleBordure*>(z);
+                    ofs <<"        "<< b3->m_classe <<" "<< b3->m_id <<" "<< b3->getRayon() <<" "<< (int)b3->m_couleur.getRouge()
+                    <<" "<< (int)b3->m_couleur.getVert() <<" "<< (int)b3->m_couleur.getBleu() <<" "<< (int)b3->getBordure().getRouge()
+                    <<" "<< (int)b3->getBordure().getVert() <<" "<< (int)b3->getBordure().getBleu()<<" "<< b3->m_liaison->getRefpos().getX()
+                    <<" "<< b3->m_liaison->getRefpos().getY() <<" "<< b3->m_liaison->getBasepos().getX() <<" "<< b3->m_liaison->getBasepos().getY()
+                    <<" "<< b3->m_liaison->getPlan() << std::endl;
+                }
                 ofs << "        [" << std::endl;
 
-                for ( auto b : z->m_Filles )///Niveau 3
+                for ( auto b : z->m_Filles )///Niveau 3 et de marqueur 4
                 {
                     if ((b->m_classe) == 0)
                     {
@@ -467,23 +497,33 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                     }
                     if ((b->m_classe) == 1)
                     {
-                        ofs << "            "<< b->m_classe <<" "<< b->m_id <<" "<< b->m_taille.getX() <<" "<< b->m_taille.getY() <<" "<< (int)b->m_couleur.getRouge()
-                        <<" "<< (int)b->m_couleur.getVert() <<" "<< (int)b->m_couleur.getBleu() <<" "<< b->m_liaison->getRefpos().getX()
-                        <<" "<< b->m_liaison->getRefpos().getY() <<" "<< b->m_liaison->getBasepos().getX() <<" "<< b->m_liaison->getBasepos().getY()
-                        <<" "<< b->m_liaison->getPlan() << std::endl;
+                        BlockCercle* c4 = dynamic_cast<BlockCercle*>(b);
+                        ofs << "            "<< c4->m_classe <<" "<< c4->m_id <<" "<< c4->getRayon() <<" "<< (int)c4->m_couleur.getRouge()
+                        <<" "<< (int)c4->m_couleur.getVert() <<" "<< (int)c4->m_couleur.getBleu() <<" "<< c4->m_liaison->getRefpos().getX()
+                        <<" "<< c4->m_liaison->getRefpos().getY() <<" "<< c4->m_liaison->getBasepos().getX() <<" "<< c4->m_liaison->getBasepos().getY()
+                        <<" "<< c4->m_liaison->getPlan() << std::endl;
                     }
                     if ((b->m_classe) == 2)
                     {
                         BlockBordure* a4 = dynamic_cast<BlockBordure*>(b);
                         ofs << "            "<< a4->m_classe <<" "<< a4->m_id <<" "<< a4->m_taille.getX() <<" "<< a4->m_taille.getY() <<" "<< (int)a4->m_couleur.getRouge()
-                        <<" "<< (int)a4->m_couleur.getVert() <<" "<< (int)a4->m_couleur.getBleu() <<" "<< /*(int)a4->getBordure().getRouge()
-                        <<" "<< (int)a4->m_couleur.getVert() <<" "<< (int)a4->m_couleur.getBleu()<<" "<<*/ a4->m_liaison->getRefpos().getX()
+                        <<" "<< (int)a4->m_couleur.getVert() <<" "<< (int)a4->m_couleur.getBleu() <<" "<< (int)a4->getBordure().getRouge()
+                        <<" "<< (int)a4->getBordure().getVert() <<" "<< (int)a4->getBordure().getBleu()<<" "<< a4->m_liaison->getRefpos().getX()
                         <<" "<< a4->m_liaison->getRefpos().getY() <<" "<< a4->m_liaison->getBasepos().getX() <<" "<< a4->m_liaison->getBasepos().getY()
                         <<" "<< a4->m_liaison->getPlan() << std::endl;
                     }
+                    if ((b->m_classe) == 3)
+                    {
+                        BlockCercleBordure* b4 = dynamic_cast<BlockCercleBordure*>(b);
+                        ofs << "            "<< b4->m_classe <<" "<< b4->m_id <<" "<< b4->getRayon() <<" "<< (int)b4->m_couleur.getRouge()
+                        <<" "<< (int)b4->m_couleur.getVert() <<" "<< (int)b4->m_couleur.getBleu() <<" "<< (int)b4->getBordure().getRouge()
+                        <<" "<< (int)b4->getBordure().getVert() <<" "<< (int)b4->getBordure().getBleu()<<" "<< b4->m_liaison->getRefpos().getX()
+                        <<" "<< b4->m_liaison->getRefpos().getY() <<" "<< b4->m_liaison->getBasepos().getX() <<" "<< b4->m_liaison->getBasepos().getY()
+                        <<" "<< b4->m_liaison->getPlan() << std::endl;
+                    }
                     ofs << "            [" << std::endl;
 
-                    for ( auto r : b->m_Filles )///Niveau 4
+                    for ( auto r : b->m_Filles )///Niveau 4 et de marqueur 5
                     {
                         if ((r->m_classe) == 0)
                         {
@@ -493,17 +533,29 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
                         }
                         if ((r->m_classe) == 1)
                         {
-                            ofs << "                " << r->m_classe <<" "<< r->m_id <<" "<< r->m_taille.getX() <<" "<< r->m_taille.getY() <<" "<< (int)r->m_couleur.getRouge()
-                            <<" "<< (int)r->m_couleur.getVert() <<" "<< (int)r->m_couleur.getBleu() <<" "<< r->m_liaison->getRefpos().getX() <<" "<< r->m_liaison->getRefpos().getY()
-                            <<" "<< r->m_liaison->getBasepos().getX() <<" "<< r->m_liaison->getBasepos().getY() <<" "<< r->m_liaison->getPlan() << std::endl;
+                            BlockCercle* c5 = dynamic_cast<BlockCercle*>(r);
+                            ofs << "                " << c5->m_classe <<" "<< c5->m_id <<" "<< c5->getRayon() <<" "<< (int)c5->m_couleur.getRouge()
+                            <<" "<< (int)c5->m_couleur.getVert() <<" "<< (int)c5->m_couleur.getBleu() <<" "<< c5->m_liaison->getRefpos().getX()
+                            <<" "<< c5->m_liaison->getRefpos().getY() <<" "<< c5->m_liaison->getBasepos().getX() <<" "<< c5->m_liaison->getBasepos().getY()
+                            <<" "<< c5->m_liaison->getPlan() << std::endl;
                         }
                         if ((r->m_classe) == 2)
                         {
                             BlockBordure* a5 = dynamic_cast<BlockBordure*>(r);
                             ofs << "                " << a5->m_classe <<" "<< a5->m_id <<" "<< a5->m_taille.getX() <<" "<< a5->m_taille.getY() <<" "<< (int)a5->m_couleur.getRouge()
-                            <<" "<< (int)a5->m_couleur.getVert() <<" "<< (int)a5->m_couleur.getBleu() <<" "<< /*(int)a5->getBordure().getRouge() <<" "<< (int)a5->m_couleur.getVert()
-                            <<" "<< (int)a5->m_couleur.getBleu()<<" "<<*/ a5->m_liaison->getRefpos().getX() <<" "<< a5->m_liaison->getRefpos().getY() <<" "<< a5->m_liaison->getBasepos().getX()
-                            <<" "<< a5->m_liaison->getBasepos().getY() <<" "<< a5->m_liaison->getPlan() << std::endl;
+                            <<" "<< (int)a5->m_couleur.getVert() <<" "<< (int)a5->m_couleur.getBleu() <<" "<< (int)a5->getBordure().getRouge()
+                            <<" "<< (int)a5->getBordure().getVert() <<" "<< (int)a5->getBordure().getBleu()<<" "<< a5->m_liaison->getRefpos().getX()
+                            <<" "<< a5->m_liaison->getRefpos().getY() <<" "<< a5->m_liaison->getBasepos().getX() <<" "<< a5->m_liaison->getBasepos().getY()
+                            <<" "<< a5->m_liaison->getPlan() << std::endl;
+                        }
+                        if ((r->m_classe) == 3)
+                        {
+                            BlockCercleBordure* b5 = dynamic_cast<BlockCercleBordure*>(r);
+                            ofs << "                " << b5->m_classe <<" "<< b5->m_id <<" "<< b5->getRayon() <<" "<< (int)b5->m_couleur.getRouge()
+                            <<" "<< (int)b5->m_couleur.getVert() <<" "<< (int)b5->m_couleur.getBleu() <<" "<< (int)b5->getBordure().getRouge()
+                            <<" "<< (int)b5->getBordure().getVert() <<" "<< (int)b5->getBordure().getBleu()<<" "<< b5->m_liaison->getRefpos().getX()
+                            <<" "<< b5->m_liaison->getRefpos().getY() <<" "<< b5->m_liaison->getBasepos().getX() <<" "<< b5->m_liaison->getBasepos().getY()
+                            <<" "<< b5->m_liaison->getPlan() << std::endl;
                         }
                     }
                     ofs << "            ]" << std::endl;
@@ -541,7 +593,7 @@ void Block::chargementScene()
     iss >> classe ;
     iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
 
-    ajouterFille(classe, id, {tailleX,tailleY}, {rouge,vert,bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+    ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
 
     std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
 
@@ -568,7 +620,7 @@ void Block::chargementScene()
             iss >> classe ;
             iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
             std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
-            getFille(0)->ajouterFille(classe, id, {tailleX,tailleY}, {rouge,vert,bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            getFille(0)->ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
         }
 
         /*Niv 2*/if ( ligne.size()>=4 && ligne[4]=='[' && niveau==1 )
@@ -589,7 +641,7 @@ void Block::chargementScene()
             iss >> classe ;
             iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
             std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< plan3D << std::endl << std::endl ;
-            getFille(0)->getFille(0)->ajouterFille(classe, id, {tailleX,tailleY}, {rouge,vert,bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
+            getFille(0)->getFille(0)->ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, plan3D);
         }
 
     }/// Passage à la ligne suivante (prochain tour de boucle)

@@ -443,7 +443,7 @@
 	"../svg/svgfile.h"
 	"liaison.h"
 
-1575049633 source:c:\users\c_per\projet_block\main.cpp
+1575118137 source:c:\users\c_per\projet_block\main.cpp
 	<iostream>
 	<fstream>
 	<vector>
@@ -457,14 +457,14 @@
 	"src/util/util.h"
 	"src/class/block.h"
 
-1575049122 c:\users\c_per\projet_block\src\class\block.h
+1575117660 c:\users\c_per\projet_block\src\class\block.h
 	<vector>
 	<iostream>
-	"liaison.h"
+	"liaison_glissiere.h"
 	"../svg/svgfile.h"
 	"../interface/couleur.h"
 
-1575042818 c:\users\c_per\projet_block\src\class\liaison.h
+1575117660 c:\users\c_per\projet_block\src\class\liaison.h
 	"coords.h"
 	"liaison.h"
 
@@ -476,7 +476,7 @@
 	<fstream>
 	<set>
 
-1575049588 c:\users\c_per\projet_block\src\interface\couleur.h
+1575117660 c:\users\c_per\projet_block\src\interface\couleur.h
 	<string>
 	<cstdint>
 
@@ -488,12 +488,11 @@
 	"../util/util.h"
 	<iostream>
 
-1575042818 source:c:\users\c_per\projet_block\src\class\liaison.cpp
+1575117660 source:c:\users\c_per\projet_block\src\class\liaison.cpp
 	<iostream>
 	"liaison.h"
-	"coords.h"
 
-1575033443 source:c:\users\c_per\projet_block\src\interface\couleur.cpp
+1575117660 source:c:\users\c_per\projet_block\src\interface\couleur.cpp
 	"couleur.h"
 	"../svg/svgfile.h"
 	"../util/util.h"
@@ -520,12 +519,12 @@
 	"../util/util.h"
 	<windows.h>
 
-1575050077 source:c:\users\c_per\projet_block\src\class\block.cpp
+1575118818 source:c:\users\c_per\projet_block\src\class\block.cpp
 	"block.h"
 	"../svg/svgfile.h"
-	"liaison.h"
 	"block_cercle.h"
 	"block_bordure.h"
+	"block_cercle_bordure.h"
 	<iostream>
 	<string>
 	<vector>
@@ -539,10 +538,10 @@
 1575054685 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_cercle.h
 	"block.h"
 
-1575042818 c:\users\c_per\projet_block\src\class\block_cercle.h
+1575117660 c:\users\c_per\projet_block\src\class\block_cercle.h
 	"block.h"
 
-1575042818 source:c:\users\c_per\projet_block\src\class\block_cercle.cpp
+1575117660 source:c:\users\c_per\projet_block\src\class\block_cercle.cpp
 	"block_cercle.h"
 	<math.h>
 
@@ -557,21 +556,20 @@
 
 1575030932 cle.h"
 
-1575033443 source:c:\users\c_per\projet_block\src\class\bordure.cpp
+1575117660 source:c:\users\c_per\projet_block\src\class\bordure.cpp
 	"bordure.h"
 	"../svg/svgfile.h"
 	"../util/util.h"
 	<iostream>
 
-1575050090 c:\users\c_per\projet_block\src\class\bordure.h
+1575117660 c:\users\c_per\projet_block\src\class\bordure.h
 	"../interface/couleur.h"
 
-1575050041 c:\users\c_per\projet_block\src\class\block_bordure.h
+1575117660 c:\users\c_per\projet_block\src\class\block_bordure.h
 	"block.h"
-	"block_bordure.h"
 	"bordure.h"
 
-1575042818 source:c:\users\c_per\projet_block\src\class\block_bordure.cpp
+1575117660 source:c:\users\c_per\projet_block\src\class\block_bordure.cpp
 	"block_bordure.h"
 
 1575033175 43281a01eae645c37914633c63574c6643f35
@@ -626,4 +624,17 @@
 1575108576 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle_bordure.h
 	"block_cercle.h"
 	"bordure.h"
+
+1575117660 c:\users\c_per\projet_block\src\class\liaison_glissiere.h
+	"liaison.h"
+
+1575117660 c:\users\c_per\projet_block\src\class\block_cercle_bordure.h
+	"block_cercle.h"
+	"bordure.h"
+
+1575117660 source:c:\users\c_per\projet_block\src\class\block_cercle_bordure.cpp
+	"block_cercle_bordure.h"
+
+1575117660 source:c:\users\c_per\projet_block\src\class\liaison_glissiere.cpp
+	"liaison_glissiere.h"
 
