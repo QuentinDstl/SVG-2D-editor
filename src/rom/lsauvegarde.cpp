@@ -34,7 +34,6 @@ void Block::sauvegarde()
 void Block::sauvegarderScene1(std::vector <Block*> s)
 {
     std::ofstream ofs{FICHIERSAUV};
-    //std::ofstream ofs{FICHIERTEST};
 
     for (auto i : s)///Niveau 0 et de marqueur 1
     {
