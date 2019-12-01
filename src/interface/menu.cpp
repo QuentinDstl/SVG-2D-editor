@@ -69,6 +69,11 @@ bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int*
                 util::videCin();
                 util::startAutoCin("auto.txt",20,0x0a);
             }
+            else if(caractere == 'c')
+            {
+                util::videCin();
+                util::startAutoCin("auto2.txt",20,0x0a);
+            }
             else if(caractere == 'b')
             {
                 util::videCin();
