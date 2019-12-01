@@ -10,84 +10,87 @@ bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int*
     std::cin >> typeCommande;
     switch (typeCommande)
     {
-    case '@':
-    {
-        std::string nom;
-        std::cin >> nom;
-
-        iterateur = parcourir(nom,*racine);
-        if(iterateur==nullptr)
+        case '@':
         {
-            std::cout << std::endl;
-            std::cout << "[e] " << nom << " n'existe pas"<<std::endl;
-        }
-        else
-        {
-            std::string commande;
-            std::cin >> commande;
-            if(commande == "move")
+            std::string nom;
+            std::cin >> nom;
+            iterateur = parcourir(nom,*racine);
+            if(iterateur==nullptr)
             {
-                int deplacement = 0;
-                std::cin >> deplacement;
-                iterateur->translation(deplacement);
-                break;
+                std::cout << std::endl;
+                std::cout << "[e] " << nom << " n'existe pas"<<std::endl;
             }
             else
             {
-                std::cout<<std::endl;
-                std::cout << "[e] " << commande << " n'est pas reconnu" << std::endl;
+                std::string commande;
+                std::cin >> commande;
+                if(commande == "move")
+                {
+                    int deplacement = 0;
+                    std::cin >> deplacement;
+                    iterateur->translation(deplacement);
+                    break;
+                }
+                else
+                {
+                    std::cout<<std::endl;
+                    std::cout << "[e] " << commande << " n'est pas reconnu" << std::endl;
+                }
             }
-
         }
-    }
-    break;
+        break;
 
-    case '!':
-    {
-    }
-    break;
-
-    case 'l':
-    {
-        if(*afficherLiaisons == true) {
-            *afficherLiaisons = false;
+        case '!':
+        {
         }
-        else {
-            *afficherLiaisons = true;
-        }
-    }
-    break;
+        break;
 
-    case 'i':
-    {
-        if(*afficherId == true) {
-            *afficherId = false;
+        case 'l':
+        {
+            if(*afficherLiaisons == true) {
+                *afficherLiaisons = false;
+            }
+            else {
+                *afficherLiaisons = true;
+            }
         }
-        else {
-            *afficherId = true;
+        break;
+
+        case 'i':
+        {
+            if(*afficherId == true) {
+                *afficherId = false;
+            }
+            else {
+                *afficherId = true;
+            }
         }
-    }
-    break;
+        break;
 
-    case 'p':
-    {
-        char signe;
-        std::cin >> signe;
+        case 'p':
+        {
+            char signe;
+            std::cin >> signe;
 
-        if(signe == '+') {
-            (*plan)--;
+            if(signe == '+') {
+                (*plan)--;
+            }
+            if(signe == '-') {
+                (*plan)++;
+            }
         }
-        if(signe == '-') {
-            (*plan)++;
+        break;
+
+        case 'e':
+        {
+             fin = true;
         }
-    }
-    break;
+        break;
 
-
-    default:
-    {
-        std::cout << "[e] " << typeCommande << " n'est pas reconnu" << std::endl;
-    }
+        default:
+        {
+            std::cout << "[e] " << typeCommande << " n'est pas reconnu" << std::endl;
+        }
     break;
     }
 
