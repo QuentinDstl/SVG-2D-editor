@@ -12,13 +12,13 @@
 <circle cx="193" cy="480" r="5.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
 <circle cx="207" cy="480" r="5.4" fill="rgb(200,20,20)" />
 <circle cx="207" cy="480" r="5.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
-<polygon points=" 213,510 213,520 238,520 238,510" style="fill:rgb(180,180,40)" />
+<polygon points=" 213.6,510.6 213.6,519.4 237.4,519.4 237.4,510.6" style="fill:rgb(180,180,40);stroke:rgb(0,0,0);stroke-width:1" />
 <circle cx="243" cy="515" r="4.4" fill="rgb(220,220,60)" />
 <circle cx="243" cy="515" r="4.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
-<polygon points=" 163,510 163,520 188,520 188,510" style="fill:rgb(180,180,40)" />
+<polygon points=" 163.6,510.6 163.6,519.4 187.4,519.4 187.4,510.6" style="fill:rgb(180,180,40);stroke:rgb(0,0,0);stroke-width:1" />
 <circle cx="158" cy="515" r="4.4" fill="rgb(220,220,60)" />
 <circle cx="158" cy="515" r="4.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
-<polygon points=" 188,535 188,550 213,550 213,535" style="fill:rgb(220,220,60)" />
+<polygon points=" 188.6,535.6 188.6,549.4 212.4,549.4 212.4,535.6" style="fill:rgb(220,220,60);stroke:rgb(0,0,0);stroke-width:1" />
 
 
 </svg>
