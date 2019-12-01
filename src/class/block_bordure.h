@@ -17,3 +17,4 @@ public:
 
 #endif // BLOCK_BORDURE_H_INCLUDED
 
+//class BlockBordureGlissire : public BlockBordure, public liasion

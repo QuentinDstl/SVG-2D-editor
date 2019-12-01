@@ -14,8 +14,8 @@ public :
     LiaisonGlissiere();
 
     /// getteurs et setteurs
-    Coords getFinbasepos();
-    void setteurG(Coords _refpos, Coords _basepos, unsigned int _plan);
+    virtual Coords getFinbasepos();
+    virtual void setteurG(Coords _refpos, Coords _basepos, unsigned int _plan);
 
 };
 
