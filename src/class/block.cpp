@@ -485,7 +485,6 @@ void Block::translation(int distance)
                     }
                 }
                 deplacement++;
-                std::cout << "[FIN]on a : "<< fin << std::endl;
             }
             while((deplacement < abs(distance)) && (fin == false));
         }
@@ -570,16 +569,12 @@ bool Block::parcourirSetOrigine(bool gain, bool axe)
 
     // si on est en bout de chaine
     if (!m_Filles.size())
-    {
-        std::cout << " -pas de fille" << std::endl;
-    }
+    {}
     else
     {
         // sinon on se ballade dans les filles
         for(const auto& petit_fils : m_Filles)
         {
-            std::cout << std::endl;
-            std::cout << petit_fils->getId() << " -etude fille";
             petit_fils->parcourirSetOrigine(gain,axe);
             /*if(!valeur)
             {
