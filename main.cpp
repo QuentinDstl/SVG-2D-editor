@@ -15,7 +15,7 @@ int main()
 }*/
 
 
-/*
+
 ///Main version CREATION puis sauvegarde
 int main()
 {
@@ -25,12 +25,20 @@ int main()
     Block* blockIterateur = &room;
     bool fin = false;
 
+    bool afficherLiaisons = false;
+    bool afficherId = false;
+    unsigned int plan = 3;
+
+    bool* ptafficherId = &afficherId;
+    bool* ptafficherLiaisons = &afficherLiaisons;
+    unsigned int* ptplan = &plan;
+
     ///** Boucle du menu **
     while(!fin)
     {
         creerScene(blockIterateur);
-        dessinerScene(*blockIterateur);
-        fin = menu(blockIterateur);
+        dessinerScene(room, ptafficherLiaisons, ptafficherId, ptplan);
+        fin = menu(blockIterateur, ptafficherLiaisons, ptafficherId, ptplan);
 
         ///sauvegarde et chargement
         std::ofstream file {FICHIER};
@@ -42,14 +50,13 @@ int main()
         {
             room.sauvegarde();
         }
-        fin = true;
     }
 
     return 0;
-}*/
+}
 
 ///Main pour test de CHARLES
-int main()
+/*int main()
 {
     Block room;
     Block* blockIterateur = &room;
@@ -68,7 +75,7 @@ int main()
     }
 
     return 0;
-}
+}*/
 
 /*
 ///Main pour test de CHARLES

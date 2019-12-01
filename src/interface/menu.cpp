@@ -1,9 +1,11 @@
 #include "menu.h"
 
-bool menu(Block *racine)
+bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int* plan)
 {
     Block* iterateur = trouverRacine(*racine);
+
     bool fin = false;
+
     char typeCommande;
     std::cin >> typeCommande;
     switch (typeCommande)
@@ -42,9 +44,45 @@ bool menu(Block *racine)
 
     case '!':
     {
-
     }
     break;
+
+    case 'l':
+    {
+        if(*afficherLiaisons == true) {
+            *afficherLiaisons = false;
+        }
+        else {
+            *afficherLiaisons = true;
+        }
+    }
+    break;
+
+    case 'i':
+    {
+        if(*afficherId == true) {
+            *afficherId = false;
+        }
+        else {
+            *afficherId = true;
+        }
+    }
+    break;
+
+    case 'p':
+    {
+        char signe;
+        std::cin >> signe;
+
+        if(signe == '+') {
+            (*plan)--;
+        }
+        if(signe == '-') {
+            (*plan)++;
+        }
+    }
+    break;
+
 
     default:
     {
@@ -52,9 +90,6 @@ bool menu(Block *racine)
     }
     break;
     }
-
-    dessinerScene(*racine);
-    std::cout << "trouver racine : " << racine->getId() << std::endl;
 
     return fin;
 }
@@ -111,32 +146,39 @@ void creerScene(Block* iterateur)
 
 }
 
-void dessinerScene(const Block &room)
+void dessinerScene(const Block &room, bool* afficherLiaisons, bool* afficherId, unsigned int* plan)
 {
     Svgfile svgout;
     /* attention il faut dessiner le room à part */
     room.dessiner(svgout);
     room.toutDessiner(svgout);
-    //toutDessinerPlan(svgout,room,2);
 
     std::cout << "[i] croix rouge/bleu = position de reference / croix noir/blanc = position de base" << std::endl;
-    room.toutDessinerLiaisons(svgout);
-    //room.toutDessinerId(svgout);
+    if(*afficherLiaisons == true) {
+        room.toutDessinerLiaisons(svgout);
+    }
+    if(*afficherId == true) {
+        room.toutDessinerId(svgout);
+    }
 }
 
 void toutDessinerPlan(Svgfile &svgout,const Block &room, unsigned int plan)
 {
+    std::cout << plan << " " << std::endl;
     if (!room.getFilles().size())
-    {}
+    {
+    std::cout << room.getId();
+    std::cout << "fin de branche" <<std::endl;}
     else
     {
-        for(const auto& petit_fils : room.getFilles())
+        for(auto petit_fils : room.getFilles())
         {
-            std::cout << " " << petit_fils->getLiaison()->getPlan() << ",";
             if (petit_fils->getLiaison()->getPlan() <= plan)
+            {
+                std::cout << petit_fils->getId() << std::endl;
                 petit_fils->dessiner(svgout);
+            }
             toutDessinerPlan(svgout,*petit_fils,plan);
         }
-
     }
 }
