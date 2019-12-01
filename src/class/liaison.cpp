@@ -29,10 +29,4 @@ void Liaison::setteur(Coords _refpos, Coords _basepos, unsigned int _plan)
     m_plan = _plan;
 }
 
-/// CLASS FILLE GLISSIERE
-
-/*Liaison_g::Liaison_g(Coords _refpos, Coords _endpos, unsigned int _refFille) : Liaison{_refpos}, m_endpos {_endpos}, m_refFille {_refFille}
-{ }*/
-
-
 

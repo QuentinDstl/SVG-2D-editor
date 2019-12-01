@@ -41,33 +41,36 @@ Block::Block() :
 // cree une nouvelle fille a partir de la mere
 void Block::ajouterFille(double _classe, std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D)
 {
-    Block* nouv = new Block{_classe, _id, _taille, _couleur, this};
-    nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
-    nouv->initialiserOrigine();
+    Block* nouv = new Block{_classe, _id, _taille, _couleur, this}; //constructeur d'un Block rectangle sans bordure ni sans liaison glissiere
+    nouv->initialiserLiaison(_refpos, _basepos, _plan3D); //permet de situer le refpos sur le block et le basepos sur la mere ainsi que de fixer le plan
+    nouv->initialiserOrigine(); //initialise l'origine
     m_Filles.push_back(nouv);
 
     //methode qui teste de la position du nouveau block dans la scene
     if(!(nouv->TestRefPos()))
     {
+        //si le bloc est mal positionne on l'efface
         delete m_Filles[m_Filles.size()-1];
         m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
         std::cout << "[e] liaison incorrect" << std::endl;
     }
 }
 
+// cree une nouvelle fille avec liaison glissiere a partir de la mere
 void Block::ajouterFilleGlissiere(double _classe, std::string _id, Coords _taille, Couleur _couleur, Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D)
 {
-    Block* nouv = new Block{_classe, _id, _taille, _couleur, this};
-    if(_basepos == _baseposfin)
-        nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
+    Block* nouv = new Block{_classe, _id, _taille, _couleur, this};  //constructeur d'un Block rectangle avec liaison glissiere sans bordure
+    if(_basepos == _baseposfin) //on verifie qu'on ne cree pas une glissiere sur un seul point
+        nouv->initialiserLiaison(_refpos, _basepos, _plan3D); //si c'est le cas il s'agit d'une liaison classique
     else
-        nouv->initialiserGlissiere(_refpos, _basepos, _baseposfin, _plan3D);
-    nouv->initialiserOrigine();
+        nouv->initialiserGlissiere(_refpos, _basepos, _baseposfin, _plan3D); //initialisation d'un Block avec glissiere
+    nouv->initialiserOrigine(); //initialise l'origine
     m_Filles.push_back(nouv);
 
     //methode qui teste de la position du nouveau block dans la scene
     if(!(nouv->TestRefPos()))
     {
+        //si le bloc est mal positionne on l'efface
         delete m_Filles[m_Filles.size()-1];
         m_Filles.erase(m_Filles.begin()+m_Filles.size()-1);
         std::cout << "[e] liaison incorrect" << std::endl;
@@ -76,12 +79,12 @@ void Block::ajouterFilleGlissiere(double _classe, std::string _id, Coords _taill
 
 
 // Creer une fille couleur avec bordures
-// cree une nouvelle fille a partir de la mere
+// cree une nouvelle fille avec bordures a partir de la mere
 void Block::ajouterFilleBordure(double _classe, std::string _id, Coords _taille, Couleur _couleur, Couleur _bordure, Coords _refpos, Coords _basepos, bool _plan3D)
 {
-    BlockBordure* nouv = new BlockBordure{_classe,_id, _taille, _couleur, _bordure, this};
-    nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
-    nouv->initialiserOrigine();
+    BlockBordure* nouv = new BlockBordure{_classe,_id, _taille, _couleur, _bordure, this}; //constructeur d'un Block rectangle avec bordure sans liaison glissiere
+    nouv->initialiserLiaison(_refpos, _basepos, _plan3D); //permet de situer le refpos sur le block et le basepos sur la mere ainsi que de fixer le plan
+    nouv->initialiserOrigine(); //initialise l'origine
     m_Filles.push_back(nouv);
 
     if(!(nouv->TestRefPos()))
@@ -92,11 +95,12 @@ void Block::ajouterFilleBordure(double _classe, std::string _id, Coords _taille,
     }
 }
 
+// cree une nouvelle fille avec bordures et liaison glissiere a partir de la mere
 void Block::ajouterFilleGlissiereBordure(double _classe, std::string _id, Coords _taille, Couleur _couleur, Couleur _bordure, Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D)
 {
-    BlockBordure* nouv = new BlockBordure{_classe,_id, _taille, _couleur, _bordure, this};
-    if(_basepos == _baseposfin)
-        nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
+    BlockBordure* nouv = new BlockBordure{_classe,_id, _taille, _couleur, _bordure, this}; //constructeur d'un Block rectangle avec bordure et liaison glissiere
+    if(_basepos == _baseposfin) //on verifie qu'on ne cree pas une glissiere sur un seul point
+        nouv->initialiserLiaison(_refpos, _basepos, _plan3D); //si c'est le cas il s'agit d'une liaison classique
     else
         nouv->initialiserGlissiere(_refpos, _basepos, _baseposfin, _plan3D);
     nouv->initialiserOrigine();
@@ -111,9 +115,10 @@ void Block::ajouterFilleGlissiereBordure(double _classe, std::string _id, Coords
     }
 }
 
+// cree une nouvelle fille cercle avec bordures et liaison glissiere a partir de la mere
 void Block::ajouterFilleCercle(double _classe, std::string _id, double _rayon, Couleur _couleur, Coords _refpos, Coords _basepos, bool _plan3D)
 {
-    BlockCercle* nouv = new BlockCercle{_classe, _id, _rayon, _couleur, this};
+    BlockCercle* nouv = new BlockCercle{_classe, _id, _rayon, _couleur, this}; //constructeur d'un Block cercle sans bordure ni sans liaison glissiere
     nouv->initialiserLiaison(_refpos, _basepos, _plan3D);
     nouv->initialiserOrigine();
     m_Filles.push_back(nouv);
@@ -197,6 +202,8 @@ void Block::initialiser(double _classe, std::string _id, Coords _taille, Couleur
 // a partir de la methode de la class liaison
 void Block::initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D)
 {
+    //Ce programme recoit un booleen permettant de savoir si le bloc fils se situe sur le meme plan que la mere (plan3D=false)
+    //ou si il se situe par dessus (plan3D=true)
     unsigned int _plan;
     if(_plan3D)
     {
@@ -213,11 +220,16 @@ void Block::initialiserLiaison(Coords _refpos, Coords _basepos, bool _plan3D)
             _plan = 0;
         }
     }
+    //Creation de l'objet liaison
     m_liaison = new Liaison(_refpos,_basepos,_plan);
 }
 
+/* Initialisation de la lisaison glissiere*/
+// a partir de la methode de la class liaison glissiere (heritage de liaison)
 void Block::initialiserGlissiere(Coords _refpos, Coords _basepos, Coords _baseposfin, bool _plan3D)
 {
+    //Ce programme recoit un booleen permettant de savoir si le bloc fils se situe sur le meme plan que la mere (plan3D=false)
+    //ou si il se situe par dessus (plan3D=true)
     unsigned int _plan;
     if(_plan3D)
     {
@@ -234,11 +246,8 @@ void Block::initialiserGlissiere(Coords _refpos, Coords _basepos, Coords _basepo
             _plan = 0;
         }
     }
-    //LiaisonGlissiere* glissiere = dynamic_cast<LiaisonGlissiere*>()
-    // test
     LiaisonGlissiere* nouv = new LiaisonGlissiere(_refpos,_basepos,_baseposfin,_plan);
     m_liaison = nouv;
-    //m_liaison = new LiaisonGlissiere(_refpos,_basepos,_baseposfin,_plan);
 }
 
 /* Initialisation de m_origine */
@@ -384,9 +393,10 @@ bool Block::TestRefPos()const
     {
         if(BasePosDansBlocMere(*m_liaison, m_Mere))
         {
-            if(MemePlan(*m_liaison, m_Mere))
+            if(MemePlan(*m_liaison, m_Mere)) //si le bloc fille et mere sont sur le meme plan
             {
                 if(TestBordure(m_taille, m_liaison->getRefpos(), m_liaison->getBasepos(), m_liaison->getPlan(), m_id, m_Mere))
+                //on teste si refpos et basepos sont sur la bordure pour verifier u'ils ne se chevauchent pas
                 {
                     test = 1;
                 }

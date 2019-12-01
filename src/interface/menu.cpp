@@ -2,10 +2,13 @@
 
 bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int* plan)
 {
+    //variable permettant de se balader dans l'arbre de Block
     Block* iterateur = trouverRacine(*racine);
 
+    //variable de fin de la boucle de jeu
     bool fin = false;
 
+    //choix de l'utilisateur
     char typeCommande;
 
     std::cin >> typeCommande;
@@ -46,7 +49,7 @@ bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int*
         {
             char caractere;
             std::cin >> caractere;
-            if(caractere == 'l')
+            if(caractere == 'l') //affichage des liaisons sur le svg
             {
                 if(*afficherLiaisons == true) {
                     *afficherLiaisons = false;
@@ -55,7 +58,7 @@ bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int*
                     *afficherLiaisons = true;
                 }
             }
-            else if(caractere == 'i')
+            else if(caractere == 'i') //affichage des id sur le svg
             {
                if(*afficherId == true) {
                     *afficherId = false;
@@ -64,23 +67,23 @@ bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int*
                     *afficherId = true;
                 }
             }
-            else if(caractere == 'a')
+            else if(caractere == 'a') //sequence d'actions automatique
             {
                 util::videCin();
                 util::startAutoCin("auto.txt",20,0x0a);
             }
-            else if(caractere == 'c')
+            else if(caractere == 'c') //sequence d'actions automatique n2
             {
                 util::videCin();
                 util::startAutoCin("auto2.txt",20,0x0a);
             }
-            else if(caractere == 'b')
+            else if(caractere == 'b') //sequence d'actions automatique n3
             {
                 util::videCin();
                 util::stopAutoCin();
                 std::cout << std::endl;
             }
-            else if(caractere == 'h')
+            else if(caractere == 'h') //aide d'utilisation
             {
                 std::cout << "taper @ (id de l'objet) move pour realiser une translation." << std::endl;
                 std::cout << "taper !l pour afficher les liaisons." << std::endl;
@@ -91,7 +94,7 @@ bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int*
         }
         break;
 
-        case 'e':
+        case 'e': //sortie
         {
              fin = true;
         }
@@ -159,23 +162,29 @@ void creerScene(Block* iterateur)
 
 }
 
+//dessine la scene a chaque tout de boule de jeu
 void dessinerScene(const Block &room, bool* afficherLiaisons, bool* afficherId, unsigned int* plan)
 {
     Svgfile svgout;
     /* attention il faut dessiner le room à part */
     room.dessiner(svgout);
-    room.toutDessiner(svgout);
+    room.toutDessiner(svgout); //on poarcout tout l'arbre a partir de la racine (room)
 
     std::cout << "[i] croix rouge/bleu = position de reference / croix noir/blanc = position de base" << std::endl;
     if(*afficherLiaisons == true) {
+        //fonction qui dessine les liaisons
         room.toutDessinerLiaisons(svgout);
     }
     if(*afficherId == true) {
+        //fonction qui dessine les id
         room.toutDessinerId(svgout);
     }
     std::cout << std::endl;
 }
 
+//Cette fonction permet d'afficher tous les plans voulus
+//Permet d'avancer ou reculer dans la scene
+//Fonction non retenue
 void toutDessinerPlan(Svgfile &svgout,const Block &room, unsigned int plan)
 {
     std::cout << plan << " " << std::endl;
