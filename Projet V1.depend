@@ -191,10 +191,10 @@
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
-1575180095 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\main.cpp
+1575203094 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\main.cpp
 	"src/interface/menu.h"
 
-1575180095 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.h
+1575204269 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison_glissiere.h"
@@ -220,7 +220,7 @@
 1574517612 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\util\util.h
 	<string>
 
-1575180440 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.cpp
+1575213214 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.cpp
 	"block.h"
 	"../svg/svgfile.h"
 	"block_cercle.h"
@@ -574,7 +574,7 @@
 1575113065 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\bordure.h
 	"../interface/couleur.h"
 
-1575113065 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_bordure.h
+1575203094 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_bordure.h
 	"block.h"
 	"bordure.h"
 
@@ -590,7 +590,7 @@
 1575134116 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison_glissiere.cpp
 	"liaison_glissiere.h"
 
-1575055294 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison_glissiere.h
+1575203094 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison_glissiere.h
 	"liaison.h"
 
 1575100651 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison_glissiere.h
@@ -626,7 +626,7 @@
 1575113065 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_cercle_bordure.cpp
 	"block_cercle_bordure.h"
 
-1575180095 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\menu.cpp
+1575211407 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\menu.cpp
 	"menu.h"
 
 1575180095 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\menu.h
@@ -655,6 +655,19 @@
 	"menu.h"
 
 1575206032 source:c:\users\c_per\projet_block\src\rom\lsauvegarde.cpp
+	"../class/block.h"
+	"../svg/svgfile.h"
+	"../class/block_cercle.h"
+	"../class/block_bordure.h"
+	"../class/block_cercle_bordure.h"
+	"../class/liaison_glissiere.h"
+	<iostream>
+	<string>
+	<vector>
+	<fstream>
+	<sstream>
+
+1575203094 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\rom\lsauvegarde.cpp
 	"../class/block.h"
 	"../svg/svgfile.h"
 	"../class/block_cercle.h"

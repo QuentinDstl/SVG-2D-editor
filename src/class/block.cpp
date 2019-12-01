@@ -417,7 +417,7 @@ void Block::translation(int distance)
     if (distance == 0)
     { }
 
-    else/// on verifie que il y a rien derriere sur le meme plan
+    else
     {
         // si on a bien une glissiere
         LiaisonGlissiere* glissiere = dynamic_cast<LiaisonGlissiere*>(m_liaison);
@@ -426,7 +426,7 @@ void Block::translation(int distance)
             int deplacement = 0;
             bool fin = false;
             // on va de la position a l'arrivee
-            while((deplacement < abs(distance)) && (fin == false))
+            do
             {
                 if (distance > 0)
                 {
@@ -438,20 +438,20 @@ void Block::translation(int distance)
                         /// on verifie que il y a rien devant sur le meme plan
                         //if()
                         {
-                            fin = checkGlissiere(true,false);
-                            if (fin)
+                            fin = checkNoGlissiere(true,false);
+                            if (!fin)
                                 fin = parcourirSetOrigine(true, false);
                         }
                     }
 
                     // horizontal : ici de x
-                    if (!(glissiere->getBasepos().getY() - glissiere->getFinbasepos().getY()))
+                    else if (!(glissiere->getBasepos().getY() - glissiere->getFinbasepos().getY()))
                     {
                         /// on verifie que il y a rien devant sur le meme plan
                         //if()
                         {
-                            fin = checkGlissiere(true,true);
-                            if (fin)
+                            fin = checkNoGlissiere(true,true);
+                            if (!fin)
                                 fin = parcourirSetOrigine(true, true);
                         }
                     }
@@ -466,26 +466,28 @@ void Block::translation(int distance)
                         /// on verifie que il y a rien derriere sur le meme plan
                         //if()
                         {
-                            fin = checkGlissiere(false,false);
-                            if (fin)
+                            fin = checkNoGlissiere(false,false);
+                            if (!fin)
                                 fin = parcourirSetOrigine(false, false);
                         }
                     }
 
                     // horizontal : x
-                    if (!(glissiere->getBasepos().getY() - glissiere->getFinbasepos().getY()))
+                    else if (!(glissiere->getBasepos().getY() - glissiere->getFinbasepos().getY()))
                     {
                         /// on verifie que il y a rien derriere sur le meme plan
                         //if()
                         {
-                            fin = checkGlissiere(false,true);
-                            if (fin)
+                            fin = checkNoGlissiere(false,true);
+                            if (!fin)
                                 fin = parcourirSetOrigine(false, true);
                         }
                     }
                 }
                 deplacement++;
+                std::cout << "[FIN]on a : "<< fin << std::endl;
             }
+            while((deplacement < abs(distance)) && (fin == false));
         }
         else
         {
@@ -506,31 +508,31 @@ bool Block::parcourirSetOrigine(bool gain, bool axe)
         if(axe)
         {
             // on regarde si il y a collision
-            if(checkNoCollision())
-            {
-                std::cout << "pas de collision" << std::endl;
+            //if(checkNoCollision())
+            //{
+                //std::cout << "pas de collision" << std::endl;
                 m_origine.modifierX(m_origine.getX()+1);
-            }
+            /*}
             else
             {
                 std::cout << "collision" << std::endl;
                 return false;
-            }
+            }*/
         }
 
         else
         {
             // on regarde si il y a collision
-            if(checkNoCollision())
-            {
-                std::cout << "pas de collision" << std::endl;
+            //if(checkNoCollision())
+            //{
+                //std::cout << "pas de collision" << std::endl;
                 m_origine.modifierY(m_origine.getY()+1);
-            }
+            /*}
             else
             {
                 std::cout << "collision" << std::endl;
                 return false;
-            }
+            }*/
         }
     }
     else
@@ -538,31 +540,31 @@ bool Block::parcourirSetOrigine(bool gain, bool axe)
         if(axe)
         {
             // on regarde si il y a collision
-            if(checkNoCollision())
-            {
-                std::cout << "pas de collision" << std::endl;
+            //if(checkNoCollision())
+            //{
+                //std::cout << "pas de collision" << std::endl;
                 m_origine.modifierX(m_origine.getX()-1);
-            }
+            /*}
             else
             {
                 std::cout << " collision" << std::endl;
                 return false;
-            }
+            }*/
         }
 
         else
         {
             // on regarde si il y a collision
-            if(checkNoCollision())
-            {
-                std::cout << "pas de collision" << std::endl;
+            //if(checkNoCollision())
+            //{
+                //std::cout << "pas de collision" << std::endl;
                 m_origine.modifierY(m_origine.getY()-1);
-            }
+            /*}
             else
             {
                 std::cout << "collision" << std::endl;
                 return false;
-            }
+            }*/
         }
     }
 
@@ -576,14 +578,14 @@ bool Block::parcourirSetOrigine(bool gain, bool axe)
         // sinon on se ballade dans les filles
         for(const auto& petit_fils : m_Filles)
         {
-            std::cout << " -etude fille" << std::endl;
-            bool valeur = petit_fils->parcourirSetOrigine(gain,axe);
-            std::cout << "crash" << std::endl;
-            if(!valeur)
+            std::cout << std::endl;
+            std::cout << petit_fils->getId() << " -etude fille";
+            petit_fils->parcourirSetOrigine(gain,axe);
+            /*if(!valeur)
             {
                 std::cout << " -sortie de boucle" << std::endl;
                 return false;
-            }
+            }*/
         }
     }
     return false;
@@ -593,7 +595,7 @@ bool Block::parcourirSetOrigine(bool gain, bool axe)
 // si gain = false -
 // si axe = true : x
 // si axe = false : y
-bool Block::checkGlissiere(bool gain, bool axe)
+bool Block::checkNoGlissiere(bool gain, bool axe)
 {
     LiaisonGlissiere* glissiere = dynamic_cast<LiaisonGlissiere*>(m_liaison);
     if(gain)
@@ -606,12 +608,12 @@ bool Block::checkGlissiere(bool gain, bool axe)
                     || ((m_origine.getX() + m_liaison->getRefpos().getX()+1 >= m_Mere->getOrigine().getX() + glissiere->getFinbasepos().getX())
                         && (m_origine.getX() + m_liaison->getRefpos().getX()+1 <= m_Mere->getOrigine().getX() + glissiere->getBasepos().getX())))
             {
-                return true;
+                return false;
             }
             else
             {
                 std::cout << "[i] " << m_id << " est en fin de glissiere"<< std::endl;
-                return false;
+                return true;
             }
         }
 
@@ -623,12 +625,12 @@ bool Block::checkGlissiere(bool gain, bool axe)
                     || ((m_origine.getY() + m_liaison->getRefpos().getY()+1 >= m_Mere->getOrigine().getY() + glissiere->getFinbasepos().getY())
                         && (m_origine.getY() + m_liaison->getRefpos().getY()+1 <= m_Mere->getOrigine().getY() + glissiere->getBasepos().getY())))
             {
-                return true;
+                return false;
             }
             else
             {
                 std::cout << "[i] " << m_id << " est en fin de glissiere"<< std::endl;
-                return false;
+                return true;
             }
         }
     }
@@ -642,12 +644,12 @@ bool Block::checkGlissiere(bool gain, bool axe)
                     || ((m_origine.getX() + m_liaison->getRefpos().getX()-1 >= m_Mere->getOrigine().getX() + glissiere->getFinbasepos().getX())
                         && (m_origine.getX() + m_liaison->getRefpos().getX()-1 <= m_Mere->getOrigine().getX() + glissiere->getBasepos().getX())))
             {
-                return true;
+                return false;
             }
             else
             {
                 std::cout << "[i] " << m_id << " est en fin de glissiere"<< std::endl;
-                return false;
+                return true;
             }
         }
 
@@ -659,19 +661,24 @@ bool Block::checkGlissiere(bool gain, bool axe)
                     || ((m_origine.getY() + m_liaison->getRefpos().getY()-1 >= m_Mere->getOrigine().getY() + glissiere->getFinbasepos().getY())
                         && (m_origine.getY() + m_liaison->getRefpos().getY()-1 <= m_Mere->getOrigine().getY() + glissiere->getBasepos().getY())))
             {
-                return true;
+                return false;
             }
             else
             {
                 std::cout << "[i] " << m_id << " est en fin de glissiere"<< std::endl;
-                return false;
+                return true;
             }
         }
     }
 }
 
+// if true : pas de collision / if false : collision
 bool Block::checkNoCollision()
 {
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << "ON EST DANS : "<< m_id << std::endl;
+
     /// a faire dans le cadre d'un cercle
     /*BlockCercle* cercle = dynamic_cast <BlockCercle*> (this);
     // dans le cas d'un cercle
@@ -681,58 +688,76 @@ bool Block::checkNoCollision()
     }
     // dans le cas de rectangle
     else*/
+    //{
+    ///on le check avec tout les blocs du meme plan
+    if(contactRectangle())
     {
-        ///on le check avec tout les blocs du meme plan
-        if(contactRectangle())
-        {
-            std::cout << m_id <<" collision !"<<std::endl;
-            return true;
-        }
+        std::cout << m_id <<" collision !"<<std::endl;
+        return false;
     }
+    //}
 
     // sinon on se ballade dans les filles
     for(const auto& petit_fils : m_Filles)
     {
+        std::cout << "On rentre dans la boucle pour ici : "<< petit_fils->getId() << std::endl;
+
         if (!petit_fils->checkNoCollision())
         {
             std::cout << "collision de petite fille ligne 1113"<<std::endl;
-            return true;
-        }
-    }
-    return false;
-}
-
-
-bool Block::contactRectangle ()
-{
-    if (!m_Filles.size())
-    {
-        return false;
-    }
-    Block* racine = trouverRacine(*this);
-    for (const auto& petit_fils : racine->getFilles())
-    {
-        if(m_liaison->getPlan() == petit_fils->getLiaison()->getPlan())
-        {
-            if((m_origine.getX() >= petit_fils->getOrigine().getX() + petit_fils->getTaille().getX())
-                    || (petit_fils->getOrigine().getX() >= m_origine.getX() + m_taille.getX())
-                    || (m_origine.getY() >= petit_fils->getOrigine().getY() + petit_fils->getTaille().getY())
-                    || (petit_fils->getOrigine().getY() >= m_origine.getY() + m_taille.getY()))
-            {
-                return true;
-            }
-
-            if (petit_fils->contactRectangle())
-            {
-                return true;
-            }
-
-        }
-        else
-        {
             return false;
         }
     }
+    std::cout << m_id <<" ici"<<std::endl;
+    return true;
+}
+
+// on regarde si un bloc touche un autre bloc du plan
+bool Block::contactRectangle ()
+{
+    Block* racine = trouverRacine(*this);
+    for (const auto& petit_fils : racine->getFilles())
+    {
+        std::cout << "on compare avec :" << petit_fils->getId() << std::endl;
+
+        // si le plan du bloc etudie est plus petit que le plan du petit fils alors ca ne sert a rien de lire les petits fils qui suivront
+        if(m_liaison->getPlan() >= petit_fils->getLiaison()->getPlan())
+        {
+            std::cout << m_id << "[(plan : " << m_liaison->getPlan() << ")" << ">=" << "(plan de comparaison: " << petit_fils->getLiaison()->getPlan() << ")]" << std::endl;
+            if((m_origine.getX() > petit_fils->getOrigine().getX() + petit_fils->getTaille().getX())
+                    || (petit_fils->getOrigine().getX() > m_origine.getX() + m_taille.getX())
+                    || (m_origine.getY() > petit_fils->getOrigine().getY() + petit_fils->getTaille().getY())
+                    || (petit_fils->getOrigine().getY() > m_origine.getY() + m_taille.getY()))
+            {
+                std::cout << "COLLISION DIRECT : "<<m_id <<" touche " << petit_fils->getId() << std::endl;
+                return true;
+            }
+
+            // on regarde si il a des filles
+            if (!petit_fils->getFilles().size())
+            {
+                std::cout << "bout de branche" << std::endl;
+                return false;
+            }
+
+            // au contraire si il y en a alors :
+            else
+            {
+                // on ne veut pas rentrer dans la branche du bloc etudie
+                if (m_id != petit_fils->getId())
+                {
+                    if (petit_fils->contactRectangle())
+                    {
+                        std::cout << "etude petit fils : return true" << std::endl;
+                        return true;
+                    }
+
+                }
+            }
+        }
+    }
+    std::cout << "on atteind la fin de boucle ! [return false]" << std::endl;
+    return false;
 }
 
 ///******************************************************************************************************************

@@ -80,7 +80,7 @@ public :
     ///TRANSLATION
     virtual void translation(int distance);
     virtual bool parcourirSetOrigine(bool gain, bool axe);
-    virtual bool checkGlissiere(bool gain, bool axe);
+    virtual bool checkNoGlissiere(bool gain, bool axe);
     virtual bool checkNoCollision();
     virtual bool contactRectangle ();
 };

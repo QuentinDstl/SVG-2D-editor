@@ -81,7 +81,7 @@ void creerScene(Block* iterateur)
     iterateur = iterateur->getMere();
     iterateur->ajouterFilleBordure(0, "arm1", {25,10}, {180,180,40}, {0,0,0}, {0,5}, {25,15}, false);
     iterateur->ajouterFilleBordure(0, "arm2", {25,10}, {180,180,40}, {0,0,0}, {25,5}, {0,15}, false);
-    iterateur->ajouterFilleBordure(0, "salut", {25,15}, {220,220,60}, {0,0,0}, {0,0}, {0,35}, true);
+    iterateur->ajouterFilleBordure(0, "pied", {25,15}, {220,220,60}, {0,0,0}, {0,0}, {0,35}, true);
 
     iterateur = iterateur->getFille(1);
     iterateur->ajouterFilleCercleBordure(3, "hand1", 5, {220,220,60}, {0,0,0}, {-5,0}, {25,5}, false);
@@ -132,7 +132,6 @@ void toutDessinerPlan(Svgfile &svgout,const Block &room, unsigned int plan)
     {
         for(const auto& petit_fils : room.getFilles())
         {
-            std::cout << " " << petit_fils->getLiaison()->getPlan() << ",";
             if (petit_fils->getLiaison()->getPlan() <= plan)
                 petit_fils->dessiner(svgout);
             toutDessinerPlan(svgout,*petit_fils,plan);
