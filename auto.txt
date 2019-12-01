@@ -1,0 +1,16 @@
+@robot move 10
+@robot move 10
+@robot move 10 
+@robot move 10
+@robot move 10
+@robot move 10
+@robot move 10
+@robot move 10
+@robot move 10
+@robot move 10
+@robot move 10
+@robot move 10
+@robot move 10
+@robot move 10
+@robot move 10
+!b

@@ -66,12 +66,20 @@ bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int*
             }
             else if(caractere == 'a')
             {
-
+                util::videCin();
+                util::startAutoCin("auto.txt",20,0x0a);
+            }
+            else if(caractere == 'b')
+            {
+                util::videCin();
+                util::stopAutoCin();
+                std::cout << std::endl;
             }
             else if(caractere == 'h')
             {
                 std::cout << "taper @ (id de l'objet) move pour realiser une translation." << std::endl;
                 std::cout << "taper !l pour afficher les liaisons." << std::endl;
+                std::cout << "taper !a pour la lecture automatique des commandes." << std::endl;
                 std::cout << "taper !i pour afficher les id de chacun des blocs." << std::endl;
                 std::cout << "taper e pour quitter le programme." << std::endl << std::endl;
             }
