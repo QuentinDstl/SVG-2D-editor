@@ -17,6 +17,8 @@ int main()
     bool* ptafficherLiaisons = &afficherLiaisons;
     unsigned int* ptplan = &plan;
 
+    std::cout << std::endl << "taper !h pour afficher les commndes a realiser." << std::endl << std::endl;
+
     ///** Boucle du menu **
     while(!fin)
     {

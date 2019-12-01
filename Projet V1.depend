@@ -280,7 +280,7 @@
 1575030161 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\util\util.h
 	<string>
 
-1575100651 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison.cpp
+1575156927 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison.cpp
 	<iostream>
 	"liaison.h"
 
@@ -324,38 +324,28 @@
 	"../util/util.h"
 	<windows.h>
 
-1575108526 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.cpp
+1575221795 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.cpp
 	"block.h"
 	"../svg/svgfile.h"
 	"block_cercle.h"
 	"block_bordure.h"
 	"block_cercle_bordure.h"
+	"../interface/menu.h"
 	<iostream>
 	<string>
 	<vector>
 	<fstream>
 	<sstream>
 
-1575108472 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.h
+1575221795 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison_glissiere.h"
 	"../svg/svgfile.h"
 	"../interface/couleur.h"
 
-1575110812 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\main.cpp
-	<iostream>
-	<fstream>
-	<vector>
-	"src/class/block_cercle.h"
-	"src/class/coords.h"
-	"src/class/liaison.h"
-	"src/class/bordure.h"
-	"src/class/block_bordure.h"
-	"src/interface/couleur.h"
-	"src/svg/svgfile.h"
-	"src/util/util.h"
-	"src/class/block.h"
+1575222785 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\main.cpp
+	"src/interface/menu.h"
 
 1574621624 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block - copie\src\class\coords.cpp
 	"coords.h"
@@ -531,7 +521,7 @@
 1575100884 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle.h
 	"block.h"
 
-1575108277 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle.cpp
+1575156927 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle.cpp
 	"block_cercle.h"
 	<math.h>
 
@@ -558,7 +548,7 @@
 1575107063 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_bordure.cpp
 	"block_bordure.h"
 
-1575104829 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_bordure.h
+1575209091 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_bordure.h
 	"block.h"
 	"bordure.h"
 
@@ -593,10 +583,10 @@
 1575217233 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison_glissiere.h
 	"liaison.h"
 
-1575100651 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison_glissiere.h
+1575209091 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison_glissiere.h
 	"liaison.h"
 
-1575100651 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison_glissiere.cpp
+1575156927 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison_glissiere.cpp
 	"liaison_glissiere.h"
 
 1575108325 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\block_cercle_bordure.cpp
@@ -668,6 +658,33 @@
 	<sstream>
 
 1575217254 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\rom\lsauvegarde.cpp
+	"../class/block.h"
+	"../svg/svgfile.h"
+	"../class/block_cercle.h"
+	"../class/block_bordure.h"
+	"../class/block_cercle_bordure.h"
+	"../class/liaison_glissiere.h"
+	<iostream>
+	<string>
+	<vector>
+	<fstream>
+	<sstream>
+
+1575212387 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\interface\menu.h
+	<iostream>
+	<fstream>
+	<vector>
+	"../class/block_cercle.h"
+	"../class/coords.h"
+	"../class/liaison.h"
+	"../class/block_bordure.h"
+	"../util/util.h"
+	"../class/block_cercle_bordure.h"
+
+1575222736 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\interface\menu.cpp
+	"menu.h"
+
+1575221795 source:c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\rom\lsauvegarde.cpp
 	"../class/block.h"
 	"../svg/svgfile.h"
 	"../class/block_cercle.h"
