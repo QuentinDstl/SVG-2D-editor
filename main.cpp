@@ -1,6 +1,6 @@
 #include "src/interface/menu.h"
 
-/*
+
 ///Main Version CHARGEMENT depuis fichier
 int main()
 {
@@ -12,10 +12,10 @@ int main()
     room.chargementScene();
 
     return 0;
-}*/
+}
 
 
-
+/*
 ///Main version CREATION puis sauvegarde
 int main()
 {
@@ -47,7 +47,7 @@ int main()
 
     return 0;
 }
-
+*/
 /*
 ///Main pour test de CHARLES
 int main()
@@ -69,5 +69,5 @@ int main()
     }
 
     return 0;
-}*/
-
+}
+*/
