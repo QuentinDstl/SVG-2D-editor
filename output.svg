@@ -5,9 +5,9 @@
 <polygon points=" 0.6,550.6 0.6,599.4 999.4,599.4 999.4,550.6" style="fill:rgb(0,101,200);stroke:rgb(0,250,0);stroke-width:1" />
 <polygon points=" 0,0 0,550 25,550 25,0" style="fill:rgb(99,0,0)" />
 <polygon points=" 25,300 25,330 85,330 85,300" style="fill:rgb(100,100,40)" />
-<polygon points=" 188.6,500.6 188.6,549.4 212.4,549.4 212.4,500.6" style="fill:rgb(180,180,40);stroke:rgb(0,0,0);stroke-width:1" />
-<circle cx="200" cy="480" r="19.4" fill="rgb(180,180,40)" />
-<circle cx="200" cy="480" r="19.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
+<polygon points=" 198.6,500.6 198.6,549.4 222.4,549.4 222.4,500.6" style="fill:rgb(180,180,40);stroke:rgb(0,0,0);stroke-width:1" />
+<circle cx="210" cy="480" r="19.4" fill="rgb(180,180,40)" />
+<circle cx="210" cy="480" r="19.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
 <circle cx="193" cy="480" r="5.4" fill="rgb(200,20,20)" />
 <circle cx="193" cy="480" r="5.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
 <circle cx="207" cy="480" r="5.4" fill="rgb(200,20,20)" />
@@ -39,38 +39,38 @@
 <line x1="200" y1="550" x2="800" y2="550" stroke="white" />
 <line x1="194" y1="544" x2="206" y2="556" stroke="white" />
 <line x1="194" y1="556" x2="206" y2="544" stroke="white" />
-<line x1="196" y1="546" x2="204" y2="554" stroke="red" />
-<line x1="196" y1="554" x2="204" y2="546" stroke="red" />
-<line x1="194" y1="494" x2="206" y2="506" stroke="white" />
-<line x1="194" y1="506" x2="206" y2="494" stroke="white" />
-<line x1="196" y1="496" x2="204" y2="504" stroke="red" />
-<line x1="196" y1="504" x2="204" y2="496" stroke="red" />
-<line x1="187" y1="474" x2="199" y2="486" stroke="white" />
-<line x1="187" y1="486" x2="199" y2="474" stroke="white" />
+<line x1="206" y1="546" x2="214" y2="554" stroke="red" />
+<line x1="206" y1="554" x2="214" y2="546" stroke="red" />
+<line x1="204" y1="494" x2="216" y2="506" stroke="white" />
+<line x1="204" y1="506" x2="216" y2="494" stroke="white" />
+<line x1="206" y1="496" x2="214" y2="504" stroke="red" />
+<line x1="206" y1="504" x2="214" y2="496" stroke="red" />
+<line x1="197" y1="474" x2="209" y2="486" stroke="white" />
+<line x1="197" y1="486" x2="209" y2="474" stroke="white" />
 <line x1="189" y1="476" x2="197" y2="484" stroke="red" />
 <line x1="189" y1="484" x2="197" y2="476" stroke="red" />
-<line x1="201" y1="474" x2="213" y2="486" stroke="white" />
-<line x1="201" y1="486" x2="213" y2="474" stroke="white" />
+<line x1="211" y1="474" x2="223" y2="486" stroke="white" />
+<line x1="211" y1="486" x2="223" y2="474" stroke="white" />
 <line x1="203" y1="476" x2="211" y2="484" stroke="red" />
 <line x1="203" y1="484" x2="211" y2="476" stroke="red" />
-<line x1="207" y1="509" x2="219" y2="521" stroke="white" />
-<line x1="207" y1="521" x2="219" y2="509" stroke="white" />
+<line x1="217" y1="509" x2="229" y2="521" stroke="white" />
+<line x1="217" y1="521" x2="229" y2="509" stroke="white" />
 <line x1="209" y1="511" x2="217" y2="519" stroke="red" />
 <line x1="209" y1="519" x2="217" y2="511" stroke="red" />
 <line x1="232" y1="509" x2="244" y2="521" stroke="white" />
 <line x1="232" y1="521" x2="244" y2="509" stroke="white" />
 <line x1="234" y1="511" x2="242" y2="519" stroke="blue" />
 <line x1="234" y1="519" x2="242" y2="511" stroke="blue" />
-<line x1="182" y1="509" x2="194" y2="521" stroke="white" />
-<line x1="182" y1="521" x2="194" y2="509" stroke="white" />
+<line x1="192" y1="509" x2="204" y2="521" stroke="white" />
+<line x1="192" y1="521" x2="204" y2="509" stroke="white" />
 <line x1="184" y1="511" x2="192" y2="519" stroke="red" />
 <line x1="184" y1="519" x2="192" y2="511" stroke="red" />
 <line x1="157" y1="509" x2="169" y2="521" stroke="white" />
 <line x1="157" y1="521" x2="169" y2="509" stroke="white" />
 <line x1="159" y1="511" x2="167" y2="519" stroke="blue" />
 <line x1="159" y1="519" x2="167" y2="511" stroke="blue" />
-<line x1="182" y1="529" x2="194" y2="541" stroke="white" />
-<line x1="182" y1="541" x2="194" y2="529" stroke="white" />
+<line x1="192" y1="529" x2="204" y2="541" stroke="white" />
+<line x1="192" y1="541" x2="204" y2="529" stroke="white" />
 <line x1="184" y1="531" x2="192" y2="539" stroke="blue" />
 <line x1="184" y1="539" x2="192" y2="531" stroke="blue" />
 

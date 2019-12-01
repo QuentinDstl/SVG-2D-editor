@@ -1099,9 +1099,10 @@ bool Block::checkNoCollision()
     else*/
     {
         ///on le check avec tout les blocs du meme plan
-        if(!contactRectangle())
+        if(contactRectangle())
         {
-            return false;
+            std::cout << m_id <<" collision !"<<std::endl;
+            return true;
         }
     }
 
@@ -1110,10 +1111,11 @@ bool Block::checkNoCollision()
     {
         if (!petit_fils->checkNoCollision())
         {
-            return false;
+            std::cout << "collision de petite fille ligne 1113"<<std::endl;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 bool Block::contactRectangle ()
