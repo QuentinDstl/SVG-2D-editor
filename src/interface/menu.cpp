@@ -127,7 +127,7 @@ void creerScene(Block* iterateur)
 
     iterateur = trouverRacine(*iterateur);
     iterateur = iterateur->getFille(0)->getFille(0);
-    iterateur->ajouterFilleGlissiere(0, "etagere", {60,30}, {100,100,40}, {0,0}, {25,HAUTEUR_SCENE/2}, {25,HAUTEUR_SCENE-100}, false);
+    iterateur->ajouterFilleGlissiere(5, "etagere", {60,30}, {100,100,40}, {0,0}, {25,HAUTEUR_SCENE/2}, {25,HAUTEUR_SCENE-100}, false);
 
     /*iterateur->ajouterFilleCercleBordure(3, "oeil", 6, {200,20,20}, {0,0,0}, {0,0}, {-7,0}, true);
     iterateur->ajouterFilleCercleBordure(3, "oeil", 6, {200,20,20}, {0,0,0}, {0,0}, {7,0}, true);
