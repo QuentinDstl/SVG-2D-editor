@@ -62,6 +62,7 @@ public :
 
     ///DESSINER
     virtual void dessiner(Svgfile &svgout)const;
+    virtual void toutDessiner(Svgfile &svgout) const;
     virtual void dessinerLiaisonsBase(Svgfile &svgout)const;
     virtual void dessinerLiaisonsRef(Svgfile& svgout)const;
     virtual void toutDessinerLiaisons(Svgfile& svgout)const;
@@ -78,6 +79,10 @@ public :
 
     ///TRANSLATION
     virtual void translation(int distance);
+    virtual bool parcourirSetOrigine(bool gain, bool axe);
+    virtual bool checkNoGlissiere(bool gain, bool axe);
+    virtual bool checkNoCollision();
+    virtual bool contactRectangle ();
 };
 
 
@@ -109,7 +114,6 @@ bool BlocAuDessusDeMere(Coords m_refpos, Coords m_basepos, Coords m_taille);
 ///PARCOURS ET RACINE
 Block* trouverRacine(Block &block);
 Block* parcourir(std::string id, const Block &room);
-Block* parcourirCollision(const Block &block, const Block &room);
 
 ///************************///
 ///    METHODES INLINES    ///

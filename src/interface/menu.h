@@ -19,10 +19,9 @@
 #define HAUTEUR_SCENE 600
 #define LARGEUR_SCENE 1000
 
-bool menu(Block *iterateur);
+bool menu(Block *iterateur, bool* afficherLiaisons, bool* afficherId, unsigned int* plan);
 void creerScene(Block* room);
-void dessinerScene(const Block &room);
-void toutDessiner(Svgfile &svgout, const Block &room);
+void dessinerScene(const Block &room, bool* afficherLiaisons, bool* afficherId, unsigned int* plan);
 void toutDessinerPlan(Svgfile &svgout,const Block &room, unsigned int plan);
 
 #endif // MENU_H_INCLUDED

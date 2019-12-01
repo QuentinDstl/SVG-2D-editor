@@ -191,10 +191,10 @@
 	"src/svg/svgfile.h"
 	"src/util/util.h"
 
-1575134369 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\main.cpp
+1575216686 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\main.cpp
 	"src/interface/menu.h"
 
-1575134116 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.h
+1575204269 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison_glissiere.h"
@@ -220,12 +220,13 @@
 1574517612 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\util\util.h
 	<string>
 
-1575134116 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.cpp
+1575217125 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block.cpp
 	"block.h"
 	"../svg/svgfile.h"
 	"block_cercle.h"
 	"block_bordure.h"
 	"block_cercle_bordure.h"
+	"../interface/menu.h"
 	<iostream>
 	<string>
 	<vector>
@@ -433,10 +434,10 @@
 	"../svg/svgfile.h"
 	"liaison.h"
 
-1575148303 source:c:\users\c_per\projet_block\main.cpp
+1575219401 source:c:\users\c_per\projet_block\main.cpp
 	"src/interface/menu.h"
 
-1575138514 c:\users\c_per\projet_block\src\class\block.h
+1575189903 c:\users\c_per\projet_block\src\class\block.h
 	<vector>
 	<iostream>
 	"liaison_glissiere.h"
@@ -498,12 +499,13 @@
 	"../util/util.h"
 	<windows.h>
 
-1575147878 source:c:\users\c_per\projet_block\src\class\block.cpp
+1575211743 source:c:\users\c_per\projet_block\src\class\block.cpp
 	"block.h"
 	"../svg/svgfile.h"
 	"block_cercle.h"
 	"block_bordure.h"
 	"block_cercle_bordure.h"
+	"../interface/menu.h"
 	<iostream>
 	<string>
 	<vector>
@@ -544,7 +546,7 @@
 1575117660 c:\users\c_per\projet_block\src\class\bordure.h
 	"../interface/couleur.h"
 
-1575117660 c:\users\c_per\projet_block\src\class\block_bordure.h
+1575206333 c:\users\c_per\projet_block\src\class\block_bordure.h
 	"block.h"
 	"bordure.h"
 
@@ -572,7 +574,7 @@
 1575113065 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\bordure.h
 	"../interface/couleur.h"
 
-1575113065 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_bordure.h
+1575203094 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_bordure.h
 	"block.h"
 	"bordure.h"
 
@@ -588,7 +590,7 @@
 1575134116 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison_glissiere.cpp
 	"liaison_glissiere.h"
 
-1575055294 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison_glissiere.h
+1575203094 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\liaison_glissiere.h
 	"liaison.h"
 
 1575100651 c:\users\cleme\onedrive\documents\2ème année\programmes c++\projet_block\src\class\liaison_glissiere.h
@@ -604,7 +606,7 @@
 	"block_cercle.h"
 	"bordure.h"
 
-1575117660 c:\users\c_per\projet_block\src\class\liaison_glissiere.h
+1575206333 c:\users\c_per\projet_block\src\class\liaison_glissiere.h
 	"liaison.h"
 
 1575117660 c:\users\c_per\projet_block\src\class\block_cercle_bordure.h
@@ -624,10 +626,10 @@
 1575113065 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\class\block_cercle_bordure.cpp
 	"block_cercle_bordure.h"
 
-1575134116 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\menu.cpp
+1575216686 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\menu.cpp
 	"menu.h"
 
-1575134554 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\menu.h
+1575216686 d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\interface\menu.h
 	<iostream>
 	<fstream>
 	<vector>
@@ -638,7 +640,7 @@
 	"../util/util.h"
 	"../class/block_cercle_bordure.h"
 
-1575138514 c:\users\c_per\projet_block\src\interface\menu.h
+1575218940 c:\users\c_per\projet_block\src\interface\menu.h
 	<iostream>
 	<fstream>
 	<vector>
@@ -649,10 +651,23 @@
 	"../util/util.h"
 	"../class/block_cercle_bordure.h"
 
-1575149260 source:c:\users\c_per\projet_block\src\interface\menu.cpp
+1575219510 source:c:\users\c_per\projet_block\src\interface\menu.cpp
 	"menu.h"
 
-1575151676 source:c:\users\c_per\projet_block\src\rom\lsauvegarde.cpp
+1575219766 source:c:\users\c_per\projet_block\src\rom\lsauvegarde.cpp
+	"../class/block.h"
+	"../svg/svgfile.h"
+	"../class/block_cercle.h"
+	"../class/block_bordure.h"
+	"../class/block_cercle_bordure.h"
+	"../class/liaison_glissiere.h"
+	<iostream>
+	<string>
+	<vector>
+	<fstream>
+	<sstream>
+
+1575216686 source:d:\ecole\ing2\# informatique\projet\s1\git\projet_block\src\rom\lsauvegarde.cpp
 	"../class/block.h"
 	"../svg/svgfile.h"
 	"../class/block_cercle.h"

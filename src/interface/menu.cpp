@@ -1,9 +1,11 @@
 #include "menu.h"
 
-bool menu(Block *racine)
+bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int* plan)
 {
     Block* iterateur = trouverRacine(*racine);
-    bool fin = true;
+
+    bool fin = false;
+
     char typeCommande;
     std::cin >> typeCommande;
     switch (typeCommande)
@@ -12,7 +14,6 @@ bool menu(Block *racine)
         {
             std::string nom;
             std::cin >> nom;
-
             iterateur = parcourir(nom,*racine);
             if(iterateur==nullptr)
             {
@@ -35,14 +36,54 @@ bool menu(Block *racine)
                     std::cout<<std::endl;
                     std::cout << "[e] " << commande << " n'est pas reconnu" << std::endl;
                 }
-
             }
         }
         break;
 
         case '!':
         {
+        }
+        break;
 
+        case 'l':
+        {
+            if(*afficherLiaisons == true) {
+                *afficherLiaisons = false;
+            }
+            else {
+                *afficherLiaisons = true;
+            }
+        }
+        break;
+
+        case 'i':
+        {
+            if(*afficherId == true) {
+                *afficherId = false;
+            }
+            else {
+                *afficherId = true;
+            }
+        }
+        break;
+
+        case 'p':
+        {
+            char signe;
+            std::cin >> signe;
+
+            if(signe == '+') {
+                (*plan)--;
+            }
+            if(signe == '-') {
+                (*plan)++;
+            }
+        }
+        break;
+
+        case 'e':
+        {
+             fin = true;
         }
         break;
 
@@ -50,11 +91,8 @@ bool menu(Block *racine)
         {
             std::cout << "[e] " << typeCommande << " n'est pas reconnu" << std::endl;
         }
-        break;
+    break;
     }
-
-    dessinerScene(*racine);
-    //std::cout << "trouver racine : " << trouverRacine(*blockIterateur)->getId() << std::endl;
 
     return fin;
 }
@@ -67,13 +105,34 @@ void creerScene(Block* iterateur)
 
     //on rentre dans les filles
     iterateur = iterateur->getFille(0);
-    iterateur->ajouterFille(0, "arm1", {25,HAUTEUR_SCENE-50}, {99,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, false);
-
+    iterateur->ajouterFille(0, "mur", {25,HAUTEUR_SCENE-50}, {99,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, false);
+    /*iterateur->ajouterFille(0, "arm1", {25,HAUTEUR_SCENE-50}, {99,0,0}, {0,HAUTEUR_SCENE-50}, {0,0}, false);*/
     iterateur->ajouterFilleGlissiereBordure(4, "robot", {25,50}, {180,180,40}, {0,0,0}, {12,50}, {200,0}, {LARGEUR_SCENE-200,0}, false);
+
     iterateur = iterateur->getFille(1);
     iterateur->ajouterFilleCercleBordure(3, "tete", 20, {180,180,40}, {0,0,0}, {0,20}, {12,0},false);
+
     iterateur = iterateur->getFille(0);
-    iterateur->ajouterFilleCercleBordure(3, "oeil", 6, {200,20,20}, {0,0,0}, {0,0}, {-7,0}, true);
+    iterateur->ajouterFilleCercleBordure(3, "oeil1", 6, {200,20,20}, {0,0,0}, {0,0}, {-7,0}, true);
+    iterateur->ajouterFilleCercleBordure(3, "oeil2", 6, {200,20,20}, {0,0,0}, {0,0}, {7,0}, true);
+
+    iterateur = iterateur->getMere();
+    iterateur->ajouterFilleBordure(0, "arm1", {25,10}, {180,180,40}, {0,0,0}, {0,5}, {25,15}, false);
+    iterateur->ajouterFilleBordure(0, "arm2", {25,10}, {180,180,40}, {0,0,0}, {25,5}, {0,15}, false);
+    iterateur->ajouterFilleBordure(0, "pied", {25,15}, {220,220,60}, {0,0,0}, {0,0}, {0,35}, true);
+
+    iterateur = iterateur->getFille(1);
+    iterateur->ajouterFilleCercleBordure(3, "hand1", 5, {220,220,60}, {0,0,0}, {-5,0}, {25,5}, false);
+
+    iterateur = iterateur->getMere();
+    iterateur = iterateur->getFille(2);
+    iterateur->ajouterFilleCercleBordure(3, "hand2", 5, {220,220,60}, {0,0,0}, {5,0}, {0,5}, false);
+
+    iterateur = trouverRacine(*iterateur);
+    iterateur = iterateur->getFille(0)->getFille(0);
+    iterateur->ajouterFilleGlissiere(5, "etagere", {60,30}, {100,100,40}, {0,0}, {25,HAUTEUR_SCENE/2}, {25,HAUTEUR_SCENE-100}, false);
+
+    /*iterateur->ajouterFilleCercleBordure(3, "oeil", 6, {200,20,20}, {0,0,0}, {0,0}, {-7,0}, true);
     iterateur->ajouterFilleCercleBordure(3, "oeil", 6, {200,20,20}, {0,0,0}, {0,0}, {7,0}, true);
 
     iterateur = iterateur->getMere();
@@ -86,50 +145,43 @@ void creerScene(Block* iterateur)
 
     iterateur = iterateur->getMere();
     iterateur = iterateur->getFille(2);
-    iterateur->ajouterFilleCercleBordure(3, "hand", 5, {220,220,60}, {0,0,0}, {5,0}, {0,5}, false);
+    iterateur->ajouterFilleCercleBordure(3, "hand", 5, {220,220,60}, {0,0,0}, {5,0}, {0,5}, false);*/
+
 }
 
-void dessinerScene(const Block &room)
+void dessinerScene(const Block &room, bool* afficherLiaisons, bool* afficherId, unsigned int* plan)
 {
     Svgfile svgout;
     /* attention il faut dessiner le room à part */
     room.dessiner(svgout);
-    toutDessiner(svgout,room);
-    //toutDessinerPlan(svgout,room,2);
+    room.toutDessiner(svgout);
 
     std::cout << "[i] croix rouge/bleu = position de reference / croix noir/blanc = position de base" << std::endl;
-    room.toutDessinerLiaisons(svgout);
-    //room.toutDessinerId(svgout);
-}
-
-void toutDessiner(Svgfile &svgout,const Block &room)
-{
-    if (!room.getFilles().size())
-    {}
-    else
-    {
-        for(const auto& petit_fils : room.getFilles())
-        {
-            petit_fils->dessiner(svgout);
-            toutDessiner(svgout,*petit_fils);
-        }
-
+    if(*afficherLiaisons == true) {
+        room.toutDessinerLiaisons(svgout);
+    }
+    if(*afficherId == true) {
+        room.toutDessinerId(svgout);
     }
 }
 
 void toutDessinerPlan(Svgfile &svgout,const Block &room, unsigned int plan)
 {
+    std::cout << plan << " " << std::endl;
     if (!room.getFilles().size())
-    {}
+    {
+    std::cout << room.getId();
+    std::cout << "fin de branche" <<std::endl;}
     else
     {
-        for(const auto& petit_fils : room.getFilles())
+        for(auto petit_fils : room.getFilles())
         {
-            std::cout << " " << petit_fils->getLiaison()->getPlan() << ",";
             if (petit_fils->getLiaison()->getPlan() <= plan)
+            {
+                std::cout << petit_fils->getId() << std::endl;
                 petit_fils->dessiner(svgout);
+            }
             toutDessinerPlan(svgout,*petit_fils,plan);
         }
-
     }
 }
