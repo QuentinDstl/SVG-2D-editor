@@ -33,8 +33,8 @@ void Block::sauvegarde()
 // Methode qui recupere un vecteur de pointeur de block pour les sauvegarder
 void Block::sauvegarderScene1(std::vector <Block*> s)
 {
-    std::ofstream ofs{FICHIERSAUV};
-    //std::ofstream ofs{FICHIERTEST};
+    //std::ofstream ofs{FICHIERSAUV};
+    std::ofstream ofs{FICHIERTEST};
 
     for (auto i : s)///Niveau 0 et de marqueur 1
     {
@@ -255,14 +255,8 @@ void Block::sauvegarderScene1(std::vector <Block*> s)
 void Block::chargementScene()
 {
     int niveau = 0;
-    int compteurniv1 = 0;
-    int compteurniv2 = 0;
-    int compteurniv3 = 0;
-    int compteurniv4 = 0;
-    int suiteniv1 = 0;
-    int suiteniv2 = 0;
-    int suiteniv3 = 0;
-    int suiteniv4 = 0;
+    int compteurniv1 = 0; int compteurniv2 = 0; int compteurniv3 = 0; int compteurniv4 = 0;
+    int suiteniv1 = 0; int suiteniv2 = 0; int suiteniv3 = 0; int suiteniv4 = 0;
     /// Ouverture d'un fichier en lecture (ifstream => input file stream)
     std::ifstream ifs{FICHIERSAUV};
 
@@ -312,32 +306,40 @@ void Block::chargementScene()
             if (classe == 0)
             {
                 iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-                if (plan3D == planTempo){planfinal = false;} else {planfinal = true;}
-                planTempo = plan3D;
+                if (suiteniv1 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv1 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv1== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv1 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
             if (classe == 1)
             {
                 iss >> id >> rayon >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-                if (plan3D == planTempo){planfinal = false;} else {planfinal = true;}
-                planTempo = plan3D;
+                if (suiteniv1 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv1 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv1== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv1 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->ajouterFilleCercle(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
             if ((classe == 2) || (classe == 4))
             {
                 iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-                if (plan3D == planTempo){planfinal = false;} else {planfinal = true;}
-                planTempo = plan3D;
+                if (suiteniv1 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv1 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv1== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv1 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->ajouterFilleBordure(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
             if (classe == 3)
             {
                 iss >> id >> rayon >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-                if (plan3D == planTempo){planfinal = false;} else {planfinal = true;}
-                planTempo = plan3D;
+                if (suiteniv1 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv1 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv1== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv1 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->ajouterFilleCercleBordure(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
@@ -369,47 +371,40 @@ void Block::chargementScene()
             {
                 iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
                 std::cout << "VOICI SUITE NIV 2 : "<< suiteniv2 << "   plan 3D : " << plan3D << "     plantempo : " << planTempo << std::endl<< std::endl;
-
                 if (suiteniv2 > 1) { planfinal = true; }
-                else if ((plan3D == planTempo) && (suiteniv2 == 1))
-                {
-                    planfinal = false;
-                    planTempo = plan3D;
-                }
-                else if ((plan3D < planTempo) && (suiteniv2 == 1))
-                {
-                    planfinal = false;
-                    planTempo = plan3D;
-                }
-                else if ((plan3D != planTempo) && (suiteniv2 == 1))
-                {
-                    planfinal = true;
-                    planTempo = plan3D;
-                }
+                else if ((plan3D == planTempo) && (suiteniv2 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv2== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv2 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->getFille(compteurniv1)->ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
             if (classe == 1)
             {
                 iss >> id >> rayon >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-                if (plan3D == planTempo){planfinal = false;} else {planfinal = true;}
-                planTempo = plan3D;
+                if (suiteniv2 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv2 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv2== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv2 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->getFille(compteurniv1)->ajouterFilleCercle(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
             if ((classe == 2) || (classe == 4))
             {
                 iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-                if (plan3D == planTempo){planfinal = false;} else {planfinal = true;}
-                planTempo = plan3D;
+                if (suiteniv2 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv2 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv2== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv2 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->getFille(compteurniv1)->ajouterFilleBordure(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
             if (classe == 3)
             {
                 iss >> id >> rayon >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-                if (plan3D == planTempo){planfinal = false;} else {planfinal = true;}
-                planTempo = plan3D;
+                if (suiteniv2 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv2 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv2== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv2 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->getFille(compteurniv1)->ajouterFilleCercleBordure(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
@@ -442,7 +437,8 @@ void Block::chargementScene()
                 iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
                 if (suiteniv3 > 1) { planfinal = true; }
                 else if ((plan3D == planTempo) && (suiteniv3 == 1)) { planfinal = false; planTempo = plan3D; }
-                else if ((plan3D =! planTempo) && (suiteniv3 == 1)) { planfinal = true; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv3== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv3 == 1)) { planfinal = true; planTempo = plan3D; }
 
                 std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, planfinal);
@@ -450,16 +446,20 @@ void Block::chargementScene()
             if (classe == 1)
             {
                 iss >> id >> rayon >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-                if (plan3D == planTempo){planfinal = false;} else {planfinal = true;}
-                planTempo = plan3D;
+                if (suiteniv3 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv3 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv3== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv3 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->ajouterFilleCercle(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
             if ((classe == 2) || (classe == 4))
             {
                 iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-                if (plan3D == planTempo){planfinal = false;} else {planfinal = true;}
-                planTempo = plan3D;
+                if (suiteniv3 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv3 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv3== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv3 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->ajouterFilleBordure(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
@@ -467,20 +467,11 @@ void Block::chargementScene()
             {
                 iss >> id >> rayon >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
                 std::cout << "VOICI SUITE NIV 3 : "<< suiteniv3 << "   plan 3D : " << plan3D << "     plantempo : " << planTempo << std::endl<< std::endl;
-                if (suiteniv3 > 1)
-                {
-                    planfinal = true;
-                }
-                else if ((plan3D == planTempo) && (suiteniv3 == 1))
-                {
-                    planfinal = false;
-                    planTempo = plan3D;
-                }
-                else if ((plan3D != planTempo) && (suiteniv3 == 1))
-                {
-                    planfinal = true;
-                    planTempo = plan3D;
-                }
+
+                if (suiteniv3 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv3 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv3== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv3 == 1)) { planfinal = true; planTempo = plan3D; }
 
                 std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->ajouterFilleCercleBordure(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, planfinal);
@@ -513,32 +504,40 @@ void Block::chargementScene()
             if (classe == 0)
             {
                 iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-                if (plan3D == planTempo){planfinal = false;} else {planfinal = true;}
-                planTempo = plan3D;
+                if (suiteniv4 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv4 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv4== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv4 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->getFille(compteurniv3)->ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
             if (classe == 1)
             {
                 iss >> id >> rayon >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-                if (plan3D == planTempo){planfinal = false;} else {planfinal = true;}
-                planTempo = plan3D;
+                if (suiteniv4 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv4 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv4== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv4 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->getFille(compteurniv3)->ajouterFilleCercle(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
             if (classe == 2)
             {
                 iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-                if (plan3D == planTempo){planfinal = false;} else {planfinal = true;}
-                planTempo = plan3D;
+                if (suiteniv4 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv4 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv4== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv4 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< tailleX <<" "<< tailleY <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->getFille(compteurniv3)->ajouterFilleBordure(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
             if (classe == 3)
             {
                 iss >> id >> rayon >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
-                if (plan3D == planTempo){planfinal = false;} else {planfinal = true;}
-                planTempo = plan3D;
+                if (suiteniv4 > 1) { planfinal = true; }
+                else if ((plan3D == planTempo) && (suiteniv4 == 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D < planTempo) && (suiteniv4== 1)) { planfinal = false; planTempo = plan3D; }
+                else if ((plan3D != planTempo) && (suiteniv4 == 1)) { planfinal = true; planTempo = plan3D; }
                 std::cout << classe <<" "<< id <<" "<< rayon <<" "<< rouge <<" "<< vert <<" "<< bleu<<" "<< rougeb <<" "<< vertb <<" "<< bleub <<" "<< refposX <<" "<< refposY <<" "<< baseposX <<" "<< baseposY <<" "<< planfinal << std::endl << std::endl ;
                 getFille(0)->getFille(compteurniv1)->getFille(compteurniv2)->getFille(compteurniv3)->ajouterFilleCercleBordure(classe, id, rayon, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, planfinal);
             }
