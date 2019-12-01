@@ -34,7 +34,7 @@
 			list-style-type: none;
 		}
 		button {
-			margin-bottom: 1em;
+			margin-bottom: 20px;
 		}
 		</style>
 		
@@ -47,13 +47,13 @@
 		 <div>
 		 	<h2>Projet ING2 S1 Informatique : ROM Simulator</h2>
 		 	<ul>
-		        <li><button onclick="previous()">⬅️</button> Image : <div id="count">1</div> <button onclick="next()">➡️</button></li>
+		        <li>Frame : <div id="count">1</div> <button onclick="previous()">⬅️</button> <button onclick="next()">➡️</button></li>
 
-				<li><button id="pauseButton" onclick="pause()"> ⏸ </button></li>
-				<li>Image : <input style="width:40px;" type="text" id="newId" value="0">
+				<li>Pause <button id="pauseButton" onclick="pause()"> ⏸ </button></li>
+				<li>Choix de Frame <input style="width:40px;" type="text" id="newId" value="0">
 				<button onclick="setCurrent()"><div>⏭</div></button>
 				<p id="maxImages">(min : 0, max : 0)</p></li>
-				<li><button onclick="reset()">⏹</button></li>
+				<li>Reset <button onclick="reset()">⏹</button></li>
 			</ul>
 			<ul><b><u>Liste des commandes:</u></b>
 		        <li><b>@</b> : selection d'un bloc grâce à son id</li>
