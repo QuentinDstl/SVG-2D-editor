@@ -1,7 +1,8 @@
 #include "src/interface/menu.h"
 
+/*
 ///Main Version CHARGEMENT depuis fichier
-/*int main()
+int main()
 {
     Block room;
     Block* blockIterateur = &room;
@@ -68,3 +69,27 @@ int main()
 
     return 0;
 }
+
+/*
+///Main pour test de CHARLES
+int main()
+{
+    Block room;
+    Block* blockIterateur = &room;
+
+    creerScene(blockIterateur);
+
+    ///sauvegarde et chargement
+    std::ofstream file {FICHIER};
+    if (!file)
+    {
+        std::cerr << "Ouverture impossible du fichier : " << FICHIER;
+    }
+    else
+    {
+        room.sauvegarde();
+    }
+
+    return 0;
+}*/
+
