@@ -33,8 +33,8 @@ void Block::sauvegarde()
 // Methode qui recupere un vecteur de pointeur de block pour les sauvegarder
 void Block::sauvegarderScene1(std::vector <Block*> s)
 {
-    //std::ofstream ofs{FICHIERSAUV};
-    std::ofstream ofs{FICHIERTEST};
+    std::ofstream ofs{FICHIERSAUV};
+    //std::ofstream ofs{FICHIERTEST};
 
     for (auto i : s)///Niveau 0 et de marqueur 1
     {
