@@ -22,7 +22,6 @@
 bool menu(Block *iterateur);
 void creerScene(Block* room);
 void dessinerScene(const Block &room);
-void toutDessiner(Svgfile &svgout, const Block &room);
 void toutDessinerPlan(Svgfile &svgout,const Block &room, unsigned int plan);
 
 #endif // MENU_H_INCLUDED
