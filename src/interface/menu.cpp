@@ -42,10 +42,7 @@ bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int*
 
         case '!':
         {
-        }
-        break;
-
-        case 'l':
+            case 'l':
         {
             if(*afficherLiaisons == true) {
                 *afficherLiaisons = false;
@@ -67,23 +64,11 @@ bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int*
         }
         break;
 
-        case 'p':
-        {
-            char signe;
-            std::cin >> signe;
-
-            if(signe == '+') {
-                (*plan)--;
-            }
-            if(signe == '-') {
-                (*plan)++;
-            }
-        }
-        break;
-
         case 'e':
         {
              fin = true;
+        }
+        break;
         }
         break;
 
