@@ -3,54 +3,54 @@
 bool menu(Block *racine)
 {
     Block* iterateur = trouverRacine(*racine);
-    bool fin = true;
+    bool fin = false;
     char typeCommande;
     std::cin >> typeCommande;
     switch (typeCommande)
     {
-        case '@':
-        {
-            std::string nom;
-            std::cin >> nom;
+    case '@':
+    {
+        std::string nom;
+        std::cin >> nom;
 
-            iterateur = parcourir(nom,*racine);
-            if(iterateur==nullptr)
+        iterateur = parcourir(nom,*racine);
+        if(iterateur==nullptr)
+        {
+            std::cout << std::endl;
+            std::cout << "[e] " << nom << " n'existe pas"<<std::endl;
+        }
+        else
+        {
+            std::string commande;
+            std::cin >> commande;
+            if(commande == "move")
             {
-                std::cout << std::endl;
-                std::cout << "[e] " << nom << " n'existe pas"<<std::endl;
+                int deplacement = 0;
+                std::cin >> deplacement;
+                iterateur->translation(deplacement);
+                break;
             }
             else
             {
-                std::string commande;
-                std::cin >> commande;
-                if(commande == "move")
-                {
-                    int deplacement = 0;
-                    std::cin >> deplacement;
-                    //iterateur->translation(deplacement);
-                    break;
-                }
-                else
-                {
-                    std::cout<<std::endl;
-                    std::cout << "[e] " << commande << " n'est pas reconnu" << std::endl;
-                }
-
+                std::cout<<std::endl;
+                std::cout << "[e] " << commande << " n'est pas reconnu" << std::endl;
             }
-        }
-        break;
-
-        case '!':
-        {
 
         }
-        break;
+    }
+    break;
 
-        default:
-        {
-            std::cout << "[e] " << typeCommande << " n'est pas reconnu" << std::endl;
-        }
-        break;
+    case '!':
+    {
+
+    }
+    break;
+
+    default:
+    {
+        std::cout << "[e] " << typeCommande << " n'est pas reconnu" << std::endl;
+    }
+    break;
     }
 
     dessinerScene(*racine);
@@ -91,7 +91,7 @@ void creerScene(Block* iterateur)
 
     iterateur = trouverRacine(*iterateur);
     iterateur = iterateur->getFille(0)->getFille(0);
-    iterateur->ajouterFilleGlissiere(0, "etagere", {60,30}, {100,100,40}, {0,15}, {25,HAUTEUR_SCENE/2}, {25,HAUTEUR_SCENE-100}, false);
+    iterateur->ajouterFilleGlissiere(0, "etagere", {60,30}, {100,100,40}, {0,0}, {25,HAUTEUR_SCENE/2}, {25,HAUTEUR_SCENE-100}, false);
 }
 
 void dessinerScene(const Block &room)
@@ -99,27 +99,12 @@ void dessinerScene(const Block &room)
     Svgfile svgout;
     /* attention il faut dessiner le room à part */
     room.dessiner(svgout);
-    toutDessiner(svgout,room);
+    room.toutDessiner(svgout);
     //toutDessinerPlan(svgout,room,2);
 
     std::cout << "[i] croix rouge/bleu = position de reference / croix noir/blanc = position de base" << std::endl;
     room.toutDessinerLiaisons(svgout);
     //room.toutDessinerId(svgout);
-}
-
-void toutDessiner(Svgfile &svgout,const Block &room)
-{
-    if (!room.getFilles().size())
-    {}
-    else
-    {
-        for(const auto& petit_fils : room.getFilles())
-        {
-            petit_fils->dessiner(svgout);
-            toutDessiner(svgout,*petit_fils);
-        }
-
-    }
 }
 
 void toutDessinerPlan(Svgfile &svgout,const Block &room, unsigned int plan)
