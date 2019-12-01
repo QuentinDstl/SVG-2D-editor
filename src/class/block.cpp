@@ -700,6 +700,7 @@ bool Block::checkNoCollision()
     return true;
 }
 
+
 bool Block::contactRectangle ()
 {
     if (!m_Filles.size())
