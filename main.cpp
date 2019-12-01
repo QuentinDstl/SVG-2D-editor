@@ -5,7 +5,7 @@ int main()
 {
     Block room;
     Block* blockIterateur = &room;
-    ajouterBlock(room, 0, "room", {LARGEUR_SCENE,HAUTEUR_SCENE}, {50,200,200}, {0,0}, {0,0});
+    ajouterBlock(room, 0, "room", {LARGEUR_SCENE,HAUTEUR_SCENE}, {196,255,255}, {0,0}, {0,0});
     room.chargementScene();
 
     bool fin = false;
