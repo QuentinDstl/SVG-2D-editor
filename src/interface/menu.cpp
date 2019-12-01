@@ -7,7 +7,9 @@ bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int*
     bool fin = false;
 
     char typeCommande;
+
     std::cin >> typeCommande;
+
     switch (typeCommande)
     {
         case '@':
@@ -42,24 +44,36 @@ bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int*
 
         case '!':
         {
-            case 'l':
-        {
-            if(*afficherLiaisons == true) {
-                *afficherLiaisons = false;
+            char caractere;
+            std::cin >> caractere;
+            if(caractere == 'l')
+            {
+                if(*afficherLiaisons == true) {
+                    *afficherLiaisons = false;
+                }
+                else {
+                    *afficherLiaisons = true;
+                }
             }
-            else {
-                *afficherLiaisons = true;
+            else if(caractere == 'i')
+            {
+               if(*afficherId == true) {
+                    *afficherId = false;
+                }
+                else {
+                    *afficherId = true;
+                }
             }
-        }
-        break;
+            else if(caractere == 'a')
+            {
 
-        case 'i':
-        {
-            if(*afficherId == true) {
-                *afficherId = false;
             }
-            else {
-                *afficherId = true;
+            else if(caractere == 'h')
+            {
+                std::cout << "taper @ (id de l'objet) move pour realiser une translation." << std::endl;
+                std::cout << "taper !l pour afficher les liaisons." << std::endl;
+                std::cout << "taper !i pour afficher les id de chacun des blocs." << std::endl;
+                std::cout << "taper e pour quitter le programme." << std::endl << std::endl;
             }
         }
         break;
@@ -69,14 +83,12 @@ bool menu(Block *racine, bool* afficherLiaisons, bool* afficherId, unsigned int*
              fin = true;
         }
         break;
-        }
-        break;
 
         default:
         {
             std::cout << "[e] " << typeCommande << " n'est pas reconnu" << std::endl;
         }
-    break;
+        break;
     }
 
     return fin;
@@ -148,6 +160,7 @@ void dessinerScene(const Block &room, bool* afficherLiaisons, bool* afficherId, 
     if(*afficherId == true) {
         room.toutDessinerId(svgout);
     }
+    std::cout << std::endl;
 }
 
 void toutDessinerPlan(Svgfile &svgout,const Block &room, unsigned int plan)
