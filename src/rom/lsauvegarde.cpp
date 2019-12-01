@@ -16,8 +16,8 @@
 #define MAX_COLOR 100
 
 /// Definition lecture fichier :
-#define FICHIERSAUV "src/rom/sauvegarde.rom"
-#define FICHIERTEST "src/rom/sauvegarde2.rom"
+#define FICHIER "src/rom/sauvegarde.rom"
+#define RELOAD "src/rom/sauvegardeoptimale.rom"
 
 ///************************///
 ///SAUVEGARDE ET CHARGEMENT///
@@ -33,7 +33,7 @@ void Block::sauvegarde()
 // Methode qui recupere un vecteur de pointeur de block pour les sauvegarder
 void Block::sauvegarderScene1(std::vector <Block*> s)
 {
-    std::ofstream ofs{FICHIERSAUV};
+    std::ofstream ofs{FICHIER};
 
     for (auto i : s)///Niveau 0 et de marqueur 1
     {
@@ -317,8 +317,8 @@ void Block::chargementScene()
     int niveau = 0;
     int compteurniv1 = 0; int compteurniv2 = 0; int compteurniv3 = 0; int compteurniv4 = 0;
     int suiteniv1 = 0; int suiteniv2 = 0; int suiteniv3 = 0; int suiteniv4 = 0; int suiteniv5 = 0;
-    /// Ouverture d'un fichier en lecture (ifstream => input file stream)
-    std::ifstream ifs{FICHIERSAUV};
+
+    std::ifstream ifs{FICHIER};
 
     /// Lecture ligne par ligne : TRES IMPORTANT
     std::string ligne;
@@ -334,10 +334,10 @@ void Block::chargementScene()
     bool planfinal;
     /// l'objet  iss  se comporte comme std::cin !
     iss >> classe ;
-    iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> rougeb >> vertb >> bleub >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
+    iss >> id >> tailleX >> tailleY >> rouge >> vert >> bleu >> refposX >> refposY >> baseposX >> baseposY >> plan3D;
     planTempo = plan3D;
 
-    ajouterFilleBordure(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {(uint8_t)rougeb,(uint8_t)vertb,(uint8_t)bleub},{refposX,refposY}, {baseposX,baseposY}, true);
+    ajouterFille(classe, id, {tailleX,tailleY}, {(uint8_t)rouge,(uint8_t)vert,(uint8_t)bleu}, {refposX,refposY}, {baseposX,baseposY}, true);
     while ( std::getline(ifs, ligne) )
     {
         /*Niv 1*/if ( ligne.size()>=1 && ligne[0]=='[' && niveau==0 )
@@ -716,3 +716,4 @@ void Block::chargementScene()
         }
     }
 }
+

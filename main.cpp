@@ -1,5 +1,6 @@
 #include "src/interface/menu.h"
 #define FICHIER "src/rom/sauvegarde.rom"
+#define RELOAD "src/rom/sauvegardeoptimale.rom"
 
 int main()
 {
@@ -17,24 +18,21 @@ int main()
     bool* ptafficherLiaisons = &afficherLiaisons;
     unsigned int* ptplan = &plan;
 
-    std::cout << std::endl << "taper !h pour afficher les commndes a realiser." << std::endl << std::endl;
+    std::ofstream file {FICHIER};
+    if (!file)
+    {
+        std::cerr << "Ouverture impossible du fichier : " << FICHIER;
+    }
+
+    std::cout << std::endl << "Veuillez taper !h pour afficher les commandes a realiser." << std::endl << std::endl;
 
     ///** Boucle du menu **
     while(!fin)
     {
         dessinerScene(room, ptafficherLiaisons, ptafficherId, ptplan);
+        room.sauvegarde();
         fin = menu(blockIterateur, ptafficherLiaisons, ptafficherId, ptplan);
-
-        ///sauvegarde et chargement
-        std::ofstream file {FICHIER};
-        if (!file)
-        {
-            std::cerr << "Ouverture impossible du fichier : " << FICHIER;
-        }
-        else
-        {
-            room.sauvegarde();
-        }
     }
+    room.sauvegarde();
     return 0;
 }

@@ -5,17 +5,17 @@
 
 class LiaisonGlissiere : public Liaison
 {
-protected :
-    Coords m_finbasepos;
-public :
+    protected :
+        Coords m_finbasepos;
+    public :
 
-    /// constructeurs
-    LiaisonGlissiere(Coords _refpos, Coords _basepos, Coords _finbasepos, unsigned int _plan);
-    LiaisonGlissiere();
+        /// Constructeurs
+        LiaisonGlissiere(Coords _refpos, Coords _basepos, Coords _finbasepos, unsigned int _plan);
+        LiaisonGlissiere();
 
-    /// getteurs et setteurs
-    virtual Coords getFinbasepos();
-    virtual void setteurG(Coords _refpos, Coords _basepos, unsigned int _plan);
+        /// Getteurs et setteurs
+        virtual Coords getFinbasepos();
+        virtual void setteurG(Coords _refpos, Coords _basepos, unsigned int _plan);
 
 };
 
