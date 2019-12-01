@@ -53,6 +53,7 @@
 		<Unit filename="src/interface/couleur.h" />
 		<Unit filename="src/interface/menu.cpp" />
 		<Unit filename="src/interface/menu.h" />
+		<Unit filename="src/rom/lsauvegarde.cpp" />
 		<Unit filename="src/svg/svgfile.cpp" />
 		<Unit filename="src/svg/svgfile.h" />
 		<Unit filename="src/util/util.cpp" />
