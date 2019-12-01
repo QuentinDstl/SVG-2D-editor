@@ -4,25 +4,98 @@
 <polygon points=" 0,0 0,600 1000,600 1000,0" style="fill:rgb(196,255,255)" />
 <polygon points=" 0,550 0,600 1000,600 1000,550" style="fill:rgb(31,224,36)" />
 <polygon points=" 0,0 0,550 25,550 25,0" style="fill:rgb(99,0,0)" />
-<polygon points=" 25.6,520.6 25.6,549.4 104.4,549.4 104.4,520.6" style="fill:rgb(128,128,128);stroke:rgb(0,0,0);stroke-width:1" />
-<polygon points=" 90.6,505.6 90.6,519.4 104.4,519.4 104.4,505.6" style="fill:rgb(64,0,64);stroke:rgb(0,0,0);stroke-width:1" />
-<polygon points=" 87,485 87,505 107,505 107,485" style="fill:rgb(0,128,0)" />
+<polygon points=" 25.6,300.6 25.6,329.4 104.4,329.4 104.4,300.6" style="fill:rgb(128,128,128);stroke:rgb(0,0,0);stroke-width:1" />
+<polygon points=" 45.6,285.6 45.6,299.4 59.4,299.4 59.4,285.6" style="fill:rgb(64,0,64);stroke:rgb(0,0,0);stroke-width:1" />
+<polygon points=" 42,265 42,285 62,285 62,265" style="fill:rgb(0,128,0)" />
 <polygon points=" 720,400 720,550 780,550 780,400" style="fill:rgb(99,0,0)" />
 <circle cx="750" cy="350" r="70" fill="rgb(0,128,0)" />
-<polygon points=" 188.6,500.6 188.6,549.4 212.4,549.4 212.4,500.6" style="fill:rgb(255,128,64);stroke:rgb(0,0,0);stroke-width:1" />
-<circle cx="200" cy="480" r="19.4" fill="rgb(255,128,64)" />
-<circle cx="200" cy="480" r="19.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
-<circle cx="193" cy="480" r="5.4" fill="rgb(200,20,20)" />
-<circle cx="193" cy="480" r="5.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
-<circle cx="207" cy="480" r="5.4" fill="rgb(200,20,20)" />
-<circle cx="207" cy="480" r="5.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
-<polygon points=" 213.6,510.6 213.6,519.4 237.4,519.4 237.4,510.6" style="fill:rgb(255,128,64);stroke:rgb(0,0,0);stroke-width:1" />
-<circle cx="243" cy="515" r="4.4" fill="rgb(220,220,60)" />
-<circle cx="243" cy="515" r="4.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
-<polygon points=" 163.6,510.6 163.6,519.4 187.4,519.4 187.4,510.6" style="fill:rgb(255,128,64);stroke:rgb(0,0,0);stroke-width:1" />
-<circle cx="158" cy="515" r="4.4" fill="rgb(220,220,60)" />
-<circle cx="158" cy="515" r="4.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
-<polygon points=" 188.6,535.6 188.6,549.4 212.4,549.4 212.4,535.6" style="fill:rgb(220,220,60);stroke:rgb(0,0,0);stroke-width:1" />
+<polygon points=" 338.6,500.6 338.6,549.4 362.4,549.4 362.4,500.6" style="fill:rgb(255,128,64);stroke:rgb(0,0,0);stroke-width:1" />
+<circle cx="350" cy="480" r="19.4" fill="rgb(255,128,64)" />
+<circle cx="350" cy="480" r="19.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
+<circle cx="343" cy="480" r="5.4" fill="rgb(200,20,20)" />
+<circle cx="343" cy="480" r="5.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
+<circle cx="357" cy="480" r="5.4" fill="rgb(200,20,20)" />
+<circle cx="357" cy="480" r="5.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
+<polygon points=" 363.6,510.6 363.6,519.4 387.4,519.4 387.4,510.6" style="fill:rgb(255,128,64);stroke:rgb(0,0,0);stroke-width:1" />
+<circle cx="393" cy="515" r="4.4" fill="rgb(220,220,60)" />
+<circle cx="393" cy="515" r="4.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
+<polygon points=" 313.6,510.6 313.6,519.4 337.4,519.4 337.4,510.6" style="fill:rgb(255,128,64);stroke:rgb(0,0,0);stroke-width:1" />
+<circle cx="308" cy="515" r="4.4" fill="rgb(220,220,60)" />
+<circle cx="308" cy="515" r="4.4" fill="none" stroke="rgb(0,0,0)" stroke-width="1" />
+<polygon points=" 338.6,535.6 338.6,549.4 362.4,549.4 362.4,535.6" style="fill:rgb(220,220,60);stroke:rgb(0,0,0);stroke-width:1" />
+<line x1="494" y1="594" x2="506" y2="606" stroke="white" />
+<line x1="494" y1="606" x2="506" y2="594" stroke="white" />
+<line x1="496" y1="596" x2="504" y2="604" stroke="red" />
+<line x1="496" y1="604" x2="504" y2="596" stroke="red" />
+<line x1="-6" y1="544" x2="6" y2="556" stroke="white" />
+<line x1="-6" y1="556" x2="6" y2="544" stroke="white" />
+<line x1="-4" y1="546" x2="4" y2="554" stroke="red" />
+<line x1="-4" y1="554" x2="4" y2="546" stroke="red" />
+<line x1="19" y1="544" x2="31" y2="556" stroke="white" />
+<line x1="19" y1="556" x2="31" y2="544" stroke="white" />
+<line x1="25" y1="300" x2="25" y2="550" stroke="white" />
+<line x1="19" y1="294" x2="31" y2="306" stroke="white" />
+<line x1="19" y1="306" x2="31" y2="294" stroke="white" />
+<line x1="21" y1="296" x2="29" y2="304" stroke="red" />
+<line x1="21" y1="304" x2="29" y2="296" stroke="red" />
+<line x1="94" y1="294" x2="106" y2="306" stroke="white" />
+<line x1="94" y1="306" x2="106" y2="294" stroke="white" />
+<line x1="45" y1="300" x2="100" y2="300" stroke="white" />
+<line x1="39" y1="294" x2="51" y2="306" stroke="white" />
+<line x1="39" y1="306" x2="51" y2="294" stroke="white" />
+<line x1="41" y1="296" x2="49" y2="304" stroke="red" />
+<line x1="41" y1="304" x2="49" y2="296" stroke="red" />
+<line x1="46" y1="279" x2="58" y2="291" stroke="white" />
+<line x1="46" y1="291" x2="58" y2="279" stroke="white" />
+<line x1="48" y1="281" x2="56" y2="289" stroke="red" />
+<line x1="48" y1="289" x2="56" y2="281" stroke="red" />
+<line x1="744" y1="544" x2="756" y2="556" stroke="white" />
+<line x1="744" y1="556" x2="756" y2="544" stroke="white" />
+<line x1="746" y1="546" x2="754" y2="554" stroke="red" />
+<line x1="746" y1="554" x2="754" y2="546" stroke="red" />
+<line x1="744" y1="394" x2="756" y2="406" stroke="white" />
+<line x1="744" y1="406" x2="756" y2="394" stroke="white" />
+<line x1="746" y1="396" x2="754" y2="404" stroke="red" />
+<line x1="746" y1="404" x2="754" y2="396" stroke="red" />
+<line x1="794" y1="544" x2="806" y2="556" stroke="white" />
+<line x1="794" y1="556" x2="806" y2="544" stroke="white" />
+<line x1="200" y1="550" x2="800" y2="550" stroke="white" />
+<line x1="194" y1="544" x2="206" y2="556" stroke="white" />
+<line x1="194" y1="556" x2="206" y2="544" stroke="white" />
+<line x1="346" y1="546" x2="354" y2="554" stroke="blue" />
+<line x1="346" y1="554" x2="354" y2="546" stroke="blue" />
+<line x1="344" y1="494" x2="356" y2="506" stroke="white" />
+<line x1="344" y1="506" x2="356" y2="494" stroke="white" />
+<line x1="346" y1="496" x2="354" y2="504" stroke="blue" />
+<line x1="346" y1="504" x2="354" y2="496" stroke="blue" />
+<line x1="337" y1="474" x2="349" y2="486" stroke="white" />
+<line x1="337" y1="486" x2="349" y2="474" stroke="white" />
+<line x1="339" y1="476" x2="347" y2="484" stroke="red" />
+<line x1="339" y1="484" x2="347" y2="476" stroke="red" />
+<line x1="351" y1="474" x2="363" y2="486" stroke="white" />
+<line x1="351" y1="486" x2="363" y2="474" stroke="white" />
+<line x1="353" y1="476" x2="361" y2="484" stroke="red" />
+<line x1="353" y1="484" x2="361" y2="476" stroke="red" />
+<line x1="357" y1="509" x2="369" y2="521" stroke="white" />
+<line x1="357" y1="521" x2="369" y2="509" stroke="white" />
+<line x1="359" y1="511" x2="367" y2="519" stroke="blue" />
+<line x1="359" y1="519" x2="367" y2="511" stroke="blue" />
+<line x1="382" y1="509" x2="394" y2="521" stroke="white" />
+<line x1="382" y1="521" x2="394" y2="509" stroke="white" />
+<line x1="384" y1="511" x2="392" y2="519" stroke="blue" />
+<line x1="384" y1="519" x2="392" y2="511" stroke="blue" />
+<line x1="332" y1="509" x2="344" y2="521" stroke="white" />
+<line x1="332" y1="521" x2="344" y2="509" stroke="white" />
+<line x1="334" y1="511" x2="342" y2="519" stroke="blue" />
+<line x1="334" y1="519" x2="342" y2="511" stroke="blue" />
+<line x1="307" y1="509" x2="319" y2="521" stroke="white" />
+<line x1="307" y1="521" x2="319" y2="509" stroke="white" />
+<line x1="309" y1="511" x2="317" y2="519" stroke="blue" />
+<line x1="309" y1="519" x2="317" y2="511" stroke="blue" />
+<line x1="332" y1="529" x2="344" y2="541" stroke="white" />
+<line x1="332" y1="541" x2="344" y2="529" stroke="white" />
+<line x1="334" y1="531" x2="342" y2="539" stroke="blue" />
+<line x1="334" y1="539" x2="342" y2="531" stroke="blue" />
 
 
 </svg>
